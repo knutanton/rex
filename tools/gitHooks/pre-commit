@@ -1,0 +1,100 @@
+#!/bin/sh
+#
+# An example hook script to verify what is about to be committed.
+# Called by "git commit" with no arguments.  The hook should
+# exit with non-zero status after issuing an appropriate message if
+# it wants to stop the commit.
+#
+# To enable this hook, rename this file to "pre-commit".
+
+if git rev-parse --verify HEAD >/dev/null 2>&1
+then
+	against=HEAD
+else
+	# Initial commit: diff against an empty tree object
+	against=8f1e95292add28daa9a8ddaa12b6b4b73fab21f9
+fi
+
+# If you want to allow non-ascii filenames set this variable to true.
+allownonascii=$(git config hooks.allownonascii)
+
+# Redirect output to stderr.
+exec 1>&2
+
+# Cross platform projects tend to avoid non-ascii filenames; prevent
+# them from being added to the repository. We exploit the fact that the
+# printable range starts at the space character and ends with tilde.
+if [ "$allownonascii" != "true" ] &&
+	# Note that the use of brackets around a tr range is ok here, (it's
+	# even required, for portability to Solaris 10's /usr/bin/tr), since
+	# the square bracket bytes happen to fall in the designated range.
+	test $(git diff --cached --name-only --diff-filter=A -z $against |
+	  LC_ALL=C tr -d '[ -~]\0' | wc -c) != 0
+then
+	echo "Error: Attempt to add a non-ascii file name."
+	echo
+	echo "This can cause problems if you want to work"
+	echo "with people on other platforms."
+	echo
+	echo "To be portable it is advisable to rename the file ..."
+	echo
+	echo "If you know what you are doing you can disable this"
+	echo "check using:"
+	echo
+	echo "  git config hooks.allownonascii true"
+	echo
+	exit 1
+fi
+
+REPOSROOT_DIR=$(git rev-parse --show-toplevel) # root path of this repo
+JSLINTCONF="--config ${REPOSROOT_DIR}/tools/config/jslint.json" # path of jslint config
+RECESSCONF="--config ${REPOSROOT_DIR}/tools/config/recess.json" # path of recess config
+JSLINT=$(which jslint) # jslint path
+CSSLINT=$(which csslint) # csslint path
+RECESS=$(which recess) # recess path
+
+exitCode=0 # TODO: If it gets annoying to wait for all errors before skipping, we could also just exit on the first file with errors!
+
+files=$(git diff --cached --name-only) # list of all files in this commit
+
+# jslinting all js files
+for file in $(git diff --cached --name-only | egrep \.js$); do
+  result=`$JSLINT $JSLINTCONF $file 2>&1`
+  echo ${result} | grep --quiet 'No problems found' # TODO: grepping for text snippets sucks big time (slow and difficult to maintain), but those exitcodes aren't really supported! :(
+  if [ "$?" -gt 0 ] ; then
+    echo "$result"
+    exitCode=1
+  fi
+done
+
+# csslinting all css files
+for file in $(git diff --cached --name-only | egrep \.css$); do
+  cd ${REPOSROOT_DIR}/tools/config/ # needed since csslint is looking for a config file in the current working dir *sigh* FIXME: I tried to put it outside the loop, but that broke my git diff somehow *double face palm*
+  result=`$CSSLINT ${REPOSROOT_DIR}/$file 2>&1`
+  cd $REPOSROOT_DIR
+  echo ${result} | grep --quiet 'Error' # TODO: grepping for text snippets sucks!
+  if [ "$?" -eq 0 ] ; then
+    echo "$result"
+    exitCode=1
+  fi
+done
+
+# recess (less linting) all less files
+for file in $(git diff --cached --name-only | egrep \.less$); do
+  result=`$RECESS $RECESSCONF $file 2>&1`
+  echo ${result} | grep --quiet 'STATUS: Perfect!' # TODO: grepping for text snippets sucks!
+  if [ "$?" -gt 0 ] ; then
+    echo "$result"
+    exitCode=1
+  else
+    echo "$RECESS --compile $file > $file.css"
+  fi
+done
+
+# checking for trailing whitespaces
+git diff-index --check --cached $against --
+if [ "$?" -gt 0 ] ; then
+  exitCode=1
+fi
+
+exit $exitCode
