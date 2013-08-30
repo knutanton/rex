@@ -17,7 +17,7 @@
  * limitations under the License.
  * ======================================================================== */
 
-var jac = "";
+var jac = "  ";
 
 +function ($) { "use strict";
 
