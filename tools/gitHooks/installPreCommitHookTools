@@ -1,0 +1,54 @@
+#!/bin/sh
+# This script installs tools needed for the git pre-commit hook we use @ the Royal Danish Library
+# author hafe@kb.dk
+# date: 2013-08-28
+
+# install nodejs if it isn't there already
+which node >/dev/null 2>&1 || {
+    echo "installing nodejs..."
+    cd ~
+    if [ ! -d ".local" ]; then
+        mkdir ".local"
+    fi
+    cd .local
+    if [ ! -d "lib" ]; then
+        mkdir "lib"
+    fi
+    cd lib
+
+    if [ ! -d "node-latest-install" ]; then
+        mkdir "node-latest-install"
+    fi
+    cd node-latest-install
+
+    curl http://nodejs.org/dist/node-latest.tar.gz | tar xz --strip-components=1
+
+    ./configure --prefix=$HOME/.local
+    make
+    make install
+}
+
+# install npm
+which npm >/dev/null 2>&1 || {
+    echo "installing npm..."
+    curl https://npmjs.org/install.sh | sh
+}
+
+# install jslint
+which jslint >/dev/null 2>&1 || {
+    echo "installing jslint (with --config flavour)..."
+    npm install -g https://github.com/One-com/jslint-core/tarball/module
+    npm install -g https://github.com/bramstein/jslint/tarball/master
+}
+
+# install csslint
+which csslint >/dev/null 2>&1 || {
+    echo "installing csslint..."
+    npm install -g csslint
+}
+
+# install recess
+which recess >/dev/null 2>&1 || {
+    echo "installing recess..."
+    npm install -g recess
+}

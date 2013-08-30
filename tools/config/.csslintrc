@@ -1,0 +1,4 @@
+--format=compact
+--errors=important,display-property-grouping,known-properties
+--warnings=import,ids,duplicate-properties,empty-rules,compatible-vendor-prefixes,gradients,text-indent,vendor-prefix,fallback-colors,universal-selector,shorthand
+--ignore=adjoining-classes,box-sizing
