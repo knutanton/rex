@@ -19,9 +19,9 @@
 <c:if test="${fromEshelf}">
         <input type="hidden" id="vid" value="${fn:escapeXml(sessionScope.vid)}"/>
 </c:if>
-<div class="EXLSummary EXLResult">
-        <div class="EXLSummaryContainer"><a name="${result.id}" id="${result.id}" class="EXLResultRecordId"></a>
-                <div class="EXLSummaryFields">
+<div class="">
+        <div class=""><a name="${result.id}" id="${result.id}" class="EXLResultRecordId"></a>
+                <div class="">
                         <c:set var="recordTitle"><prm:fields fields="${displayForm.resultView[0]}" result="${result}" fieldDelims="${displayForm.displayFieldsDelimiters[0]}"/></c:set>
                         <c:set var="recordAuthor"><prm:fields fields="${displayForm.resultView[1]}" result="${result}" fieldDelims="${displayForm.displayFieldsDelimiters[1]}"/></c:set>
                         <h1 class="EXLResultTitle">${fmt:escapeLooseAmpersands(recordTitle)}</h1>
