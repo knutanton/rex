@@ -17,8 +17,6 @@
  * limitations under the License.
  * ======================================================================== */
 
-var jac = "  ";
-
 +function ($) { "use strict";
 
   // TAB CLASS DEFINITION
