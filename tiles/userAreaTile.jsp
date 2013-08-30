@@ -19,6 +19,7 @@
   			${fn:escapeXml(sessionScope.userName)}
 	</c:if>
 </c:set>
+
 <c:if test="${!loggedIn}">
 	<c:set var="userName">
 		<fmt:message key="eshelf.user.anonymous"/>
@@ -81,7 +82,8 @@
 				opId="click" resultDoc="${searchForm.searchResult.results[0]}" type=""
 				delivery="${searchForm.delivery[0]}" noOther="true" index="${param.indx}"/>				
 				
-<ul id="exlidUserAreaRibbon" class="${loggedInClass}">
+<!--<ul id="exlidUserAreaRibbon" class="${loggedInClass}">
+
   <li id="exlidUserName" class="EXLUserName">
   	<span class="EXLUserAreaStart"></span>
   	<span class="EXLUserNameDisplay">
@@ -90,20 +92,88 @@
   		</fmt:message></span>
   	<span class="EXLUserAreaStartRtl"></span>
   </li>
-  <li id="exlidMyShelf" class="EXLMyShelf"><a href="${fn:escapeXml(eshelfURL)}"><span class="EXLMyShelfStarSelected"></span><fmt:message key="eshelf.basket.title"/></a></li>
-  <li id="exlidMyAccount" class="EXLMyAccount"><a href="${fn:escapeXml(myAccountUrl)}"><fmt:message key="menu.myaccount"/></a></li>
-<c:choose>
-	<c:when test="${loggedIn}">
-  		<li id="exlidSignOut" class="EXLSignOut EXLLastItem"><a href="${fn:escapeXml(logoutUrl)}" onclick="boomCallToRum('SignOutStat',false);"><fmt:message key="eshelf.signout.title.link"/></a></li>
-	</c:when>
-	<c:otherwise>
-  		<li id="exlidSignOut" class="EXLSignOut EXLLastItem">
-  			<a href="${fn:escapeXml(loginUrl)}" onclick="boomCallToRum('SignInStatUserArea',false);"><fmt:message key="eshelf.signin.title"/></a>
-  			&nbsp;<fmt:message key="eshelf.additional.text"/>
-  		</li>
-	</c:otherwise>
-</c:choose>
-</ul>
+
+  <li id="exlidMyShelf" class="EXLMyShelf">
+      <a href="${fn:escapeXml(eshelfURL)}">
+          <span class="EXLMyShelfStarSelected"></span>
+          <fmt:message key="eshelf.basket.title"/>
+       </a>
+  </li>
+
+  <li id="exlidMyAccount" class="EXLMyAccount">
+      <a href="${fn:escapeXml(myAccountUrl)}"><fmt:message key="menu.myaccount"/></a>
+  </li>
+
+    <c:choose>
+        <c:when test="${loggedIn}">
+            <li id="exlidSignOut" class="EXLSignOut EXLLastItem">
+                <a href="${fn:escapeXml(logoutUrl)}" onclick="boomCallToRum('SignOutStat',false);"><fmt:message key="eshelf.signout.title.link"/></a>
+            </li>
+        </c:when>
+        <c:otherwise>
+            <li id="exlidSignOut" class="EXLSignOut EXLLastItem">
+                <a href="${fn:escapeXml(loginUrl)}" onclick="boomCallToRum('SignInStatUserArea',false);"><fmt:message key="eshelf.signin.title"/></a>
+                &nbsp;<fmt:message key="eshelf.additional.text"/>
+            </li>
+        </c:otherwise>
+    </c:choose>
+</ul>-->
+
+
+<nav class="navbar navbar-default" role="navigation">
+    <div class="container">
+
+        <!-- Toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".userAreaCollapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse userAreaCollapse">
+            <ul class="nav navbar-nav">
+                <li>
+                    <p class="navbar-text">
+                        <fmt:message key="eshelf.user.greeting">
+                            <fmt:param value="${userName}"></fmt:param>
+                        </fmt:message>
+                    </p>
+                </li>
+                <li>
+                    <a href="${fn:escapeXml(eshelfURL)}">
+                        <fmt:message key="eshelf.basket.title"/>
+                    </a>
+                </li>
+                <li>
+                    <a href="${fn:escapeXml(myAccountUrl)}">
+                        <fmt:message key="menu.myaccount"/>
+                    </a>
+                </li>
+                <c:choose>
+                    <c:when test="${loggedIn}">
+                        <li>
+                            <a href="${fn:escapeXml(logoutUrl)}" onclick="boomCallToRum('SignOutStat',false);">
+                               <fmt:message key="eshelf.signout.title.link"/>
+                            </a>
+                        </li>
+                    </c:when>
+                    <c:otherwise>
+                        <li>
+                            <a href="${fn:escapeXml(loginUrl)}" onclick="boomCallToRum('SignInStatUserArea',false);">
+                                <fmt:message key="eshelf.signin.title"/>
+                            </a>
+                            <fmt:message key="eshelf.additional.text"/>
+                        </li>
+                    </c:otherwise>
+                </c:choose>
+            </ul>
+        </div><!-- /.navbar-collapse -->
+    </div>
+</nav>
   
 <script type="text/javascript">
 	var userInst = "${sessionScope.userInfo.pdsInstitute}";
