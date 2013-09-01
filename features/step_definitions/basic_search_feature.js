@@ -23,7 +23,7 @@ var myStepDefinitionsWrapper = function () {
     callback.pending();
   });
 
-  var title = "REX -";
+  var title = "REX - linux";
   this.Then(/^the title of the page should be REX - linux$/, function (callback) {
     if (!this.isOnPageWithTitle(title)) {
       // You can make steps fail by calling the `fail()` function on the callback:
