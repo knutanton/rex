@@ -196,21 +196,23 @@ Languages menu
 </div>
 </c:if>-->
 
+
+
 <div id="flagForFindDbDeepLink" title="NotADeepLink"></div>
 <div id="savedSelectedMyAccountTab"></div>
 <div id="exlidLightbox">
-<script type="text/javascript">
-var str = window.location.href;
-var n = str.match(/openFdb=true/g);
-if (n != null){
-boomCallToRum('FindDbStat',false);
-var openMyDatabases = str.match(/openMyDatabases=true/g);
- if(openMyDatabases != null){
-   openPrimoLightBox('searchDB','loadSearchDbPage','searchDbXml','IamDeepLinkToMyDatabases');
- }else{
-   openPrimoLightBox('searchDB','loadSearchDbPage','searchDbXml','IamDeepLink');
- }
-}
-</script>
-<noscript>This feature required javascript</noscript>
-</div>
+    <script type="text/javascript">
+        var str = window.location.href;
+        var n = str.match(/openFdb=true/g);
+        if (n != null) {
+            boomCallToRum('FindDbStat', false);
+            var openMyDatabases = str.match(/openMyDatabases=true/g);
+            if (openMyDatabases != null) {
+                openPrimoLightBox('searchDB', 'loadSearchDbPage', 'searchDbXml', 'IamDeepLinkToMyDatabases');
+            } else {
+                openPrimoLightBox('searchDB', 'loadSearchDbPage', 'searchDbXml', 'IamDeepLink');
+            }
+        }
+    </script>
+    <noscript>This feature required javascript</noscript>
+
