@@ -80,52 +80,15 @@
 				delivery="${searchForm.delivery[0]}" noOther="true" index="${param.indx}"/>
 <prm:boomerang id="SignOutStat" boomForm="${searchForm}" pageId="sign-out"
 				opId="click" resultDoc="${searchForm.searchResult.results[0]}" type=""
-				delivery="${searchForm.delivery[0]}" noOther="true" index="${param.indx}"/>				
-				
-<!--<ul id="exlidUserAreaRibbon" class="${loggedInClass}">
-
-  <li id="exlidUserName" class="EXLUserName">
-  	<span class="EXLUserAreaStart"></span>
-  	<span class="EXLUserNameDisplay">
-  		<fmt:message key="eshelf.user.greeting">
-  			<fmt:param value="${userName}"></fmt:param>
-  		</fmt:message></span>
-  	<span class="EXLUserAreaStartRtl"></span>
-  </li>
-
-  <li id="exlidMyShelf" class="EXLMyShelf">
-      <a href="${fn:escapeXml(eshelfURL)}">
-          <span class="EXLMyShelfStarSelected"></span>
-          <fmt:message key="eshelf.basket.title"/>
-       </a>
-  </li>
-
-  <li id="exlidMyAccount" class="EXLMyAccount">
-      <a href="${fn:escapeXml(myAccountUrl)}"><fmt:message key="menu.myaccount"/></a>
-  </li>
-
-    <c:choose>
-        <c:when test="${loggedIn}">
-            <li id="exlidSignOut" class="EXLSignOut EXLLastItem">
-                <a href="${fn:escapeXml(logoutUrl)}" onclick="boomCallToRum('SignOutStat',false);"><fmt:message key="eshelf.signout.title.link"/></a>
-            </li>
-        </c:when>
-        <c:otherwise>
-            <li id="exlidSignOut" class="EXLSignOut EXLLastItem">
-                <a href="${fn:escapeXml(loginUrl)}" onclick="boomCallToRum('SignInStatUserArea',false);"><fmt:message key="eshelf.signin.title"/></a>
-                &nbsp;<fmt:message key="eshelf.additional.text"/>
-            </li>
-        </c:otherwise>
-    </c:choose>
-</ul>-->
+				delivery="${searchForm.delivery[0]}" noOther="true" index="${param.indx}"/>
 
 
 <nav class="navbar navbar-default" role="navigation">
     <div class="container">
 
-        <!-- Toggle get grouped for better mobile display -->
+        <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".userAreaCollapse">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
                 <span class="sr-only">Toggle navigation</span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
@@ -134,35 +97,40 @@
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse userAreaCollapse">
-            <ul class="nav navbar-nav">
-                <li>
+        <div class="collapse navbar-collapse navbar-ex1-collapse">
+            <ul id="exlidUserAreaRibbon" class="${loggedInClass} nav navbar-nav">
+                <li id="exlidUserName" class="EXLUserName">
                     <p class="navbar-text">
-                        <fmt:message key="eshelf.user.greeting">
-                            <fmt:param value="${userName}"></fmt:param>
-                        </fmt:message>
+                        <span class="EXLUserAreaStart"></span>
+                        <span class="EXLUserNameDisplay">
+                            <fmt:message key="eshelf.user.greeting">
+                                <fmt:param value="${userName}"></fmt:param>
+                            </fmt:message>
+                        </span>
+                        <span class="EXLUserAreaStartRtl"></span>
                     </p>
                 </li>
-                <li>
+                <li id="exlidMyShelf" class="EXLMyShelf">
                     <a href="${fn:escapeXml(eshelfURL)}">
+                        <span class="EXLMyShelfStarSelected"></span>
                         <fmt:message key="eshelf.basket.title"/>
                     </a>
                 </li>
-                <li>
+                <li id="exlidMyAccount" class="EXLMyAccount">
                     <a href="${fn:escapeXml(myAccountUrl)}">
                         <fmt:message key="menu.myaccount"/>
                     </a>
                 </li>
                 <c:choose>
                     <c:when test="${loggedIn}">
-                        <li>
+                        <li id="exlidSignOut" class="EXLSignOut EXLLastItem">
                             <a href="${fn:escapeXml(logoutUrl)}" onclick="boomCallToRum('SignOutStat',false);">
-                               <fmt:message key="eshelf.signout.title.link"/>
+                                <fmt:message key="eshelf.signout.title.link"/>
                             </a>
                         </li>
                     </c:when>
                     <c:otherwise>
-                        <li>
+                        <li id="exlidSignOut" class="EXLSignOut EXLLastItem">
                             <a href="${fn:escapeXml(loginUrl)}" onclick="boomCallToRum('SignInStatUserArea',false);">
                                 <fmt:message key="eshelf.signin.title"/>
                             </a>
@@ -171,12 +139,14 @@
                     </c:otherwise>
                 </c:choose>
             </ul>
-        </div><!-- /.navbar-collapse -->
+        </div>
     </div>
 </nav>
-  
+
+
+
 <script type="text/javascript">
-	var userInst = "${sessionScope.userInfo.pdsInstitute}";
+    var userInst = "${sessionScope.userInfo.pdsInstitute}";
 </script>
 
 
