@@ -1,0 +1,174 @@
+<%@ include file="/views/taglibsIncludeAll.jspf" %>
+<div id="scopesList">
+<c:set var="loggedIn" value="${false}"/>
+<c:if test="${not empty sessionScope.loggedIn and sessionScope.loggedIn==true}">
+	<c:set var="loggedIn" value="${true}"/>
+</c:if>
+<c:url var="loginPdsUrl" value="${fn:escapeXml(sessionScope.pdsUrlLogin)}?${targeturl}=${fn:escapeXml(searchForm.reqEncUrl)}"/>
+	<c:forEach items='${searchForm.scp.scopesOptions}' var="option" varStatus="status">
+	<c:if test="${searchForm.remote and searchForm.searchDone and searchForm.accessibilityList[status.index]==0 and option.locationrefs==searchForm.scp.scps}">
+		<c:set var="scopeBoxClass" value ="errorBorder EXLHighlightError"/>
+	</c:if>
+	</c:forEach>
+	<div class="EXLSearchFieldRibbonFormSelectedCollection ${oneScopeOnlyClass}">
+	 <c:set var="alreadyShowingOneScope" value="${false}"/> <%-- make sure only one scope is displayed (should never be a problem in reality, but in testing it does come up --%>
+     <c:forEach items="${searchForm.scp.scopesOptions}" var="option" varStatus="status">
+		<%-- Only display the currently selected option --%>
+		<c:if test="${option.locationrefs==searchForm.scp.scps && !alreadyShowingOneScope }">
+		<c:set var="alreadyShowingOneScope" value="${true}"/>
+		<span class="EXLHiddenCue"><fmt:message key="search.scope.cue.Search_in"/>:</span>
+		<span class="EXLSearchFieldRibbonFormSelectedCollectionLabel">
+			<a id="showMoreOptions" href="#" title="<fmt:message key="search.scope.choose.title.show more options"/>">
+             <c:if test="${option.id == 'Selected_Databases'}">
+	       	  <fmt:message key='scopes.option.current.selected' />
+             </c:if>
+             <c:if test="${option.personalSetScope != true and option.id != 'Selected_Databases'}">
+	       	  <fmt:message key='scopes.option.${option.id}' />
+             </c:if>
+             <c:if test="${option.id != 'Selected_Databases' and option.personalSetScope == true}">
+              ${fn:replace(option.id,'_',' ')}
+             </c:if>
+			  <c:if test="${searchForm.accessibilityList[status.index]!='-1' and not searchForm.allFullAccess}">
+				&nbsp;<fmt:message key='option.accessibility.${searchForm.accessibilityList[status.index]}'/>
+			  </c:if>
+			</a>
+		</span>
+		</c:if>
+	</c:forEach>
+	<c:if test="${not alreadyShowingOneScope}">
+		<c:set var="option" value="${searchForm.scp.scopesOptions[0]}"/>
+		<span class="EXLHiddenCue"><fmt:message key="search.scope.cue.Search_in"/>:</span>
+		<span class="EXLSearchFieldRibbonFormSelectedCollectionLabel">
+		  <%-- <img src="../images/icon_open_scopes.png"/> --%>
+			<a href="#" title="<fmt:message key="search.scope.choose.title.show more options"/>">
+	       	  <c:if test="${option.id == 'Selected_Databases'}">
+	       	  <fmt:message key='scopes.option.${option.id}' />
+             </c:if>
+             <c:if test="${option.personalSetScope != true and option.id != 'Selected_Databases'}">
+	       	  <fmt:message key='scopes.option.${option.id}' />
+             </c:if>
+             <c:if test="${option.id != 'Selected_Databases' and option.personalSetScope == true}">
+              ${fn:replace(option.id,'_',' ')}
+             </c:if>
+			  <c:if test="${searchForm.accessibilityList[0]!='-1' and not searchForm.allFullAccess}">
+				&nbsp;<fmt:message key='option.accessibility.${searchForm.accessibilityList[0]}'/>
+			  </c:if>
+			</a>
+		</span>
+	</c:if>
+	</div>
+
+<div class="EXLSearchFieldRibbonFormCollectionsList" style="display:none" ><span class="EXLHiddenCue">Or select another collection:</span>
+     <div id="scopesListContainer" class="EXLDynamicSelectBodyRadio">
+     <c:set var="divclassflag" value="false"/>
+        <c:forEach items='${searchForm.scp.scopesOptions}' var="option" varStatus="status">
+			<c:set var="checked" value="${option.locationrefs==searchForm.scp.scps?'checked=\"checked\"':''}"/>
+			<c:if test="${not alreadyShowingOneScope}">
+				<c:set var="alreadyShowingOneScope" value="${true}"/>
+				<c:set var="checked" value="'checked=\"checked\"' "/>
+			</c:if>
+			<%-- these spaces (" ") are intentional --%>
+			<c:set var="displaySelected" value =" "/>
+			<c:set var="radiodisabled" value =" "/>
+			<c:if test="${searchForm.displaySelectedScope == 'hide' and option.id == 'Selected_Databases'}">
+				<%-- hide and disable Selected_Databases when necesary --%>
+				<c:set var="displaySelected" value="style='display:none;'"/>
+				<c:set var="radiodisabled" value="disabled=\"disabled\""/>
+			</c:if>
+            <%-- hide and disable personal sets when necesary --%>
+			<c:if test="${searchForm.displaySelectedScope == 'hide' and option.personalSetScope ==true }">
+				<%-- hide and disable Selected_Databases when necesary --%>
+				<c:set var="displaySelected" value="style='display:none;'"/>
+				<c:set var="radiodisabled" value="disabled=\"disabled\""/>
+			</c:if>
+
+			<%-- reset it --%>
+	        <c:set var="divclass" value=""/>
+	       
+	        <c:if test="${status.index==0}">
+	        	<%-- set specialized class for first option--%>
+				<c:set var="divclass" value="EXLDynamicSelectBodyRadioFirst"/>
+			</c:if>
+			
+	        <c:if test="${option.id == 'Selected_Databases' or (option.id != 'Selected_Databases' and option.personalSetScope == true and divclassflag == false)}">
+	        	<%-- specialized class for Selected_Databases --%>
+				<c:set var="divclass" value="EXLDynamicSelectBodyRadioTopBorder"/>
+				<c:set var="divclassflag" value="true"/>
+			</c:if>
+			<c:if test="${option.id != 'Selected_Databases' and option.personalSetScope == true and divclassflag == false}">
+			<%-- specialized class for first personal set if Selected_Databases doesn't exist --%>
+				<c:set var="divclass" value="EXLDynamicSelectBodyRadioTopBorder"/>
+				<c:set var="divclassflag" value="true"/>
+			</c:if>
+			<div class="${divclass}" ${displaySelected} id="${option.id}-Div" >
+			<a href="#" class="${divclass}">
+              <input name="scp.scps" type="radio" ${checked} ${radiodisabled} id="exlidDynamicSelectBodyRadio${status.index}" value="${fn:escapeXml(option.locationrefs)}"/>
+              <label for="exlidDynamicSelectBodyRadio${status.index}">
+                   <c:if test="${option.id == 'Selected_Databases'}">
+	       	       <fmt:message key='scopes.option.current.selected' />
+                   </c:if>
+               	  <c:if test="${option.personalSetScope != true and option.id != 'Selected_Databases'}">
+	       	       <fmt:message key='scopes.option.${option.id}' />
+                   </c:if>
+                   <c:if test="${option.id != 'Selected_Databases' and option.personalSetScope == true}">
+                   ${fn:replace(option.id,'_',' ')}
+                   </c:if>
+				  <c:if test="${searchForm.accessibilityList[status.index]!='-1' and not searchForm.allFullAccess}">
+					&nbsp;<fmt:message key='option.accessibility.${searchForm.accessibilityList[status.index]}'/>
+	</c:if>
+			  </label>
+			  </a>
+            </div>
+		</c:forEach>
+     </div>
+
+<%--
+    <div id="scopesListContainer" class="EXLDynamicSelectBodyRadio EXLDynamicSelectBodyRadioHide ${oneScopeOnlyClass}">
+            <c:forEach items='${searchForm.scp.scopesOptions}' var="option" varStatus="status">
+			<c:set var="classes" value="${option.locationrefs==searchForm.scp.scps?'EXLDynamicSelectBodyRadioFirst':'EXLDynamicSelectBodyRadioHideItem'}"/>
+			<c:set var="checked" value="${option.locationrefs==searchForm.scp.scps?'checked=\"checked\"':''}"/>
+			<c:set var="displaySelected" value =" "/>
+			<c:set var="radiodisabled" value =" "/>
+			<c:if test="${searchForm.displaySelectedScope == 'hide' and option.id == 'Selected_Databases'}">
+				<c:set var="displaySelected" value="style='display:none;'"/>
+				<c:set var="radiodisabled" value="disabled=\"disabled\""/>
+			</c:if>
+			<c:set var="addTopDashedBorder" value=" "/>
+			<c:if test="${option.id == 'Selected_Databases'}">
+				<c:set var="addTopDashedBorder" value="EXLDynamicSelectBodyRadioTopBorder"/>
+			</c:if>
+            <div class="${classes} ${addTopDashedBorder}" id="${option.id}-Div" ${displaySelected}>
+              <input name="scp.scps" type="radio" id="${option.id}" value="${fn:escapeXml(option.locationrefs)}" ${radiodisabled} ${checked} style="display:none"/>
+              <label for="${option.id}">
+              	  <fmt:message key='scopes.option.${option.id}' />
+				  <c:if test="${searchForm.accessibilityList[status.index]!='-1' and not searchForm.allFullAccess}">
+					&nbsp;<fmt:message key='option.accessibility.${searchForm.accessibilityList[status.index]}'/>
+				  </c:if>
+			  </label>
+            </div>
+		</c:forEach>
+    </div>
+--%>
+  </div>
+  </div>
+  <%--
+<div id="runJavaScriptOnLoad">
+  <script type="text/javascript">
+  if(document.getElementById("Selected_Databases-Div") == null ){
+	  if($(".EXLDynamicSelectBodyRadioTopBorder").length == 0){
+		var match = false;
+		var arrScopes = $("#scopesListContainer input:radio");
+		for (var i=0; i<arrScopes.length; i++) {
+			var element=arrScopes[i];
+			var patt = /^\D{3}\d{5},.*/;
+			if(patt.exec(element.value) != null && !match){
+			parentDiv = element.parentNode;
+			parentDiv.className = parentDiv.className + " EXLDynamicSelectBodyRadioTopBorder";
+			match = true;
+			}
+		 }
+		}
+	}
+</script>
+</div>
+--%>
