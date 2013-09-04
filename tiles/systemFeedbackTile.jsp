@@ -75,9 +75,11 @@
 
 
 <c:if test="${not empty feedbackMessage}">
-    <div id="exlidHeaderSystemFeedbackContent" class="alert alert-info alert-dismissable">
-        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-        <strong>${feedbackMessage}!</strong>
+    <div class="container">
+        <div id="exlidHeaderSystemFeedbackContent" class="alert alert-info alert-dismissable">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+            <strong>${feedbackMessage}!</strong>
+        </div>
     </div>
 </c:if>
 <!-- systemFeedbackTile.jsp end -->
