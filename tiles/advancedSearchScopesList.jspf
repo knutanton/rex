@@ -1,0 +1,77 @@
+<%@ include file="/views/taglibsIncludeAll.jspf" %>
+<c:if test="${not empty searchForm.scp.scopesOptions}">
+				<%--Scopes are not displayed if we have only one --%>
+			<c:choose>
+				<c:when test="${searchForm.displayDefinition}">
+					<c:set var="scopesListClass" value="EXLAdvancedSearchFormRow"/>
+				</c:when>
+				<c:otherwise>
+					<c:set var="scopesListClass" value="EXLAdvancedSearchFormRow EXLAdvancedSearchFormRowHide"/>
+				</c:otherwise>
+			</c:choose>
+             <div id="scopesListAdvanced" class="${scopesListClass}">
+
+              <span class="EXLAdvancedSearchFormRowInlineInput">
+				<label for="exlidSearchIn">
+				<c:if test="${fn:length(searchForm.scp.scopesOptions)>1}">
+					<fmt:message key="search-advanced.scopes.label" />
+				</c:if>
+				</label>
+				<select id="exlidSearchIn" class="EXLSearchInputScopesSelect" name="scp.scps" ${(searchForm.displayDefinition=='false')?'disabled="disabled"':''}>
+					<c:forEach items='${searchForm.scp.scopesOptions}' var="option" varStatus="status">
+						<c:set var="classes" value="${option.locationrefs==searchForm.scp.scps?'EXLSelectedOption':'EXLSelectOption'}"/>
+						<c:set var="selected" value="${option.locationrefs==searchForm.scp.scps?'selected=\"selected\"':''}"/>
+					<c:choose>
+						<c:when test="${option.id == 'Selected_Databases'}">
+							<c:if test="${searchForm.displaySelectedScope != 'hide'}">
+								<option id="${option.id}" value="${fn:escapeXml(option.locationrefs)}" class="${classes} EXLSearchInputScopesOption${option.id}" ${selected}><fmt:message
+									key='scopes.option.current.selected' /><c:if test="${searchForm.accessibilityList[status.index]!='-1' and not searchForm.allFullAccess}">&nbsp;<fmt:message key='option.accessibility.${searchForm.accessibilityList[status.index]}'/> </c:if></option>
+							</c:if>
+						</c:when>
+						<c:otherwise>
+						  <c:if test="${option.personalSetScope == false or (searchForm.displaySelectedScope != 'hide' and option.personalSetScope == true)}">
+							<option id="${option.id}" value="${fn:escapeXml(option.locationrefs)}" class="${classes} EXLSearchInputScopesOption${option.id}" ${selected}><fmt:message
+								key='scopes.option.${option.id}' />
+								<c:if test="${searchForm.accessibilityList[status.index]!='-1' and not searchForm.allFullAccess}">&nbsp;<fmt:message key='option.accessibility.${searchForm.accessibilityList[status.index]}'/>
+								</c:if>
+                                </option>
+                         </c:if>
+						</c:otherwise>
+					</c:choose>
+					</c:forEach>
+				</select>
+                <c:forEach items='${searchForm.scp.scopesOptions}' var="option" varStatus="status">
+						<c:set var="classes" value="${option.locationrefs==searchForm.scp.scps?'EXLSelectedOption':'EXLSelectOption'}"/>
+						<c:set var="selected" value="${option.locationrefs==searchForm.scp.scps?'selected=\"selected\"':''}"/>
+                        <c:if test="${option.id == 'Selected_Databases'}">
+							<input type="hidden" id="selectedDbId" value="${option.id}"/>
+							<input type="hidden" id="selectedDbValue" value="${fn:escapeXml(option.locationrefs)}"/>
+							<input type="hidden" id="selectedDbClass" value="${classes} EXLSearchInputScopesOption${option.id}"/>
+							<input type="hidden" id="selectedDbText" value="<fmt:message key='scopes.option.current.selected' />"/>
+						</c:if>
+               </c:forEach>
+               		<c:set var="existRemote" value="true"/>
+				<c:if test="${not empty searchForm}">
+					<c:set var="existRemote" value="${searchForm.scp.existRemote}"/>
+				</c:if>
+
+              </span>
+              <div class="EXLAdvancedSearchFormRow">
+				<prm:userText styleId="search-advanced" type="endingText" inline="true"/>
+			  </div>
+            </div>
+		</c:if>
+			<c:if test="${existRemote || searchForm.showFindInDb}">
+				<c:if test="${searchForm.displayFindDBLink}">
+					<div class="EXLAdvancedSearchFormRow">
+						<a title="${link_title}"
+							id="FindDbLinkAdvanced"
+			   				href="#"
+			   				class="EXLMainMenuITEMHelp"
+			   				onclick="boomCallToRum('FindDbStat',false);openPrimoLightBox('searchDB','loadSearchDbPage','searchDbXml','');return false;">
+			   				<fmt:message key='mainmenu.label.find_db' />
+						</a>
+					</div>
+				 </c:if>
+			   </c:if>
+
