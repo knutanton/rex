@@ -24,7 +24,7 @@
 		<c:set var="enlargeSearchFieldHideScope">EXLSearchFieldRibbonFormSearchForMaximized</c:set>
 	</c:if>
 
-	<%@ include file="../views/search/search_hidden.jspf" %>
+	<%@ include file="/views/search/search_hidden.jspf" %>
 
     <fieldset>
     <legend class="EXLHiddenCue">Primo Search</legend>
@@ -105,7 +105,7 @@
 
 
 <%-- begin scopes dropdown --%>
-<%@ include file="basicSearchScopesList.jspf" %>
+<%-- @ include file="basicSearchScopesList.jspf" % -->
 <%-- end scopes dropdown --%>
 </div>
 <!-- end  search field ribbon -->
