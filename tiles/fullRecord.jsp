@@ -3,7 +3,7 @@
 
 <!-- If we have result in the request the page was called for printable display -->
 <c:if test="${empty requestScope.result}">
-    <c:set var="result" value="${displayForm.searchResultFullDoc[0]}"/>
+        <c:set var="result" value="${displayForm.searchResultFullDoc[0]}"/>
 </c:if>
 <c:set var="recordid" value="${result.id}"/>
 <c:set var="record" value='${requestScope["recommendationData"]}' />
@@ -12,12 +12,12 @@
 <noscript>This feature requires javascript</noscript>
 
 <!-- If index is defined this jsp was called from printable_body_layout.jsp and the index
-is passed in the request, otherwise we need to set it to zero explicitly -->
+         is passed in the request, otherwise we need to set it to zero explicitly -->
 <c:if test="${empty index}">
-    <c:set var="index" value="0" scope="request"/>
+        <c:set var="index" value="0" scope="request"/>
 </c:if>
 <c:if test="${fromEshelf}">
-    <input type="hidden" id="vid" value="${fn:escapeXml(sessionScope.vid)}"/>
+        <input type="hidden" id="vid" value="${fn:escapeXml(sessionScope.vid)}"/>
 </c:if>
 <div class="EXLSummary EXLResult">
 <div class="EXLSummaryContainer"><a name="${result.id}" id="${result.id}" class="EXLResultRecordId"></a>
@@ -312,7 +312,6 @@ is passed in the request, otherwise we need to set it to zero explicitly -->
 
     </c:forEach>
 </ul>
-
 <%--
         <ul id="exlidResult0-TabsList" class="EXLResultTabs">
           <li id="exlidResult0-RequestTab" class="EXLRequestTab EXLResultTab EXLResultFirstTab ${(renderForm.tabs[0]=='requestTab')?'EXLResultSelectedTab':''}"><a href="${fn:escapeXml(displayURL)}&amp;tabs=requestTab" title="" onclick="runOnce();" >Request</a></li>
@@ -453,23 +452,22 @@ is passed in the request, otherwise we need to set it to zero explicitly -->
 
     </c:if>
 
-    <c:if test="${displayForm.fn=='search' and (not empty sessionScope.lastSearchForm) and not displayForm.fromEshelf}" >
-        <c:url var="paginationURL" value="display.do?${displayURLRemoved}" >
-            <c:param name="ct" value="display"/>
-            <c:param name="fn" value="search"/>
-            <c:param name="elementId" value="0"/>
-            <c:param name="renderMode" value="poppedOut"/>
-            <c:param name="displayMode" value="full"/>
-        </c:url>
+        <c:if test="${displayForm.fn=='search' and (not empty sessionScope.lastSearchForm) and not displayForm.fromEshelf}" >
+                <c:url var="paginationURL" value="display.do?${displayURLRemoved}" >
+                        <c:param name="ct" value="display"/>
+                        <c:param name="fn" value="search"/>
+                        <c:param name="elementId" value="0"/>
+                        <c:param name="renderMode" value="poppedOut"/>
+                        <c:param name="displayMode" value="full"/>
+                </c:url>
 
-
-        <div class="EXLResultsNavigation">
+                <div class="EXLResultsNavigation">
             <ul class="pager">
-                <c:if test="${displayForm.indx!='1'}">
-                    <c:url value="${paginationURL}" var="paginationPrevURL">
-                        <c:param name="pag" value="prv"/>
-                        <c:param name="indx" value="${displayForm.indx}"/>
-                    </c:url>
+                        <c:if test="${displayForm.indx!='1'}">
+                                        <c:url value="${paginationURL}" var="paginationPrevURL">
+                                                <c:param name="pag" value="prv"/>
+                                                <c:param name="indx" value="${displayForm.indx}"/>
+                                        </c:url>
                                             <li class="EXLPrevious previous">
                                             <a class="EXLPrev"  target="_parent" title='<fmt:message key="link.title.results.prev"/>' href="${fn:escapeXml(paginationPrevURL)}">&larr; <fmt:message key='results.prev'/></a>
                                     </li>
@@ -478,18 +476,18 @@ is passed in the request, otherwise we need to set it to zero explicitly -->
 
                 <li class="EXLDisplayedCountTitle text-muted"><strong><fmt:message key='fulldisplay.deatiles.result'/>&nbsp;</strong></li>
                 <li class="EXLDisplayedCount text-muted"><strong>${displayForm.indx} </strong></li>
-                <c:if test="${displayForm.indx!=displayForm.searchResult.numberOfResults}">
-                    <c:url value="${paginationURL}" var="paginationNextURL">
-                        <c:param name="pag" value="nxt"/>
-                        <c:param name="indx" value="${displayForm.indx}"/>
-                    </c:url>
+                        <c:if test="${displayForm.indx!=displayForm.searchResult.numberOfResults}">
+                                <c:url value="${paginationURL}" var="paginationNextURL">
+                                        <c:param name="pag" value="nxt"/>
+                                        <c:param name="indx" value="${displayForm.indx}"/>
+                                </c:url>
                     <li class="next">
                     <a class="EXLNext" target="_parent" title='<fmt:message key="link.title.results.next"/>' href="${fn:escapeXml(paginationNextURL)}"><fmt:message key='results.next'/> &rarr;</a>
                     </li>
-                </c:if>
+                        </c:if>
             </ul>
-        </div>
-    </c:if>
+                </div>
+        </c:if>
 </div>
 
 
@@ -497,18 +495,18 @@ is passed in the request, otherwise we need to set it to zero explicitly -->
 
 <c:set var="opId">title</c:set>
 <c:if test="${param.gathStatIcon eq 'true'}">
-    <c:set var="opId">icon</c:set>
+        <c:set var="opId">icon</c:set>
 </c:if>
 <script type="text/javascript">
-    <!-- PRM-17057 Call to PC and get data for the conditional tab  -->
-    addLoadEvent(checkConditional);
+<!-- PRM-17057 Call to PC and get data for the conditional tab  -->
+addLoadEvent(checkConditional);
 </script>
 <noscript>This feature requires javascript</noscript>
 <prm:boomerang id="title"  boomForm="${displayForm}" pageId="brief"
-               opId="${opId}" resultDoc="${displayForm.searchResultFullDoc[0]}" type="title,${renderForm.tabs[0]}" delivery="${displayForm.delivery[0]}" noOther="false" index="${param.indx}"/>
+opId="${opId}" resultDoc="${displayForm.searchResultFullDoc[0]}" type="title,${renderForm.tabs[0]}" delivery="${displayForm.delivery[0]}" noOther="false" index="${param.indx}"/>
 <c:if test="${param.pag ne 'nxt' and param.pag ne 'prv' }">
-    <script type="text/javascript">
+<script type="text/javascript">
         boomCallToRum("title",true);
-    </script>
-    <noscript>This feature requires javascript</noscript>
+</script>
+<noscript>This feature requires javascript</noscript>
 </c:if>
