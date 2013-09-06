@@ -1,0 +1,183 @@
+<!--begin footer-->
+<!--footer_KGL_da_DK.html-->
+  <div class="EXLFooterLinksContainer">
+    <ul class="EXLFooterLinksList1">
+      <li class="EXLFooterFirstLink"><a href="#">Til toppen af siden</a></li>
+      <li><a href="http://www.kb.dk/da/kb/webstedet/index.html">Om webstedet</a></li>
+      <li><a href="http://www.kb.dk/da/REX/sider/biblioteker.html">Biblioteker i REX samarbejdet</a></li>
+
+      <li><a href="http://www.kb.dk/da/kb/handicap/index.html">Handikap-information</a></li>
+      <li><a href="http://www.kb.dk/da/kub/service/sporgbib/forslag.html">Bogforslag</a></li>
+      <li><a href="https://rex.kb.dk/F/?func=file&file_name=find-b&local_base=kgl01_rexclassic&con_lng=DAN">REX Classic</a></li>
+      <li class="EXLFooterLastLink"><a href="http://www.kb.dk/da/kub/service/sporgbib/index.html">Sp&#248;rg biblioteket</a></li>
+    </ul>
+    <ul class="EXLFooterLinksList2">
+      <li class="EXLFooterFirstLink"><a href="http://www.kb.dk/da/index.html">Det Kongelige Bibliotek, Postbox 2149, DK-1016 K&#248;benhavn K, (+45) 33 47 47 47, kb@kb.dk, EAN: 5798 000795297</a></li>
+      <li><a href="http://www.kb.dk/da/kb/copyright/index.html" title="Oplysninger om ophavsret p&#229; Det Kongelige Bibliotek">Ophavsret</a></li>
+
+      <li class="EXLFooterLastLink"><a href="#"></a></li>
+    </ul>
+  </div>
+
+<!--  <script type="text/javascript" src="../javascript/kb_frb_hack_da.js"></script>  -->
+
+
+
+<script type="text/javascript">
+
+$(document).ready(function(){
+
+        $('.EXLResult').each(function() {
+
+                var frbr = $(this).find('.EXLResultBgFRBR').length;
+
+                // if it's a PCI  FRBR record, hide stuff
+                if (frbr != 0) {
+
+                        // hide links for FRBR groups
+                        $(this).find('.EXLTabsRibbon').hide();
+
+                        // remove link from title for FRBR groups
+                        $(this).find(".EXLResultTitle").find("a").removeAttr("href");
+
+                        // hide publisher for FRBR groups
+                        $(this).find(".EXLResultFourthLine").hide();
+
+                        // hide availability for FRBR groups
+                        $(this).find(".EXLResultAvailability").hide();
+
+                        // place display multiple link below title,
+
+                        // and change link of title and thumbnail
+                        var link = $(this).find(".EXLBriefResultsDisplayMultipleLink");
+                        $(this).find(".EXLSummaryFields").append(link);
+                        var titlelink = $(this).find(".EXLResultTitle").find("a");
+                        titlelink.attr("href",link.attr("href"));
+                        titlelink.attr("target","_parent");
+                        var thumblink = $(this).find(".EXLThumbnail .EXLBriefResultsDisplayCoverImage A");
+                        thumblink.attr("href",link.attr("href"));
+
+                        // hide the my shelf star
+                        $(this).find(".EXLMyShelfStar A").hide();
+
+
+
+          }
+        });
+});
+
+</script>
+
+
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-1269676-9']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+<!-- autocomplete imports -->
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.0/themes/base/jquery-ui.css" />
+<script src="http://code.jquery.com/ui/1.10.0/jquery-ui.js"></script>
+ <script>
+  // Highligt den term man har indtastet
+  // http://stackoverflow.com/questions/3695184/jquery-autocomplete-highlighting
+  $.ui.autocomplete.prototype._renderItem = function( ul, item){
+  var term = this.term.split(' ').join('|');
+  var re = new RegExp("(" + term + ")", "gi") ;
+  var t = item.label.replace(re,"<b>$1</b>");
+  return $( "<li></li>" )
+     .data( "item.autocomplete", item )
+     .append( "<a>" + t + "</a>" )
+     .appendTo( ul );
+ };
+ // Highlight slut
+
+  $(function() {
+    function log( message ) {
+      $( "<div>" ).text( message ).prependTo( "#log" );
+      $( "#log" ).scrollTop( 0 );
+    }
+ 
+//debugger;
+    $( "#search_field" ).autocomplete({
+      source: function( request, response ) {
+        var url = "http://distest.kb.dk:8983/solr/primo/select"; 
+        if(request.term.trim().indexOf(" ") >= 0){url = "http://distest.kb.dk:8983/solr/collection1/select"}
+	$.ajax({
+          url: url,
+          dataType: "jsonp",
+          jsonp:'json.wrf',
+          data: {
+            wt: "json",
+	    rows: "10",
+            q: "name:"+request.term.trim()+"*"
+            
+          },
+	  success: function(data) {
+            response( $.map( data.response.docs, function( item ) {
+              return {
+                label: item.name.toLowerCase(),
+                value: item.name.toLowerCase()
+              }
+            }));
+          }
+        });
+      },
+      minLength: 2,
+       select: function( event, ui ) { 
+        //assign value back to form before  
+        if(ui.item){
+            $(event.target).val(ui.item.value);
+        }	
+	$('#searchForm').submit();    
+	}
+    });
+    
+    
+  });
+  </script>
+<!-- END autocomplete -->
+
+
+<!-- START MINE ERESSOURCER -->
+
+<script>
+   var linkString = "Mine e-ressourcer (BETA)";
+   
+   var myResourceString = "<li style='position:relative;'><a href='#' class='my_e_resources' id='e_resources_click' style='width:170px; font-weight: bold; background:#436367; text-align:center; padding:9px 10px 4px 10px; color:#FFF; position:absolute; top:-11px; right:5px;'>"+ linkString +"</a></li>";
+ 
+   $('#exlidUserAreaRibbon').html(myResourceString + $('#exlidUserAreaTile').html());
+
+</script>
+
+
+<div id="popupContact">
+   <h1></h1>
+   <a href="#" id="popupContactClose"></a>
+   <div id="contactArea" style="z-index:3">
+      <div style="width:100%;height:100%">
+                <iframe name="eresFrame" id="eresFrame" src="" frameborder="no" scrolling="no" style=" width:100%; height:510px;"></iframe>
+      </div>
+   </div>
+</div>
+<div id="backgroundPopup"></div>
+
+
+
+<link rel="stylesheet" href="../static_htmls/kb-custom/popup/general.css" type="text/css" media="screen" />
+<script id="popupJs" src="../static_htmls/kb-custom/popup/popup.js"></script>
+<script>
+  $('#popupContact > h1').html(linkString);
+</script>
+<!-- END MINE ERESSOURCER -->
+
+
+<!--end footer-->
+
