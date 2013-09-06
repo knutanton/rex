@@ -14,7 +14,7 @@
 <div id="exlidAdvancedSearchRibbon">
 	<%@ include file="/views/search/search_hidden.jspf" %>
 
-    <fieldset>
+    <fieldset style="background:red;">
     <legend class="EXLHiddenCue sr-only">Primo Advanced Search</legend>
 
 <%-- begin tabs handling --%>
@@ -75,15 +75,15 @@
 </c:if>
 <%-- end tabs handling --%>
 <%-- begin advanced search render --%>
-	<div class="EXLSearchFieldRibbon EXLSearchFieldRibbonPreFilters row">
-		<div class="EXLSearchFieldRibbonFormFieldsGroup1 col-md-6">
+	<div class="EXLSearchFieldRibbon EXLSearchFieldRibbonPreFilters form-horizontal">
+		<div class="EXLSearchFieldRibbonFormFieldsGroup1">
 		<div class="EXLAdvancedSearchFormRow">
 			<prm:userText styleId="search-advanced" type="openingText" inline="true"/>
 		</div>
 		<c:set var="count" value="1"/>
 				<c:forEach var="queryTerm" items="${searchForm.queryTerms}" varStatus="queryTermStatus">
-			<div class="EXLAdvancedSearchFormRow row">
-            <fieldset id="exlidAdvancedSearchFieldset${queryTermStatus.index}" class="form-group">
+			<div class="EXLAdvancedSearchFormRow form-group">
+            <fieldset id="exlidAdvancedSearchFieldset${queryTermStatus.index}">
 				<legend class="EXLHiddenCue sr-only">Primo Advanced Search Query Term</legend>
 					<c:forEach var="input" items="${queryTerm.inputs}" varStatus="status">
 	            <span class="EXLAdvancedSearchFormRowInlineInput col-md-4">
@@ -132,7 +132,7 @@
 		</div>
 
 		<!-- start right column -->
-		<div class="EXLSearchFieldRibbonFormFieldsGroup2 col-md-6" style="background: silver;">
+		<div class="EXLSearchFieldRibbonFormFieldsGroup2" style="background: silver;">
 			<c:forEach var="queryTerm" items="${searchForm.queryTerms}" varStatus="queryTermStatus">
 					<c:if test="${searchForm.location[queryTermStatus.index]=='R'}">
 						<c:choose>
