@@ -1,3 +1,4 @@
+
 <!--begin footer-->
 <!--footer_KGL.html-->
   <div class="EXLFooterLinksContainer">
@@ -42,10 +43,8 @@
 <!-- START MINE ERESSOURCER -->
 <script>
   var linkString = "My e-resources (BETA)";
-  
-  var myResourceString = "<li style='position:relative;'><a href='#' class='my_e_resources' id='e_resources_click' style='width:170px; font-weight: bold; background:#436367; text-align:center; padding:9px 10px 4px 10px; color:#FFF; position:absolute; top:-11px; right:5px;'>"+ linkString +"</a></li>";
-   
-   $('#exlidUserAreaRibbon').html(myResourceString + $('#exlidUserAreaTile').html());
+  var myResourceString = "<li><a href='#' class='my_e_resources' id='e_resources_click'>"+ linkString +"</a></li>";
+  $('#exlidUserAreaRibbon').append(myResourceString);
 </script>
 
 
@@ -68,6 +67,15 @@
   $('#popupContact > h1').html(linkString);
 </script>
 <!-- END MINE EREESOURCER -->
+
+
+<!-- BOOTSTRAP JS -->
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="//code.jquery.com/jquery.js"></script>
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script type="text/javascript" src="../sites/kb/dev02/js/alert.js"></script>
+<script type="text/javascript" src="../sites/kb/dev02/js/collapse.js"></script>
+<script type="text/javascript" src="../sites/kb/dev02/js/dropdown.js"></script>
 
 <!--end footer-->
 
