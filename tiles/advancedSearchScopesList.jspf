@@ -9,7 +9,7 @@
 					<c:set var="scopesListClass" value="EXLAdvancedSearchFormRow EXLAdvancedSearchFormRowHide"/>
 				</c:otherwise>
 			</c:choose>
-             <div id="scopesListAdvanced" class="${scopesListClass}">
+             <div id="scopesListAdvanced" class="${scopesListClass} col-md-6">
 
               <span class="EXLAdvancedSearchFormRowInlineInput">
 				<label for="exlidSearchIn">
@@ -17,7 +17,7 @@
 					<fmt:message key="search-advanced.scopes.label" />
 				</c:if>
 				</label>
-				<select id="exlidSearchIn" class="EXLSearchInputScopesSelect" name="scp.scps" ${(searchForm.displayDefinition=='false')?'disabled="disabled"':''}>
+				<select id="exlidSearchIn" class="EXLSearchInputScopesSelect form-control" name="scp.scps" ${(searchForm.displayDefinition=='false')?'disabled="disabled"':''}>
 					<c:forEach items='${searchForm.scp.scopesOptions}' var="option" varStatus="status">
 						<c:set var="classes" value="${option.locationrefs==searchForm.scp.scps?'EXLSelectedOption':'EXLSelectOption'}"/>
 						<c:set var="selected" value="${option.locationrefs==searchForm.scp.scps?'selected=\"selected\"':''}"/>

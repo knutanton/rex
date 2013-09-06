@@ -149,7 +149,7 @@
 	<c:set var="browseAlign" value="EXLSearchFieldRibbonAdvancedTwoLinks"/>
 </c:if>
 
-<div class="EXLSearchFieldRibbonAdvancedSearchLink">
+<div class="EXLSearchFieldRibbonAdvancedSearchLink row">
 	<a class="${browseAlign} btn btn-default" title="<fmt:message key='link.title.advanced_search'/>" href="${fn:escapeXml(advanced_search_url)}" id="advancedSearchBtn"><fmt:message key='label.advanced_search'/></a>
 </div>
 
