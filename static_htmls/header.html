@@ -61,6 +61,29 @@ function KBFixTabs() {
     var link=$(this).attr("href");
     $(this).prepend("<img alt='thumbnail' src='" + link.replace("present","thumbnail") + "'><br/>");
   });
+
+  /*
+   * Replace ul stuctures in detailsTab with dl
+   * Responsive Rex: .EXLContainer-detailsTab .EXLDetailsContent
+   * We transform this:
+   * <ul>
+   *   <li>
+   *     <strong>Forfatter:</strong><a href="[...]/a>
+   *   </li>
+   * [...]
+   * </ul>
+   * into this:
+   * <dl>
+   *   <dt>Forfatter:<dt><dd><a href="[...]/a></dd>
+   *   [...]
+   * </dl>
+   */
+  $('.EXLDetailsContent>ul', '.EXLContainer-detailsTab:visible').changeElementType('dl');
+  $('.EXLDetailsContent>dl', '.EXLContainer-detailsTab:visible').addClass('dl-horizontal'); // would have loved to put this in the end of the line a    bove, but it seems that jQuery misses out on the elementType change?
+  $('.EXLDetailsContent>dl>li', '.EXLContainer-detailsTab:visible').changeElementType('dd');
+  $.each($('.EXLDetailsContent>dl>dd>strong:first-child', '.EXLContainer-detailsTab:visible'), function (idx, elem) {
+      $(elem).insertBefore($(elem).closest('dd')).changeElementType('dt');
+  });
 }
 
 function hideLocationInfo() {
