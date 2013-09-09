@@ -14,7 +14,7 @@
 <div id="exlidAdvancedSearchRibbon">
 	<%@ include file="/views/search/search_hidden.jspf" %>
 
-    <fieldset style="background:red;">
+    <fieldset">
     <legend class="EXLHiddenCue sr-only">Primo Advanced Search</legend>
 
 <%-- begin tabs handling --%>
@@ -75,15 +75,15 @@
 </c:if>
 <%-- end tabs handling --%>
 <%-- begin advanced search render --%>
-	<div class="EXLSearchFieldRibbon EXLSearchFieldRibbonPreFilters form-horizontal">
-		<div class="EXLSearchFieldRibbonFormFieldsGroup1">
+	<div class="EXLSearchFieldRibbon EXLSearchFieldRibbonPreFilters">
+		<div class="EXLSearchFieldRibbonFormFieldsGroup1 col-md-6">
 		<div class="EXLAdvancedSearchFormRow">
 			<prm:userText styleId="search-advanced" type="openingText" inline="true"/>
 		</div>
 		<c:set var="count" value="1"/>
 				<c:forEach var="queryTerm" items="${searchForm.queryTerms}" varStatus="queryTermStatus">
-			<div class="EXLAdvancedSearchFormRow form-group">
-            <fieldset id="exlidAdvancedSearchFieldset${queryTermStatus.index}">
+			<div class="EXLAdvancedSearchFormRow">
+            <fieldset id="exlidAdvancedSearchFieldset${queryTermStatus.index}" class="form-group">
 				<legend class="EXLHiddenCue sr-only">Primo Advanced Search Query Term</legend>
 					<c:forEach var="input" items="${queryTerm.inputs}" varStatus="status">
 	            <span class="EXLAdvancedSearchFormRowInlineInput col-md-4">
@@ -132,7 +132,7 @@
 		</div>
 
 		<!-- start right column -->
-		<div class="EXLSearchFieldRibbonFormFieldsGroup2" style="background: silver;">
+		<div class="EXLSearchFieldRibbonFormFieldsGroup2 col-md-6">
 			<c:forEach var="queryTerm" items="${searchForm.queryTerms}" varStatus="queryTermStatus">
 					<c:if test="${searchForm.location[queryTermStatus.index]=='R'}">
 						<c:choose>
@@ -233,8 +233,8 @@
 
 
 <%-- submit button and simple search link --%>
-        <div class="EXLSearchFieldRibbonFormSubmitSearch">
-            <input id="goButton" name="Submit" type="submit" value='<fmt:message key="link.title.search.search"/>' class="submit"/>
+        <div class="EXLSearchFieldRibbonFormSubmitSearch pull-right">
+            <input id="goButton" name="Submit" type="submit" value='<fmt:message key="link.title.search.search"/>' class="submit btn btn-primary"/>
         </div>
  			<c:url value="search.do?${requestScope.switchModeURL_reqDecQryUTF8}" var="simple_search_url">
 						<c:param name="mode" value="${c_basic_search}"/>
@@ -242,13 +242,13 @@
 			</c:url>
 			<c:set var="basic_search_title"><fmt:message key="link.title.advanced.search.basic.search"/></c:set>
 
-       <div class="EXLSearchFieldRibbonFormLinks">
-           <span class="NEWSearchFieldRibbonNewSearchLink">
-                    <a href="<fmt:message key='new_search_url_advanced'/>" title="<fmt:message key='link.title.search.new_search'/>">
+       <div class="EXLSearchFieldRibbonFormLinks ">
+           <span class="NEWSearchFieldRibbonNewSearchLink pull-left">
+                    <a href="<fmt:message key='new_search_url_advanced'/>" class="btn btn-default" title="<fmt:message key='link.title.search.new_search'/>">
                        <fmt:message key="label.new_search" />
                     </a>
             </span>
-         <a href="${fn:escapeXml(simple_search_url)}" title="${basic_search_title}"><fmt:message key="label.simple_search" /></a>
+         <a href="${fn:escapeXml(simple_search_url)}" title="${basic_search_title}" class="btn btn-default"><fmt:message key="label.simple_search" /></a>
        </div>
         </fieldset>
 <%-- end submit button and simple search link --%>
