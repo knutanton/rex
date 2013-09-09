@@ -8,7 +8,7 @@
 			<div id="exlidTopLevelFacetsTile" class="EXLTopLevelFacetsTile">
 		  	    <div id="exlidToplevelFacetsContainer" class="EXLToplevelFacetsContainer">
 					<strong><fmt:message key="results.showonly"/></strong>
-			    	<ul id="exlidToplevelFacetsRibbon" class="EXLToplevelFacetsRibbon">
+			    	<ul id="exlidToplevelFacetsRibbon" class="EXLToplevelFacetsRibbon nav nav-pills nav-justified">
 						<c:forEach items="${facet.facetValues}" var="facetValue" varStatus="status" end="4" >
 							<c:url value="${form.reqDecUrl}" var="facet_url">
 								<c:param name="ct" value="facet"/>
@@ -28,11 +28,10 @@
 								</c:otherwise>
 							</c:choose>
 							<li class="EXLTopLevelFacetItem ${topLevelFacetSpecialClass}">
-								<span>
-									<a href="${fn:escapeXml(facet_url)}"><fmt:message key="facets.facet.tlevel.${facetValue.KEY}"/></a>
-									<span class="EXLParenthesis">(<fmt:formatNumber value="${facetValue.VALUE}"/>${form.facetResult.accurate?'':' +'})</span>
-								</span>
-							</li>
+									<a href="${fn:escapeXml(facet_url)}"><fmt:message key="facets.facet.tlevel.${facetValue.KEY}"/>
+									<span class="EXLParenthesis badge pull-right"><fmt:formatNumber value="${facetValue.VALUE}"/>${form.facetResult.accurate?'':' +'}</span>
+                                    </a>
+                            </li>
 						</c:forEach>
 			    	</ul>
 				</div>
@@ -52,7 +51,7 @@
 </c:choose>
 <c:if test="${fn:length(form.refinements)>0}">
 	<c:set var="removeFacetTitle"><fmt:message key="refinement.remove" /></c:set>
-	<div class="EXLRefinementRibbonWithExclude">
+	<div class="EXLRefinementRibbonWithExclude alert alert-success">
 		<div class="EXLRefinementsList">
 			<span class="EXLRefinementsListTitle"><fmt:message key="search.header.facets.refined_by"/></span>
 
@@ -125,7 +124,7 @@
 						<c:url var="tmp4" value="${fn:replace(tmp3, 'lastPagIndx', 'indx')}"/>
 						<c:url var="removeRefinementUrl" value="${fn:replace(tmp4, 'lastPag', 'pag')}"/>
 					
-						<a href="${removeRefinementUrl}" title="${removeFacetTitle}" class="${refClass}">
+						<a href="${removeRefinementUrl}" title="${removeFacetTitle}" class="${refClass} btn btn-success">
 							<c:if test="${fn:contains(refine.facetField,c_facet_localX)}">
 								<c:set var="displayValue">
 									<fmt:message key="facets.facet.${fn:escapeXml(refine.facetField)}.${fn:escapeXml(refine.fvalue)}" prefix="facets.facet.${fn:escapeXml(refine.facetField)}"/>
@@ -134,7 +133,8 @@
 							<c:if test="${not (refine.facetField eq c_facet_frbrgroupid)}">
 								<strong class="EXLSearchRefinement${fn:escapeXml(refine.facetField)}">${displayValue}</strong>
 							</c:if>
-							<img id="removeFacet" src="<fmt:message key='ui.images.resultsheaderrefinements.remove'/>" alt="<fmt:message key='refinement.remove'/>" />
+                            <span>&times;</span>
+							<!--<img id="removeFacet" src="<fmt:message key='ui.images.resultsheaderrefinements.remove'/>" alt="<fmt:message key='refinement.remove'/>" />-->
 						</a>
 				<c:if test="${refineStatus.index==fn:length(form.refinements)-1}">
 					</span>
