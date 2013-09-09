@@ -58,8 +58,10 @@
 				</c:if>
 
               </div>
-              <div class="EXLAdvancedSearchFormRow">
+              <div class="EXLAdvancedSearchFormRow clearfix">
+                  <span class="pull-right">
 				<prm:userText styleId="search-advanced" type="endingText" inline="true"/>
+                  </span>
 			  </div>
             </div>
 		</c:if>
