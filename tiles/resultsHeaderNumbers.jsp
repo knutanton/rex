@@ -131,15 +131,21 @@
 	</c:if>
 
 	<div class="EXLResultsSortBy">
-		<span class="EXLResultsSortByLabel"><fmt:message key='results.sortby' /></span>
+		<!--<span class="EXLResultsSortByLabel"><fmt:message key='results.sortby' /></span>
 		<span class="EXLResultsSortBySelected">
 			<a href="#" title="<fmt:message key='results.tooltip.sortby'/>">
 				<fmt:message key="results.sortby.option.${fn:escapeXml(srtField)}"/>					
 			</a>
-		</span>
+		</span>-->
 		<input type="hidden" name="searchForm.frbrSrt" value=""/>
-		<div class="EXLResultsSortByMenu">
-	        <ul class="EXLResultsSortByMenuShow EXLResultsSortByMenuHide"><!--remove EXLResultsSortByMenuHide to show menu items-->
+		<div class="EXLResultsSortByMenu btn-group">
+            <span class="EXLResultsSortByLabel"><fmt:message key='results.sortby' /></span>
+            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                <fmt:message key="results.sortby.option.${fn:escapeXml(srtField)}"/>&nbsp;<span class="caret"></span>
+            </button>
+
+
+	        <ul class="EXLResultsSortByMenuShow EXLResultsSortByMenuHide dropdown-menu" role="menu"><!--remove EXLResultsSortByMenuHide to show menu items-->
 				<c:set var="SendToArrowImageUrl"><img src="<fmt:message key="ui.images.resultsheadernumbers.arrowsendto"/>" alt="<fmt:message key='results.tooltip.sortby'/>"/></c:set>
 		 		<c:choose>
 					<c:when test="${switchSort=='1'}">
@@ -149,10 +155,10 @@
 									<c:set var="showHide" value=""/>
 									<c:choose>
 										<c:when test="${defaultTitle=='noChange' && (srtField==option)}">
-											<c:set var="showHide" value="EXLSortByLinkSelected"/>
+											<c:set var="showHide" value="EXLSortByLinkSelected sr-only"/>
 										</c:when>
 			  							<c:when test="${'title'==option}">
-			  								<c:set var="showHide" value="EXLSortByLinkSelected"/>
+			  								<c:set var="showHide" value="EXLSortByLinkSelected sr-only"/>
 			  							</c:when>
 									</c:choose>
 
@@ -175,7 +181,7 @@
 			  					<c:forEach items='${searchForm.sortByList}' var="option" varStatus="listStatus">
 			  						<c:choose>
 										<c:when test="${searchFormSrt =='found'}">
-											<li class="EXLSortByLink ${(srtField==option)?'EXLSortByLinkSelected':''}">
+											<li class="EXLSortByLink ${(srtField==option)?'EXLSortByLinkSelected sr-only':''}">
 												<c:choose>
 													<c:when test="${searchForm.srt==option}">
 											  			<fmt:message key='results.sortby.option.${option}' />
@@ -192,13 +198,13 @@
 			  								<c:set var="showHide" value=""/>
 			  								<c:choose>
 												<c:when test="${(srtField=='scdate') && ('date'==option)}">
-													<c:set var="showHide" value="EXLSortByLinkSelected"/>
+													<c:set var="showHide" value="EXLSortByLinkSelected sr-only"/>
 												</c:when>
 												<c:when test="${(srtField=='') && ('rank'==option)}">
-													<c:set var="showHide" value="EXLSortByLinkSelected"/>
+													<c:set var="showHide" value="EXLSortByLinkSelected sr-only"/>
 												</c:when>
 												<c:when test="${(srtField=='screator') && ('author'==option)}">
-													<c:set var="showHide" value="EXLSortByLinkSelected"/>
+													<c:set var="showHide" value="EXLSortByLinkSelected sr-only"/>
 												</c:when>
 			  									<%--c:when test="${'1'==count}">
 			  										<c:set var="showHide" value="EXLSortByLinkSelected"/>
@@ -226,7 +232,7 @@
 			  		</c:when>
 			  		<c:otherwise>
 						<c:forEach items='${searchForm.sortByList}' var="option" varStatus="listStatus">
-					  		<li class="EXLSortByLink ${(srtField==option)?'EXLSortByLinkSelected':''}">
+					  		<li class="EXLSortByLink ${(srtField==option)?'EXLSortByLinkSelected sr-only':''}">
 								<c:choose>
 									<c:when test="${srtField==option}">
 							  			<fmt:message key='results.sortby.option.${option}' />
