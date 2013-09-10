@@ -293,7 +293,7 @@ function trafiklys() {
     //iterate over items and create trafiklys query for each one
     $.each(resultItems, function() {
         var openUrl = parseOpenUrl($(this));
-        if (openUrl != null) {
+        if (openUrl !== null) {
             var baseUrl = "http://sfx-test-01.kb.dk:3000/trafiklys/lookUp/";
             var fullUrl = baseUrl + encodeURIComponent(openUrl) + "/" + window.ip + "/" + userInst + "?callback=?";
             var id = $(this).attr('id');
