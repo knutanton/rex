@@ -218,7 +218,6 @@ function EXLTA_createWidgetTabHandler(content,reentrant){
                         EXLTA_openTab(element,tabType, EXLTA_wrapResultsInNativeTab(element,content,url,''),reentrant);
                 }
         };
-        t = 1;
 }
 
 function EXLTA_addLoadEvent(func){
