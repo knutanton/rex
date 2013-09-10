@@ -347,14 +347,12 @@ $(document).ready(function() {
     }).done(trafiklys);
 
 	var dod = new TextReplaceObject("Brug Digital Version", '<a href="http://www.kb.dk/da/nb/samling/dod/DODbestilling.html" target="_blank">Efter særlig ansøgning</a>'),
-            kob = new TextReplaceObject("Mail til kob", '<a href="http://www.kb.dk/da/nb/samling/ks/kobbestilling.html" target="_blank">Mail til kob</a>'),
+        kob = new TextReplaceObject("Mail til kob", '<a href="http://www.kb.dk/da/nb/samling/ks/kobbestilling.html" target="_blank">Mail til kob</a>'),
         mailToDfs = new TextReplaceObject("DFS Brug", '<a href="mailto:dfs-mail@kb.dk">Mail til dfs-mail@kb.dk</a>') ,
         // mailToKob = new TextReplaceObject("Mail til kob", '<a href="mailto:kob@kb.dk">Mail til kob@kb.dk</a>'),
 	textReplaceObjectArray = [dod, kob, mailToDfs];
 
-    	replaceTextInLocationsTab(textReplaceObjectArray);
-
-
+    replaceTextInLocationsTab(textReplaceObjectArray);
 
 //		fixImageTitleUri();
                 var lang = $("#exlidSelectedLanguage").html().substring(0,2);
