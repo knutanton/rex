@@ -301,12 +301,13 @@ function trafiklys() {
             $.getJSON(fullUrl, { format: "json" }, function(data) {
                 //console.log(fullUrl);
                 //parse response and insert message into result
-                var access = parseResponse(data);
+                var access = parseResponse(data),
+                    trafiklysMessage;
                 if (access.toLowerCase() === "no") {
-                    var trafiklysMessage = '<em class=".EXLResultsList EXLResultStatusNotAvailable">Trafiklys: ' + access + '</em>';
+                    trafiklysMessage = '<em class=".EXLResultsList EXLResultStatusNotAvailable">Trafiklys: ' + access + '</em>';
                     $('#' + id).find('.EXLResultAvailability').append(trafiklysMessage);
                 } else if (access.toLowerCase() === "yes") {
-                    var trafiklysMessage = '<h3 style="color: green;">Trafiklys: ' + access + '</h3>';
+                    trafiklysMessage = '<h3 style="color: green;">Trafiklys: ' + access + '</h3>';
                     $('#' + id).find('.EXLResultAvailability').append(trafiklysMessage);
                     $('#' + id).find('.requestForm').hide();
                 }
