@@ -19,7 +19,7 @@
             return $("<" + newType + "/>", attrs[idx]).data(data[idx]).append($(this).contents());
         });
     };
-})(jQuery);
+}(jQuery));
 
 function KBFixTabs() {
   // Tilret Bestil-fanebladet
