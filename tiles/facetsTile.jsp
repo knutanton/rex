@@ -7,7 +7,7 @@
 	<%@ include file="generalPageActions.jspf" %>
 </c:if>
 
-<h2 class="EXLFacetsTitle">Refine Search Results</h2>
+<h2 class="EXLFacetsTitle sr-only">Refine Search Results</h2>
 <c:set value="${form.vid}" var="view" />
 <%-- Vertical facet --%>
 <c:set value="true" var="chagedPCAvailMode" />
@@ -113,7 +113,8 @@
 <a id="refine" name="refine"></a>
 <%--Display the content of this page only if we have results --%>
 <c:if test="${form.searchResult.numberOfResults>0 and form.facetResult.displayFacets}" >
-	<div id="facetList" class="EXLFacetList">
+
+	<div id="facetList${facetIndex.index}" class="EXLFacetList panel-group">
 		<c:set var="facetTitleDisplayed" value="false"/>
 		<c:forEach items="${form.facetResult.facetOrder}" var="facetField" varStatus="facetIndex">
 			<c:set value='${form.filteredFacetResult.facets[facetField]}' var="facet" />
@@ -121,11 +122,12 @@
 			<%-- if we less then two facets do not display them--%>
 			<c:if test="${not empty facet && not empty facet.facetValues and (facet.count>1 or (facet.count>0 and facetField == c_facet_domain and form.remote)) and (fn:length(facet.facetValues)>1 or (fn:length(facet.facetValues)>0 and facetField == c_facet_domain and form.remote))}">
 			  	<c:set var="facetName" value="${facet.name}"/>
-			  	<div id="exlidFacet${facetIndex.index}" class="EXLFacetContainer">
-					<c:if test="${facetTitleDisplayed=='false'}">
-						<h1><fmt:message key="facets.title"/></h1>
-						<c:set var="facetTitleDisplayed" value="true"/>
-					</c:if>
+                <c:if test="${facetTitleDisplayed=='false'}">
+                    <h3><fmt:message key="facets.title"/></h3>
+                    <c:set var="facetTitleDisplayed" value="true"/>
+                </c:if>
+			  	<div id="exlidFacet${facetIndex.index}" class="EXLFacetContainer panel panel-default" >
+
 					<%--Facet Title e.g: Subject --%>
 					<c:choose>
 						<c:when test="${facetField eq c_facet_instsort}">
@@ -142,21 +144,23 @@
 							<c:if test="${form.remote && facetField eq 'facet_domain'}">
 								<a class="EXLRemoteDatabasesMoreInfo" href="search.do?${action_func}=dbs" target="databases" onclick="openWindow(this.href, this.target, 'top=100,left=50,width=600,height=350,resizable=1,scrollbars=1'); return false;">(<fmt:message key="remote.db.list.more.info"/>)</a>
 							</c:if>
-							
-							<h4 class="EXLFacetsDisplayMore">
-								<a href="#" title="<fmt:message key='facets.moreoptions.tooltip'/>" id="exlidFacet${facetIndex.index}-more">
-									<fmt:message key="facets.facet.${facetField}"/>
-								</a>
-							</h4>
-						  		
+                            <div class="panel-heading">
+                                <h4 class="EXLFacetsDisplayMore panel-title"">
+                                    <a title="<fmt:message key='facets.moreoptions.tooltip'/>" id="exlidFacet${facetIndex.index}-more" data-toggle="collapse" data-parent="#facetList${facetIndex.index}" href="#exlidFacetSublist${facetIndex.index}">
+                                        <fmt:message key="facets.facet.${facetField}"/>
+                                    </a>
+							    </h4>
+                            </div>
+
 						</c:otherwise>
 					</c:choose>
-				    <ol id="exlidFacetSublist${facetIndex.index}" class="EXLFacetsList EXLFacetsListPreview">
+
+				    <ul id="exlidFacetSublist${facetIndex.index}" class="EXLFacetsList EXLFacetsListPreview nav nav-pills nav-stacked panel-collapse collapse">
 
 						<c:set var="maxDisplayCount" value="${facet.maxDisplayCount}"/>
 						<c:set var="rfnGrp">${form.rfnGrpCounter + 1}</c:set>
 						<c:forEach items="${facet.facetValues}" var="facetValue" varStatus="status" >
-							<%@ include file="/tiles/facetsTextLabel.jspf"%>
+							<%@ include file="facetsTextLabel.jspf"%>
 							<%-- build url for the facet--%>
 							<c:set var="fctN">${facetField eq c_facet_instsort? c_facet_library : facetField}</c:set>
 							<c:set var="fctV">${facetValue.KEY}</c:set>
@@ -185,19 +189,22 @@
 					        </li>
 							--%>
 					      <li class="EXLFacet ${hiddenFacet}">
-								<a href="${fn:escapeXml(facet_url)}" id="exlidFacet${facetIndex.index}-${status.index}">${fn:escapeXml(displayValue)}</a>&nbsp;
-								<c:if test="${!fn:contains(form.scp.scps, 'EbscoLocal')}">
-									<span class="EXLFacetCount">
-										(<fmt:formatNumber value="${facetValue.VALUE}"/>${form.facetResult.accurate?'':' +'})
-									</span>
-								</c:if>
+								<a href="${fn:escapeXml(facet_url)}" id="exlidFacet${facetIndex.index}-${status.index}">
+                                    <c:if test="${!fn:contains(form.scp.scps, 'EbscoLocal')}">
+                                        <span class="EXLFacetCount badge pull-right">
+                                            <fmt:formatNumber value="${facetValue.VALUE}"/>${form.facetResult.accurate?'':' +'}
+                                        </span>
+                                    </c:if>
+                                    ${fn:escapeXml(displayValue)}
+                                </a>
+
 						  </li>
 						</c:forEach>
 						<%--<li class="EXLFacetsDisplayMore"><a href="#" title="<fmt:message key='facets.moreoptions.tooltip'/>" id="exlidFacet${facetIndex.index}-more">
 						  	<fmt:message key='facets.moreoptions'/>&nbsp;<img src="<fmt:message key='default.ui.images.facetstitle.opensubmenu'/>" alt="open sub menu"/></a>
 						</li>--%>
 
-				    </ol>
+				    </ul>
 			  	</div>
 			</c:if>
 

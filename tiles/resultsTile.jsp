@@ -3,9 +3,9 @@
 <script type="text/javascript" src="../javascript/primo_boomerang.js"></script>
 <%@ taglib uri="/WEB-INF/tlds/exlibris-ajax.tld" prefix="eas" %>
 
-      <table cellspacing="0" class="EXLResultsTable" id="exlidResultsTable" summary="description place holder">
+      <table cellspacing="0" class="EXLResultsTable table table-striped" id="exlidResultsTable" summary="description place holder">
         <!--hidden table headers-->
-        <tr class="EXLHiddenCue">
+        <tr class="EXLHiddenCue sr-only">
           <th class="EXLResultNumber">Result Number</th>
           <th class="EXLThumbnail">Material Type</th>
           <th class="EXLMyShelfStar">Add to My Shelf Action</th>
@@ -26,7 +26,7 @@
 	<c:set var="useGenericRecord" value="${searchForm.frbrDisplay == 1}"/>
 	<c:set var="isFrbrNewDisplay" value="${isFrbr and useGenericRecord and !result.remote and (form.alma!=null && !form.alma)}"/>
 
-	<%@ include file="/tiles/titleLink.jspf" %>
+	<%@ include file="titleLink.jspf" %>
 
 <!-- boomeang -->
  <prm:boomerang id="icon_${resultStatus.index}"  boomForm="${searchForm}" pageId="brief"
@@ -77,7 +77,7 @@
 						<img src="../images/icon_versions.png" alt="<fmt:message key='mediatype.multiplever'/>">
 					</a>
 				</div>
-		 		<div class="EXLHiddenCue">Material Type: </div><span class="EXLThumbnailCaption" id="mediaTypeCaption-${result.resultNumber}"><fmt:message key="mediatype.multiplever"/></span>
+		 		<div class="EXLHiddenCue sr-only">Material Type: </div><span class="EXLThumbnailCaption" id="mediaTypeCaption-${result.resultNumber}"><fmt:message key="mediatype.multiplever"/></span>
 			</c:if>
 		</td>
 	  	<td class="EXLMyShelfStar"/>
@@ -92,14 +92,14 @@
 		  			</h2>
 					<c:set var="author"><prm:fields fields="creator,contributor" result="${result}" fieldDelims="${form.displayFieldsDelimiters[1]}"/></c:set>
 					<c:if test="${not empty author}">
-				    	<h3 class="EXLResultAuthor">${fmt:escapeLooseAmpersands(author)}</h3>
+				    	<h4 class="EXLResultAuthor">${fmt:escapeLooseAmpersands(author)}</h4>
 					</c:if>
 					<span class="EXLResultVersionFound">
 						<fmt:message key="frbrversion.found"/>
 					</span>
-					<h3 class="EXLResultSeeFrbrLink">
+					<h4 class="EXLResultSeeFrbrLink">
 						<fmt:message key="frbrversion.see.link"/>
-					</h3>
+					</h4>
 		  		</div>
                 <c:set var="resultStatusIndex" value="${resultStatus.index}"/>
 		    <div id="exlidResult${resultStatusIndex}-TabContainer-viewOnlineTab" class="EXLResultTabContainer EXLContainer-viewOnlineTab EXLResultTabContainerClosed">
@@ -153,7 +153,7 @@
 	  <td class="EXLSummary">
 		  <div class="EXLSummaryContainer">
 			<div class="EXLSummaryFields">
-				<h2 class="EXLResultTitle">
+				<h3 class="EXLResultTitle">
 				<c:set var="strippedTitle">${fn:replace(fn:replace(title,'<span class="searchword">',''),'</span>','')}</c:set>
 				<c:choose>
 					<c:when test="${not empty resultTitleUrl
@@ -184,10 +184,10 @@
 						${title}
 					</c:otherwise>
 				</c:choose>
-				</h2>
+				</h3>
 				<c:set var="author"><prm:fields fields="${form.resultView[1]}" result="${result}" fieldDelims="${form.displayFieldsDelimiters[1]}"/></c:set>
 				<c:if test="${not empty author}">
-			    	<h3 class="EXLResultAuthor">${fmt:escapeLooseAmpersands(author)}</h3>
+			    	<h4 class="EXLResultAuthor">${fmt:escapeLooseAmpersands(author)}</h4>
 				</c:if>
 				<c:set var="resultDetailsThirdLine"><prm:fields fields="${c_value_is_part_of}" result="${result}" fieldDelims=" "/></c:set>
 				<span class="EXLResultDetails">${fmt:escapeLooseAmpersands(resultDetailsThirdLine)}</span>
@@ -197,16 +197,16 @@
 						<fmt:message key='default.fulldisplay.constants.peer_reviewed'/>
 					</c:if>
 				</c:if>
-				<h3 class="EXLResultFourthLine">
+				<h4 class="EXLResultFourthLine">
 					<c:if test="${empty result.values['availlibrary'][0] and not empty result.values[c_value_frbrgroupid] and result.values[c_value_frbrtype][0] eq 5}">
 						<c:out value="${result.values['source'][0]}" escapeXml="false"/>
 					</c:if>
-				</h3>
+				</h4>
 
 				<%-- check to make sure the content exists before rendering the fourth line unnecesarily --%>
 				<c:set var="fourthLineContent"><prm:fields fields="${form.resultView[2]}" result="${result}" fieldDelims="${form.displayFieldsDelimiters[2]}"/></c:set>
 				<c:if test="${not empty fourthLineContent}">
-					<h3 class="EXLResultFourthLine">${fmt:escapeLooseAmpersands(fourthLineContent)}</h3>
+					<h4 class="EXLResultFourthLine">${fmt:escapeLooseAmpersands(fourthLineContent)}</h4>
 				</c:if>
 				<c:choose>
 					<c:when test="${result.recordSource eq 'PRIMO_CENTRAL_SEARCH_ENGINE'}">
@@ -254,7 +254,7 @@
 
 		<div class="EXLTabsRibbon EXLTabsRibbonClosed">
 	      <div>
-	        <ul id="exlidResult${resultStatus.index}-TabsList" class="EXLResultTabs">
+	        <ul id="exlidResult${resultStatus.index}-TabsList" class="EXLResultTabs nav nav-tabs">
 
 			<c:set var="noFirstTab" value="true"/>
 			<c:forEach items="${tabState.tabsOrder}" var="tab" varStatus="tabStatus">
