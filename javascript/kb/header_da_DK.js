@@ -222,6 +222,14 @@ function EXLTA_wrapResultsInNativeTab(element, content,url, headerContent){
         return header + body;
 }
 
+function EXLTA_closeTab(element){
+        if(!isFullDisplay()){
+                $(element).parents('.EXLResultTab').removeClass('EXLResultSelectedTab');
+                $(element).parents('.EXLTabsRibbon').addClass('EXLTabsRibbonClosed');
+                $(element).parents('.EXLResult').find('.EXLResultTabContainer').hide();
+        }
+}
+
 function EXLTA_createWidgetTabHandler(content,reentrant){
         return function(e,element,tabType,url,isSelected){
                 e.preventDefault();
@@ -240,14 +248,6 @@ function EXLTA_addLoadEvent(func){
 
 function EXLTA_isFullDisplay(){  
 	return $('.EXLFullView').size() > 0;
-}
-
-function EXLTA_closeTab(element){
-        if(!isFullDisplay()){
-                $(element).parents('.EXLResultTab').removeClass('EXLResultSelectedTab');
-                $(element).parents('.EXLTabsRibbon').addClass('EXLTabsRibbonClosed');
-                $(element).parents('.EXLResult').find('.EXLResultTabContainer').hide();
-        }
 }
 
 function EXLTA_openTab(element,tabType, content, reentrant){ 
