@@ -302,10 +302,10 @@ function trafiklys() {
                 //console.log(fullUrl);
                 //parse response and insert message into result
                 var access = parseResponse(data);
-                if (access.toLowerCase() == "no") {
+                if (access.toLowerCase() === "no") {
                     var trafiklysMessage = '<em class=".EXLResultsList EXLResultStatusNotAvailable">Trafiklys: ' + access + '</em>';
                     $('#' + id).find('.EXLResultAvailability').append(trafiklysMessage);
-                } else if (access.toLowerCase() == "yes") {
+                } else if (access.toLowerCase() === "yes") {
                     var trafiklysMessage = '<h3 style="color: green;">Trafiklys: ' + access + '</h3>';
                     $('#' + id).find('.EXLResultAvailability').append(trafiklysMessage);
                     $('#' + id).find('.requestForm').hide();
