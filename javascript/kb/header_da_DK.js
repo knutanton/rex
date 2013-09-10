@@ -484,11 +484,13 @@ function emne() {
                         var x = emnekoder.split(/<\/strong>|<\/STRONG>/);
                         emnekoder = x[1];
                         if (emnekoder !== null) {
-                                var html = '<strong>Klassifikation/emnekoder:</strong>';
-                                var br = emnekoder.split(/<br>|<BR>/);
-                                for(var b in br) {
-                                        var ord = br[b].split(';');
-                                        for(var o in ord) {
+                                var html = '<strong>Klassifikation/emnekoder:</strong>',
+                                    br = emnekoder.split(/<br>|<BR>/),
+                                    b;
+                                for(b in br) {
+                                        var ord = br[b].split(';'),
+                                            o;
+                                        for(o in ord) {
 						var ord2 = ord[o].split(',');
 						for (var o2 in ord2) {
 							var word= ord2[o2];
