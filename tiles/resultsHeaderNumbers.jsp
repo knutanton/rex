@@ -43,7 +43,7 @@
 	</c:if>
 
 	<c:if test="${form.searchResult.numberOfResults>=0}">
-		<h1>
+		<h1 class="text-muted">
 			<c:if test="${form.remote and form.searchResult.numberOfResults>0}">
 		   		<em><fmt:message key='brief.results.first'/></em>
 		   	</c:if>

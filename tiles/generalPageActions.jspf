@@ -12,8 +12,7 @@
 <div class="EXLFacetList">
 	<div class="EXLFacetContainer">
 		<div class="EXLFacetActionsV2">
-			<ul>
-				<li class="EXLFacetRSSAction">
+				<div class="EXLFacetRSSAction btn-group ">
 				<c:if test="${!form.remote}">
 						<form method="post" name="rssForm" action="${form.rssLinks[0].actionUrl}" >
                				 <c:set var="srVar" value="${form.rssLinks[0].searchVar}" />
@@ -22,32 +21,32 @@
              				   <input type="hidden" name="sr" value="${fn:escapeXml(srVar)}" />
             				   <input type="hidden" name="ctx" value="${fn:escapeXml(ctxVar)}" />
            					   <input type="hidden" name="ver" value="${fn:escapeXml(verVar)}" />
-         					   <a href="#" onclick="document.rssForm.submit();"><fmt:message key='default.eshelf.basket.querypop.rss '/> </a>      
+         					   <a href="#" class="btn btn-default" onclick="document.rssForm.submit();"><fmt:message key='default.eshelf.basket.querypop.rss '/> </a>
          					   <noscript>
 									<input type="submit" value="Save"/>
 								</noscript>  
          				</form>
 				</c:if>
-				</li>
+				<!--</div>-->
 				<c:if test="${not empty sessionScope.loggedIn and sessionScope.loggedIn==true}">
-					<li class="EXLFacetSaveSearchAction">
+                    <!--<div class="EXLFacetSaveSearchAction">-->
 						<c:url value="query.do" var="saveUrl">
 							<c:param name="${action_func}" value="new" />
 							<c:param name="queryUrl" value="${form.reqEncUrl}" />
 						</c:url>
-						<a class="backTo" onclick="openSaveQuery(this.href); return false;"
+						<a class="backTo btn btn-default" onclick="openSaveQuery(this.href); return false;"
 								target="_blank" href="${fn:escapeXml(saveUrl)}"
 								title="<fmt:message key='results.saveCurrentQuery'/><fmt:message key='link.title.opens.in.a.popup'/>">
 							<fmt:message key="results.savequery" />
 						</a>
-					</li>
+					<!--</div>-->
 				</c:if>
-				<li class="EXLFacetSaveToEShelfAction EXLFacetSaveToEShelfActionOff">
-					<a onclick="reportAddPageToEshelfClick();" href="${fn:escapeXml(modifyShelfUrl)}" title="<fmt:message key="results.eshelf" />">
+				<!--<div class="EXLFacetSaveToEShelfAction EXLFacetSaveToEShelfActionOff">-->
+					<a onclick="reportAddPageToEshelfClick();" class="btn btn-default" href="${fn:escapeXml(modifyShelfUrl)}" title="<fmt:message key="results.eshelf" />">
 						<fmt:message key="results.addpagetoeshelf"/>
 					</a>
-				</li>
-			</ul>
+				</div>
+
 		</div>
 	</div>
 </div>
