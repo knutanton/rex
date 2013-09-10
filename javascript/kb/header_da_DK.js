@@ -212,7 +212,7 @@ function EXLTA_wrapResultsInNativeTab(element, content,url, headerContent){
         var popOut = '<div class="EXLTabHeaderContent">'+headerContent+'</div><div class="EXLTabHeaderButtons"><ul><li class="EXLTabHeaderButtonPopout"><span></span><a href="'+url+'" target="_blank"><img src="../images/icon_popout_tab.png" /></a></li><li></li><li class="EXLTabHeaderButtonCloseTabs"><a href="#" title="hide tabs"><img src="../images/icon_close_tabs.png" alt="hide tabs"></a></li></ul></div>';
         var header = '<div class="EXLTabHeader">'+ popOut +'</div>';
         var htmlcontent = '';
-        if (typeof(content)=='function'){
+        if (typeof(content) === 'function') {
                 log('trying function');
                 htmlcontent = content(element);
         }else{
