@@ -212,7 +212,7 @@
 	</div>
 </c:if>
 
-<jsp:include page="suggestedSearchTile.jsp"/>
+<%--<jsp:include page="suggestedSearchTile.jsp"/> -->
 
 <c:if test="${!form.displayGeneralPageActionsOnTop}">
 	<!--RSS, Save Search and Add page to e-Shelf Links-->
