@@ -335,8 +335,14 @@ function trafiklys() {
     }
 }
 
-
-
+function startsWith(s,a) {
+        for (x in a) {
+                if (s.indexOf(a[x]) === 0) {
+                        return true;
+                }
+        }
+        return false;
+}
 
 $(document).ready(function() {
  
@@ -459,15 +465,6 @@ var eodEvaluator = function(element){
       $(this).html("Under behandling"); 
   });
 });
-
-function startsWith(s,a) {
-        for (x in a) {
-                if (s.indexOf(a[x]) === 0) {
-                        return true;
-                }
-        }
-        return false;
-}
 
 function bestil() {
         $("div.EXLRequestTabContent").each(function(index){
