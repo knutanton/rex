@@ -273,14 +273,10 @@ function TextReplaceObject(originalText, newText) {
 
 function replaceTextInLocationsTab(textReplaceObjects) {
     $(".EXLLocationsTab").ajaxComplete(function(event, xhr, settings) {
-        var htmlResult,
-                html,
-                link;
-
         if($(event.currentTarget).hasClass("EXLResultSelectedTab")) {
-            htmlResult = $(event.currentTarget).parents().eq(3),
-                    html = htmlResult.find(".EXLSublocation"),
-                    matchText = html.find(".EXLLocationTableColumn2, .EXLLocationTableColumn3").text().trim().toLowerCase();
+            var htmlResult = $(event.currentTarget).parents().eq(3),
+                html = htmlResult.find(".EXLSublocation"),
+                matchText = html.find(".EXLLocationTableColumn2, .EXLLocationTableColumn3").text().trim().toLowerCase();
 
             $.each(textReplaceObjects, function(index, textReplaceObject) {
                 if(matchText.indexOf(textReplaceObject.originalText) > -1) {
