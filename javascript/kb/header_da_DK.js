@@ -480,10 +480,10 @@ function bestil() {
 function emne() {
         $("div.EXLDetailsContent>ul>li:contains('Klassifikation/emnekoder'):not(:has(.KBsubLink))").each(function(index) {
                 var emnekoder = $(this).html();
-                if (emnekoder != null) {
+                if (emnekoder !== null) {
                         var x = emnekoder.split(/<\/strong>|<\/STRONG>/);
                         emnekoder = x[1];
-                        if (emnekoder != null) {
+                        if (emnekoder !== null) {
                                 var html = '<strong>Klassifikation/emnekoder:</strong>';
                                 var br = emnekoder.split(/<br>|<BR>/);
                                 for(var b in br) {
