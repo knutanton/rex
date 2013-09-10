@@ -417,6 +417,17 @@ $('#hold' + hold).load('/cgi-bin/get_pickup_number_text?z37_rec_key=' + hold);
   // Tilret tabs - relevant ved fuld visning
   KBFixTabs();
 
+  // HAFE start language specific faq and cookie policy
+  // Change links in header for "faq" and "cookie policy" to the english version of those documents
+    (function ($) {
+        'use strict';
+        var cookieLink = $('.EXLMainMenuITEMcookie-_and_privacypolicy', '#exlidMainMenuContainer'),
+            faqLink = $('a[class^=EXLMainMenuITEMhelp]', '#exlidMainMenuContainer'); // ought to be $('.EXLMainMenuITEMhjælp/faq', '#exlidMainMenuContainer'); but dat char in a class name! :(
+        cookieLink.attr('href', cookieLink.attr('href').replace(/www\.kb\.dk\/da\//, 'www.kb.dk/en/'));
+        faqLink.attr('href', faqLink.attr('href').replace(/www\.kb\.dk\/da\//, 'www.kb.dk/en/'));
+    })(jQuery)
+  // HAFE stop language specific faq and cookie policy
+
 })
 
 function startsWith(s,a) {
