@@ -314,7 +314,7 @@ function trafiklys() {
             });
         }
 
-    })
+    });
 
     function parseOpenUrl(resultItem) {
         var longUrl = resultItem.find("input[id^=getit]").attr('value');
