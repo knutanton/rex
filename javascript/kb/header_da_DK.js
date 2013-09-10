@@ -15,7 +15,7 @@
             attrs[idx] = attrList;
         });
 
-        return returnValue = this.replaceWith(function(idx) {
+        return this.replaceWith(function(idx) {
             return $("<" + newType + "/>", attrs[idx]).data(data[idx]).append($(this).contents());
         });
     };
