@@ -323,7 +323,7 @@ function trafiklys() {
             //openUrl occupies this position and starts with ctx_ver
             var openUrl = longUrl.split('?')[1];
             if (typeof openUrl !== 'undefined'
-             && openUrl.slice(0,7) == 'ctx_ver'){
+             && openUrl.slice(0,7) === 'ctx_ver'){
                     return openUrl;
             }
             return null;
