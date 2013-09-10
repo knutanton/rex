@@ -289,7 +289,7 @@ function replaceTextInLocationsTab(textReplaceObjects) {
 
             $.each(textReplaceObjects, function(index, textReplaceObject) {
                 if(matchText.indexOf(textReplaceObject.originalText) > -1) {
-                    html.find(".EXLLocationTableActionsMenu").html(textReplaceObject.newText);
+                    html.find(".EXLLocationTableActionsMenu ul li:contains(not)").html(textReplaceObject.newText);
                     return;
                 }
             });
