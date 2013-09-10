@@ -319,10 +319,10 @@ function trafiklys() {
     function parseOpenUrl(resultItem) {
         var longUrl = resultItem.find("input[id^=getit]").attr('value');
         //make sure we got a longUrl
-        if (typeof longUrl != 'undefined') {
+        if (typeof longUrl !== 'undefined') {
             //openUrl occupies this position and starts with ctx_ver
             var openUrl = longUrl.split('?')[1];
-            if (typeof openUrl != 'undefined'
+            if (typeof openUrl !== 'undefined'
              && openUrl.slice(0,7) == 'ctx_ver'){
                     return openUrl;
             }
