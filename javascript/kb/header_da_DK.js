@@ -208,6 +208,20 @@ function EXLTA_addTab(tabName,tabType,url,tabHandler,firstTab,evaluator){
         $('.EXLSummary .'+tabType+'-Container').hide();
 }
 
+function EXLTA_wrapResultsInNativeTab(element, content,url, headerContent){ 
+        var popOut = '<div class="EXLTabHeaderContent">'+headerContent+'</div><div class="EXLTabHeaderButtons"><ul><li class="EXLTabHeaderButtonPopout"><span></span><a href="'+url+'" target="_blank"><img src="../images/icon_popout_tab.png" /></a></li><li></li><li class="EXLTabHeaderButtonCloseTabs"><a href="#" title="hide tabs"><img src="../images/icon_close_tabs.png" alt="hide tabs"></a></li></ul></div>';
+        var header = '<div class="EXLTabHeader">'+ popOut +'</div>';
+        var htmlcontent = '';
+        if (typeof(content)=='function'){
+                log('trying function');
+                htmlcontent = content(element);
+        }else{
+                htmlcontent = content;
+        }
+        var body = '<div class="EXLTabContent">'+htmlcontent+'</div>';
+        return header + body;
+}
+
 function EXLTA_createWidgetTabHandler(content,reentrant){
         return function(e,element,tabType,url,isSelected){
                 e.preventDefault();
@@ -226,20 +240,6 @@ function EXLTA_addLoadEvent(func){
 
 function EXLTA_isFullDisplay(){  
 	return $('.EXLFullView').size() > 0;
-}
-
-function EXLTA_wrapResultsInNativeTab(element, content,url, headerContent){ 
-        var popOut = '<div class="EXLTabHeaderContent">'+headerContent+'</div><div class="EXLTabHeaderButtons"><ul><li class="EXLTabHeaderButtonPopout"><span></span><a href="'+url+'" target="_blank"><img src="../images/icon_popout_tab.png" /></a></li><li></li><li class="EXLTabHeaderButtonCloseTabs"><a href="#" title="hide tabs"><img src="../images/icon_close_tabs.png" alt="hide tabs"></a></li></ul></div>';
-        var header = '<div class="EXLTabHeader">'+ popOut +'</div>';
-        var htmlcontent = '';
-        if (typeof(content)=='function'){
-                log('trying function');
-                htmlcontent = content(element);
-        }else{
-                htmlcontent = content;
-        }
-        var body = '<div class="EXLTabContent">'+htmlcontent+'</div>';
-        return header + body;
 }
 
 function EXLTA_closeTab(element){
