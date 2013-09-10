@@ -230,6 +230,20 @@ function EXLTA_closeTab(element){
         }
 }
 
+function EXLTA_openTab(element,tabType, content, reentrant){ 
+        t = 0;
+        $(element).parents('.EXLTabsRibbon').removeClass('EXLTabsRibbonClosed');
+        $(element).parents('.EXLResultTab').siblings().removeClass('EXLResultSelectedTab').end().addClass('EXLResultSelectedTab');
+        var container = $(element).parents('.EXLResult').find('.EXLResultTabContainer').hide().end().find('.'+tabType+'-Container').show();
+        if (content && !(reentrant && $(container).attr('loaded'))){
+                $(container).html(content);
+                if(reentrant){
+                        $(container).attr('loaded','true');
+                }
+        }
+        return container;
+}
+
 function EXLTA_createWidgetTabHandler(content,reentrant){
         return function(e,element,tabType,url,isSelected){
                 e.preventDefault();
@@ -248,20 +262,6 @@ function EXLTA_addLoadEvent(func){
 
 function EXLTA_isFullDisplay(){  
 	return $('.EXLFullView').size() > 0;
-}
-
-function EXLTA_openTab(element,tabType, content, reentrant){ 
-        t = 0;
-        $(element).parents('.EXLTabsRibbon').removeClass('EXLTabsRibbonClosed');
-        $(element).parents('.EXLResultTab').siblings().removeClass('EXLResultSelectedTab').end().addClass('EXLResultSelectedTab');
-        var container = $(element).parents('.EXLResult').find('.EXLResultTabContainer').hide().end().find('.'+tabType+'-Container').show();
-        if (content && !(reentrant && $(container).attr('loaded'))){
-                $(container).html(content);
-                if(reentrant){
-                        $(container).attr('loaded','true');
-                }
-        }
-        return container;
 }
 //NKH Slut (EOD functions)
 
