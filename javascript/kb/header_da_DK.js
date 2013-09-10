@@ -458,7 +458,7 @@ var eodEvaluator = function(element){
   $(".EXLMyAccountTable>tbody>tr>td:contains('In process'),.EXLMyAccountTableDetails>tbody>tr>td:contains('In process')").each(function () {
       $(this).html("Under behandling"); 
   });
-})
+});
 
 function startsWith(s,a) {
         for (x in a) {
