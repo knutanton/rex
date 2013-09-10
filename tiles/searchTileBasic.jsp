@@ -30,7 +30,7 @@
     <legend class="EXLHiddenCue sr-only">Primo Search</legend>
 
 <%-- begin tabs handling --%>
-<div class="EXLSearchTabsContainer">
+<div class="EXLSearchTabsContainer form-group">
 
 
 <c:if test="${primoView.numberOfTabs > 1}">
@@ -93,54 +93,38 @@
     </ul>
 
 </c:if>
+
 </div>
 <%-- end tabs handling --%>
-    <div class="EXLSearchFieldRibbon ${enlargeSearchFieldHideScope} row">
-      <div class="EXLSearchFieldRibbonFormFields col-md-10">
-        <div class="EXLSearchFieldRibbonFormSearchFor col-md-6">
+    <div class="EXLSearchFieldRibbon ${enlargeSearchFieldHideScope} form-group">
+      <div class="EXLSearchFieldRibbonFormFields col-md-8 col-md-offset-2">
+        <div class="EXLSearchFieldRibbonFormSearchFor input-group input-group-lg">
+            <div class="EXLSearchFieldRibbonAdvancedSearchLink input-group-btn">
+                <a class="${browseAlign} form-control btn btn-default" title="<fmt:message key='link.title.advanced_search'/>" href="${fn:escapeXml(advanced_search_url)}" id="advancedSearchBtn"><fmt:message key='label.advanced_search'/></a>
+            </div>
           <label for="search_field" class="EXLHide sr-only">Search For:</label>
           <input name="vl(${searchForm.queryTerms[0].inputs[0].id})" class="${fullSearchBoxClass} form-control"
 			value='${fn:escapeXml(searchForm.values[searchForm.queryTerms[0].inputs[0].id])}' id="search_field" type="text" accesskey="s" />
+
+            <div class="EXLSearchFieldRibbonFormSubmitSearch input-group-btn">
+                <c:if test="${empty sbutton }">
+                    <c:set var="sbutton" value="submit"/>
+                </c:if>
+                <input id="goButton" type="submit" value="<fmt:message key='link.title.search.search'/>" class="${sbutton} form-control btn btn-primary" accesskey="g"/>
+            </div>
+
+
+
         </div>
 
 
 <%-- begin scopes dropdown --%>
 <%--@ include file="basicSearchScopesList.jspf" %>
 <%-- end scopes dropdown --%>
-        <div class="col-md-6">
-              <select id="exlidSearchIn" class="EXLSearchInputScopesSelect form-control" name="scp.scps" ${(searchForm.displayDefinition=='false')?'disabled="disabled"':''}>
-                  <c:forEach items='${searchForm.scp.scopesOptions}' var="option" varStatus="status">
-                      <c:set var="classes" value="${option.locationrefs==searchForm.scp.scps?'EXLSelectedOption':'EXLSelectOption'}"/>
-                      <c:set var="selected" value="${option.locationrefs==searchForm.scp.scps?'selected=\"selected\"':''}"/>
-                      <c:choose>
-                          <c:when test="${option.id == 'Selected_Databases'}">
-                              <c:if test="${searchForm.displaySelectedScope != 'hide'}">
-                                  <option id="${option.id}" value="${fn:escapeXml(option.locationrefs)}" class="${classes} EXLSearchInputScopesOption${option.id}" ${selected}><fmt:message
-                                          key='scopes.option.current.selected' /><c:if test="${searchForm.accessibilityList[status.index]!='-1' and not searchForm.allFullAccess}">&nbsp;<fmt:message key='option.accessibility.${searchForm.accessibilityList[status.index]}'/> </c:if></option>
-                              </c:if>
-                          </c:when>
-                          <c:otherwise>
-                              <c:if test="${option.personalSetScope == false or (searchForm.displaySelectedScope != 'hide' and option.personalSetScope == true)}">
-                                  <option id="${option.id}" value="${fn:escapeXml(option.locationrefs)}" class="${classes} EXLSearchInputScopesOption${option.id}" ${selected}><fmt:message
-                                          key='scopes.option.${option.id}' />
-                                      <c:if test="${searchForm.accessibilityList[status.index]!='-1' and not searchForm.allFullAccess}">&nbsp;<fmt:message key='option.accessibility.${searchForm.accessibilityList[status.index]}'/>
-                                      </c:if>
-                                  </option>
-                              </c:if>
-                          </c:otherwise>
-                      </c:choose>
-                  </c:forEach>
-              </select>
-         </div>
 
 </div>
 <!-- end  search field ribbon -->
-      <div class="EXLSearchFieldRibbonFormSubmitSearch col-md-2">
-		<c:if test="${empty sbutton }">
-			<c:set var="sbutton" value="submit"/>
-		</c:if>
-		<input id="goButton" type="submit" value="<fmt:message key='link.title.search.search'/>" class="${sbutton} form-control btn btn-primary" accesskey="g"/>
-      </div>
+
 
     </div>
     </fieldset>
@@ -149,9 +133,7 @@
 	<c:set var="browseAlign" value="EXLSearchFieldRibbonAdvancedTwoLinks"/>
 </c:if>
 
-<div class="EXLSearchFieldRibbonAdvancedSearchLink row">
-	<a class="${browseAlign} btn btn-default" title="<fmt:message key='link.title.advanced_search'/>" href="${fn:escapeXml(advanced_search_url)}" id="advancedSearchBtn"><fmt:message key='label.advanced_search'/></a>
-</div>
+
 
 <c:if test="${searchForm.showBrowseLink }">
 <c:url value="search.do?${requestScope.switchModeURL_reqDecQryUTF8}" var="browse_search_url">
@@ -166,7 +148,7 @@
 <%-- 	back to results link
 
 --%>
-<div id="exlidSearchBanner">
+<div id="exlidSearchBanner" class="sr-only">
 <%--c:choose--%>
 <%--
 <c:when test="${not empty displayForm}">
