@@ -335,7 +335,7 @@ function trafiklys() {
     }
 }
 
-function startsWith(s,a) {
+function startsWith(s,a) { // FIXME: These helper methods shouldn't be dumped in window!
         for (x in a) {
                 if (s.indexOf(a[x]) === 0) {
                         return true;
