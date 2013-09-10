@@ -98,7 +98,6 @@ function hideLocationInfo() {
 function addLoginLink() {
 	//DGJ
 	var url = $('#exlidSignOut>a').attr('href');
-var test = $(".EXLLocationTableActions:contains('Log ind for at reservere')"); if (test[0]) { debugger; }
 	$(".EXLLocationTableActions:contains('Log ind for at reservere')")
 		.html('<a href="'+url+'">Log ind for at reservere </a>');
 }
