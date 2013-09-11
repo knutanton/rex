@@ -292,8 +292,10 @@ function trafiklys() {
     var resultItems = $("tr[id^='exlidResult']");
     //iterate over items and create trafiklys query for each one
     $.each(resultItems, function() {
+        //business logic - skip this item if trafiklys is not relevant
+        if (!trafiklysRelevant($(this))) return true; 
         var openUrl = parseOpenUrl($(this));
-        if (openUrl !== null) {
+        if (openUrl != null) {
             var baseUrl = "http://sfx-test-01.kb.dk:3000/trafiklys/lookUp/";
             var fullUrl = baseUrl + encodeURIComponent(openUrl) + "/" + window.ip + "/" + userInst + "?callback=?";
             var id = $(this).attr('id');
@@ -301,29 +303,64 @@ function trafiklys() {
             $.getJSON(fullUrl, { format: "json" }, function(data) {
                 //console.log(fullUrl);
                 //parse response and insert message into result
-                var access = parseResponse(data),
-                    trafiklysMessage;
-                if (access.toLowerCase() === "no") {
-                    trafiklysMessage = '<em class=".EXLResultsList EXLResultStatusNotAvailable">Trafiklys: ' + access + '</em>';
+                var access = parseResponse(data);
+                //if no access - give user a message
+                if (access.toLowerCase() == "no") {
+                    var trafiklysMessage = '<em class="EXLResultStatusNotAvailable">Trafiklys: ' + access + '</em>';
                     $('#' + id).find('.EXLResultAvailability').append(trafiklysMessage);
-                } else if (access.toLowerCase() === "yes") {
-                    trafiklysMessage = '<h3 style="color: green;">Trafiklys: ' + access + '</h3>';
-                    $('#' + id).find('.EXLResultAvailability').append(trafiklysMessage);
+                } //if access, hide the Skaf link
+                 else if (access.toLowerCase() == "yes") {
+                    //var trafiklysMessage = '<h3 style="color: green;">Trafiklys: ' + access + '</h3>';
+                    //$('#' + id).find('.EXLResultAvailability').append(trafiklysMessage);
                     $('#' + id).find('.requestForm').hide();
+                } //if maybe, stick a login alert on the Online Adgang button
+                 else if (access.toLowerCase() == "maybe") {
+                    var trafiklysMessage = '<h3 style="color: yellow;">Trafiklys: ' + access + '</h3>';
+                    $('#' + id).find('.EXLResultAvailability').append(trafiklysMessage);
+                    var viewOnlineLink = $('#' + id).find('.EXLViewOnlineTab a');
+                    //viewOnlineLink.attr('data-toggle', 'modal');
+                    //viewOnlineLink.attr('href', '#loginModal');
+                    //viewOnlineLink.click(function() {
+                    //    $('#loginModal').show();
+                    //})
                 }
             });
         }
 
-    });
+    })
+
+    //business rules - there must be a ViewOnline Tab
+    //Except if: it says "Alle har adgang"
+    //KBB01 pictures, COP objects
+    //record types map and theses
+    function trafiklysRelevant(resultItem) {
+
+        var onlineTab = resultItem.find('.EXLViewOnlineTab');
+        var adgang = resultItem.find('.EXLResultFourthLine').text().trim();
+        var mediaType = resultItem.find("span[id^='mediaType']").text();
+        var recordId = resultItem.find('td.EXLThumbnail a').attr('id');
+        
+        if ( (onlineTab.length == 0) || (adgang.indexOf("Alle har adgang") > 0 ) 
+            || (recordId.indexOf("KBB01") > 0 ) || (recordId.indexOf("object") > 0) 
+            || (mediaType == "Kort") || (mediaType == "Map") 
+            || (mediaType == "Speciale") || (mediaType == "Thesis") ){
+                console.log(mediaType);
+                console.log(recordId);
+                console.log("not relevant");
+                return false;
+        }
+        console.log("is relevant");
+        return true; 
+    }
 
     function parseOpenUrl(resultItem) {
-        var longUrl = resultItem.find("input[id^=getit]").attr('value');
+        var longUrl = resultItem.find(".EXLMoreTab a").attr('href');
         //make sure we got a longUrl
-        if (typeof longUrl !== 'undefined') {
+        if (typeof longUrl != 'undefined') {
             //openUrl occupies this position and starts with ctx_ver
             var openUrl = longUrl.split('?')[1];
-            if (typeof openUrl !== 'undefined'
-             && openUrl.slice(0,7) === 'ctx_ver'){
+            if (typeof openUrl != 'undefined'
+             && openUrl.slice(0,7) == 'ctx_ver'){
                     return openUrl;
             }
             return null;
@@ -331,9 +368,17 @@ function trafiklys() {
     }
 
     function parseResponse(data) {
-        return data['trafiklys']['response']['access'];
+        return data.trafiklys.response.access;
     }
 }
+
+function getIP() {
+	var ipUrl = "http://sfx-test-01.kb.dk:3000/trafiklys/get_ip?callback=?";
+	return $.getJSON(ipUrl, function(data) {
+        window.ip = data.ip;
+    });
+}
+
 
 function startsWith(s,a) { // FIXME: These helper methods shouldn't be dumped in window!
         var x;
@@ -347,11 +392,9 @@ function startsWith(s,a) { // FIXME: These helper methods shouldn't be dumped in
 
 $(document).ready(function() {
  
+    
     //we need the user's IP to call Trafiklys
-    var ipUrl = "http://sfx-test-01.kb.dk:3000/trafiklys/get_ip?callback=?";
-	$.getJSON(ipUrl, function(data) {
-        window.ip = data['ip'];
-    }).done(trafiklys);
+	getIP().done(trafiklys);
 
 	var dod = new TextReplaceObject("Brug Digital Version", '<a href="http://www.kb.dk/da/nb/samling/dod/DODbestilling.html" target="_blank">Efter særlig ansøgning</a>'),
         kob = new TextReplaceObject("Mail til kob", '<a href="http://www.kb.dk/da/nb/samling/ks/kobbestilling.html" target="_blank">Mail til kob</a>'),
