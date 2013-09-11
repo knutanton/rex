@@ -293,7 +293,9 @@ function trafiklys() {
     //iterate over items and create trafiklys query for each one
     $.each(resultItems, function() {
         //business logic - skip this item if trafiklys is not relevant
-        if (!trafiklysRelevant($(this))) return true; 
+        if (!trafiklysRelevant($(this))) {
+            return true;
+        }
         var openUrl = parseOpenUrl($(this));
         if (openUrl != null) {
             var baseUrl = "http://sfx-test-01.kb.dk:3000/trafiklys/lookUp/";
