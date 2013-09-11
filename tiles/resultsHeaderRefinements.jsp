@@ -1,14 +1,14 @@
 <%@ include file="/views/taglibsIncludeAll.jspf" %>
 <%@ include file="/javascript/resultsHeader.js" %>
-
+ <div class="row">
 	<%-- Show only facet --%>
 	<c:if test="${form.displayTopLevelFacet}">
 		<c:set value="${form.facetResult.facets[c_facet_tlevel]}" var="facet" />
 		<c:if test="${not empty facet && not empty facet.facetValues and fn:length(facet.facetValues)>0}">
-			<div id="exlidTopLevelFacetsTile" class="EXLTopLevelFacetsTile">
+			<div id="exlidTopLevelFacetsTile" class="EXLTopLevelFacetsTile col-md-3">
 		  	    <div id="exlidToplevelFacetsContainer" class="EXLToplevelFacetsContainer">
-					<strong><fmt:message key="results.showonly"/></strong>
-			    	<ul id="exlidToplevelFacetsRibbon" class="EXLToplevelFacetsRibbon nav nav-pills nav-justified">
+					<h3><fmt:message key="results.showonly"/></h3>
+			    	<ul id="exlidToplevelFacetsRibbon" class="EXLToplevelFacetsRibbon nav nav-pills nav-stacked">
 						<c:forEach items="${facet.facetValues}" var="facetValue" varStatus="status" end="4" >
 							<c:url value="${form.reqDecUrl}" var="facet_url">
 								<c:param name="ct" value="facet"/>
@@ -51,7 +51,7 @@
 </c:choose>
 <c:if test="${fn:length(form.refinements)>0}">
 	<c:set var="removeFacetTitle"><fmt:message key="refinement.remove" /></c:set>
-	<div class="EXLRefinementRibbonWithExclude alert alert-success">
+	<div class="EXLRefinementRibbonWithExclude alert alert-success col-md-9">
 		<div class="EXLRefinementsList">
 			<span class="EXLRefinementsListTitle"><fmt:message key="search.header.facets.refined_by"/></span>
 
@@ -143,6 +143,7 @@
 		</div>
 	</div>
 </c:if>
+ </div>
 
 <script type="text/javascript">
 	addLoadEvent(runThumbnailQueries);

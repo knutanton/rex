@@ -15,23 +15,23 @@
 			<c:if test="${not empty facet && not empty facet.facetValues}">
 				<div class="EXLFacetContainer EXLRelatedSearchTopic EXLRelatedSearchTopicFIELD${facetField}">
 <c:if test="${facetIndex.index==0}">
-	<h3 class="EXLSuggestedSearchesTitle"><fmt:message key='related.label.title'/> </h3>
-	<span class="EXLSuggestedSearchesDescription"><fmt:message key='related.label.description'/></span>
+	<h3 class="EXLSuggestedSearchesTitle"><fmt:message key='related.label.title'/></h3>
+	<span class="EXLSuggestedSearchesDescription sr-only"><fmt:message key='related.label.description'/></span>
 
 
-           <div class="EXLFacetContainer">
+           <!--<div class="EXLFacetContainer">
                <ol class="EXLFacetsList">
 				<li class="EXLFacet">
 					<html:checkbox name="searchForm"  property="pcAvailabiltyMode" styleClass="uncheckable" styleId="pcAvailabiltyMode" onclick="location.replace('${fn:escapeXml(pc_avail_url)}');" />
 								&nbsp;&nbsp;<label for="pcAvailabilityMode"><fmt:message key="expandresults"/></label>
 				</li>
 		    </ol>
-           </div>
+           </div>-->
        
 </c:if>
 				<%--Facet Title e.g: On this subject --%>
 					<h4><fmt:message key="related.label.${facetField}"/>:</h4>
-					<ol class="EXLFacetsList EXLFacetsListPreview"><!-- id="first_${facetField}" -->
+					<ol class="EXLFacetsList EXLFacetsListPreview col-md-6"><!-- id="first_${facetField}" -->
 						<%--We are limiting the number of facets to 5 --%>
 						<c:forEach items="${facet.facetValues}" var="facetValue" varStatus="status" end="4" >
 								<%--Removing language suffix,QC 4603 --%>

@@ -3,8 +3,8 @@
 <c:if test="${param.almaAzSearch == 'true' }">
 <c:set var="bulkSize" value="30" />
 </c:if>
-
-<ul class="pagination">
+<div class="text-center">
+<ul class="pagination pagination-lg">
 <c:if test="${form.searchResult.numberOfResults>bulkSize || form.indx>1}">
 	<c:url value="${form.reqDecUrl}" var="pagnationURL">
 			<c:param name="refinementId" value="${refine.refinementid}"/>
@@ -50,7 +50,7 @@
     </c:if>
 	<c:if test="${loop.index == form.plsp.currentPageNumber}">
     <span class="EXLHide sr-only"><fmt:message key='results.rescount' /></span>
-    <li>
+    <li class="active">
 	<span class="EXLDisplayedCount EXLBriefResultsPaginationPageCount">${loop.index}</span>
     </li>
     </c:if>
@@ -84,3 +84,4 @@
 </c:if>
 
 </ul>
+</div>
