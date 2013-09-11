@@ -123,7 +123,7 @@
 			<c:if test="${not empty facet && not empty facet.facetValues and (facet.count>1 or (facet.count>0 and facetField == c_facet_domain and form.remote)) and (fn:length(facet.facetValues)>1 or (fn:length(facet.facetValues)>0 and facetField == c_facet_domain and form.remote))}">
 			  	<c:set var="facetName" value="${facet.name}"/>
                 <c:if test="${facetTitleDisplayed=='false'}">
-                    <h3><fmt:message key="facets.title"/></h3>
+                    <!--<h3><fmt:message key="facets.title"/></h3>-->
                     <c:set var="facetTitleDisplayed" value="true"/>
                 </c:if>
 			  	<div id="exlidFacet${facetIndex.index}" class="EXLFacetContainer panel panel-default" >
