@@ -535,20 +535,26 @@ function emne() {
                 var br = emnekoder.split(/<br>|<BR>/),
                     b;
                 for(b in br) {
-                    var ord = br[b].split(';'),
-                        o;
-                    for(o in ord) {
-                        var ord2 = ord[o].split(','),
-                            o2;
-                        for (o2 in ord2) {
-                            var word = ord2[o2],
-                                word2 = ord2[o2].replace(/^\s*/, '').replace(/\s*$/, '');
-                            if (word !== '' && word.indexOf('</span>') === -1) {
-                                html = html + '<a class="KBsubLink" href="search.do?dscnt=0&vl%281UI0%29=contains&vl(468199667UI0)=lsr05&scp.scps=scope%3A%28KGL%29&frbg=&tab=default_tab&vl%2892005084UI0%29=sub&srt=rank&vl%2892005085UI1%29=all_items&ct=search&mode=Basic&dum=true&tb=t&indx=1&fn=search&vid=KGL&indx=1&vl%28freeText0%29='+word2+'">'+word+'</a>; ';
+                    if (br.hasOwnProperty(b)) { // FIXME: don't use for in here, use forEach or $.each
+                        var ord = br[b].split(';'),
+                            o;
+                        for(o in ord) {
+                            if (ord.hasOwnProperty(o)) { // FIXME: don't use for in here, use forEach or $.each
+                                var ord2 = ord[o].split(','),
+                                    o2;
+                                for (o2 in ord2) {
+                                    if (ord2.hasOwnProperty(o2)) { // FIXME: don't use for in here, use forEach or $.each
+                                        var word = ord2[o2],
+                                            word2 = ord2[o2].replace(/^\s*/, '').replace(/\s*$/, '');
+                                        if (word !== '' && word.indexOf('</span>') === -1) {
+                                            html = html + '<a class="KBsubLink" href="search.do?dscnt=0&vl%281UI0%29=contains&vl(468199667UI0)=lsr05&scp.scps=scope%3A%28KGL%29&frbg=&tab=default_tab&vl%2892005084UI0%29=sub&srt=rank&vl%2892005085UI1%29=all_items&ct=search&mode=Basic&dum=true&tb=t&indx=1&fn=search&vid=KGL&indx=1&vl%28freeText0%29='+word2+'">'+word+'</a>; ';
+                                        }
+                                    }
+                                }
                             }
                         }
+                        html = html + '<br>';
                     }
-                    html = html + '<br>';
                 }
                 $(this).html(html);
             }
