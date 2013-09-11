@@ -1,6 +1,8 @@
 <!-- suggestedSearchTile.jsp begin -->
 <%@ include file="/views/taglibsIncludeAll.jspf" %>
 <c:if test="${form.searchResult.numberOfResults>0 and form.facetResult.displayRelatedFacets}" >
+
+
 <div id="exlidSuggestedList" class="EXLFacetList panel panel-info">
     <div class="panel-heading">
         <h3 class="EXLSuggestedSearchesTitle panel-title"><fmt:message key='related.label.title'/></h3>
