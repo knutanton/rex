@@ -481,11 +481,12 @@ function emne() {
     $("div.EXLDetailsContent>ul>li:contains('Klassifikation/emnekoder'):not(:has(.KBsubLink))").each(function(index) {
         var emnekoder = $(this).html();
         if (emnekoder !== null) {
-            var x = emnekoder.split(/<\/strong>|<\/STRONG>/);
+            var x = emnekoder.split(/<\/strong>|<\/STRONG>/),
+                html;
             emnekoder = x[1];
             if (emnekoder !== null) {
-                var html = '<strong>Klassifikation/emnekoder:</strong>',
-                    br = emnekoder.split(/<br>|<BR>/),
+                html = '<strong>Klassifikation/emnekoder:</strong>';
+                var br = emnekoder.split(/<br>|<BR>/),
                     b;
                 for(b in br) {
                     var ord = br[b].split(';'),
