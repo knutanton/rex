@@ -568,8 +568,11 @@ $(document).ajaxComplete( function() {
 });
 
 $('.EXLLocationsIcon').live('click', function() {
-   KBFixTabs();
-   setTimeout('KBFixTabs();addLoginLinkFilter();',2000);
+    KBFixTabs();
+    setTimeout(function () { // FIXME: What is this? Why call KBFixTab again after 2 secs? Shouldn't be necessary! (and is this called at all?)
+        KBFixTabs();
+        addLoginLinkFilter();
+    }, 2000);
 });
 
 
