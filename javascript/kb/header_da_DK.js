@@ -330,7 +330,7 @@ function trafiklys() {
             });
         }
 
-    })
+    });
 
     //business rules - there must be a ViewOnline Tab
     //Except if: it says "Alle har adgang"
