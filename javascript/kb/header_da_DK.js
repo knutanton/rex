@@ -305,10 +305,11 @@ function trafiklys() {
             $.getJSON(fullUrl, { format: "json" }, function(data) {
                 //console.log(fullUrl);
                 //parse response and insert message into result
-                var access = parseResponse(data);
+                var access = parseResponse(data),
+                    trafiklysMessage;
                 //if no access - give user a message
                 if (access.toLowerCase() === "no") {
-                    var trafiklysMessage = '<em class="EXLResultStatusNotAvailable">Trafiklys: ' + access + '</em>';
+                    trafiklysMessage = '<em class="EXLResultStatusNotAvailable">Trafiklys: ' + access + '</em>';
                     $('#' + id).find('.EXLResultAvailability').append(trafiklysMessage);
                 } //if access, hide the Skaf link
                  else if (access.toLowerCase() === "yes") {
@@ -317,7 +318,7 @@ function trafiklys() {
                     $('#' + id).find('.requestForm').hide();
                 } //if maybe, stick a login alert on the Online Adgang button
                  else if (access.toLowerCase() === "maybe") {
-                    var trafiklysMessage = '<h3 style="color: yellow;">Trafiklys: ' + access + '</h3>';
+                    trafiklysMessage = '<h3 style="color: yellow;">Trafiklys: ' + access + '</h3>';
                     $('#' + id).find('.EXLResultAvailability').append(trafiklysMessage);
                     var viewOnlineLink = $('#' + id).find('.EXLViewOnlineTab a');
                     //viewOnlineLink.attr('data-toggle', 'modal');
