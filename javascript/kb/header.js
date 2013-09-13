@@ -254,11 +254,13 @@ function emne() {
             var x = emnekoder.split(/<\/strong>|<\/STRONG>/);
             emnekoder = x[1];
             if (emnekoder !== null) {
-                var html = '<strong>Subjects:</strong>';
-                var br = emnekoder.split(/<br>|<BR>/);
-                for(var b in br) {
-                    var ord = br[b].split(';');
-                    for(var o in ord) {
+                var html = '<strong>Subjects:</strong>',
+                    br = emnekoder.split(/<br>|<BR>/),
+                    b;
+                for(b in br) {
+                    var ord = br[b].split(';'),
+                        o;
+                    for(o in ord) {
                         var word = ord[o].replace(/^\s\s*/, '').replace(/\s\s*$/, '');
                         if (word !== '') {
                             html = html + '<a class="KBsubLink" href="search.do?dscnt=0&vl%281UI0%29=contains&scp.scps=scope%3A%28KGL%29&frbg=&tab=default_tab&vl%2892005084UI0%29=sub&srt=rank&vl%2892005085UI1%29=all_items&ct=search&mode=Basic&dum=true&tb=t&indx=1&fn=search&vid=KGL&indx=1&vl%28freeText0%29=' + word + '">' + word + '</a>; ';
