@@ -530,7 +530,7 @@ $(document).ready(function () {
             .appendTo(ul);
     };
     // Highlight slut
-/*jslint nomen: false */
+/*jslint nomen: true */
 
     $(function () {
         function log(message) {
