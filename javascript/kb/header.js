@@ -1,5 +1,5 @@
 /*global jQuery, $ */
-function KBFixTabs() {
+function kBFixTabs() {
     // Tilret Bestil-fanebladet
     $(".EXLLocationTableActionsMenu>ul:not(:has(.requestForm))").each(function (index) {
         // Faa fat i en identifier paa dokumentet ved at sakse den fra et link
@@ -217,7 +217,7 @@ $(document).ready(function () {
     });
 
     // Tilret tabs - relevant ved fuld visning
-    KBFixTabs();
+    kBFixTabs();
 
     // HAFE start language specific faq and cookie policy
     // Change links in header for "faq" and "cookie policy" to the english version of those documents
@@ -280,7 +280,7 @@ function emne() {
 
 // Tilretninger af indholdet af faneblade - dynamisk
 $(document).ajaxComplete(function () {
-    KBFixTabs();
+    kBFixTabs();
     hideLocationInfo();
     addLoginLink();
     bestil();
@@ -288,8 +288,8 @@ $(document).ajaxComplete(function () {
 });
 
 $('.EXLLocationsIcon').live('click', function () {
-    KBFixTabs();
-    setTimeout('KBFixTabs();addLoginLinkFilter();', 2000);
+    kBFixTabs();
+    setTimeout('kBFixTabs();addLoginLinkFilter();', 2000);
 });
 
 /*
