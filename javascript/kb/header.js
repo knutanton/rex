@@ -257,11 +257,11 @@ function emne() {
                 var html = '<strong>Subjects:</strong>',
                     br = emnekoder.split(/<br>|<BR>/),
                     b;
-                for(b in br) {
+                for (b in br) {
                     if (br.hasOwnProperty(b)) {
                         var ord = br[b].split(';'),
                             o;
-                        for(o in ord) {
+                        for (o in ord) {
                             if (ord.hasOwnPropery(o)) {
                                 var word = ord[o].replace(/^\s\s*/, '').replace(/\s\s*$/, '');
                                 if (word !== '') {
