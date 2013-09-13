@@ -1,3 +1,4 @@
+/*global $, document, setTimeout */
 function kBFixTabs() {
     // Tilret Bestil-fanebladet
     $(".EXLLocationTableActionsMenu>ul:not(:has(.requestForm))").each(function (index) {
