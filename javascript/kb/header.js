@@ -289,7 +289,10 @@ $(document).ajaxComplete(function () {
 
 $('.EXLLocationsIcon').live('click', function () {
     kBFixTabs();
-    setTimeout('kBFixTabs();addLoginLinkFilter();', 2000);
+    setTimeout(function () {
+        kBFixTabs();
+        addLoginLinkFilter();
+    }, 2000);
 });
 
 /*
