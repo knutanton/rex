@@ -1,26 +1,3 @@
-// Adding function changeElementType to $. Changes element type. NOTE: The changing elements eventHandlers are lost in the process (childNodes handl    ers are preserved)
-// Usage: $(selector).changeElementType(newType) where selector is any valid jQuery selector and newType is a HTMLElemnent typeName
-// code heavily inspired of http://stackoverflow.com/questions/8584098/how-to-change-an-element-type-using-jquery
-(function ($) {
-    $.fn.changeElementType = function (newType) {
-        var attrs = [],
-            data = [];
-
-        $.each(this, function (idx) {
-            var attrList = {};
-            data[idx] = $(this).data();
-            $.each(this.attributes, function (idx, attr) {
-                attrList[attr.nodeName] = attr.nodeValue;
-            });
-            attrs[idx] = attrList;
-        });
-
-        return this.replaceWith(function (idx) {
-            return $("<" + newType + "/>", attrs[idx]).data(data[idx]).append($(this).contents());
-        });
-    };
-}(jQuery));
-
 function KBFixTabs() {
     // Tilret Bestil-fanebladet
     $(".EXLLocationTableActionsMenu>ul:not(:has(.requestForm))").each(function (index) {
@@ -519,64 +496,6 @@ function bestil() {
     });
 }
 
-function emne() {
-    $("div.EXLDetailsContent>ul>li:contains('Klassifikation/emnekoder'):not(:has(.KBsubLink))").each(function (index) {
-        var emnekoder = $(this).html();
-        if (emnekoder !== null) {
-            var x = emnekoder.split(/<\/strong>|<\/STRONG>/),
-                html;
-            emnekoder = x[1];
-            if (emnekoder !== null) {
-                html = '<strong>Klassifikation/emnekoder:</strong>';
-// Inserted by HAFE start FIXME: completely untested code - I don't know when this is used, and haven't had an opportunity to see that nothing has broken from the code beneath
-                var br = emnekoder.split(/<br>|<BR>/);
-                $.each(br, function (i, ord) {
-                    ord = ord.split(';');
-                    $.each(ord, function (i, ord2) {
-                        ord2 = ord2.split(',');
-                        $.each(ord2, function (i, word) {
-                            if (word !== '' && word.indexOf('</span>') === -1) {
-                                html = html + '<a class="KBsubLink" href="search.do?dscnt=0&vl%281UI0%29=contains&vl(468199667UI0)=lsr05&scp.scps=scope%3A%28KGL%29&frbg=&tab=default_tab&vl%2892005084UI0%29=sub&srt=rank&vl%2892005085UI1%29=all_items&ct=search&mode=Basic&dum=true&tb=t&indx=1&fn=search&vid=KGL&indx=1&vl%28freeText0%29=' + $.trim(word) + '">' + word + '</a>; ';
-                            }
-                        });
-                    });
-                    html = html + '<br>';
-                });
-                $(this).html(html);
-// Inserted by HAFE stop
-// Removed by HAFE
-//                var br = emnekoder.split(/<br>|<BR>/),
-//                    b;
-//                for(b in br) {
-//                    if (br.hasOwnProperty(b)) { // FIXME: don't use for in here, use forEach or $.each
-//                        var ord = br[b].split(';'),
-//                            o;
-//                        for(o in ord) {
-//                            if (ord.hasOwnProperty(o)) { // FIXME: don't use for in here, use forEach or $.each
-//                                var ord2 = ord[o].split(','),
-//                                    o2;
-//                                for (o2 in ord2) {
-//                                    if (ord2.hasOwnProperty(o2)) { // FIXME: don't use for in here, use forEach or $.each
-//                                        var word = ord2[o2],
-//                                            word2 = ord2[o2].replace(/^\s*/, '').replace(/\s*$/, '');
-//                                        if (word !== '' && word.indexOf('</span>') === -1) {
-//                                            html = html + '<a class="KBsubLink" href="search.do?dscnt=0&vl%281UI0%29=contains&vl(468199667UI0)=lsr05&scp.scps=scope%3A%28KGL%29&frbg=&tab=default_tab&vl%2892005084UI0%29=sub&srt=rank&vl%2892005085UI1%29=all_items&ct=search&mode=Basic&dum=true&tb=t&indx=1&fn=search&vid=KGL&indx=1&vl%28freeText0%29='+word2+'">'+word+'</a>; ';
-//                                        }
-//                                    }
-//                                }
-//                            }
-//                        }
-//                        html = html + '<br>';
-//                    }
-//                }
-//                $(this).html(html);
-// Removed by HAFE
-            }
-            $(this).html(html);
-        }
-    });
-}
-
 // Tilretninger af indholdet af faneblade - dynamisk
 $(document).ajaxComplete(function () {
     KBFixTabs();
@@ -584,7 +503,6 @@ $(document).ajaxComplete(function () {
     addLoginLink();
     addLoginLinkFilter();
     bestil();
-    emne();
 });
 
 $('.EXLLocationsIcon').live('click', function () {
