@@ -4,7 +4,7 @@
 <c:set var="bulkSize" value="30" />
 </c:if>
 <div class="text-center">
-<ul class="pagination pagination-lg">
+<ul class="pagination">
 <c:if test="${form.searchResult.numberOfResults>bulkSize || form.indx>1}">
 	<c:url value="${form.reqDecUrl}" var="pagnationURL">
 			<c:param name="refinementId" value="${refine.refinementid}"/>
