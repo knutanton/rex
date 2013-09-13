@@ -97,6 +97,7 @@ function replaceTextInLocationsTab(textReplaceObjects) {
 }
 
 function startsWith(s, a) {
+    var x;
     for (x in a) {
         if (s.indexOf(a[x]) === 0) {
             return true;
