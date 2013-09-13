@@ -574,6 +574,13 @@ $(document).ready(function () {
         });
     });
 
+    // start mine ERessourcer
+    var linkString = "Mine e-ressourcer (BETA)",
+        myResourceString = "<li><a href='#' class='my_e_resources' id='e_resources_click'>" + linkString + "</a></li>";
+    $('#exlidUserAreaRibbon').append(myResourceString);
+    $('#popupContact > h1').html(linkString);
+    // stop mine ERessourcer
+
     // Copied from footer_da_DK stop /HAFE
 });
 
