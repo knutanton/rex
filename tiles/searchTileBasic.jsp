@@ -30,7 +30,6 @@
     <legend class="EXLHiddenCue sr-only">Primo Search</legend>
 
 <%-- begin tabs handling --%>
-        <div class="row">
 <div class="EXLSearchTabsContainer form-group">
 
 
@@ -96,7 +95,7 @@
 </c:if>
 
 </div>
-        </div>
+
 <%-- end tabs handling --%>
         <div class="row">
     <div class="EXLSearchFieldRibbon ${enlargeSearchFieldHideScope} col-md-8 col-md-offset-2">
