@@ -1,4 +1,4 @@
-function KBFixTabs() {
+function kBFixTabs() {
     // Tilret Bestil-fanebladet
     $(".EXLLocationTableActionsMenu>ul:not(:has(.requestForm))").each(function (index) {
         // Faa fat i en identifier paa dokumentet ved at sakse den fra et link
@@ -352,7 +352,7 @@ $(document).ready(function () {
         $(this).prepend("<img alt='thumbnail' src='" + link.replace("present", " thumbnail") + "'><br/>");
     });
     // Tilret tabs - relevant ved fuld visning
-    KBFixTabs();
+    kBFixTabs();
     // Ret engelsk til dansk ved fotokopibestillinger
     $(".EXLMyAccountTable>tbody>tr>td:contains('Waiting in queue'),.EXLMyAccountTableDetails>tbody>tr>td:contains('Waiting in queue')").each(function () {
         $(this).html("Venter i k&oslash");
@@ -468,7 +468,7 @@ function bestil() {
 
 // Tilretninger af indholdet af faneblade - dynamisk
 $(document).ajaxComplete(function () {
-    KBFixTabs();
+    kBFixTabs();
     hideLocationInfo();
     addLoginLink();
     addLoginLinkFilter();
@@ -476,9 +476,9 @@ $(document).ajaxComplete(function () {
 });
 
 $('.EXLLocationsIcon').live('click', function () {
-    KBFixTabs();
+    kBFixTabs();
     setTimeout(function () { // FIXME: What is this? Why call KBFixTab again after 2 secs? Shouldn't be necessary! (and is this called at all?)
-        KBFixTabs();
+        kBFixTabs();
         addLoginLinkFilter();
     }, 2000);
 });
