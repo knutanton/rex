@@ -389,6 +389,15 @@ $('#hold' + hold).load('/cgi-bin/get_pickup_number_text?z37_rec_key=' + hold);
     })(jQuery)
   // HAFE stop language specific faq and cookie policy
 
+    // copied from footer.html start /HAFE
+    // my e-ressources
+    var linkString = "My e-resources (BETA)",
+        myResourceString = "<li><a href='#' class='my_e_resources' id='e_resources_click'>" + linkString + "</a></li>";
+    $('#exlidUserAreaRibbon').append(myResourceString);
+    $('#popupContact > h1').html(linkString);
+
+
+    // copied from footer.html stop /HAFE
 })
 
 function startsWith(s,a) {
