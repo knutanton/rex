@@ -488,7 +488,6 @@ $(document).ready(function () {
 
 //NKH Slut (ADD EOD Tabs)
 
-
     $(".EXLResultTabs:has(.EXLMoreTab):not(:has(.EXLLocationsTab))").each(function (index) {
         // Tilret faneblade - indsaet skaf-links, hvis AndreTilbud-tab, men ingen bestillings-tab
 /*jslint regexp: false */
@@ -518,7 +517,6 @@ $(document).ready(function () {
     $(".EXLMyAccountTable>tbody>tr>td:contains('In process'),.EXLMyAccountTableDetails>tbody>tr>td:contains('In process')").each(function () {
         $(this).html("Under behandling");
     });
-
 
     // Copied from footer_da_DK start /HAFE
     $('.EXLResult').each(function () {
@@ -582,13 +580,16 @@ $(document).ready(function () {
                     data : {
                         wt : 'json',
                         rows : '10',
-                        q : 'name:' + request.term.trim() + '*'
+                        //q : 'name:' + request.term.trim() + '*'
+                        q : 'primo_keyword:' + request.term.trim() + '*' // FIXME: primo_keyword inserted by HAFE
                     },
                     success: function (data) {
                         response($.map(data.response.docs, function (item) {
                             return {
-                                label: item.name.toLowerCase(),
-                                value: item.name.toLowerCase()
+                                //label: item.name.toLowerCase(),
+                                //value: item.name.toLowerCase()
+                                label: item.primo_keyword[0].toLowerCase(), // FIXME: primo_keyword[0] inserted by HAFE
+                                value: item.primo_keyword[0].toLowerCase()
                             };
                         }));
                     }
