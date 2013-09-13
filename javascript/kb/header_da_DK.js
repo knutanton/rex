@@ -516,6 +516,64 @@ $(document).ready(function () {
             $(this).find(".EXLMyShelfStar A").hide();
         }
     });
+
+    // Highligt the typed in term
+    // http://stackoverflow.com/questions/3695184/jquery-autocomplete-highlighting
+/*jslint nomen: false */
+    $.ui.autocomplete.prototype._renderItem = function (ul, item) {
+        var term = this.term.split(' ').join('|'),
+            re = new RegExp('(' + term + ')', 'gi'),
+            t = item.label.replace(re, '<b>$1</b>');
+        return $('<li></li>')
+            .data('item.autocomplete', item)
+            .append('<a>' + t + '</a>')
+            .appendTo(ul);
+    };
+    // Highlight slut
+/*jslint nomen: false */
+
+    $(function () {
+        function log(message) {
+            $('<div>').text(message).prependTo('#log');
+            $('#log').scrollTop(0);
+        }
+
+        $('#search_field').autocomplete({
+            source: function (request, response) {
+                var url = 'http://distest.kb.dk:8983/solr/primo/select';
+                if (request.term.trim().indexOf(' ') >= 0) {
+                    url = 'http://distest.kb.dk:8983/solr/collection1/select';
+                }
+                $.ajax({
+                    url : url,
+                    dataType : 'jsonp',
+                    jsonp : 'json.wrf',
+                    data : {
+                        wt : 'json',
+                        rows : '10',
+                        q : 'name:' + request.term.trim() + '*'
+                    },
+                    success: function (data) {
+                        response($.map(data.response.docs, function (item) {
+                            return {
+                                label: item.name.toLowerCase(),
+                                value: item.name.toLowerCase()
+                            };
+                        }));
+                    }
+                });
+            },
+            minLength: 2,
+            select: function (event, ui) {
+                //assign value back to form before
+                if (ui.item) {
+                    $(event.target).val(ui.item.value);
+                }
+                $('#searchForm').submit();
+            }
+        });
+    });
+
     // Copied from footer_da_DK stop /HAFE
 });
 

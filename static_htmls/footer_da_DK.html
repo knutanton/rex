@@ -48,64 +48,6 @@
 <!-- autocomplete imports -->
 <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.0/themes/base/jquery-ui.css" />
 <script src="http://code.jquery.com/ui/1.10.0/jquery-ui.js"></script>
- <script>
-  // Highligt den term man har indtastet
-  // http://stackoverflow.com/questions/3695184/jquery-autocomplete-highlighting
-  $.ui.autocomplete.prototype._renderItem = function( ul, item){
-  var term = this.term.split(' ').join('|');
-  var re = new RegExp("(" + term + ")", "gi") ;
-  var t = item.label.replace(re,"<b>$1</b>");
-  return $( "<li></li>" )
-     .data( "item.autocomplete", item )
-     .append( "<a>" + t + "</a>" )
-     .appendTo( ul );
- };
- // Highlight slut
-
-  $(function() {
-    function log( message ) {
-      $( "<div>" ).text( message ).prependTo( "#log" );
-      $( "#log" ).scrollTop( 0 );
-    }
- 
-//debugger;
-    $( "#search_field" ).autocomplete({
-      source: function( request, response ) {
-        var url = "http://distest.kb.dk:8983/solr/primo/select"; 
-        if(request.term.trim().indexOf(" ") >= 0){url = "http://distest.kb.dk:8983/solr/collection1/select"}
-	$.ajax({
-          url: url,
-          dataType: "jsonp",
-          jsonp:'json.wrf',
-          data: {
-            wt: "json",
-	    rows: "10",
-            q: "name:"+request.term.trim()+"*"
-            
-          },
-	  success: function(data) {
-            response( $.map( data.response.docs, function( item ) {
-              return {
-                label: item.name.toLowerCase(),
-                value: item.name.toLowerCase()
-              }
-            }));
-          }
-        });
-      },
-      minLength: 2,
-       select: function( event, ui ) { 
-        //assign value back to form before  
-        if(ui.item){
-            $(event.target).val(ui.item.value);
-        }	
-	$('#searchForm').submit();    
-	}
-    });
-    
-    
-  });
-  </script>
 <!-- END autocomplete -->
 
 
