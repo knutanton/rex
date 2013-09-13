@@ -518,6 +518,101 @@ $(document).ready(function () {
     $(".EXLMyAccountTable>tbody>tr>td:contains('In process'),.EXLMyAccountTableDetails>tbody>tr>td:contains('In process')").each(function () {
         $(this).html("Under behandling");
     });
+
+
+    // Copied from footer_da_DK start /HAFE
+    $('.EXLResult').each(function () {
+        var frbr = $(this).find('.EXLResultBgFRBR').length;
+        // if it's a PCI  FRBR record, hide stuff
+        if (frbr !== 0) {
+            // hide links for FRBR groups
+            $(this).find('.EXLTabsRibbon').hide();
+            // remove link from title for FRBR groups
+            $(this).find(".EXLResultTitle").find("a").removeAttr("href");
+            // hide publisher for FRBR groups
+            $(this).find(".EXLResultFourthLine").hide();
+            // hide availability for FRBR groups
+            $(this).find(".EXLResultAvailability").hide();
+            // place display multiple link below title,
+            // and change link of title and thumbnail
+            var link = $(this).find(".EXLBriefResultsDisplayMultipleLink");
+            $(this).find(".EXLSummaryFields").append(link);
+            var titlelink = $(this).find(".EXLResultTitle").find("a");
+            titlelink.attr("href", link.attr("href"));
+            titlelink.attr("target", "_parent");
+            var thumblink = $(this).find(".EXLThumbnail .EXLBriefResultsDisplayCoverImage A");
+            thumblink.attr("href", link.attr("href"));
+
+            // hide the my shelf star
+            $(this).find(".EXLMyShelfStar A").hide();
+        }
+    });
+
+    // Highligt the typed in term
+    // http://stackoverflow.com/questions/3695184/jquery-autocomplete-highlighting
+/*jslint nomen: false */
+    $.ui.autocomplete.prototype._renderItem = function (ul, item) {
+        var term = this.term.split(' ').join('|'),
+            re = new RegExp('(' + term + ')', 'gi'),
+            t = item.label.replace(re, '<b>$1</b>');
+        return $('<li></li>')
+            .data('item.autocomplete', item)
+            .append('<a>' + t + '</a>')
+            .appendTo(ul);
+    };
+    // Highlight slut
+/*jslint nomen: true */
+
+    $(function () {
+        function log(message) {
+            $('<div>').text(message).prependTo('#log');
+            $('#log').scrollTop(0);
+        }
+
+        $('#search_field').autocomplete({
+            source: function (request, response) {
+                var url = 'http://distest.kb.dk:8983/solr/primo/select';
+                if (request.term.trim().indexOf(' ') >= 0) {
+                    url = 'http://distest.kb.dk:8983/solr/collection1/select';
+                }
+                $.ajax({
+                    url : url,
+                    dataType : 'jsonp',
+                    jsonp : 'json.wrf',
+                    data : {
+                        wt : 'json',
+                        rows : '10',
+                        q : 'name:' + request.term.trim() + '*'
+                    },
+                    success: function (data) {
+                        response($.map(data.response.docs, function (item) {
+                            return {
+                                label: item.name.toLowerCase(),
+                                value: item.name.toLowerCase()
+                            };
+                        }));
+                    }
+                });
+            },
+            minLength: 2,
+            select: function (event, ui) {
+                //assign value back to form before
+                if (ui.item) {
+                    $(event.target).val(ui.item.value);
+                }
+                $('#searchForm').submit();
+            }
+        });
+    });
+
+    // start mine ERessourcer
+    var linkString = "Mine e-ressourcer (BETA)",
+        myResourceString = "<li><a href='#' class='my_e_resources' id='e_resources_click'>" + linkString + "</a></li>";
+    $('#exlidUserAreaRibbon').append(myResourceString);
+    $('#popupContact > h1').html(linkString);
+    // stop mine ERessourcer
+
+    // Copied from footer_da_DK stop /HAFE
 });
 
 function bestil() {

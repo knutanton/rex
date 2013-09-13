@@ -1,91 +1,32 @@
-
-
-<footer class="well">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-8">
-                <h2>Genveje</h2>
-                <ul>
-                    <li><a href="http://www.kb.dk/da/REX/sider/biblioteker.html">Biblioteker i REX samarbejdet</a></li>
-      <li><a href="http://www.kb.dk/da/kub/service/sporgbib/forslag.html">Bogforslag</a></li>
-      <li><a href="https://rex.kb.dk/F/?func=file&file_name=find-b&local_base=kgl01_rexclassic&con_lng=DAN">REX Classic</a></li>
-                    <li class="EXLFooterLastLink"><a href="http://www.kb.dk/da/kub/service/sporgbib/index.html">Spørg biblioteket</a></li>
-    </ul>
-            </div>
-            <address class="col-md-4">
-                <strong>Det Kongelige Bibliotek</strong><br>
-                Søren Kierkegaards Plads 1<br>
-                1219 København K<br>
-                EAN: 5798 000795297<br>
-                <abbr title="Telefon nr.">Tlf:</abbr>(+45) 33 47 47 47<br>
-                <a href="mailto//:kb@kb.dk">kb@kb.dk</a>
-            </address>
-        </div>
-
+<footer class=container>
+    <div class="col-md-8">
+        <h2>Genveje</h2>
+        <ul>
+            <li><a href="http://www.kb.dk/da/REX/sider/biblioteker.html">Biblioteker i REX samarbejdet</a></li>
+            <li><a href="http://www.kb.dk/da/kub/service/sporgbib/forslag.html">Bogforslag</a></li>
+            <li><a href="https://rex.kb.dk/F/?func=file&file_name=find-b&local_base=kgl01_rexclassic&con_lng=DAN">REX Classic</a></li>
+            <li class="EXLFooterLastLink"><a href="http://www.kb.dk/da/kub/service/sporgbib/index.html">Spørg biblioteket</a></li>
+        </ul>
+    </div>
+    <address class="col-md-4">
+        <strong>Det Kongelige Bibliotek</strong><br>
+        Søren Kierkegaards Plads 1<br>
+        1219 København K<br>
+        EAN: 5798 000795297<br>
+        <abbr title="Telefon nr.">Tlf:</abbr>(+45) 33 47 47 47<br>
+        <a href="mailto//:kb@kb.dk">kb@kb.dk</a>
+    </address>
+    <div>
         <ul class="list-inline">
             <li><a href="http://www.kb.dk/da/kb/webstedet/index.html">Om webstedet</a></li>
             <li><a href="http://www.kb.dk/da/kb/copyright/index.html" title="Oplysninger om ophavsret på Det Kongelige Bibliotek">Ophavsret</a></li>
             <li><a href="http://www.kb.dk/da/kb/handicap/index.html">Handikap-information</a></li>
-    </ul>
-  </div>
-</footer>
+        </ul>
+    </div>
 
+</footer>
 <!--begin footer-->
 <!--footer_KGL_da_DK.html-->
-
-
-
-
-<!--  <script type="text/javascript" src="../javascript/kb_frb_hack_da.js"></script>  -->
-
-
-
-<script type="text/javascript">
-
-$(document).ready(function(){
-
-        $('.EXLResult').each(function() {
-
-                var frbr = $(this).find('.EXLResultBgFRBR').length;
-
-                // if it's a PCI  FRBR record, hide stuff
-                if (frbr != 0) {
-
-                        // hide links for FRBR groups
-                        $(this).find('.EXLTabsRibbon').hide();
-
-                        // remove link from title for FRBR groups
-                        $(this).find(".EXLResultTitle").find("a").removeAttr("href");
-
-                        // hide publisher for FRBR groups
-                        $(this).find(".EXLResultFourthLine").hide();
-
-                        // hide availability for FRBR groups
-                        $(this).find(".EXLResultAvailability").hide();
-
-                        // place display multiple link below title,
-
-                        // and change link of title and thumbnail
-                        var link = $(this).find(".EXLBriefResultsDisplayMultipleLink");
-                        $(this).find(".EXLSummaryFields").append(link);
-                        var titlelink = $(this).find(".EXLResultTitle").find("a");
-                        titlelink.attr("href",link.attr("href"));
-                        titlelink.attr("target","_parent");
-                        var thumblink = $(this).find(".EXLThumbnail .EXLBriefResultsDisplayCoverImage A");
-                        thumblink.attr("href",link.attr("href"));
-
-                        // hide the my shelf star
-                        $(this).find(".EXLMyShelfStar A").hide();
-
-
-
-          }
-        });
-});
-
-</script>
-
-
 <script type="text/javascript">
 
   var _gaq = _gaq || [];
@@ -102,76 +43,10 @@ $(document).ready(function(){
 <!-- autocomplete imports -->
 <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.0/themes/base/jquery-ui.css" />
 <script src="http://code.jquery.com/ui/1.10.0/jquery-ui.js"></script>
- <script>
-  // Highligt den term man har indtastet
-  // http://stackoverflow.com/questions/3695184/jquery-autocomplete-highlighting
-  $.ui.autocomplete.prototype._renderItem = function( ul, item){
-  var term = this.term.split(' ').join('|');
-  var re = new RegExp("(" + term + ")", "gi") ;
-  var t = item.label.replace(re,"<b>$1</b>");
-  return $( "<li></li>" )
-     .data( "item.autocomplete", item )
-     .append( "<a>" + t + "</a>" )
-     .appendTo( ul );
- };
- // Highlight slut
-
-  $(function() {
-    function log( message ) {
-      $( "<div>" ).text( message ).prependTo( "#log" );
-      $( "#log" ).scrollTop( 0 );
-    }
- 
-//debugger;
-    $( "#search_field" ).autocomplete({
-      source: function( request, response ) {
-        var url = "http://distest.kb.dk:8983/solr/primo/select"; 
-        if(request.term.trim().indexOf(" ") >= 0){url = "http://distest.kb.dk:8983/solr/collection1/select"}
-	$.ajax({
-          url: url,
-          dataType: "jsonp",
-          jsonp:'json.wrf',
-          data: {
-            wt: "json",
-	    rows: "10",
-            q: "name:"+request.term.trim()+"*"
-            
-          },
-	  success: function(data) {
-            response( $.map( data.response.docs, function( item ) {
-              return {
-                label: item.name.toLowerCase(),
-                value: item.name.toLowerCase()
-              }
-            }));
-          }
-        });
-      },
-      minLength: 2,
-       select: function( event, ui ) { 
-        //assign value back to form before  
-        if(ui.item){
-            $(event.target).val(ui.item.value);
-        }	
-	$('#searchForm').submit();    
-	}
-    });
-    
-    
-  });
-  </script>
 <!-- END autocomplete -->
 
 
 <!-- START MINE ERESSOURCER -->
-
-<script>
-   var linkString = "Mine e-ressourcer (BETA)";
-   var myResourceString = "<li><a href='#' class='my_e_resources' id='e_resources_click'>"+ linkString +"</a></li>";
-   $('#exlidUserAreaRibbon').append(myResourceString);
-</script>
-
-
 <div id="popupContact">
    <h1></h1>
    <a href="#" id="popupContactClose"></a>
@@ -183,13 +58,8 @@ $(document).ready(function(){
 </div>
 <div id="backgroundPopup"></div>
 
-
-
 <link rel="stylesheet" href="../static_htmls/kb-custom/popup/general.css" type="text/css" media="screen" />
 <script id="popupJs" src="../static_htmls/kb-custom/popup/popup.js"></script>
-<script>
-  $('#popupContact > h1').html(linkString);
-</script>
 <!-- END MINE ERESSOURCER -->
 
 
