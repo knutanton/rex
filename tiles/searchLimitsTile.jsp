@@ -15,9 +15,13 @@
 		<c:set var="displayAtAll" value="true" />
 	</c:if>
 </c:forEach>
-
+<div>
+    <p class="lead text-center">
+        <prm:userText styleId="search-simple" type="endingText" inline="true"/>
+    </p>
+</div>
 <c:if test="${fn:length(searchForm.queryTerms[0].inputs) gt 1 and displayAtAll}">
-<div id="exlidHeaderSearchLimits" class="container">
+<div id="exlidHeaderSearchLimits" class="row">
       <fieldset>
       <legend class="EXLHiddenCue sr-only"> <prm:userText styleId="search-simple" type="openingText" inline="true"/></legend>
       <div class="EXLHeaderSearchLimitsFields">
@@ -28,8 +32,10 @@
 		<c:set value="${searchForm.queryTerms[1].inputs[0]}"	var="currentInput" />		
 			<c:if test="${fn:length(currentInput.options) gt 1}">
 				<span class="EXLHiddenCue sr-only"><prm:userText styleId="search-simple" type="lookForText" inline="true"/></span>
-                <div class="form-group col-md-3">
-				    <prm:select selectForm="${searchForm}" input="${currentInput}" styleClass="blue EXLSimpleSearchSelect" valueOptionsPrefix='search-simple' count="1"/>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <prm:select selectForm="${searchForm}" input="${currentInput}" styleClass="blue EXLSimpleSearchSelect" valueOptionsPrefix='search-simple' count="1"/>
+                    </div>
                 </div>
 			</c:if>		
 		<%--Read the components to display the second and third --%>
@@ -44,12 +50,15 @@
 					<prm:userText styleId="search-simple" type="operatorText" inline ="true"/>
 				</c:if>
 			</span>
-                <div class="form-group col-md-3">
+                <div class="col-md-3">
+                <div class="form-group">
 				<prm:select selectForm="${searchForm}" input="${currentInput}" styleClass="blue EXLSimpleSearchSelect" valueOptionsPrefix='search-simple' count="1"/>
+                </div>
                 </div>
 			</c:if>
 		</c:forEach>
           <div class="col-md-3">
+              <div class="form-group">
               <select id="exlidSearchIn" class="EXLSearchInputScopesSelect form-control" name="scp.scps" ${(searchForm.displayDefinition=='false')?'disabled="disabled"':''}>
                   <c:forEach items='${searchForm.scp.scopesOptions}' var="option" varStatus="status">
                       <c:set var="classes" value="${option.locationrefs==searchForm.scp.scps?'EXLSelectedOption':'EXLSelectOption'}"/>
@@ -82,9 +91,7 @@
 
       </div>
       </fieldset>
-        <p class="lead">
-            <prm:userText styleId="search-simple" type="endingText" inline="true"/>
-        </p>
+
 </div>
 </c:if>
 <!-- searchLimitsTile.jsp end -->

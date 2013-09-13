@@ -5,7 +5,7 @@
 <c:if test="${empty divClass}">
 	<c:set var="divClass" value="EXLSearch"/>
 </c:if>
-<div id="exlidSearchTile" class="${divClass}, container">
+<div id="exlidSearchTile" class="${divClass}">
 <div id="exlidSearchRibbon">
 <c:if test="${searchForm == null}">
 <c:set var="searchForm" value="${displayForm}" scope="request"/>
@@ -30,6 +30,7 @@
     <legend class="EXLHiddenCue sr-only">Primo Search</legend>
 
 <%-- begin tabs handling --%>
+        <div class="row">
 <div class="EXLSearchTabsContainer form-group">
 
 
@@ -95,9 +96,11 @@
 </c:if>
 
 </div>
+        </div>
 <%-- end tabs handling --%>
-    <div class="EXLSearchFieldRibbon ${enlargeSearchFieldHideScope} form-group">
-      <div class="EXLSearchFieldRibbonFormFields col-md-8 col-md-offset-2">
+        <div class="row">
+    <div class="EXLSearchFieldRibbon ${enlargeSearchFieldHideScope} col-md-8 col-md-offset-2">
+      <div class="EXLSearchFieldRibbonFormFields form-group">
         <div class="EXLSearchFieldRibbonFormSearchFor input-group input-group-lg">
             <div class="EXLSearchFieldRibbonAdvancedSearchLink input-group-btn">
                 <a class="${browseAlign} form-control btn btn-default" title="<fmt:message key='link.title.advanced_search'/>" href="${fn:escapeXml(advanced_search_url)}" id="advancedSearchBtn"><fmt:message key='label.advanced_search'/></a>
@@ -127,6 +130,7 @@
 
 
     </div>
+        </div>
     </fieldset>
 <c:set var="browseAlign" value=""/>
 <c:if test="${searchForm.showBrowseLink }">

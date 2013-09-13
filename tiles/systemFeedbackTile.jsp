@@ -75,7 +75,7 @@
 
 
 <c:if test="${not empty feedbackMessage}">
-    <div class="container">
+    <div>
         <div id="exlidHeaderSystemFeedbackContent" class="alert alert-info alert-dismissable">
             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
             <strong>${feedbackMessage}!</strong>

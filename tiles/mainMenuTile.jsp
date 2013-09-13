@@ -16,7 +16,7 @@
 	<c:set var="existRemote" value="${searchForm.scp.existRemote}"/>
 	<c:set var="showFindInDb" value="${searchForm.showFindInDb}"/>
 </c:if>
-<div id="exlidMainMenuContainer" class="EXLMainMenuContainer EXLFirstItem container">
+<div id="exlidMainMenuContainer" class="EXLMainMenuContainer EXLFirstItem">
   <ul id="exlidMainMenuRibbon" class="nav nav-pills">
 <c:if test="${showFindInDb || existRemote}">
 <li id="exlidMainMenuItem0" class="EXLMainMenuItem ">
