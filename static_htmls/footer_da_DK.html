@@ -38,54 +38,6 @@
 
 <!--  <script type="text/javascript" src="../javascript/kb_frb_hack_da.js"></script>  -->
 
-
-
-<script type="text/javascript">
-
-$(document).ready(function(){
-
-        $('.EXLResult').each(function() {
-
-                var frbr = $(this).find('.EXLResultBgFRBR').length;
-
-                // if it's a PCI  FRBR record, hide stuff
-                if (frbr != 0) {
-
-                        // hide links for FRBR groups
-                        $(this).find('.EXLTabsRibbon').hide();
-
-                        // remove link from title for FRBR groups
-                        $(this).find(".EXLResultTitle").find("a").removeAttr("href");
-
-                        // hide publisher for FRBR groups
-                        $(this).find(".EXLResultFourthLine").hide();
-
-                        // hide availability for FRBR groups
-                        $(this).find(".EXLResultAvailability").hide();
-
-                        // place display multiple link below title,
-
-                        // and change link of title and thumbnail
-                        var link = $(this).find(".EXLBriefResultsDisplayMultipleLink");
-                        $(this).find(".EXLSummaryFields").append(link);
-                        var titlelink = $(this).find(".EXLResultTitle").find("a");
-                        titlelink.attr("href",link.attr("href"));
-                        titlelink.attr("target","_parent");
-                        var thumblink = $(this).find(".EXLThumbnail .EXLBriefResultsDisplayCoverImage A");
-                        thumblink.attr("href",link.attr("href"));
-
-                        // hide the my shelf star
-                        $(this).find(".EXLMyShelfStar A").hide();
-
-
-
-          }
-        });
-});
-
-</script>
-
-
 <script type="text/javascript">
 
   var _gaq = _gaq || [];
