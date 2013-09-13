@@ -278,12 +278,11 @@ function trafiklys() {
         }
         var openUrl = parseOpenUrl($(this));
         if (openUrl !== null) {
-            var baseUrl = "http://sfx-test-01.kb.dk:3000/trafiklys/lookUp/";
-            var fullUrl = baseUrl + encodeURIComponent(openUrl) + "/" + window.ip + "/" + userInst + "?callback=?";
+            var baseUrl = "http://sfx-test-01.kb.dk/trafiklys/lookUp/";
+            var fullUrl = baseUrl + encodeURIComponent(openUrl) + "/" + ip + "/" + userInst + "?callback=?";
             var id = $(this).attr('id');
             //make jsonp get request and append result to our post
             $.getJSON(fullUrl, { format : "json" }, function (data) {
-                //console.log(fullUrl);
                 //parse response and insert message into result
                 var access = parseResponse(data),
                     trafiklysMessage;
@@ -312,7 +311,7 @@ function trafiklys() {
 
     //business rules - there must be a ViewOnline Tab
     //Except if: it says "Alle har adgang"
-    //KBB01 pictures, COP objects
+    //Exclude KBB01 pictures, COP objects
     //record types map and theses
     function trafiklysRelevant(resultItem) {
 
@@ -325,12 +324,8 @@ function trafiklys() {
             || (recordId.indexOf("KBB01") > 0) || (recordId.indexOf("object") > 0)
             || (mediaType === "Kort") || (mediaType === "Map")
             || (mediaType === "Speciale") || (mediaType === "Thesis")) {
-                console.log(mediaType);
-                console.log(recordId);
-                console.log("not relevant");
                 return false;
         }
-        console.log("is relevant");
         return true; 
     }
 
@@ -353,12 +348,49 @@ function trafiklys() {
     }
 }
 
+//if the ip is stored in our cookie - get that
+//otherwise, get it from our webservice and
+//store it in our cookie for the remainder
+//of the session
 function getIP() {
-    var ipUrl = "http://sfx-test-01.kb.dk:3000/trafiklys/get_ip?callback=?";
-    return $.getJSON(ipUrl, function (data) {
-        window.ip = data.ip;
-    });
+
+    function createCookie(val) {
+        document.cookie = "ip=" + val;
+    }
+
+    function readFromCookie() {
+        var cookies = document.cookie.split(';');
+        var cookie;
+        var i;
+        for (i = 0; i < cookies.length; i += 1) {
+            cookie = cookies[i];
+            if (cookie.charAt(0) === ' ') {
+                cookie = cookie.substring(1, cookie.length);
+            }
+            if (cookie.indexOf("ip=") === 0) {
+                return cookie.substring("ip=".length, cookie.length);
+            }
+        }
+        return null;
+    }
+
+    deferred = $.Deferred();
+    var ip = readFromCookie();
+    if (ip !== null) {
+        window.ip = ip;
+        deferred.resolve();
+    } else {
+        var ipUrl = "http://sfx-test-01.kb.dk/trafiklys/get_ip?callback=?";
+        $.getJSON(ipUrl).done(function (response) {
+            createCookie(response.ip);
+            window.ip = response.ip;
+            deferred.resolve();
+        });
+    }
+    //return a promise object so that we can use the .done() syntax
+    return deferred.promise();
 }
+
 
 
 function startsWith(s, a) { // FIXME: These helper methods shouldn't be dumped in window!
@@ -373,8 +405,7 @@ function startsWith(s, a) { // FIXME: These helper methods shouldn't be dumped i
 
 $(document).ready(function () {
     //we need the user's IP to call Trafiklys
-    getIP().done(trafiklys);
-
+   getIP().done(trafiklys);
     var dod = new TextReplaceObject("Brug Digital Version", '<a href="http://www.kb.dk/da/nb/samling/dod/DODbestilling.html" target="_blank">Efter særlig ansøgning</a>'),
         kob = new TextReplaceObject("Mail til kob", '<a href="http://www.kb.dk/da/nb/samling/ks/kobbestilling.html" target="_blank">Mail til kob</a>'),
         mailToDfs = new TextReplaceObject("DFS Brug", '<a href="mailto:dfs-mail@kb.dk">Mail til dfs-mail@kb.dk</a>'),
