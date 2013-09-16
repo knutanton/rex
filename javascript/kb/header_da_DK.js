@@ -58,6 +58,29 @@ function kBFixTabs() {
     $.each($('.EXLDetailsContent>dl>dd>strong:first-child', '.EXLContainer-detailsTab:visible'), function (idx, elem) {
         $(elem).insertBefore($(elem).closest('dd')).changeElementType('dt');
     });
+
+    /* HAFE
+     * Reverse order of buttons in Tab Header, and mark them up to match bootstrap classes
+     * Responsive Rex:
+     *  Masking on: .EXLTabHeader
+     *  Adding bootstrap classes:
+     *      'nav nav-pills' to .EXLTabHeaderButtons ul,
+     *      'pull-right' to .EXLTabHeaderButtons .EXLTabHeaderButtonCloseTabs
+     *      'pull-right' to .EXLTabHeaderButtons .EXLTabHeaderButtonPopout
+     *      'dropdown pull-right' to .EXLTabHeaderButtons .EXLTabHeaderButtonSendTo
+     *      'dropdown-menu' to .EXLTabHeaderButtons .EXTTabHeaderButtonSendTo ol
+     * and reverting the order of the .EXLTabHeaderButtons ul li
+     */
+    (function ($) {
+        // reverse button order
+        var buttons = $('.EXLTabHeaderButtons ul', '.EXLTabHeader').addClass('nav nav-pills');
+        $.each(buttons, function (index, buttonset) {
+            $(buttonset).append($('>li', buttonset).get().reverse());
+        });
+
+    }(jQuery));
+
+
 }
 
 $('.EXLRecommendTab').live('click', function () {
