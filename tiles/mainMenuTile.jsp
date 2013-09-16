@@ -94,7 +94,7 @@
 				<c:set var="mtarget" value='target="${menu.target}"'/>
 			</c:if>
 			<c:if test= "${menu.label=='tags' || menu.label=='library_search'}">
-				<span><a title="${link_title}"
+				<a title="${link_title}"
 			   		href="${fn:escapeXml(menu_link)}&amp;fromTop=true&amp;fromPreferences=${form.fromPreferences}&amp;fromEshelf=${form.fromEshelf}&amp;vid=${sessionScope.vid}"
 			   		class="${(sessionScope.menuitem == status.index)?'selected ':''} ${(sessionScope.menuitem == status.index)?'EXLMainMenuSelected ':''}EXLMainMenuITEM${menu.label}"
 			   		${mtarget }>
