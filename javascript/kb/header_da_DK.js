@@ -36,7 +36,7 @@ function kBFixTabs() {
         $(this).contents().find('head>link').attr('href', '../../../css/KGL_bX.css');
     });
 
-    /*
+    /* HAFE
      * Replace ul stuctures in detailsTab with dl
      * Responsive Rex: .EXLContainer-detailsTab .EXLDetailsContent
      * We transform this:
