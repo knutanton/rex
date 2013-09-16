@@ -271,6 +271,9 @@ function startsWith(s, a) { // FIXME: These helper methods shouldn't be dumped i
 }
 
 $(document).ready(function () {
+    // Closing all closed result tab containers (they expand upon tab header clicks)
+    $('.EXLResultTabContainerClosed').addClass('collapse');
+
     //we need the user's IP to call Trafiklys
    getIP().done(trafiklys);
     var dod = new TextReplaceObject("Brug Digital Version", '<a href="http://www.kb.dk/da/nb/samling/dod/DODbestilling.html" target="_blank">Efter særlig ansøgning</a>'),
