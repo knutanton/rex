@@ -126,6 +126,9 @@ $(".EXLLocationsTab").ajaxComplete(function(event, xhr, settings) {
 }*/
 
 $(document).ready(function () {
+    // Closing all closed result tab containers (they expand upon tab header clicks)
+    $('.EXLResultTabContainerClosed').addClass('collapse');
+
     /*changeRequestOptions();*/
     var dod = new TextReplaceObject("Use Digital Version", '<a href="http://www.kb.dk/en/nb/samling/dod/DODbestilling.html" target="_blank">By special request</a>'),
         kob = new TextReplaceObject("Mail to kob", '<a href="http://www.kb.dk/en/nb/samling/ks/kobbestilling.html" target="_blank">Mail to kob</a>'),
