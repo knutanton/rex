@@ -1,5 +1,13 @@
 <%@ include file="/views/taglibsIncludeAll.jspf" %>
 <%@ include file="/views/include/setSearchForm.jspf"%>
+<%  //JAC: Helper function to the KB setUP
+    String view = request.getParameter("vid");
+    if(view.startsWith("kb")){
+        view = view.substring(2);
+    }
+
+%>
+
 <%-- Prepare functional content first, html at end of file --%>
 <c:set var="primoView"  value="${sessionScope.primoView}"/>
 
@@ -14,15 +22,16 @@
 	<c:param name="vid" value="${primoView.id}"/>${form.fn}
 </c:url>
 
+
 <c:set var="userName" >
-	<c:if test="${not empty sessionScope.userName}">
+    <c:if test="${not empty sessionScope.userName}">
   			${fn:escapeXml(sessionScope.userName)}
 	</c:if>
 </c:set>
 
-<c:if test="${!loggedIn}">
+<c:if test="${!logedIn}">
 	<c:set var="userName">
-		<fmt:message key="eshelf.user.anonymous"/>
+      <%-- JAC: removed default string when not logged in --%>
 	</c:set>
 </c:if>
 
@@ -95,24 +104,27 @@
                 <span class="icon-bar"></span>
             </button>
             <a class="navbar-brand visible-xs" href="#">
-                <img src="../sites/kb/dev02/images/kb/logo.png" alt="logo"/>
+                <img src="../sites/kb/<%= view %>/images/kb/logo.png" alt="logo"/>
             </a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse navbar-ex1-collapse">
             <ul id="exlidUserAreaRibbon" class="${loggedInClass} nav navbar-nav">
-                <li id="exlidUserName" class="EXLUserName">
-                    <p class="navbar-text">
-                        <span class="EXLUserAreaStart"></span>
-                        <span class="EXLUserNameDisplay">
-                            <fmt:message key="eshelf.user.greeting">
-                                <fmt:param value="${userName}"></fmt:param>
-                            </fmt:message>
-                        </span>
-                        <span class="EXLUserAreaStartRtl"></span>
-                    </p>
-                </li>
+                <%-- JAC: removed html structure if name is empty --%>
+                <c:if test="${not empty userName}">
+                    <li id="exlidUserName" class="EXLUserName">
+                        <p class="navbar-text">
+                            <span class="EXLUserAreaStart"></span>
+                            <span class="EXLUserNameDisplay">
+                                <fmt:message key="eshelf.user.greeting">
+                                    <fmt:param value="${userName}"></fmt:param>
+                                </fmt:message>
+                            </span>
+                            <span class="EXLUserAreaStartRtl"></span>
+                        </p>
+                    </li>
+                </c:if>
                 <li id="exlidMyShelf" class="EXLMyShelf">
                     <a href="${fn:escapeXml(eshelfURL)}">
                         <span class="EXLMyShelfStarSelected"></span>

@@ -278,6 +278,24 @@ function startsWith(s, a) { // FIXME: These helper methods shouldn't be dumped i
     return false;
 }
 
+
+/*  
+ *  JAC
+ *  grabs URL parameters
+ *  source: http://www.netlobo.com/url_query_string_javascript.html 
+ */
+function gup(name) {
+    name = name.replace(/[\[]/, "\\\[").replace(/[\]]/, "\\\]");
+    var regexS = "[\\?&]" + name + "=([^&#]*)";
+    var regex = new RegExp(regexS);
+    var results = regex.exec(window.location.href);
+    if (results == null)
+        return "";
+    else
+        return results[1];
+}
+
+
 $(document).ready(function () {
     // Closing all closed result tab containers (they expand upon tab header clicks)
     $('.EXLResultTabContainerClosed').addClass('collapse');
@@ -310,7 +328,7 @@ $(document).ready(function () {
         $("div.EXLMyAccountEditLink").hide();
         $("li.EXLMyAccountTab").filter(":contains('Din konto')").hide();
         //$("#exlidMyAccount").hide();
-        $("#exlidMyAccount>a").attr("href", "login.do?loginFn=signin&targetURL=myAccountMenu.do%3fvid%3dKGL");
+        $("#exlidMyAccount>a").attr("href", "login.do?loginFn=signin&targetURL=myAccountMenu.do%3fvid%3d" + gup('vid')); 
 
         addLoginLinkAlleMaterialer();
 
