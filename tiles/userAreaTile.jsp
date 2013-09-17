@@ -1,5 +1,13 @@
 <%@ include file="/views/taglibsIncludeAll.jspf" %>
 <%@ include file="/views/include/setSearchForm.jspf"%>
+<%  //JAC: Helper function to the KB setUP
+    String view = request.getParameter("vid");
+    if(view.startsWith("kb")){
+        view = view.substring(2);
+    }
+
+%>
+
 <%-- Prepare functional content first, html at end of file --%>
 <c:set var="primoView"  value="${sessionScope.primoView}"/>
 
@@ -96,8 +104,7 @@
                 <span class="icon-bar"></span>
             </button>
             <a class="navbar-brand visible-xs" href="#">
-                <%-- TODO: fix path --%>
-                <img src="../sites/kb/dev02/images/kb/logo.png" alt="logo"/>
+                <img src="../sites/kb/<%= view %>/images/kb/logo.png" alt="logo"/>
             </a>
         </div>
 
