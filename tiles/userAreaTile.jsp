@@ -94,6 +94,9 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
+            <a class="navbar-brand visible-xs" href="#">
+                <img src="../sites/kb/dev02/images/kb/logo.png" alt="logo"/>
+            </a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
