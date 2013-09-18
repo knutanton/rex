@@ -95,3 +95,5 @@
 </div>
 </c:if>
 <!-- searchLimitsTile.jsp end -->
+
+<div id="advancedSearch" class="collapse in">hello world ...</div>

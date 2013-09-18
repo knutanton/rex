@@ -102,7 +102,7 @@
       <div class="EXLSearchFieldRibbonFormFields form-group">
         <div class="EXLSearchFieldRibbonFormSearchFor input-group input-group-lg">
             <div class="EXLSearchFieldRibbonAdvancedSearchLink input-group-btn">
-                <a class="${browseAlign} form-control btn btn-default" title="<fmt:message key='link.title.advanced_search'/>" href="${fn:escapeXml(advanced_search_url)}" id="advancedSearchBtn"><fmt:message key='label.advanced_search'/></a>
+                <a href="#advancedSearch" data-toggle="collapse" class="${browseAlign} form-control btn btn-default" title="<fmt:message key='link.title.advanced_search'/>" <%--href="${fn:escapeXml(advanced_search_url)}"--%> id="advancedSearchBtn"><fmt:message key='label.advanced_search'/></a>
             </div>
           <label for="search_field" class="EXLHide sr-only">Search For:</label>
           <input name="vl(${searchForm.queryTerms[0].inputs[0].id})" class="${fullSearchBoxClass} form-control"
@@ -114,8 +114,6 @@
                 </c:if>
                 <input id="goButton" type="submit" value="<fmt:message key='link.title.search.search'/>" class="${sbutton} form-control btn btn-primary" accesskey="g"/>
             </div>
-
-
 
         </div>
 
