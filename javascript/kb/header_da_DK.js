@@ -504,7 +504,7 @@ $(document).ready(function () {
 
     // start mine ERessourcer
     var linkString = "Mine e-ressourcer (BETA)",
-        myResourceString = "<li><a href='#' class='my_e_resources' id='e_resources_click'>" + linkString + "</a></li>";
+        myResourceString = "<li><a href='#' data-toggle='modal' data-target='#myModal' class='my_e_resources'>" + linkString + "</a></li>";
     $('#exlidUserAreaRibbon').append(myResourceString);
     $('#popupContact > h1').html(linkString);
     // stop mine ERessourcer

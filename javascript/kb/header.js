@@ -259,15 +259,17 @@ $(document).ready(function () {
         'use strict';
         var cookieLink = $('.EXLMainMenuITEMcookie-_and_privacypolicy', '#exlidMainMenuContainer'),
             faqLink = $('a[class^=EXLMainMenuITEMhelp]', '#exlidMainMenuContainer'); // FIXME: help or hjælp?
-        cookieLink.attr('href', cookieLink.attr('href').replace(/www\.kb\.dk\/da\//, 'www.kb.dk/en/'));
-        faqLink.attr('href', faqLink.attr('href').replace(/www\.kb\.dk\/da\//, 'www.kb.dk/en/'));
+
+            //JAC: TODO: removed this, since it breaks placement os my eressource link
+        //cookieLink.attr('href', cookieLink.attr('href').replace(/www\.kb\.dk\/da\//, 'www.kb.dk/en/'));
+        //faqLink.attr('href', faqLink.attr('href').replace(/www\.kb\.dk\/da\//, 'www.kb.dk/en/'));
     }(jQuery));
     // HAFE stop language specific faq and cookie policy
 
     // copied from footer.html start /HAFE
     // my e-ressources
     var linkString = "My e-resources (BETA)",
-        myResourceString = "<li><a href='#' class='my_e_resources' id='e_resources_click'>" + linkString + "</a></li>";
+        myResourceString = "<li><a href='#' data-toggle='modal' data-target='#myModal' class='my_e_resources' id='e_resources_click'>" + linkString + "</a></li>";
     $('#exlidUserAreaRibbon').append(myResourceString);
     $('#popupContact > h1').html(linkString);
 
