@@ -270,10 +270,18 @@ $(document).ready(function () {
     // my e-ressources
     var linkString = "My e-resources (BETA)",
         myResourceString = "<li><a href='#' data-toggle='modal' data-target='#myModal' class='my_e_resources' id='e_resources_click'>" + linkString + "</a></li>";
-    $('#exlidUserAreaRibbon').append(myResourceString);
+    $('#exlidUserAreaRibbon .dropdown-menu').append(myResourceString);
     $('#popupContact > h1').html(linkString);
 
     // copied from footer.html stop /HAFE
+
+    // Start New user
+    $('#exlidUserAreaRibbon li:eq(0)').after('<li><a href="https://login.kb.dk/kbuser/regguide?change_lang=en&pref_lang=en">New user</a></li>')
+    // End Ny låner /TJAN;)
+
+    // Start Renew Loans
+    $('#exlidUserAreaRibbon .dropdown-menu li:eq(0)').after('<li><a href="https://www.kb.dk/cas/login?service=https%3A%2F%2Fshibboleth.kb.dk%2Fshibboleth-test%2FSSO%3Fshire%3Dhttp%253A%252F%252Fpds.primo-97.kb.dk%252FShibboleth.sso%252FSAML%252FPOST%26time%3D1379624698%26target%3Dcookie%253A53b99b51%26providerId%3Dpds.primo-97.kb.dk">Renew Loans</a></li>')
+    // End Renew Loans /TJAN;)
 });
 
 function bestil() {
@@ -318,5 +326,7 @@ function fixImageTitleUri() {
 // 20112411, jac: autosubmit af forms når man opdatere 'selects'  
 $('#holdingsForm > select').live("change", function () {  
     $(this).closest('form').submit();   
-}); 
+});
+
+
 

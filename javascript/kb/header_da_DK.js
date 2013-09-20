@@ -502,14 +502,26 @@ $(document).ready(function () {
         });
     });
 
+
+
+
     // start mine ERessourcer
     var linkString = "Mine e-ressourcer (BETA)",
         myResourceString = "<li><a href='#' data-toggle='modal' data-target='#myModal' class='my_e_resources'>" + linkString + "</a></li>";
-    $('#exlidUserAreaRibbon').append(myResourceString);
+    $('#exlidUserAreaRibbon .dropdown-menu').append(myResourceString);
     $('#popupContact > h1').html(linkString);
     // stop mine ERessourcer
 
     // Copied from footer_da_DK stop /HAFE
+
+    // Start Ny låner
+    $('#exlidUserAreaRibbon li:eq(0)').after('<li><a href="https://login.kb.dk/kbuser/regguide">Ny låner</a></li>')
+    // End Ny låner /TJAN;)
+
+    // Start Se og forny dine lån
+        $('#exlidUserAreaRibbon .dropdown-menu li:eq(0)').after('<li><a href="http://pds.primo-97.kb.dk/pds?func=load-login&institute=KGL&calling_system=primo&url=http://rex.kb.dk:80/primo_library/libweb/action/login.do?afterPDS=true&vid=KGL&dscnt=1&targetURL=http://rex.kb.dk/primo_library/libweb/action/myAccountMenu.do?dscnt=0&vid=KGL">Se og forny dine lån</a></li>')
+    // End Se og forny dine lån /TJAN;)
+
 });
 
 function bestil() {
