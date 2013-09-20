@@ -1,13 +1,5 @@
 <%@ include file="/views/taglibsIncludeAll.jspf" %>
 <%@ include file="/views/include/setSearchForm.jspf"%>
-<%  //JAC: Helper function to the KB setUP
-    String view = request.getParameter("vid");
-    if(view.startsWith("kb")){
-        view = view.substring(2);
-    }
-
-%>
-
 <%-- Prepare functional content first, html at end of file --%>
 <c:set var="primoView"  value="${sessionScope.primoView}"/>
 
@@ -22,16 +14,15 @@
 	<c:param name="vid" value="${primoView.id}"/>${form.fn}
 </c:url>
 
-
 <c:set var="userName" >
-    <c:if test="${not empty sessionScope.userName}">
+	<c:if test="${not empty sessionScope.userName}">
   			${fn:escapeXml(sessionScope.userName)}
 	</c:if>
 </c:set>
 
-<c:if test="${!logedIn}">
+<c:if test="${!loggedIn}">
 	<c:set var="userName">
-      <%-- JAC: removed default string when not logged in --%>
+		<fmt:message key="eshelf.user.anonymous"/>
 	</c:set>
 </c:if>
 
@@ -92,71 +83,52 @@
 				delivery="${searchForm.delivery[0]}" noOther="true" index="${param.indx}"/>
 
 
-<nav class="navbar navbar-default" role="navigation">
-    <div class="container">
 
-        <!-- Brand and toggle get grouped for better mobile display -->
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand visible-xs" href="#">
-                <img src="../sites/kb/<%= view %>/images/kb/logo.png" alt="logo"/>
-            </a>
-        </div>
-
-        <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse navbar-ex1-collapse">
-            <ul id="exlidUserAreaRibbon" class="${loggedInClass} nav navbar-nav">
-                <%-- JAC: removed html structure if name is empty --%>
-                <c:if test="${not empty userName}">
-                    <li id="exlidUserName" class="EXLUserName">
-                        <p class="navbar-text">
-                            <span class="EXLUserAreaStart"></span>
-                            <span class="EXLUserNameDisplay">
-                                <fmt:message key="eshelf.user.greeting">
-                                    <fmt:param value="${userName}"></fmt:param>
-                                </fmt:message>
-                            </span>
-                            <span class="EXLUserAreaStartRtl"></span>
-                        </p>
-                    </li>
-                </c:if>
-                <li id="exlidMyShelf" class="EXLMyShelf">
-                    <a href="${fn:escapeXml(eshelfURL)}">
-                        <span class="EXLMyShelfStarSelected"></span>
-                        <fmt:message key="eshelf.basket.title"/>
-                    </a>
+            <ul id="exlidUserAreaRibbon" class="${loggedInClass} nav navbar-nav navbar-right">
+                <li>
+                    <c:choose>
+                        <c:when test="${loggedIn}">
+                            <li id="exlidSignOut" class="EXLSignOut EXLLastItem">
+                                <a href="${fn:escapeXml(logoutUrl)}" onclick="boomCallToRum('SignOutStat',false);">
+                                    <fmt:message key="eshelf.signout.title.link"/>
+                                </a>
+                            </li>
+                        </c:when>
+                        <c:otherwise>
+                            <li id="exlidSignOut" class="EXLSignOut EXLLastItem">
+                                <a href="${fn:escapeXml(loginUrl)}" onclick="boomCallToRum('SignInStatUserArea',false);">
+                                    <fmt:message key="eshelf.signin.title"/>
+                                </a>
+                                <fmt:message key="eshelf.additional.text"/>
+                            </li>
+                        </c:otherwise>
+                    </c:choose>
                 </li>
-                <li id="exlidMyAccount" class="EXLMyAccount">
-                    <a href="${fn:escapeXml(myAccountUrl)}">
-                        <fmt:message key="menu.myaccount"/>
+                <li id="exlidUserName" class="EXLUserName dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+
+                            <fmt:message key="eshelf.user.greeting">
+                                <fmt:param value="${userName}"></fmt:param>
+                            </fmt:message>
+                                <b class="caret"></b>
                     </a>
-                </li>
-                <c:choose>
-                    <c:when test="${loggedIn}">
-                        <li id="exlidSignOut" class="EXLSignOut EXLLastItem">
-                            <a href="${fn:escapeXml(logoutUrl)}" onclick="boomCallToRum('SignOutStat',false);">
-                                <fmt:message key="eshelf.signout.title.link"/>
+                    <ul class="dropdown-menu">
+                        <li id="exlidMyAccount" class="EXLMyAccount">
+                            <a href="${fn:escapeXml(myAccountUrl)}">
+                                <fmt:message key="menu.myaccount"/>
                             </a>
                         </li>
-                    </c:when>
-                    <c:otherwise>
-                        <li id="exlidSignOut" class="EXLSignOut EXLLastItem">
-                            <a href="${fn:escapeXml(loginUrl)}" onclick="boomCallToRum('SignInStatUserArea',false);">
-                                <fmt:message key="eshelf.signin.title"/>
+                        <li id="exlidMyShelf" class="EXLMyShelf">
+                            <a href="${fn:escapeXml(eshelfURL)}">
+                                <fmt:message key="eshelf.basket.title"/>
                             </a>
-                            <fmt:message key="eshelf.additional.text"/>
                         </li>
-                    </c:otherwise>
-                </c:choose>
+                    </ul>
+                </li>
+
             </ul>
         </div>
-    </div>
-</nav>
 
 
 
