@@ -1,28 +1,45 @@
-<footer class=container>
-    <div class="col-md-8">
-        <h2>Genveje</h2>
-        <ul>
-            <li><a href="http://www.kb.dk/da/REX/sider/biblioteker.html">Biblioteker i REX samarbejdet</a></li>
-            <li><a href="http://www.kb.dk/da/kub/service/sporgbib/forslag.html">Bogforslag</a></li>
-            <li><a href="https://rex.kb.dk/F/?func=file&file_name=find-b&local_base=kgl01_rexclassic&con_lng=DAN">REX Classic</a></li>
-            <li class="EXLFooterLastLink"><a href="http://www.kb.dk/da/kub/service/sporgbib/index.html">Spørg biblioteket</a></li>
-        </ul>
+<footer class="row">
+    <div class="col-md-9">
+
+        <h2 class="lead">Rexs</h2>
+        <div class="list-group">
+            <a href="http://www.kb.dk/da/REX/sider/biblioteker.html" class="list-group-item">
+                <h4 class="list-group-item-heading">Samarbejdet</h4>
+                <p class="list-group-item-text">Biblioteker i REX samarbejdet</p>
+            </a>
+
+            <a href="http://www.kb.dk/da/REX/sider/biblioteker.html" class="list-group-item">
+                <h4 class="list-group-item-heading">Samarbejdet</h4>
+                <p class="list-group-item-text">Biblioteker i REX samarbejdet</p>
+            </a>
+
+            <a href="http://www.kb.dk/da/REX/sider/biblioteker.html" class="list-group-item">
+                <h4 class="list-group-item-heading">Samarbejdet</h4>
+                <p class="list-group-item-text">Biblioteker i REX samarbejdet</p>
+            </a>
+        </div>
+
     </div>
-    <address class="col-md-4">
-        <strong>Det Kongelige Bibliotek</strong><br>
-        Søren Kierkegaards Plads 1<br>
-        1219 København K<br>
-        EAN: 5798 000795297<br>
-        <abbr title="Telefon nr.">Tlf:</abbr>(+45) 33 47 47 47<br>
-        <a href="mailto//:kb@kb.dk">kb@kb.dk</a>
-    </address>
-    <div>
-        <ul class="list-inline">
+    <div class="col-md-3">
+        <h2 class="lead">Det Kongelige Bibliotek</h2>
+
+        <address>
+            <strong>Det Kongelige Bibliotek</strong><br>
+            Søren Kierkegaards Plads 1<br>
+            1219 København K<br>
+            EAN: 5798 000795297<br>
+            <abbr title="Telefon nr.">Tlf:</abbr>(+45) 33 47 47 47<br>
+            <a href="mailto//:kb@kb.dk">kb@kb.dk</a>
+        </address>
+
+        <ul class="list-unstyled">
             <li><a href="http://www.kb.dk/da/kb/webstedet/index.html">Om webstedet</a></li>
             <li><a href="http://www.kb.dk/da/kb/copyright/index.html" title="Oplysninger om ophavsret på Det Kongelige Bibliotek">Ophavsret</a></li>
             <li><a href="http://www.kb.dk/da/kb/handicap/index.html">Handikap-information</a></li>
         </ul>
+
     </div>
+
 
 </footer>
 <!--begin footer-->
