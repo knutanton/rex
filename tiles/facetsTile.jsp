@@ -200,9 +200,9 @@
 
 						  </li>
 						</c:forEach>
-						<%--<li class="EXLFacetsDisplayMore"><a href="#" title="<fmt:message key='facets.moreoptions.tooltip'/>" id="exlidFacet${facetIndex.index}-more">
+						<li class="EXLFacetsDisplayMore"><a href="#" title="<fmt:message key='facets.moreoptions.tooltip'/>" id="exlidFacet${facetIndex.index}-more">
 						  	<fmt:message key='facets.moreoptions'/>&nbsp;<img src="<fmt:message key='default.ui.images.facetstitle.opensubmenu'/>" alt="open sub menu"/></a>
-						</li>--%>
+						</li>
 
 				    </ul>
 			  	</div>
