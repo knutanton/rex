@@ -1,42 +1,57 @@
+<%@ page contentType="text/xml;charset=UTF-8" language="java"%>
+
 <footer class="row">
-    <div class="col-md-9">
+    <div class="col-xs-12 col-sm-4">
 
-        <h2 class="lead">Rexs</h2>
-        <div class="list-group">
-            <a href="http://www.kb.dk/da/REX/sider/biblioteker.html" class="list-group-item">
-                <h4 class="list-group-item-heading">Samarbejdet</h4>
-                <p class="list-group-item-text">Biblioteker i REX samarbejdet</p>
-            </a>
-
-            <a href="http://www.kb.dk/da/REX/sider/biblioteker.html" class="list-group-item">
-                <h4 class="list-group-item-heading">Samarbejdet</h4>
-                <p class="list-group-item-text">Biblioteker i REX samarbejdet</p>
-            </a>
-
-            <a href="http://www.kb.dk/da/REX/sider/biblioteker.html" class="list-group-item">
-                <h4 class="list-group-item-heading">Samarbejdet</h4>
-                <p class="list-group-item-text">Biblioteker i REX samarbejdet</p>
-            </a>
-        </div>
+        <strong class="lead">Rexs</strong>
+        <ul class="list-unstyled">
+            <li><a href="http://www.kb.dk/da/REX/sider/biblioteker.html">Hjælp</a></li>
+            <li><a href="http://www.kb.dk/da/REX/sider/biblioteker.html">Ny låner</a></li>
+            <li><a href="http://www.kb.dk/da/REX/sider/biblioteker.html">REX Classic</a></li>
+            <li><a href="http://www.kb.dk/da/REX/sider/biblioteker.html">Bogforslag</a></li>
+            <li><a href="http://www.kb.dk/da/REX/sider/biblioteker.html">Biblioteker i REX samarbejdet</a></li>
+        </ul>
 
     </div>
-    <div class="col-md-3">
-        <h2 class="lead">Det Kongelige Bibliotek</h2>
+    <hr class="visible-xs" />
+    <div class="col-xs-12 col-sm-4">
 
-        <address>
-            <strong>Det Kongelige Bibliotek</strong><br>
-            Søren Kierkegaards Plads 1<br>
-            1219 København K<br>
-            EAN: 5798 000795297<br>
-            <abbr title="Telefon nr.">Tlf:</abbr>(+45) 33 47 47 47<br>
-            <a href="mailto//:kb@kb.dk">kb@kb.dk</a>
-        </address>
-
+        <strong class="lead">Services</strong>
         <ul class="list-unstyled">
-            <li><a href="http://www.kb.dk/da/kb/webstedet/index.html">Om webstedet</a></li>
-            <li><a href="http://www.kb.dk/da/kb/copyright/index.html" title="Oplysninger om ophavsret på Det Kongelige Bibliotek">Ophavsret</a></li>
-            <li><a href="http://www.kb.dk/da/kb/handicap/index.html">Handikap-information</a></li>
+            <li> <a href="http://www.kb.dk/da/REX/sider/biblioteker.html">Det Kongelige Bibliotek</a></li>
+            <li><a href="http://www.kb.dk/da/REX/sider/biblioteker.html">Danmarks National Biblioteket</a></li>
+            <li><a href="http://www.kb.dk/da/REX/sider/biblioteker.html">Københavns Universitets Bibliotek</a></li>
         </ul>
+
+    </div>
+    <hr class="visible-xs" />
+    <div class="col-xs-12 col-sm-4">
+        <div class="row">
+
+            <div class="col-xs-2 col-sm-4">
+                <img src="../sites/kb/dev02/images/kb/footerLogo.png" style="width:100%; height:auto;" alt="test"   />
+            </div>
+            <div class="col-xs-10 col-sm-8">
+                <address>
+                    <strong class="lead">Det Kongelige Bibliotek</strong><br/>
+                    Søren Kierkegaards Plads 1<br>
+                    1219 København K<br>
+                    EAN: 5798 000795297<br>
+                    <abbr title="Telefon nr.">Tlf:</abbr>(+45) 33 47 47 47<br>
+                    E-mail <a href="mailto//:kb@kb.dk">kb@kb.dk</a>
+                </address>
+                <ul class="list-unstyled">
+                    <li><a href="#">Åbningstider & Adresser</a></li>
+                    <li><a href="#">Kontakt biblioteket</a></li>
+                    <li><a href="#">Handikaphjælp</a></li>
+                    <li><a href="#">Cookie- og Privatlivspolitik</a></li>
+                    <li><a href="#"></a></li>
+                </ul>
+            </div>
+
+        </div>
+
+
 
     </div>
 
