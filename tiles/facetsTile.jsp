@@ -145,7 +145,7 @@
 								<a class="EXLRemoteDatabasesMoreInfo" href="search.do?${action_func}=dbs" target="databases" onclick="openWindow(this.href, this.target, 'top=100,left=50,width=600,height=350,resizable=1,scrollbars=1'); return false;">(<fmt:message key="remote.db.list.more.info"/>)</a>
 							</c:if>
                             <div class="panel-heading">
-                                <h4 class="EXLFacetsDisplayMore panel-title"">
+                                <h4 class="panel-title">
                                     <a title="<fmt:message key='facets.moreoptions.tooltip'/>" id="exlidFacet${facetIndex.index}-more" data-toggle="collapse" data-parent="#facetList${facetIndex.index}" href="#exlidFacetSublist${facetIndex.index}">
                                         <fmt:message key="facets.facet.${facetField}"/>
                                     </a>
