@@ -1,3 +1,4 @@
+<%@ page contentType="text/xml;charset=UTF-8" language="java"%>
 <div id="KBTryThis" class="panel panel-primary">
     <div class="panel-heading">
         <h3 class="panel-title">Pr&oslash;v ogs&aring;</h3>

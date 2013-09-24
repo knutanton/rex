@@ -1,3 +1,4 @@
+<%@ page contentType="text/xml;charset=UTF-8" language="java"%>
 <%@ include file="/views/taglibsIncludeAll.jspf" %>
 <!-- searchTileBasic.jsp begin -->
 <c:set var="primoView"  value="${sessionScope.primoView}"/>
