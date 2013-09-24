@@ -1,3 +1,4 @@
+<%@ page contentType="text/xml;charset=UTF-8" language="java"%>
 <!--begin footer-->
 <!--footer_KGL.html-->
 <footer class=row>

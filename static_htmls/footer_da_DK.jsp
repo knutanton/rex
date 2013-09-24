@@ -1,3 +1,4 @@
+<%@ page contentType="text/xml;charset=UTF-8" language="java"%>
 <footer class=container>
     <div class="col-md-8">
         <h2>Genveje</h2>
