@@ -32,7 +32,7 @@
 		<c:set value="${searchForm.queryTerms[1].inputs[0]}"	var="currentInput" />		
 			<c:if test="${fn:length(currentInput.options) gt 1}">
 				<span class="EXLHiddenCue sr-only"><prm:userText styleId="search-simple" type="lookForText" inline="true"/></span>
-                <div class="col-md-3">
+                <div class="col-xs-6 col-md-3">
                     <div class="form-group">
                         <prm:select selectForm="${searchForm}" input="${currentInput}" styleClass="blue EXLSimpleSearchSelect" valueOptionsPrefix='search-simple' count="1"/>
                     </div>
@@ -50,50 +50,50 @@
 					<prm:userText styleId="search-simple" type="operatorText" inline ="true"/>
 				</c:if>
 			</span>
-                <div class="col-md-3">
-                <div class="form-group">
-				<prm:select selectForm="${searchForm}" input="${currentInput}" styleClass="blue EXLSimpleSearchSelect" valueOptionsPrefix='search-simple' count="1"/>
-                </div>
+                <div class="col-xs-6 col-md-3">
+                    <div class="form-group">
+                        <prm:select selectForm="${searchForm}" input="${currentInput}" styleClass="blue EXLSimpleSearchSelect" valueOptionsPrefix='search-simple' count="1"/>
+                    </div>
                 </div>
 			</c:if>
 		</c:forEach>
-          <div class="col-md-3">
+          <div class="col-xs-6 col-md-3">
               <div class="form-group">
-              <select id="exlidSearchIn" class="EXLSearchInputScopesSelect form-control" name="scp.scps" ${(searchForm.displayDefinition=='false')?'disabled="disabled"':''}>
-                  <c:forEach items='${searchForm.scp.scopesOptions}' var="option" varStatus="status">
-                      <c:set var="classes" value="${option.locationrefs==searchForm.scp.scps?'EXLSelectedOption':'EXLSelectOption'}"/>
-                      <c:set var="selected" value="${option.locationrefs==searchForm.scp.scps?'selected=\"selected\"':''}"/>
-                      <c:choose>
-                          <c:when test="${option.id == 'Selected_Databases'}">
-                              <c:if test="${searchForm.displaySelectedScope != 'hide'}">
-                                  <option id="${option.id}" value="${fn:escapeXml(option.locationrefs)}" class="${classes} EXLSearchInputScopesOption${option.id}" ${selected}><fmt:message
-                                          key='scopes.option.current.selected' /><c:if test="${searchForm.accessibilityList[status.index]!='-1' and not searchForm.allFullAccess}">&nbsp;<fmt:message key='option.accessibility.${searchForm.accessibilityList[status.index]}'/> </c:if></option>
-                              </c:if>
-                          </c:when>
-                          <c:otherwise>
-                              <c:if test="${option.personalSetScope == false or (searchForm.displaySelectedScope != 'hide' and option.personalSetScope == true)}">
-                                  <option id="${option.id}" value="${fn:escapeXml(option.locationrefs)}" class="${classes} EXLSearchInputScopesOption${option.id}" ${selected}><fmt:message
-                                          key='scopes.option.${option.id}' />
-                                      <c:if test="${searchForm.accessibilityList[status.index]!='-1' and not searchForm.allFullAccess}">&nbsp;<fmt:message key='option.accessibility.${searchForm.accessibilityList[status.index]}'/>
-                                      </c:if>
-                                  </option>
-                              </c:if>
-                          </c:otherwise>
-                      </c:choose>
-                  </c:forEach>
-              </select>
-          </div>
+                  <select id="exlidSearchIn" class="EXLSearchInputScopesSelect form-control" name="scp.scps" ${(searchForm.displayDefinition=='false')?'disabled="disabled"':''}>
+                      <c:forEach items='${searchForm.scp.scopesOptions}' var="option" varStatus="status">
+                          <c:set var="classes" value="${option.locationrefs==searchForm.scp.scps?'EXLSelectedOption':'EXLSelectOption'}"/>
+                          <c:set var="selected" value="${option.locationrefs==searchForm.scp.scps?'selected=\"selected\"':''}"/>
+                          <c:choose>
+                              <c:when test="${option.id == 'Selected_Databases'}">
+                                  <c:if test="${searchForm.displaySelectedScope != 'hide'}">
+                                      <option id="${option.id}" value="${fn:escapeXml(option.locationrefs)}" class="${classes} EXLSearchInputScopesOption${option.id}" ${selected}><fmt:message
+                                              key='scopes.option.current.selected' /><c:if test="${searchForm.accessibilityList[status.index]!='-1' and not searchForm.allFullAccess}">&nbsp;<fmt:message key='option.accessibility.${searchForm.accessibilityList[status.index]}'/> </c:if></option>
+                                  </c:if>
+                              </c:when>
+                              <c:otherwise>
+                                  <c:if test="${option.personalSetScope == false or (searchForm.displaySelectedScope != 'hide' and option.personalSetScope == true)}">
+                                      <option id="${option.id}" value="${fn:escapeXml(option.locationrefs)}" class="${classes} EXLSearchInputScopesOption${option.id}" ${selected}><fmt:message
+                                              key='scopes.option.${option.id}' />
+                                          <c:if test="${searchForm.accessibilityList[status.index]!='-1' and not searchForm.allFullAccess}">&nbsp;<fmt:message key='option.accessibility.${searchForm.accessibilityList[status.index]}'/>
+                                          </c:if>
+                                      </option>
+                                  </c:if>
+                              </c:otherwise>
+                          </c:choose>
+                      </c:forEach>
+                  </select>
+                </div>
+            </div>
 
-
+      </fieldset>
       <!--<input name="Submit" type="submit" class="btn btn-default" value="Apply Search Limits"/>-->
 
       <!--<input name="Reset" type="reset" class="btn btn-default" value="Clear Limits"/>-->
 
-      </div>
-      </fieldset>
+
+
 
 </div>
 </c:if>
 <!-- searchLimitsTile.jsp end -->
 
-<div id="advancedSearch" class="collapse in">hello world ...</div>
