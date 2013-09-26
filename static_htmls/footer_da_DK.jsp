@@ -8,7 +8,7 @@
             <ul class="list-unstyled">
                 <li><a href="http://www.kb.dk/da/REX/sider?codekitCB=401828938.835484">Hjælp</a></li>
                 <li><a href="https://rex.kb.dk/F/?func=file&file_name=find-b&local_base=kgl01_rexclassic&con_lng=DAN">REX Classic</a></li>
-                <li><a href="http://www.kb.dk/da/REX/sider/biblioteker.html">Biblioteker i REX samarbejdet</a></li>
+                <li><a href="http://www.kb.dk/da/REX/sider/biblioteker.html">Biblioteker i REX-samarbejdet</a></li>
                 <li><a href="http://www.kb.dk/da/kub/service/sporgbib/forslag.html">Bogforslag</a></li>
             </ul>
         </div>
@@ -21,7 +21,7 @@
                 <li><a href="http://www.kb.dk/da/kb/aabningstider/index.html">Åbningstider & Adresser</a></li>
                 <li><a href="http://kontaktbiblioteket.kb.dk">Kontakt biblioteket</a></li>
                 <li><a href="http://www.kb.dk/da/kb/handicap/index.html">Handikap-information</a></li>
-                <li><a href="http://www.kb.dk/da/kb/webstedet/cookiepolitik.html">Cookie- og Privatlivspolitik</a></li>
+                <li><a href="http://www.kb.dk/da/kb/webstedet/cookiepolitik.html">Cookie- og privatlivspolitik</a></li>
                 <li><a href="http://www.kb.dk/da/kb/webstedet/index.html">Om webstedet</a></li>
             </ul>
         </div>
@@ -45,11 +45,9 @@
                         <small>
                             <br/>
                             Søren Kierkegaards Plads 1 - 1219 København K - EAN: 5798 000795297 - <abbr title="Telefon nr.">Tlf: </abbr>+45 33 47 47 47 - E-mail <a href="mailto//:kb@kb.dk">kb@kb.dk</a>
+                            <br/>
+                            <span class="glyphicon glyphicon-thumbs-up"></span> <a href="#">Følg os på Facebook</a>
                         </small>
-                    </p>
-                    <p>
-                        <div id="fb-root"></div>
-                        <div class="fb-follow" data-href="https://www.facebook.com/DetKongeligeBibliotek" data-width="260" data-show-faces="true"></div>
                     </p>
                 </address>
             </div>

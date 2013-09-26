@@ -1,32 +1,58 @@
 <%@ page contentType="text/xml;charset=UTF-8" language="java"%>
-<!--begin footer-->
-<!--footer_KGL.html-->
-<footer class=row>
-    <div class="col-md-8">
-        <h2>Shortcuts</h2>
-        <ul>
-            <li><a href="http://www.kb.dk/da/REX/sider/biblioteker.html">Other libraries in REX</a></li>
-            <li><a href="http://www.kb.dk/en/kub/service/sporgbib/forslag.html">Suggest a title</a></li>
-            <li><a href="https://rex.kb.dk/F/?func=file&file_name=find-b&local_base=kgl01_rexclassic&con_lng=eng">REX Classic</a></li>
-            <li class="EXLFooterLastLink"><a href="http://www.kb.dk/en/kub/service/sporgbib/index.html">Ask the library</a></li>
-        </ul>
+
+<footer>
+
+    <div class="row">
+        <div class="col-xs-12 col-sm-4">
+            <strong class="lead">REX</strong>
+            <ul class="list-unstyled">
+                <li><a href="http://www.kb.dk/en/REX/sider">Help</a></li>
+                <li><a href="https://rex.kb.dk/F/?func=file&file_name=find-b&local_base=kgl01_rexclassic&con_lng=eng">REX Classic</a></li>
+                <li><a href="http://www.kb.dk/da/REX/sider/biblioteker.html">Other libraries in REX</a></li>
+                <li><a href="http://www.kb.dk/en/kub/service/sporgbib/forslag.html">Suggest a title</a></li>
+            </ul>
+        </div>
+
+        <hr class="visible-xs" />
+
+        <div class="col-xs-12 col-sm-4">
+            <strong class="lead">THE ROYAL LIBRARY</strong>
+            <ul class="list-unstyled">
+                <li><a href="http://www.kb.dk/en/kb/aabningstider/">Opening Hours</a></li>
+                <li><a href="http://www.kb.dk/en/kub/service/kontakt/index.html">Contact the library</a></li>
+                <li><a href="http://www.kb.dk/en/kb/handicap/index.html">Information for disabled</a></li>
+                <li><a href="http://www.kb.dk/en/kb/webstedet/cookiepolitik.html">Cookie- and privacy policy</a></li>
+                <li><a href="http://www.kb.dk/en/kb/webstedet/index.html">About the website</a></li>
+            </ul>
+        </div>
+
     </div>
-    <address class="col-md-4">
-        <strong>The Royal Library</strong><br>
-        Søren Kierkegaards Plads 1<br>
-        1219 Copenhagen K<br>
-        EAN: 5798 000795297<br>
-        <abbr title="Telefon nr.">Tlf:</abbr>(+45) 33 47 47 47<br>
-        <a href="mailto//:kb@kb.dk">kb@kb.dk</a>
-    </address>
-    <div>
-        <ul class="list-inline">
-            <li><a href="http://www.kb.dk/en/kb/webstedet/index.html">About the website</a></li>
-            <li><a href="http://www.kb.dk/da/kb/copyright/index.html" title="Oplysninger om ophavsret på Det Kongelige Bibliotek">Ophavsret</a></li>
-            <li><a href="http://www.kb.dk/en/kb/handicap/index.html">Information for disabled</a></li>
-        </ul>
+
+    <hr />
+
+    <div class="row">
+
+        <a href="http://www.kb.dk/en/" class="col-xs-2 col-sm-1">
+            <img src="../sites/kb/dev02/images/kb/footerLogo.png" style="width:100%; height:auto;" alt="The Royal Library" />
+        </a>
+        <div class="col-xs-10 col-sm-11">
+            <address>
+                <p>
+                    <strong>
+                        The Royal Library<br/>
+                        National Library of Denmark and Copenhagen University Library
+                    </strong>
+                    <small>
+                        <br/>
+                        Søren Kierkegaards Plads 1 - DK-1016 1219 Copenhagen K - EAN: 5798 000795297 - <abbr title="Phone nr.">Phone: </abbr>+45 33 47 47 47 - E-mail <a href="mailto//:kb@kb.dk">kb@kb.dk</a>
+                    </small>
+                </p>
+
+            </address>
+        </div>
     </div>
 </footer>
+<!--begin footer-->
 
  <!-- script type="text/javascript" src="../javascript/kb_frb_hack_en.js"></script -->
 
