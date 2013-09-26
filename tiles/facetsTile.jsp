@@ -110,11 +110,13 @@
 	</c:if>
 </c:forEach>
 
-<a id="refine" name="refine"></a>
+
+<a id="refine" name="refine" class="navbar-toggle" data-toggle="collapse" href=".EXLFacetList" >Refine</a>
+
 <%--Display the content of this page only if we have results --%>
 <c:if test="${form.searchResult.numberOfResults>0 and form.facetResult.displayFacets}" >
 
-	<div id="facetList${facetIndex.index}" class="EXLFacetList panel-group">
+	<div id="facetList${facetIndex.index}" class="EXLFacetList panel-group collapse navbar-collapse">
 		<c:set var="facetTitleDisplayed" value="false"/>
 		<c:forEach items="${form.facetResult.facetOrder}" var="facetField" varStatus="facetIndex">
 			<c:set value='${form.filteredFacetResult.facets[facetField]}' var="facet" />
