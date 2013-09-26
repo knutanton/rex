@@ -33,7 +33,7 @@
     <div class="row">
 
         <a href="http://www.kb.dk/en/" class="col-xs-2 col-sm-1">
-            <img src="../sites/kb/dev02/images/kb/footerLogo.png" style="width:100%; height:auto;" alt="The Royal Library" />
+            <img src="../sites/kb/dev02/images/kb/footerLogo.png" class="img-responsive" alt="The Royal Library" />
         </a>
         <div class="col-xs-10 col-sm-11">
             <address>
