@@ -8,7 +8,7 @@
 </c:if>
 
 <div id="exlidSearchTile" class="${divClass} row">
-    <div id="exlidSearchRibbon" class=" col-md-6 col-md-offset-3">
+    <div id="exlidSearchRibbon" class=" col-md-8 col-md-offset-2">
 
         <c:if test="${searchForm == null}">
             <c:set var="searchForm" value="${displayForm}" scope="request"/>

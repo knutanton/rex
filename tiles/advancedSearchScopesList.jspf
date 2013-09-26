@@ -9,15 +9,15 @@
 					<c:set var="scopesListClass" value="EXLAdvancedSearchFormRow EXLAdvancedSearchFormRowHide"/>
 				</c:otherwise>
 			</c:choose>
-             <div id="scopesListAdvanced" class="${scopesListClass} form-horizontal">
+             <div id="scopesListAdvanced" class="${scopesListClass}">
 
               <div class="EXLAdvancedSearchFormRowInlineInput form-group">
-				<label for="exlidSearchIn" class="col-md-3 control-label">
+				<label for="exlidSearchIn">
 				<c:if test="${fn:length(searchForm.scp.scopesOptions)>1}">
 					<fmt:message key="search-advanced.scopes.label" />
 				</c:if>
 				</label>
-                <div class="col-md-9">
+
 				<select id="exlidSearchIn" class="EXLSearchInputScopesSelect form-control" name="scp.scps" ${(searchForm.displayDefinition=='false')?'disabled="disabled"':''}>
 					<c:forEach items='${searchForm.scp.scopesOptions}' var="option" varStatus="status">
 						<c:set var="classes" value="${option.locationrefs==searchForm.scp.scps?'EXLSelectedOption':'EXLSelectOption'}"/>
@@ -41,7 +41,7 @@
 					</c:choose>
 					</c:forEach>
 				</select>
-                    </div>
+
                 <c:forEach items='${searchForm.scp.scopesOptions}' var="option" varStatus="status">
 						<c:set var="classes" value="${option.locationrefs==searchForm.scp.scps?'EXLSelectedOption':'EXLSelectOption'}"/>
 						<c:set var="selected" value="${option.locationrefs==searchForm.scp.scps?'selected=\"selected\"':''}"/>
