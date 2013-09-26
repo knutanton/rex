@@ -1,61 +1,59 @@
 <%@ page contentType="text/xml;charset=UTF-8" language="java"%>
 
-<footer class="row">
-    <div class="col-xs-12 col-sm-4">
+<footer>
 
-        <strong class="lead">Rexs</strong>
-        <ul class="list-unstyled">
-            <li><a href="http://www.kb.dk/da/REX/sider/biblioteker.html">Hjælp</a></li>
-            <li><a href="http://www.kb.dk/da/REX/sider/biblioteker.html">Ny låner</a></li>
-            <li><a href="http://www.kb.dk/da/REX/sider/biblioteker.html">REX Classic</a></li>
-            <li><a href="http://www.kb.dk/da/REX/sider/biblioteker.html">Bogforslag</a></li>
-            <li><a href="http://www.kb.dk/da/REX/sider/biblioteker.html">Biblioteker i REX samarbejdet</a></li>
-        </ul>
-
-    </div>
-    <hr class="visible-xs" />
-    <div class="col-xs-12 col-sm-4">
-
-        <strong class="lead">Services</strong>
-        <ul class="list-unstyled">
-            <li> <a href="http://www.kb.dk/da/REX/sider/biblioteker.html">Det Kongelige Bibliotek</a></li>
-            <li><a href="http://www.kb.dk/da/REX/sider/biblioteker.html">Danmarks National Biblioteket</a></li>
-            <li><a href="http://www.kb.dk/da/REX/sider/biblioteker.html">Københavns Universitets Bibliotek</a></li>
-        </ul>
-
-    </div>
-    <hr class="visible-xs" />
-    <div class="col-xs-12 col-sm-4">
-        <div class="row">
-
-            <div class="col-xs-2 col-sm-4">
-                <img src="../sites/kb/dev02/images/kb/footerLogo.png" style="width:100%; height:auto;" alt="test"   />
-            </div>
-            <div class="col-xs-10 col-sm-8">
-                <address>
-                    <strong class="lead">Det Kongelige Bibliotek</strong><br/>
-                    Søren Kierkegaards Plads 1<br>
-                    1219 København K<br>
-                    EAN: 5798 000795297<br>
-                    <abbr title="Telefon nr.">Tlf:</abbr>(+45) 33 47 47 47<br>
-                    E-mail <a href="mailto//:kb@kb.dk">kb@kb.dk</a>
-                </address>
-                <ul class="list-unstyled">
-                    <li><a href="#">Åbningstider & Adresser</a></li>
-                    <li><a href="#">Kontakt biblioteket</a></li>
-                    <li><a href="#">Handikaphjælp</a></li>
-                    <li><a href="#">Cookie- og Privatlivspolitik</a></li>
-                    <li><a href="#"></a></li>
-                </ul>
-            </div>
-
+    <div class="row">
+        <div class="col-xs-12 col-sm-4">
+            <strong class="lead">REX</strong>
+            <ul class="list-unstyled">
+                <li><a href="http://www.kb.dk/da/REX/sider?codekitCB=401828938.835484">Hjælp</a></li>
+                <li><a href="https://rex.kb.dk/F/?func=file&file_name=find-b&local_base=kgl01_rexclassic&con_lng=DAN">REX Classic</a></li>
+                <li><a href="http://www.kb.dk/da/REX/sider/biblioteker.html">Biblioteker i REX samarbejdet</a></li>
+                <li><a href="http://www.kb.dk/da/kub/service/sporgbib/forslag.html">Bogforslag</a></li>
+            </ul>
         </div>
 
+        <hr class="visible-xs" />
 
+        <div class="col-xs-12 col-sm-4">
+            <strong class="lead">DET KONGELIGE BIBLIOTEK</strong>
+            <ul class="list-unstyled">
+                <li><a href="http://www.kb.dk/da/kb/aabningstider/index.html">Åbningstider & Adresser</a></li>
+                <li><a href="http://kontaktbiblioteket.kb.dk">Kontakt biblioteket</a></li>
+                <li><a href="http://www.kb.dk/da/kb/handicap/index.html">Handikap-information</a></li>
+                <li><a href="http://www.kb.dk/da/kb/webstedet/cookiepolitik.html">Cookie- og Privatlivspolitik</a></li>
+                <li><a href="http://www.kb.dk/da/kb/webstedet/index.html">Om webstedet</a></li>
+            </ul>
+        </div>
 
     </div>
 
+    <hr />
 
+    <div class="row">
+
+            <a href="http://www.kb.dk" class="col-xs-2 col-sm-1">
+                <img src="../sites/kb/dev02/images/kb/footerLogo.png" style="width:100%; height:auto;" alt="Det Kongelige Bibliotek"   />
+            </a>
+            <div class="col-xs-10 col-sm-11">
+                <address>
+                    <p>
+                        <strong>
+                            Det Kongelige Bibliotek<br/>
+                            Nationalbibliotek og Københavns Universitetsbibliotek
+                        </strong>
+                        <small>
+                            <br/>
+                            Søren Kierkegaards Plads 1 - 1219 København K - EAN: 5798 000795297 - <abbr title="Telefon nr.">Tlf: </abbr>+45 33 47 47 47 - E-mail <a href="mailto//:kb@kb.dk">kb@kb.dk</a>
+                        </small>
+                    </p>
+                    <p>
+                        <div id="fb-root"></div>
+                        <div class="fb-follow" data-href="https://www.facebook.com/DetKongeligeBibliotek" data-width="260" data-show-faces="true"></div>
+                    </p>
+                </address>
+            </div>
+        </div>
 </footer>
 <!--begin footer-->
 <!--footer_KGL_da_DK.html-->
