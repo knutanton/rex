@@ -130,6 +130,8 @@
 		</h1>
 	</c:if>
 
+    <%@ include file="resultsHeaderNavigation.jsp" %>
+
 	<div class="EXLResultsSortBy">
 		<!--<span class="EXLResultsSortByLabel"><fmt:message key='results.sortby' /></span>
 		<span class="EXLResultsSortBySelected">
@@ -138,17 +140,22 @@
 			</a>
 		</span>-->
 		<input type="hidden" name="searchForm.frbrSrt" value=""/>
-        <button id="refine" name="refine" data-toggle="collapse" href=".index" >Refine Button</button>
-        <c:if test="${!form.displayGeneralPageActionsOnTop}">
-            <!--RSS, Save Search and Add page to e-Shelf Links-->
-            <%@ include file="generalPageActions.jspf" %>
-        </c:if>
 		<div class="EXLResultsSortByMenu btn-group">
-            <span class="EXLResultsSortByLabel"><fmt:message key='results.sortby' /></span>
-            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                <fmt:message key="results.sortby.option.${fn:escapeXml(srtField)}"/>&nbsp;<span class="caret"></span>
-            </button>
+            <ul class="nav nav-tabs">
+                <li>
+                    <button id="refine" class="btn btn-toolbar" name="refine" data-toggle="collapse" href=".index" >Refine Button</button>
+                </li>
+                <li>
+                    <c:if test="${!form.displayGeneralPageActionsOnTop}">
+                        <!--RSS, Save Search and Add page to e-Shelf Links-->
+                        <%@ include file="generalPageActions.jspf" %>
+                    </c:if>
+                </li>
+                <li>
 
+            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                <span class="EXLResultsSortByLabel"><fmt:message key='results.sortby' /></span> <fmt:message key="results.sortby.option.${fn:escapeXml(srtField)}"/>&nbsp;<span class="caret"></span>
+            </button>
 
 	        <ul class="EXLResultsSortByMenuShow EXLResultsSortByMenuHide dropdown-menu" role="menu"><!--remove EXLResultsSortByMenuHide to show menu items-->
 				<c:set var="SendToArrowImageUrl"><img src="<fmt:message key="ui.images.resultsheadernumbers.arrowsendto"/>" alt="<fmt:message key='results.tooltip.sortby'/>"/></c:set>
@@ -170,7 +177,7 @@
 									<li class="EXLSortByLink ${showHide}">
 										<c:choose>
 											<c:when test="${searchForm.srt==option}">
-									  			<fmt:message key='results.sortby.option.${option}' />
+									  			<fmt:message key='results.sortby.option.${option}' /> hello
 											</c:when>
 				  							<c:otherwise>
 									  			<a href="search.do?srt=${option}&amp;srtChange=true&amp;${fn:escapeXml(searchForm.reqDecQry)}&amp;sortTitle=noChange" title="">
@@ -258,6 +265,8 @@
 					</c:otherwise>
 				</c:choose>
 			</ul>
+            </li>
+            </ul>
 		</div>
 	</div>
 	<c:if
