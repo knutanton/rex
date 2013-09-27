@@ -7,7 +7,7 @@
 	<%@ include file="generalPageActions.jspf" %>
 </c:if>
 
-<h2 class="EXLFacetsTitle sr-only">Refine Search Results</h2>
+<h2 class="EXLFacetsTitle collapse">Refine Search Results</h2>
 <c:set value="${form.vid}" var="view" />
 <%-- Vertical facet --%>
 <c:set value="true" var="chagedPCAvailMode" />
@@ -111,12 +111,11 @@
 </c:forEach>
 
 
-<a id="refine" name="refine" class="navbar-toggle" data-toggle="collapse" href=".EXLFacetList" >Refine</a>
-
 <%--Display the content of this page only if we have results --%>
 <c:if test="${form.searchResult.numberOfResults>0 and form.facetResult.displayFacets}" >
 
-	<div id="facetList${facetIndex.index}" class="EXLFacetList panel-group collapse navbar-collapse">
+	<div id="facetList${facetIndex.index}" class="facet-collapse slide index" >
+
 		<c:set var="facetTitleDisplayed" value="false"/>
 		<c:forEach items="${form.facetResult.facetOrder}" var="facetField" varStatus="facetIndex">
 			<c:set value='${form.filteredFacetResult.facets[facetField]}' var="facet" />
@@ -214,11 +213,11 @@
 	</div>
 </c:if>
 
-<%--jsp:include page="suggestedSearchTile.jsp"/--%>
+<%--jsp:include page="suggestedSearchTile.jsp"/
 
 <c:if test="${!form.displayGeneralPageActionsOnTop}">
 	<!--RSS, Save Search and Add page to e-Shelf Links-->
 	<%@ include file="generalPageActions.jspf" %>
 </c:if>
-
+--%>
 <!--end EXLFacetList-->
