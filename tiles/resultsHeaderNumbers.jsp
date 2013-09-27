@@ -138,6 +138,11 @@
 			</a>
 		</span>-->
 		<input type="hidden" name="searchForm.frbrSrt" value=""/>
+        <button id="refine" name="refine" data-toggle="collapse" href=".index" >Refine Button</button>
+        <c:if test="${!form.displayGeneralPageActionsOnTop}">
+            <!--RSS, Save Search and Add page to e-Shelf Links-->
+            <%@ include file="generalPageActions.jspf" %>
+        </c:if>
 		<div class="EXLResultsSortByMenu btn-group">
             <span class="EXLResultsSortByLabel"><fmt:message key='results.sortby' /></span>
             <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
