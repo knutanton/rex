@@ -1,6 +1,28 @@
 //KB
 //Changes to tiles/facetTile
 
+
+.facet-collapse {
+    @media (max-width: @screen-sm-max ) {
+        .collapse;
+        }
+
+    @media (min-width: @screen-sm-max) {
+        display:block;
+      }
+    }
+
+#refine {
+    @media (min-width: @screen-sm-max) {
+        .collapse;
+        }
+    @media (max-width: @screen-sm-max) {
+        display:block;
+        }
+     }
+
+
+
 ul li.EXLAdditionalFacet {
     display:none
 }
