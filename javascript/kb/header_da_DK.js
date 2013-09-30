@@ -311,7 +311,7 @@ $(document).ready(function () {
     replaceTextInLocationsTab(textReplaceObjectArray);
 
 //		fixImageTitleUri();
-    var lang = $("#exlidSelectedLanguage").html().substring(0, 2),
+    var lang = $("#exlidSelectedLanguage").text().substring(0, 2),
         signoutText = $("#exlidSignOut").find("a").html();
     if (startsWith(signoutText, Array('Log ud', 'Sign out'))) {
         // things to do when the user is logged ind
@@ -508,7 +508,7 @@ $(document).ready(function () {
     // start mine ERessourcer
     var linkString = "Mine e-ressourcer (BETA)",
         myResourceString = "<li><a href='#' data-toggle='modal' data-target='#myModal' class='my_e_resources'>" + linkString + "</a></li>";
-    $('#exlidUserAreaRibbon .dropdown-menu').append(myResourceString);
+    $('#exlidUserAreaRibbon .dropdown-menu:has(#exlidMyAccount)').append(myResourceString);
     $('#popupContact > h1').html(linkString);
     // stop mine ERessourcer
 
