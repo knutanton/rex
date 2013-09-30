@@ -128,6 +128,29 @@
                     </ul>
                 </li>
 
+                <li id="exlidLanguageMenu" class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        <fmt:message key="mainmenu.label.language" />
+                        <b class="caret"></b>
+                    </a>
+                    <ul id="exlidLanguages" class="EXLLanguageMenuShow EXLLanguageMenuHide dropdown-menu">
+                    <c:forEach items="${form.interfacaLangs}" var="option" varStatus="status">
+                            <c:url var="preferencesURL" value="preferences.do?prefBackUrl=${url}%26vid=${fn:escapeXml(sessionScope.vid)}" >
+                                <c:param name="fn" value="change_lang"/>
+                                <c:param name="vid" value="${fn:escapeXml(sessionScope.vid)}"/>
+                                <c:param name="prefLang" value="${option}"/>
+                            </c:url>
+                        <c:choose>
+                            <c:when test="${not empty sessionScope.chosenInterfaceLanguage and sessionScope.chosenInterfaceLanguage == option}">
+                              <li id="exlidSelectedLanguage" class="EXLLanguageLink"><a href="#"><span class="glyphicon glyphicon-ok pull-right"></span><fmt:message key='mypref.language.option.${option}' /></a></li>
+                            </c:when>
+                            <c:otherwise>
+                              <li class="EXLLanguageLink EXLLanguageLinkHide"><a href="${fn:escapeXml(preferencesURL)}" class="EXLLanguageOptionLANG${option}" title="${lang_title} ${lang_name}"><fmt:message key='mypref.language.option.${option}' /></a></li>
+                            </c:otherwise>
+                        </c:choose>
+                    </c:forEach>
+                    </ul>
+                <li>
             </ul>
         </div>
 
