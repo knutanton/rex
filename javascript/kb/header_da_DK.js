@@ -285,14 +285,14 @@ function startsWith(s, a) { // FIXME: These helper methods shouldn't be dumped i
  *  source: http://www.netlobo.com/url_query_string_javascript.html 
  */
 function gup(name) {
-    name = name.replace(/[\[]/, "\\\[").replace(/[\]]/, "\\\]");
+    name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
     var regexS = "[\\?&]" + name + "=([^&#]*)";
     var regex = new RegExp(regexS);
     var results = regex.exec(window.location.href);
-    if (results == null)
+    if (results === null) {
         return "";
-    else
-        return results[1];
+    }
+    return results[1];
 }
 
 
@@ -515,11 +515,11 @@ $(document).ready(function () {
     // Copied from footer_da_DK stop /HAFE
 
     // Start Ny låner
-    $('#exlidUserAreaRibbon li:eq(0)').after('<li><a href="https://login.kb.dk/kbuser/regguide">Ny låner</a></li>')
+    $('#exlidUserAreaRibbon li:eq(0)').after('<li><a href="https://login.kb.dk/kbuser/regguide">Ny låner</a></li>');
     // End Ny låner /TJAN;)
 
     // Start Se og forny dine lån
-        $('#exlidUserAreaRibbon .dropdown-menu li:eq(0)').after('<li><a href="http://pds.primo-97.kb.dk/pds?func=load-login&institute=KGL&calling_system=primo&url=http://rex.kb.dk:80/primo_library/libweb/action/login.do?afterPDS=true&vid=KGL&dscnt=1&targetURL=http://rex.kb.dk/primo_library/libweb/action/myAccountMenu.do?dscnt=0&vid=KGL">Se og forny dine lån</a></li>')
+        $('#exlidUserAreaRibbon .dropdown-menu li:eq(0)').after('<li><a href="http://pds.primo-97.kb.dk/pds?func=load-login&institute=KGL&calling_system=primo&url=http://rex.kb.dk:80/primo_library/libweb/action/login.do?afterPDS=true&vid=KGL&dscnt=1&targetURL=http://rex.kb.dk/primo_library/libweb/action/myAccountMenu.do?dscnt=0&vid=KGL">Se og forny dine lån</a></li>');
     // End Se og forny dine lån /TJAN;)
 
 });
