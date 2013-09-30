@@ -1,3 +1,4 @@
+<%@ page contentType="text/xml;charset=UTF-8" language="java"%>
 <%@ include file="/views/taglibsIncludeAll.jspf" %>
 <%@ include file="/views/include/setSearchForm.jspf"%>
 <%-- Prepare functional content first, html at end of file --%>
@@ -130,8 +131,9 @@
             </ul>
         </div>
 
-
-
+<!-- cookieInformerBooklet start -->
+<%@ include file="cookieInformerBooklet.jspf" %>
+<!-- cookieInformerBooklet stop -->
 
 <script type="text/javascript">
     var userInst = "${sessionScope.userInfo.pdsInstitute}";
