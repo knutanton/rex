@@ -1,7 +1,7 @@
 <%@ include file="/views/taglibsIncludeAll.jspf" %>
 <%@page import="com.exlibris.primo.srvinterface.FacetResultDTO"%>
 <%@ taglib uri="/WEB-INF/tlds/exlibris-ajax.tld" prefix="eas" %>
-
+<button id="refine" class="btn btn-toolbar" name="refine" data-toggle="collapse" href=".index" >Refine Button</button>
 <c:if test="${form.displayGeneralPageActionsOnTop}">
 	<!--RSS, Save Search and Add page to e-Shelf Links-->
 	<%@ include file="generalPageActions.jspf" %>
