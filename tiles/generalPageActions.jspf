@@ -9,12 +9,13 @@
 <c:set var="myShelfStarImage"><fmt:message key="default.ui.images.v3.iconstaron"/></c:set>
 
 <!--RSS, Save Search, Save to eShelf Links-->
-<div class="EXLFacetList">
+<!--<div class="EXLFacetList">
 	<div class="EXLFacetContainer">
 		<div class="EXLFacetActionsV2">
-				<div class="EXLFacetRSSAction btn-group ">
-				<c:if test="${!form.remote}">
-						<form method="post" name="rssForm" action="${form.rssLinks[0].actionUrl}" >
+				<div class="EXLFacetRSSAction btn-group ">-->
+<div class="btn-group">
+				    <c:if test="${!form.remote}">
+						<form method="post" name="rssForm" class="pull-left" action="${form.rssLinks[0].actionUrl}" >
                				 <c:set var="srVar" value="${form.rssLinks[0].searchVar}" />
               				  <c:set var="ctxVar" value="${form.rssLinks[0].contextVar}" />
              				   <c:set var="verVar" value="${form.rssLinks[0].versionVar}" />
@@ -24,29 +25,35 @@
          					   <a href="#" class="btn btn-default" onclick="document.rssForm.submit();"><fmt:message key='default.eshelf.basket.querypop.rss '/> </a>
          					   <noscript>
 									<input type="submit" value="Save"/>
-								</noscript>  
+							    </noscript>
          				</form>
-				</c:if>
+				    </c:if>
+
 				<!--</div>-->
 				<c:if test="${not empty sessionScope.loggedIn and sessionScope.loggedIn==true}">
                     <!--<div class="EXLFacetSaveSearchAction">-->
+
 						<c:url value="query.do" var="saveUrl">
 							<c:param name="${action_func}" value="new" />
 							<c:param name="queryUrl" value="${form.reqEncUrl}" />
 						</c:url>
+
 						<a class="backTo btn btn-default" onclick="openSaveQuery(this.href); return false;"
 								target="_blank" href="${fn:escapeXml(saveUrl)}"
 								title="<fmt:message key='results.saveCurrentQuery'/><fmt:message key='link.title.opens.in.a.popup'/>">
 							<fmt:message key="results.savequery" />
 						</a>
+
 					<!--</div>-->
 				</c:if>
+
 				<!--<div class="EXLFacetSaveToEShelfAction EXLFacetSaveToEShelfActionOff">-->
-					<a onclick="reportAddPageToEshelfClick();" class="btn btn-default" href="${fn:escapeXml(modifyShelfUrl)}" title="<fmt:message key="results.eshelf" />">
+					<a class="btn btn-default" onclick="reportAddPageToEshelfClick();" href="${fn:escapeXml(modifyShelfUrl)}" title="<fmt:message key="results.eshelf" />">
 						<fmt:message key="results.addpagetoeshelf"/>
 					</a>
-				</div>
+</div>
+				<!--</div>
 
 		</div>
 	</div>
-</div>
+</div> -->
