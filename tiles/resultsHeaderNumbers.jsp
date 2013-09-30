@@ -140,133 +140,129 @@
 			</a>
 		</span>-->
 		<input type="hidden" name="searchForm.frbrSrt" value=""/>
-		<div class="EXLResultsSortByMenu btn-group">
-            <ul class="nav nav-tabs">
-                <li>
-                    <button id="refine" class="btn btn-toolbar" name="refine" data-toggle="collapse" href=".index" >Refine Button</button>
-                </li>
-                <li>
-                    <c:if test="${!form.displayGeneralPageActionsOnTop}">
-                        <!--RSS, Save Search and Add page to e-Shelf Links-->
-                        <%@ include file="generalPageActions.jspf" %>
-                    </c:if>
-                </li>
-                <li>
+		<div class="EXLResultsSortByMenu ">
 
-            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                <span class="EXLResultsSortByLabel"><fmt:message key='results.sortby' /></span> <fmt:message key="results.sortby.option.${fn:escapeXml(srtField)}"/>&nbsp;<span class="caret"></span>
-            </button>
+                <c:if test="${!form.displayGeneralPageActionsOnTop}">
+                    <!--RSS, Save Search and Add page to e-Shelf Links-->
+                    <%@ include file="generalPageActions.jspf" %>
+                </c:if>
 
-	        <ul class="EXLResultsSortByMenuShow EXLResultsSortByMenuHide dropdown-menu" role="menu"><!--remove EXLResultsSortByMenuHide to show menu items-->
-				<c:set var="SendToArrowImageUrl"><img src="<fmt:message key="ui.images.resultsheadernumbers.arrowsendto"/>" alt="<fmt:message key='results.tooltip.sortby'/>"/></c:set>
-		 		<c:choose>
-					<c:when test="${switchSort=='1'}">
-						<c:choose>
-							<c:when test="${findTitle=='found'}">
-								<c:forEach items='${searchForm.sortByList}' var="option" varStatus="listStatus">
-									<c:set var="showHide" value=""/>
-									<c:choose>
-										<c:when test="${defaultTitle=='noChange' && (srtField==option)}">
-											<c:set var="showHide" value="EXLSortByLinkSelected sr-only"/>
-										</c:when>
-			  							<c:when test="${'title'==option}">
-			  								<c:set var="showHide" value="EXLSortByLinkSelected sr-only"/>
-			  							</c:when>
-									</c:choose>
+                <div class="pull-right btn-group">
 
-									<li class="EXLSortByLink ${showHide}">
-										<c:choose>
-											<c:when test="${searchForm.srt==option}">
-									  			<fmt:message key='results.sortby.option.${option}' /> hello
-											</c:when>
-				  							<c:otherwise>
-									  			<a href="search.do?srt=${option}&amp;srtChange=true&amp;${fn:escapeXml(searchForm.reqDecQry)}&amp;sortTitle=noChange" title="">
-									  				<fmt:message key='results.sortby.option.${option}' />
-									  			</a>
-								  			</c:otherwise>
-							  			</c:choose>
-									</li>
-					  			</c:forEach>
-			  				</c:when>
-			  				<c:otherwise>
-			  					<c:set var="count" value="1"/>
-			  					<c:forEach items='${searchForm.sortByList}' var="option" varStatus="listStatus">
-			  						<c:choose>
-										<c:when test="${searchFormSrt =='found'}">
-											<li class="EXLSortByLink ${(srtField==option)?'EXLSortByLinkSelected sr-only':''}">
-												<c:choose>
-													<c:when test="${searchForm.srt==option}">
-											  			<fmt:message key='results.sortby.option.${option}' />
-													</c:when>
-						  							<c:otherwise>
-											  			<a href="search.do?srt=${option}&amp;srtChange=true&amp;${fn:escapeXml(searchForm.reqDecQry)}" title="">
-											  				<fmt:message key='results.sortby.option.${option}' />
-											  			</a>
-										  			</c:otherwise>
-									  			</c:choose>
-											</li>
-										</c:when>
-			  							<c:otherwise>
-			  								<c:set var="showHide" value=""/>
-			  								<c:choose>
-												<c:when test="${(srtField=='scdate') && ('date'==option)}">
-													<c:set var="showHide" value="EXLSortByLinkSelected sr-only"/>
-												</c:when>
-												<c:when test="${(srtField=='') && ('rank'==option)}">
-													<c:set var="showHide" value="EXLSortByLinkSelected sr-only"/>
-												</c:when>
-												<c:when test="${(srtField=='screator') && ('author'==option)}">
-													<c:set var="showHide" value="EXLSortByLinkSelected sr-only"/>
-												</c:when>
-			  									<%--c:when test="${'1'==count}">
-			  										<c:set var="showHide" value="EXLSortByLinkSelected"/>
-			  									</c:when--%>
-											</c:choose>
+                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                        <span class="EXLResultsSortByLabel"><fmt:message key='results.sortby' /></span> <fmt:message key="results.sortby.option.${fn:escapeXml(srtField)}"/>&nbsp;<span class="caret"></span>
+                    </button>
 
-											<li class="EXLSortByLink ${showHide}">
-												<c:choose>
-													<c:when test="${searchForm.srt==option}">
-											  			<fmt:message key='results.sortby.option.${option}' />
-													</c:when>
-						  							<c:otherwise>
-											  			<a href="search.do?srt=${option}&amp;srtChange=true&amp;${fn:escapeXml(searchForm.reqDecQry)}" title="">
-											  				<fmt:message key='results.sortby.option.${option}' />
-											  			</a>
-										  			</c:otherwise>
-									  			</c:choose>
-											</li>
-			  							</c:otherwise>
-									</c:choose>
-									<c:set var="count" value="${count+1}"/>
-					  			</c:forEach>
-			 				</c:otherwise>
-						</c:choose>
-			  		</c:when>
-			  		<c:otherwise>
-						<c:forEach items='${searchForm.sortByList}' var="option" varStatus="listStatus">
-					  		<li class="EXLSortByLink ${(srtField==option)?'EXLSortByLinkSelected sr-only':''}">
-								<c:choose>
-									<c:when test="${srtField==option}">
-							  			<fmt:message key='results.sortby.option.${option}' />
-									</c:when>
-		  							<c:otherwise>
-										<c:set var="resortUrlPrefix" value="search.do?" />
-										<c:set var="resortUrlSuffix" value="srt=${option}&amp;srtChange=true&amp;${fn:escapeXml(searchForm.reqDecQry)}" />
-				  						<c:if test="${searchForm.alma}">
-											<c:set var="resortUrlPrefix" value="dlSearch.do?" />
-										</c:if>										
-										<a href="${resortUrlPrefix}${resortUrlSuffix}" title="">
-							  				<fmt:message key='results.sortby.option.${option}' />
-							  			</a>
-						  			</c:otherwise>
-					  			</c:choose>
-					  		</li>
-						</c:forEach>
-					</c:otherwise>
-				</c:choose>
-			</ul>
-            </li>
-            </ul>
+                    <ul class="EXLResultsSortByMenuShow EXLResultsSortByMenuHide dropdown-menu" role="menu"><!--remove EXLResultsSortByMenuHide to show menu items-->
+                        <c:set var="SendToArrowImageUrl"><img src="<fmt:message key="ui.images.resultsheadernumbers.arrowsendto"/>" alt="<fmt:message key='results.tooltip.sortby'/>"/></c:set>
+                        <c:choose>
+                            <c:when test="${switchSort=='1'}">
+                                <c:choose>
+                                    <c:when test="${findTitle=='found'}">
+                                        <c:forEach items='${searchForm.sortByList}' var="option" varStatus="listStatus">
+                                            <c:set var="showHide" value=""/>
+                                            <c:choose>
+                                                <c:when test="${defaultTitle=='noChange' && (srtField==option)}">
+                                                    <c:set var="showHide" value="EXLSortByLinkSelected sr-only"/>
+                                                </c:when>
+                                                <c:when test="${'title'==option}">
+                                                    <c:set var="showHide" value="EXLSortByLinkSelected sr-only"/>
+                                                </c:when>
+                                            </c:choose>
+
+                                            <li class="EXLSortByLink ${showHide}">
+                                                <c:choose>
+                                                    <c:when test="${searchForm.srt==option}">
+                                                        <fmt:message key='results.sortby.option.${option}' /> hello
+                                                    </c:when>
+                                                    <c:otherwise>
+                                                        <a href="search.do?srt=${option}&amp;srtChange=true&amp;${fn:escapeXml(searchForm.reqDecQry)}&amp;sortTitle=noChange" title="">
+                                                            <fmt:message key='results.sortby.option.${option}' />
+                                                        </a>
+                                                    </c:otherwise>
+                                                </c:choose>
+                                            </li>
+                                        </c:forEach>
+                                    </c:when>
+                                    <c:otherwise>
+                                        <c:set var="count" value="1"/>
+                                        <c:forEach items='${searchForm.sortByList}' var="option" varStatus="listStatus">
+                                            <c:choose>
+                                                <c:when test="${searchFormSrt =='found'}">
+                                                    <li class="EXLSortByLink ${(srtField==option)?'EXLSortByLinkSelected sr-only':''}">
+                                                        <c:choose>
+                                                            <c:when test="${searchForm.srt==option}">
+                                                                <fmt:message key='results.sortby.option.${option}' />
+                                                            </c:when>
+                                                            <c:otherwise>
+                                                                <a href="search.do?srt=${option}&amp;srtChange=true&amp;${fn:escapeXml(searchForm.reqDecQry)}" title="">
+                                                                    <fmt:message key='results.sortby.option.${option}' />
+                                                                </a>
+                                                            </c:otherwise>
+                                                        </c:choose>
+                                                    </li>
+                                                </c:when>
+                                                <c:otherwise>
+                                                    <c:set var="showHide" value=""/>
+                                                    <c:choose>
+                                                        <c:when test="${(srtField=='scdate') && ('date'==option)}">
+                                                            <c:set var="showHide" value="EXLSortByLinkSelected sr-only"/>
+                                                        </c:when>
+                                                        <c:when test="${(srtField=='') && ('rank'==option)}">
+                                                            <c:set var="showHide" value="EXLSortByLinkSelected sr-only"/>
+                                                        </c:when>
+                                                        <c:when test="${(srtField=='screator') && ('author'==option)}">
+                                                            <c:set var="showHide" value="EXLSortByLinkSelected sr-only"/>
+                                                        </c:when>
+                                                        <%--c:when test="${'1'==count}">
+                                                            <c:set var="showHide" value="EXLSortByLinkSelected"/>
+                                                        </c:when--%>
+                                                    </c:choose>
+
+                                                    <li class="EXLSortByLink ${showHide}">
+                                                        <c:choose>
+                                                            <c:when test="${searchForm.srt==option}">
+                                                                <fmt:message key='results.sortby.option.${option}' />
+                                                            </c:when>
+                                                            <c:otherwise>
+                                                                <a href="search.do?srt=${option}&amp;srtChange=true&amp;${fn:escapeXml(searchForm.reqDecQry)}" title="">
+                                                                    <fmt:message key='results.sortby.option.${option}' />
+                                                                </a>
+                                                            </c:otherwise>
+                                                        </c:choose>
+                                                    </li>
+                                                </c:otherwise>
+                                            </c:choose>
+                                            <c:set var="count" value="${count+1}"/>
+                                        </c:forEach>
+                                    </c:otherwise>
+                                </c:choose>
+                            </c:when>
+                            <c:otherwise>
+                                <c:forEach items='${searchForm.sortByList}' var="option" varStatus="listStatus">
+                                    <li class="EXLSortByLink ${(srtField==option)?'EXLSortByLinkSelected sr-only':''}">
+                                        <c:choose>
+                                            <c:when test="${srtField==option}">
+                                                <fmt:message key='results.sortby.option.${option}' />
+                                            </c:when>
+                                            <c:otherwise>
+                                                <c:set var="resortUrlPrefix" value="search.do?" />
+                                                <c:set var="resortUrlSuffix" value="srt=${option}&amp;srtChange=true&amp;${fn:escapeXml(searchForm.reqDecQry)}" />
+                                                <c:if test="${searchForm.alma}">
+                                                    <c:set var="resortUrlPrefix" value="dlSearch.do?" />
+                                                </c:if>
+                                                <a href="${resortUrlPrefix}${resortUrlSuffix}" title="">
+                                                    <fmt:message key='results.sortby.option.${option}' />
+                                                </a>
+                                            </c:otherwise>
+                                        </c:choose>
+                                    </li>
+                                </c:forEach>
+                            </c:otherwise>
+                        </c:choose>
+                    </ul>
+                </div>
+
 		</div>
 	</div>
 	<c:if
