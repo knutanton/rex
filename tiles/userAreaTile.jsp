@@ -121,7 +121,14 @@
                                 <b class="caret"></b>
                     </a>
                     <ul class="dropdown-menu">
-                        <li id="exlidMyAccount" class="EXLMyAccount">
+                        <c:choose>
+                            <c:when test="${loggedIn}">
+                                <li id="exlidMyAccount" class="EXLMyAccount">
+                            </c:when>
+                            <c:otherwise>
+                                <li id="exlidMyAccount" class="EXLMyAccount disabled">
+                            </c:otherwise>
+                        </c:choose>
                             <a href="${fn:escapeXml(myAccountUrl)}">
                                 <fmt:message key="menu.myaccount"/>
                             </a>
