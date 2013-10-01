@@ -76,6 +76,12 @@
 
 
 <%-- displayed content --%>
+<%-- dumping userName in window.EXLUserName if logged in - used to disable stuff in userMenu on document ready if not logged in - FIXME: this is not too pretty, but it will work for now HAFE --%>
+<c:if test="${loggedIn}">
+<script type="text/javascript">window.EXLUserName = '${userName}'</script>
+</c:if>
+<%-- userName dumping /HAFE --%>
+
 <!-- this feedback unnecesary
 <c:if test="${not empty errorString}">
 		<div class="EXLHighlightError">${errorString}</div>
