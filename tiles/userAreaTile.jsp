@@ -10,6 +10,12 @@
 	<c:set var="loggedIn" value="${true}"/>
 </c:if>
 
+<%-- Copied from mainMenuTile.jsp used for prefBackUrl in language selection HAFE --%>
+<c:set var="lastUrl" value="${form.reqEncUrl}"/>
+<c:set var="url" value="${fn:replace(lastUrl, '&', '%26')}"/>
+<c:set var="url" value="${fn:replace(url, '/', '%2F')}"/>
+<%-- /HAFE --%>
+
 <%-- We don't use the response encoded url since this URL is used in the targetURL and there is no need to put session id on it  --%>
 <c:url var="searchUrl" value="${form.reqPwd}search.do">
 	<c:param name="vid" value="${primoView.id}"/>${form.fn}
@@ -70,6 +76,12 @@
 
 
 <%-- displayed content --%>
+<%-- dumping userName in window.EXLUserName if logged in - used to disable stuff in userMenu on document ready if not logged in - FIXME: this is not too pretty, but it will work for now HAFE --%>
+<c:if test="${loggedIn}">
+<script type="text/javascript">window.EXLUserName = '${userName}'</script>
+</c:if>
+<%-- userName dumping /HAFE --%>
+
 <!-- this feedback unnecesary
 <c:if test="${not empty errorString}">
 		<div class="EXLHighlightError">${errorString}</div>
@@ -115,7 +127,14 @@
                                 <b class="caret"></b>
                     </a>
                     <ul class="dropdown-menu">
-                        <li id="exlidMyAccount" class="EXLMyAccount">
+                        <c:choose>
+                            <c:when test="${loggedIn}">
+                                <li id="exlidMyAccount" class="EXLMyAccount">
+                            </c:when>
+                            <c:otherwise>
+                                <li id="exlidMyAccount" class="EXLMyAccount disabled">
+                            </c:otherwise>
+                        </c:choose>
                             <a href="${fn:escapeXml(myAccountUrl)}">
                                 <fmt:message key="menu.myaccount"/>
                             </a>
@@ -153,10 +172,6 @@
                 <li>
             </ul>
         </div>
-
-<!-- cookieInformerBooklet start -->
-<%@ include file="cookieInformerBooklet.jspf" %>
-<!-- cookieInformerBooklet stop -->
 
 <script type="text/javascript">
     var userInst = "${sessionScope.userInfo.pdsInstitute}";

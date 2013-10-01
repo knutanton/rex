@@ -104,10 +104,15 @@
 <script type="text/javascript" src="../sites/kb/<%= view %>/javascript/bootstrap/collapse.js"></script>
 <script type="text/javascript" src="../sites/kb/<%= view %>/javascript/bootstrap/dropdown.js"></script>
 <script type="text/javascript" src="../sites/kb/<%= view %>/javascript/bootstrap/modal.js"></script>
-<script type="text/javascript" src="../sites/kb/<%= view %>/javascript/bootstrap/carousel.js"></script>
+<script type="text/javascript" src="../sites/kb/<%= view %>/javascript/bootstrap/carousel.js"></script>  '
+
 
 <!-- CUSTOM JS -->
+<script type="text/javascript" src="../sites/kb/<%= view %>/javascript/kb/cookieInformerBooklet_da_DK.js"></script>
 <script type="text/javascript" src="../sites/kb/<%= view %>/javascript/kb/header_global.js"></script>
 <script type="text/javascript" src="../sites/kb/<%= view %>/javascript/kb/header_da_DK.js"></script>
+
+<!-- respond.js -->
+<script type="text/javascript" src="../sites/kb/<%= view %>/javascript/kb/respond-min.js"></script>
 
 <!--end footer-->
