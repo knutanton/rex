@@ -1,4 +1,9 @@
 @import url("calendar.css");
+
+/* Hacks for my_account_layout.jsp (folder view)
+******************************************************/
+@import url("my_account_layout.css");
+
 /*-------------Primo CSS Document-------------*/
 *     {margin:0; padding:0; }
 img{border:none;}
@@ -2176,6 +2181,7 @@ padding-right:10px !important;
 	margin:4.5px 0;
 	font-size:1.0em;
 }
+
 
 
 

@@ -1,0 +1,4 @@
+header .navbar-toggle,
+header a.visible-xs{
+    display:none;
+}
