@@ -154,10 +154,6 @@
             </ul>
         </div>
 
-<!-- cookieInformerBooklet start -->
-<%@ include file="cookieInformerBooklet.jspf" %>
-<!-- cookieInformerBooklet stop -->
-
 <script type="text/javascript">
     var userInst = "${sessionScope.userInfo.pdsInstitute}";
 </script>
