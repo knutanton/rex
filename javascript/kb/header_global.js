@@ -2,22 +2,6 @@
 // Usage: $(selector).changeElementType(newType) where selector is any valid jQuery selector and newType is a HTMLElemnent typeName
 // code heavily inspired of http://stackoverflow.com/questions/8584098/how-to-change-an-element-type-using-jquery
 
-
-// Hey Hasse lidt til dig ;)
-$(document).ready(function () {
-    $( "div.EXLFooterUpdateContainer" ).addClass( "collapse" );
-
-        // Facebook follow button see footer.jsp
-        (function(d, s, id) {
-        var js, fjs = d.getElementsByTagName(s)[0];
-        if (d.getElementById(id)) return;
-        js = d.createElement(s); js.id = id;
-        js.src = "//connect.facebook.net/da_DK/all.js#xfbml=1";
-        fjs.parentNode.insertBefore(js, fjs);
-    }(document, 'script', 'facebook-jssdk'));
-
-});
-
 (function ($) {
     $.fn.changeElementType = function (newType) {
         var attrs = [],
@@ -195,3 +179,32 @@ function EXLTA_isFullDisplay() {
 }
 //NKH Slut (EOD functions)
 
+
+
+/*
+*JAC
+* remove the exlidPleaseWaitContainer div
+* plus the javascript that is right after the div.
+*  
+* The code comes from the views folder
+* so this is the way we decidede to fix it
+*/
+function removePleaseWait() {
+    $('#exlidPleaseWaitContainer').remove();
+    $('script[src*="pleaseWait.js"]').remove();
+}
+
+// Hey Hasse lidt til dig ;)
+$(document).ready(function () {
+    removePleaseWait();
+    $("div.EXLFooterUpdateContainer").addClass("collapse");
+        // Facebook follow button see footer.jsp
+        (function (d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) { return; }
+        js = d.createElement(s); js.id = id;
+        js.src = "//connect.facebook.net/da_DK/all.js#xfbml=1";
+        fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+
+});
