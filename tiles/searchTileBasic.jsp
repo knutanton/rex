@@ -8,7 +8,7 @@
 </c:if>
 
 <div id="exlidSearchTile" class="${divClass} row">
-    <div id="exlidSearchRibbon" class=" col-md-8 col-md-offset-2">
+    <div id="exlidSearchRibbon" class="col-md-8 col-md-offset-2">
 
         <c:if test="${searchForm == null}">
             <c:set var="searchForm" value="${displayForm}" scope="request"/>
@@ -124,6 +124,8 @@
             </div>
             <!-- end  search field ribbon -->
         </div>
+
+        <jsp:include page="systemFeedbackTile.jsp" />
 
 
         <div>
