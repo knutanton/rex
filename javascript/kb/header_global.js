@@ -189,7 +189,7 @@ function EXLTA_isFullDisplay() {
 * The code comes from the views folder
 * so this is the way we decidede to fix it
 */
-function removePleaseWait(){
+function removePleaseWait() {
     $('#exlidPleaseWaitContainer').remove();
     $('script[src*="pleaseWait.js"]').remove();
 }
@@ -197,12 +197,11 @@ function removePleaseWait(){
 // Hey Hasse lidt til dig ;)
 $(document).ready(function () {
     removePleaseWait();
-    $( "div.EXLFooterUpdateContainer" ).addClass( "collapse" );
-
+    $("div.EXLFooterUpdateContainer").addClass("collapse");
         // Facebook follow button see footer.jsp
-        (function(d, s, id) {
+        (function (d, s, id) {
         var js, fjs = d.getElementsByTagName(s)[0];
-        if (d.getElementById(id)) return;
+        if (d.getElementById(id)) { return; }
         js = d.createElement(s); js.id = id;
         js.src = "//connect.facebook.net/da_DK/all.js#xfbml=1";
         fjs.parentNode.insertBefore(js, fjs);
