@@ -10,6 +10,12 @@
 	<c:set var="loggedIn" value="${true}"/>
 </c:if>
 
+<%-- Copied from mainMenuTile.jsp used for prefBackUrl in language selection HAFE --%>
+<c:set var="lastUrl" value="${form.reqEncUrl}"/>
+<c:set var="url" value="${fn:replace(lastUrl, '&', '%26')}"/>
+<c:set var="url" value="${fn:replace(url, '/', '%2F')}"/>
+<%-- /HAFE --%>
+
 <%-- We don't use the response encoded url since this URL is used in the targetURL and there is no need to put session id on it  --%>
 <c:url var="searchUrl" value="${form.reqPwd}search.do">
 	<c:param name="vid" value="${primoView.id}"/>${form.fn}
