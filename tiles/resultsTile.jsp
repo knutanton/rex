@@ -3,14 +3,14 @@
 <script type="text/javascript" src="../javascript/primo_boomerang.js"></script>
 <%@ taglib uri="/WEB-INF/tlds/exlibris-ajax.tld" prefix="eas" %>
 
-      <table cellspacing="0" class="EXLResultsTable table table-striped" id="exlidResultsTable" summary="description place holder">
+      <div cellspacing="0" class="EXLResultsTable table table-striped" id="exlidResultsTable" summary="description place holder">
         <!--hidden table headers-->
-        <tr class="EXLHiddenCue sr-only">
-          <th class="EXLResultNumber">Result Number</th>
-          <th class="EXLThumbnail">Material Type</th>
-          <th class="EXLMyShelfStar">Add to My Shelf Action</th>
-          <th class="EXLSummary">Record Details and Options</th>
-        </tr>
+        <div class="EXLHiddenCue sr-only">
+          <span class="EXLResultNumber">Result Number</span>
+          <span class="EXLThumbnail">Material Type</span>
+          <span class="EXLMyShelfStar">Add to My Shelf Action</span>
+          <span class="EXLSummary">Record Details and Options</span>
+        </div>
 
 <c:set var="showRecommendTab" value="false"/>
 
@@ -41,8 +41,8 @@
 </c:if>
 <!-- boomerang -->
 
-<tr id="exlidResult${resultStatus.index}" class="EXLResult EXLResultMediaTYPE${result.values[c_value_fmticon]}">
-  <td class="EXLResultNumber">${result.resultNumber}</td>
+<div id="exlidResult${resultStatus.index}" class="EXLResult EXLResultMediaTYPE${result.values[c_value_fmticon]} row">
+  <div class="EXLResultNumber collapse">${result.resultNumber}</div>
 
 	<c:set var="baseFrbrUrl" value="${form.responseEncodeReqDecUrl}"/>
 	<c:if test="${!result.remote}">
@@ -69,7 +69,7 @@
 
   	<!-- Use new display of frbr (generic record) -->
   	<c:if test="${isFrbrNewDisplay}">
-		<td class="EXLThumbnail">
+		<div class="EXLThumbnail col-md-2">
 			<a name="${result.id}" id="${result.id}" class="EXLResultRecordId"></a>
 			<c:if test="${form.alma != null && !form.alma}">
 				<div class="multipleCoverImageContainer">
@@ -79,27 +79,26 @@
 				</div>
 		 		<div class="EXLHiddenCue sr-only">Material Type: </div><span class="EXLThumbnailCaption" id="mediaTypeCaption-${result.resultNumber}"><fmt:message key="mediatype.multiplever"/></span>
 			</c:if>
-		</td>
-	  	<td class="EXLMyShelfStar"/>
+		</div>
 
-		<td class="EXLSummary">
+		<div class="EXLSummary col-md-10">
 		  	<div class="EXLSummaryContainer">
 	  			<div class="EXLSummaryFields">
-		  			<h2 class="EXLResultTitle">
+		  			<h3 class="EXLResultTitle">
 						<a id="titleLink" target="_parent" href="${fn:escapeXml(frbrUrl)}" onclick="reportClick();${boomCall}reportBibTip('${result.id}');${azJournalPopUp}">
 		  					${title}
 		  				</a>
-		  			</h2>
+		  			</h3>
 					<c:set var="author"><prm:fields fields="creator,contributor" result="${result}" fieldDelims="${form.displayFieldsDelimiters[1]}"/></c:set>
 					<c:if test="${not empty author}">
 				    	<h4 class="EXLResultAuthor">${fmt:escapeLooseAmpersands(author)}</h4>
 					</c:if>
-					<span class="EXLResultVersionFound">
-						<fmt:message key="frbrversion.found"/>
-					</span>
-					<h4 class="EXLResultSeeFrbrLink">
-						<fmt:message key="frbrversion.see.link"/>
-					</h4>
+                      <%--<span class="EXLResultVersionFound">
+                     <fmt:message key="frbrversion.found"/>
+                 </s
+                   <%--<h4 class="EXLResultSeeFrbrLink">
+                          <fmt:message key="frbrversion.see.link"/>
+                      </h4>--%>
 		  		</div>
                 <c:set var="resultStatusIndex" value="${resultStatus.index}"/>
 		    <div id="exlidResult${resultStatusIndex}-TabContainer-viewOnlineTab" class="EXLResultTabContainer EXLContainer-viewOnlineTab EXLResultTabContainerClosed">
@@ -127,32 +126,36 @@
 				</cite>
 			</div>
 			<br/>
-		</td>
+		</div>
   	</c:if>
 
   <!-- Use old display of frbr (preferred record) -->
   <c:if test="${!isFrbrNewDisplay}">
-	  <td class="EXLThumbnail"><a name="${result.id}" id="${result.id}" class="EXLResultRecordId"></a>
+	  <div class="EXLThumbnail col-md-2"><a name="${result.id}" id="${result.id}" class="EXLResultRecordId"></a>
 	  	<c:if test="${form.alma != null && !form.alma}">
 			<!--begin thumbnails-->
 				<prm:thumbnails thumbLocation="display" thumbnailLinks="${form.delivery[resultStatus.index].thumbnailLinks}" index="${resultStatus.index}" resultTitleUrl="${resultTitleUrl}" displayURL="${displayURL}" isOnline="${isOnline}"/>
 		    <!--end thumbnails-->
-		 	<div class="EXLHiddenCue">Material Type: </div><span class="EXLThumbnailCaption" id="mediaTypeCaption-${result.resultNumber}"><fmt:message key="mediatype.${result.values[c_value_fmticon]}" /></span>
+		 	<div class="EXLHiddenCue collapse">Material Type: </div>
+            <span class="EXLThumbnailCaption" id="mediaTypeCaption-${result.resultNumber}">
+                <fmt:message key="mediatype.${result.values[c_value_fmticon]}" />
+            </span>
 	  	</c:if>
-	  </td>
-	  <td class="EXLMyShelfStar">
-	 	<c:choose>
-		 	<c:when test="${result.remote}">
-		 		<prm:miniAddToEshelf basketIndex="${resultStatus.index}" recId="${result.id}" isRemote="${result.remote}" scopes="${form.scp.scps4remote}" resultIndex="${result.resultNumber}"/>
-		 	</c:when>
-		 	<c:otherwise>
-				<prm:miniAddToEshelf basketIndex="${resultStatus.index}" recId="${result.values[c_value_recordid][0]}" isRemote="${result.remote}" scopes="" resultIndex="${result.resultNumber}"/>
-			</c:otherwise>
-	 	</c:choose>
-	  </td>
-	  <td class="EXLSummary">
+	  </div>
+
+	  <div class="EXLSummary col-md-10">
 		  <div class="EXLSummaryContainer">
 			<div class="EXLSummaryFields">
+                <div class="EXLMyShelfStar pull-right">
+                    <c:choose>
+                        <c:when test="${result.remote}">
+                            <prm:miniAddToEshelf basketIndex="${resultStatus.index}" recId="${result.id}" isRemote="${result.remote}" scopes="${form.scp.scps4remote}" resultIndex="${result.resultNumber}"/>
+                        </c:when>
+                        <c:otherwise>
+                            <prm:miniAddToEshelf basketIndex="${resultStatus.index}" recId="${result.values[c_value_recordid][0]}" isRemote="${result.remote}" scopes="" resultIndex="${result.resultNumber}"/>
+                        </c:otherwise>
+                    </c:choose>
+                </div>
 				<h3 class="EXLResultTitle">
 				<c:set var="strippedTitle">${fn:replace(fn:replace(title,'<span class="searchword">',''),'</span>','')}</c:set>
 				<c:choose>
@@ -292,7 +295,7 @@
 							<c:set var="popoutTarget"></c:set>
 						</c:otherwise>
 					</c:choose>
-					<!-- Here we go now jiminy! 
+					<!-- Here we go now jiminy!
 					displayURL = ${displayURL}
 					tabState.viewOnlineTab.link = ${tabState.viewOnlineTab.link}
 					-->
@@ -475,14 +478,14 @@
 	 	          	<c:url var="taburl" value="${displayURL}">
 						<c:param name="tabs" value="conditionalTab"/>
 						<c:param name="gathStatTab" value="true"/>
-						<c:param name="tabRealType" value="citations"/>						
+						<c:param name="tabRealType" value="citations"/>
 				  	</c:url>
 				  	<c:set var="linkTitle">
 					  <fmt:message key="brief.tabs.links.title.citationsTab">
 					  	<fmt:param>${strippedTitle}</fmt:param>
 					  </fmt:message>
-				  	</c:set> 
- 		          	<a href="${fn:escapeXml(taburl)}" title="${linkTitle}"><fmt:message key="${tabState.citationsTab.label}"/></a> 				
+				  	</c:set>
+ 		          	<a href="${fn:escapeXml(taburl)}" title="${linkTitle}"><fmt:message key="${tabState.citationsTab.label}"/></a>
 				 	<!-- rum statistics -->
 					<prm:boomerang id="citations_${resultStatus.index}" boomForm="${searchForm}" pageId="brief"
 						opId="citationsTab" resultDoc="${result}" type="citations"
@@ -498,14 +501,14 @@
 	 	          	<c:url var="taburl" value="${displayURL}">
 						<c:param name="tabs" value="conditionalTab"/>
 						<c:param name="gathStatTab" value="true"/>
-						<c:param name="tabRealType" value="onlinereviews"/>						
+						<c:param name="tabRealType" value="onlinereviews"/>
 				  	</c:url>
 				  	<c:set var="linkTitle">
 					  <fmt:message key="brief.tabs.links.title.onlinereviewsTab">
 					  	<fmt:param>${strippedTitle}</fmt:param>
 					  </fmt:message>
-				  	</c:set> 
- 		          	<a href="${fn:escapeXml(taburl)}"  title="${linkTitle}"><fmt:message key="${tabState.onlinereviewsTab.label}"/></a> 				
+				  	</c:set>
+ 		          	<a href="${fn:escapeXml(taburl)}"  title="${linkTitle}"><fmt:message key="${tabState.onlinereviewsTab.label}"/></a>
 				 	<!-- rum statistics -->
 					<prm:boomerang id="onlinereviews_${resultStatus.index}" boomForm="${searchForm}" pageId="brief"
 						opId="onlinereviewsTab" resultDoc="${result}" type="onlinereviews"
@@ -537,14 +540,16 @@
 		    <div id="exlidResult${resultStatusIndex}-TabContainer-citationsTab" class="EXLResultTabContainer EXLContainer-citationsTab EXLResultTabContainerClosed">
 		    </div>
 		    <div id="exlidResult${resultStatusIndex}-TabContainer-onlinereviewsTab" class="EXLResultTabContainer EXLContainer-onlinereviewsTab EXLResultTabContainerClosed">
-		    </div>		    
+		    </div>
 
-		</td>
+		</div>
+
 	</c:if><!-- End of ${!isFrbrNewDisplay} condition -->
 
-   </tr>
+   </div>
+    <hr/>
  </c:forEach>
-</table>
+</div>
 
 
 <c:choose>
