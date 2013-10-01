@@ -132,7 +132,7 @@
 
     <%@ include file="resultsHeaderNavigation.jsp" %>
 
-	<div class="EXLResultsSortBy">
+	<div class="EXLResultsSortBy clearfix">
 		<!--<span class="EXLResultsSortByLabel"><fmt:message key='results.sortby' /></span>
 		<span class="EXLResultsSortBySelected">
 			<a href="#" title="<fmt:message key='results.tooltip.sortby'/>">
@@ -265,6 +265,7 @@
 
 		</div>
 	</div>
+    <hr/>
 	<c:if
 		test="${(searchForm.rfnGrp == null || searchForm.rfnGrp[0] != 'frbr') && (searchForm.mode != null) &&(searchForm.mode eq 'BrowseSearch')}">
 		<c:url value="search.do" var="BackToBrowseSearch">

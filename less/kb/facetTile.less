@@ -3,103 +3,111 @@
 
 
 .facet-collapse {
-    @media (max-width: @screen-sm-max ) {
-        .collapse;
-        }
+@media (max-width: @screen-sm-max ) {
+    .collapse;
+    }
 
-    @media (min-width: @screen-sm-max) {
-        display:block;
-      }
+@media (min-width: @screen-sm-max) {
+    display:block;
+    }
     }
 
 #refine {
-    @media (min-width: @screen-sm-max) {
-        .collapse;
-        }
-    @media (max-width: @screen-sm-max) {
-        display:block;
-        }
-     }
+@media (min-width: @screen-sm-max) {
+    .collapse;
+    }
+@media (max-width: @screen-sm-max) {
+    display:block;
+    }
+    }
 
 
 
-ul li.EXLAdditionalFacet {
-    display:none
-}
 
 
-/*Find Databases Styles
-.EXLformFindDBIframe {position:absolute; top:50px; left:25%; background-color:#00FF99; z-index:300;background-color:#f4f7f8; }/*iframe*/
-
-/*#exlidFindDBContainer { background-color:#ecf0f3; width:100%; height:510px; padding-top:2%}
-#exlidFindDBTile {  clear:left;  padding:0em 0em 0em 0em; font-size:80%; height:450px; width:96%; border:1px solid #d4d4d4; background-color:#FFFFFF; margin-left:auto; margin-right:auto;}
-
-#exliGreyOverlay { .modal; .fade; position: fixed;  top: 0%; left: 0%; width: 100%; height: 100%; background-color: #cccccc; z-index:1001; -moz-opacity: 0.8; opacity:.80; filter: alpha(opacity=80);}
-#exliWhiteContent { position: absolute; top: 10%; left: 15%; width: 75%;  max-height: 400px;background-color: white; z-index:1002;}
-.exliLoadingFdb {position: absolute; top: 10%; left: 15%; width: 75%; height: 400px; background-color: white; z-index:1002; background-image:url(../images/icon_loading_circle.gif); background-repeat:no-repeat; background-position:center; text-align:center;}
-.exliLoadingAz {height: 75px;background-image:url(../images/icon_loading_circle.gif); background-repeat:no-repeat; background-position:center; text-align:center;}
-.exliLoadingFdbMoreInfo {height: 75px; background-color: #FFF6D4; z-index:1002; background-image:url(../images/icon_loading_find_db.gif); background-repeat:no-repeat; background-position:center;display:none;}
-#exlidFindDBListWrapper {clear:both;}  */
 
 
-/* * html #exliGreyOverlay iframe { ie6 hack to enable the lightbox to work display:block; z-index:-1; filter: mask(); border: 0; margin: 0; padding: 0; top: 0; left: 0; width: 100%; height: 100%; overflow: hidden;} */
-/* * html #exliLoadingFdb iframe {  ie6 hack to enable the lightbox to work display:block; z-index:-1; filter: mask(); border: 0; margin: 0; padding: 0; top: 0; left: 0; width: 100%; height: 100%; overflow: hidden;} */
-/* #exliGreyOverlay iframe {display:none;}  Do not use the iframe hack when not in ie6*/
-/* #exliLoadingFdb iframe {display:none;}  Do not use the iframe hack when not in ie6*/
-/* * html #exliGreyOverlay {  ie6 hack to enable the lightbox to work/   position: absolute;}*/
-/* * html #exliWhiteContent {  ie6 hack to enable the lightbox to work position: absolute; }
-/* * html #exlidPleaseWaitContainer { ie6 hack to enable the lightbox to work position:absolute;}*/
-/* * html .exliLoadingFdb {  ie6 hack to enable the lightbox to work position: absolute; }*/
 
 
 #exliGreyOverlay {
-    .modal;
+    .modal-backdrop;
     .fade;
     .in;
-    position: fixed;  top: 0%; left: 0%; width: 100%; height: 100%; background-color: #cccccc; z-index:1001; -moz-opacity: 0.8; opacity:.80; filter: alpha(opacity=80);
 }
 #exliWhiteContent{
-   .modal-dialog;
-    position: absolute; top: 10%; left: 15%; width: 75%;  background-color: white; z-index:1002;
-
+    .modal;
 }
-#exliWhiteContent:first-child{
+#exliWhiteContent div:first-child{
+    .modal-dialog;
+}
+#exliWhiteContent div #exlidFacetsLightboxContainer{
     .modal-content;
-
+    .clearfix;
 }
-.EXLFacetsLightboxListRow{
-  .container;
+.EXLFacetsLightboxHeader {
+    .modal-header;
 }
-.EXLFacetsLightboxList fieldset{
+#exlidFacetsLightboxListWrapper {
+    .modal-body;
+}
+/*
+.EXLFacetsLightboxTabsRibbon{
+    background:red;
     .row;
 }
-.EXLFacetsLightboxList .legend, .EXLFacetsLightboxTabsRibbon span{
-    .col-xs-10;
-    .col-sm-10;
-}
-.EXLFacetsLightboxList .EXLCheckboxGroup, .EXLFacetsLightboxTabsRibbon .EXLFacetsLightboxTabsRibbonInclude, .EXLFacetsLightboxTabsRibbon .EXLFacetsLightboxTabsRibbonExclude{
-    .col-xs-1;
-    .col-sm-1;
-    .text-center;
-}
+
 .EXLFacetsLightboxTabsRibbon span{
     font-weight: bold;
+    display: inline-block;
+    background:yellow;
+    width:50px;
+
+}
+
+.EXLFacetsLightboxListRow{
+    .clearfix;
+    background:silver;
+    padding-bottom: 5px;
+}
+
+.EXLFacetsLightboxList .legend{
+
+}
+.EXLFacetsLightboxList .EXLCheckboxGroup{
+    width:50px;
+    .pull-left;
+}
+.EXLFacetsLightboxTabsRibbon span{
+
 }
 .EXLFacetsLightboxList .legend span{
     .badge;
 }
 
 
-.EXLCheckboxGroup label{
+.EXLCheckboxGroup label, .EXLFacetsLightboxHeaderButtons{
     .collapse;
 }
+
+
+
+
 
 .EXLSubmit{
     .btn;
     .btn-primary;
 }
 .EXLReset {
-    .close;
+    .btn;
     .btn-default;
 }
+
+.EXLFacetsLightboxFieldRibbonFormResetSearch{
+    .pull-left;
+}
+.EXLFacetsLightboxFieldRibbonFormSubmitSelected{
+    .pull-right;
+}
+
+    */
 
