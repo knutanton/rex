@@ -6032,3 +6032,365 @@ header img {
   max-width: 100%;
   height: auto !important;
 }
+.wide {
+  width: auto;
+  max-width: 1160px;
+}
+@media (max-width: 991px) {
+  .facet-collapse {
+    display: none;
+  }
+  .facet-collapse.in {
+    display: block;
+  }
+}
+@media (min-width: 991px) {
+  .facet-collapse {
+    display: block;
+  }
+}
+@media (min-width: 991px) {
+  #refine {
+    display: none;
+  }
+  #refine.in {
+    display: block;
+  }
+}
+@media (max-width: 991px) {
+  #refine {
+    display: block;
+  }
+}
+ul li.EXLAdditionalFacet {
+  display: none;
+}
+/*Find Databases Styles
+.EXLformFindDBIframe {position:absolute; top:50px; left:25%; background-color:#00FF99; z-index:300;background-color:#f4f7f8; }/*iframe*/
+/*#exlidFindDBContainer { background-color:#ecf0f3; width:100%; height:510px; padding-top:2%}
+#exlidFindDBTile {  clear:left;  padding:0em 0em 0em 0em; font-size:80%; height:450px; width:96%; border:1px solid #d4d4d4; background-color:#FFFFFF; margin-left:auto; margin-right:auto;}
+
+#exliGreyOverlay { .modal; .fade; position: fixed;  top: 0%; left: 0%; width: 100%; height: 100%; background-color: #cccccc; z-index:1001; -moz-opacity: 0.8; opacity:.80; filter: alpha(opacity=80);}
+#exliWhiteContent { position: absolute; top: 10%; left: 15%; width: 75%;  max-height: 400px;background-color: white; z-index:1002;}
+.exliLoadingFdb {position: absolute; top: 10%; left: 15%; width: 75%; height: 400px; background-color: white; z-index:1002; background-image:url(../images/icon_loading_circle.gif); background-repeat:no-repeat; background-position:center; text-align:center;}
+.exliLoadingAz {height: 75px;background-image:url(../images/icon_loading_circle.gif); background-repeat:no-repeat; background-position:center; text-align:center;}
+.exliLoadingFdbMoreInfo {height: 75px; background-color: #FFF6D4; z-index:1002; background-image:url(../images/icon_loading_find_db.gif); background-repeat:no-repeat; background-position:center;display:none;}
+#exlidFindDBListWrapper {clear:both;}  */
+/* * html #exliGreyOverlay iframe { ie6 hack to enable the lightbox to work display:block; z-index:-1; filter: mask(); border: 0; margin: 0; padding: 0; top: 0; left: 0; width: 100%; height: 100%; overflow: hidden;} */
+/* * html #exliLoadingFdb iframe {  ie6 hack to enable the lightbox to work display:block; z-index:-1; filter: mask(); border: 0; margin: 0; padding: 0; top: 0; left: 0; width: 100%; height: 100%; overflow: hidden;} */
+/* #exliGreyOverlay iframe {display:none;}  Do not use the iframe hack when not in ie6*/
+/* #exliLoadingFdb iframe {display:none;}  Do not use the iframe hack when not in ie6*/
+/* * html #exliGreyOverlay {  ie6 hack to enable the lightbox to work/   position: absolute;}*/
+/* * html #exliWhiteContent {  ie6 hack to enable the lightbox to work position: absolute; }
+/* * html #exlidPleaseWaitContainer { ie6 hack to enable the lightbox to work position:absolute;}*/
+/* * html .exliLoadingFdb {  ie6 hack to enable the lightbox to work position: absolute; }*/
+#exliGreyOverlay {
+  display: none;
+  overflow: auto;
+  overflow-y: scroll;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1040;
+  opacity: 0;
+  -webkit-transition: opacity 0.15s linear;
+  transition: opacity 0.15s linear;
+  opacity: 1;
+  position: fixed;
+  top: 0%;
+  left: 0%;
+  width: 100%;
+  height: 100%;
+  background-color: #cccccc;
+  z-index: 1001;
+  -moz-opacity: 0.8;
+  opacity: .80;
+  filter: alpha(opacity=80);
+}
+#exliGreyOverlay.fade .modal-dialog {
+  -webkit-transform: translate(0, -25%);
+  -ms-transform: translate(0, -25%);
+  transform: translate(0, -25%);
+  -webkit-transition: -webkit-transform 0.3s ease-out;
+  -moz-transition: -moz-transform 0.3s ease-out;
+  -o-transition: -o-transform 0.3s ease-out;
+  transition: transform 0.3s ease-out;
+}
+#exliGreyOverlay.in .modal-dialog {
+  -webkit-transform: translate(0, 0);
+  -ms-transform: translate(0, 0);
+  transform: translate(0, 0);
+}
+#exliGreyOverlay.in {
+  opacity: 1;
+}
+#exliWhiteContent {
+  margin-left: auto;
+  margin-right: auto;
+  width: auto;
+  padding: 10px;
+  z-index: 1050;
+  position: absolute;
+  top: 10%;
+  left: 15%;
+  width: 75%;
+  background-color: white;
+  z-index: 1002;
+}
+#exliWhiteContent:first-child {
+  position: relative;
+  background-color: #ffffff;
+  border: 1px solid #999999;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 6px;
+  -webkit-box-shadow: 0 3px 9px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 3px 9px rgba(0, 0, 0, 0.5);
+  background-clip: padding-box;
+  outline: none;
+}
+.EXLFacetsLightboxListRow {
+  margin-right: auto;
+  margin-left: auto;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+.EXLFacetsLightboxListRow:before,
+.EXLFacetsLightboxListRow:after {
+  content: " ";
+  /* 1 */
+
+  display: table;
+  /* 2 */
+
+}
+.EXLFacetsLightboxListRow:after {
+  clear: both;
+}
+.EXLFacetsLightboxListRow:before,
+.EXLFacetsLightboxListRow:after {
+  content: " ";
+  /* 1 */
+
+  display: table;
+  /* 2 */
+
+}
+.EXLFacetsLightboxListRow:after {
+  clear: both;
+}
+.EXLFacetsLightboxList fieldset {
+  margin-left: -15px;
+  margin-right: -15px;
+}
+.EXLFacetsLightboxList fieldset:before,
+.EXLFacetsLightboxList fieldset:after {
+  content: " ";
+  /* 1 */
+
+  display: table;
+  /* 2 */
+
+}
+.EXLFacetsLightboxList fieldset:after {
+  clear: both;
+}
+.EXLFacetsLightboxList fieldset:before,
+.EXLFacetsLightboxList fieldset:after {
+  content: " ";
+  /* 1 */
+
+  display: table;
+  /* 2 */
+
+}
+.EXLFacetsLightboxList fieldset:after {
+  clear: both;
+}
+.EXLFacetsLightboxList .legend,
+.EXLFacetsLightboxTabsRibbon span {
+  float: left;
+  width: 83.33333333333334%;
+  position: relative;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+.EXLFacetsLightboxList .EXLCheckboxGroup,
+.EXLFacetsLightboxTabsRibbon .EXLFacetsLightboxTabsRibbonInclude,
+.EXLFacetsLightboxTabsRibbon .EXLFacetsLightboxTabsRibbonExclude {
+  float: left;
+  width: 8.333333333333332%;
+  position: relative;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
+  text-align: center;
+}
+.EXLFacetsLightboxTabsRibbon span {
+  font-weight: bold;
+}
+.EXLFacetsLightboxList .legend span {
+  display: inline-block;
+  min-width: 10px;
+  padding: 3px 7px;
+  font-size: 12px;
+  font-weight: bold;
+  color: #ffffff;
+  line-height: 1;
+  vertical-align: baseline;
+  white-space: nowrap;
+  text-align: center;
+  background-color: #999999;
+  border-radius: 10px;
+}
+.EXLFacetsLightboxList .legend span:empty {
+  display: none;
+}
+.EXLCheckboxGroup label {
+  display: none;
+}
+.EXLCheckboxGroup label.in {
+  display: block;
+}
+.EXLSubmit {
+  display: inline-block;
+  padding: 6px 12px;
+  margin-bottom: 0;
+  font-size: 14px;
+  font-weight: normal;
+  line-height: 1.428571429;
+  text-align: center;
+  vertical-align: middle;
+  cursor: pointer;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  white-space: nowrap;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -o-user-select: none;
+  user-select: none;
+  color: #ffffff;
+  background-color: #428bca;
+  border-color: #357ebd;
+}
+.EXLSubmit:focus {
+  outline: thin dotted #333;
+  outline: 5px auto -webkit-focus-ring-color;
+  outline-offset: -2px;
+}
+.EXLSubmit:hover,
+.EXLSubmit:focus {
+  color: #333333;
+  text-decoration: none;
+}
+.EXLSubmit:active,
+.EXLSubmit.active {
+  outline: 0;
+  background-image: none;
+  -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+  box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+}
+.EXLSubmit.disabled,
+.EXLSubmit[disabled],
+fieldset[disabled] .EXLSubmit {
+  cursor: not-allowed;
+  pointer-events: none;
+  opacity: 0.65;
+  filter: alpha(opacity=65);
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+.EXLSubmit:hover,
+.EXLSubmit:focus,
+.EXLSubmit:active,
+.EXLSubmit.active,
+.open .dropdown-toggle.EXLSubmit {
+  color: #ffffff;
+  background-color: #3276b1;
+  border-color: #285e8e;
+}
+.EXLSubmit:active,
+.EXLSubmit.active,
+.open .dropdown-toggle.EXLSubmit {
+  background-image: none;
+}
+.EXLSubmit.disabled,
+.EXLSubmit[disabled],
+fieldset[disabled] .EXLSubmit,
+.EXLSubmit.disabled:hover,
+.EXLSubmit[disabled]:hover,
+fieldset[disabled] .EXLSubmit:hover,
+.EXLSubmit.disabled:focus,
+.EXLSubmit[disabled]:focus,
+fieldset[disabled] .EXLSubmit:focus,
+.EXLSubmit.disabled:active,
+.EXLSubmit[disabled]:active,
+fieldset[disabled] .EXLSubmit:active,
+.EXLSubmit.disabled.active,
+.EXLSubmit[disabled].active,
+fieldset[disabled] .EXLSubmit.active {
+  background-color: #428bca;
+  border-color: #357ebd;
+}
+.EXLReset {
+  float: right;
+  font-size: 21px;
+  font-weight: bold;
+  line-height: 1;
+  color: #000000;
+  text-shadow: 0 1px 0 #ffffff;
+  opacity: 0.2;
+  filter: alpha(opacity=20);
+  color: #333333;
+  background-color: #ffffff;
+  border-color: #cccccc;
+}
+.EXLReset:hover,
+.EXLReset:focus {
+  color: #000000;
+  text-decoration: none;
+  cursor: pointer;
+  opacity: 0.5;
+  filter: alpha(opacity=50);
+}
+button.EXLReset {
+  padding: 0;
+  cursor: pointer;
+  background: transparent;
+  border: 0;
+  -webkit-appearance: none;
+}
+.EXLReset:hover,
+.EXLReset:focus,
+.EXLReset:active,
+.EXLReset.active,
+.open .dropdown-toggle.EXLReset {
+  color: #333333;
+  background-color: #ebebeb;
+  border-color: #adadad;
+}
+.EXLReset:active,
+.EXLReset.active,
+.open .dropdown-toggle.EXLReset {
+  background-image: none;
+}
+.EXLReset.disabled,
+.EXLReset[disabled],
+fieldset[disabled] .EXLReset,
+.EXLReset.disabled:hover,
+.EXLReset[disabled]:hover,
+fieldset[disabled] .EXLReset:hover,
+.EXLReset.disabled:focus,
+.EXLReset[disabled]:focus,
+fieldset[disabled] .EXLReset:focus,
+.EXLReset.disabled:active,
+.EXLReset[disabled]:active,
+fieldset[disabled] .EXLReset:active,
+.EXLReset.disabled.active,
+.EXLReset[disabled].active,
+fieldset[disabled] .EXLReset.active {
+  background-color: #ffffff;
+  border-color: #cccccc;
+}

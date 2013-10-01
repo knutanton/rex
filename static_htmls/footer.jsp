@@ -109,5 +109,6 @@
 <!--end footer-->
 
 <!-- CUSTOM JS -->
+<script type="text/javascript" src="../sites/kb/<%= view %>/javascript/kb/cookieInformerBooklet.js"></script>
 <script type="text/javascript" src="../sites/kb/<%= view %>/javascript/kb/header_global.js"></script>
 <script type="text/javascript" src="../sites/kb/<%= view %>/javascript/kb/header.js"></script>

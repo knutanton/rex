@@ -107,6 +107,7 @@
 <script type="text/javascript" src="../sites/kb/<%= view %>/javascript/bootstrap/carousel.js"></script>
 
 <!-- CUSTOM JS -->
+<script type="text/javascript" src="../sites/kb/<%= view %>/javascript/kb/cookieInformerBooklet_da_DK.js"></script>
 <script type="text/javascript" src="../sites/kb/<%= view %>/javascript/kb/header_global.js"></script>
 <script type="text/javascript" src="../sites/kb/<%= view %>/javascript/kb/header_da_DK.js"></script>
 
