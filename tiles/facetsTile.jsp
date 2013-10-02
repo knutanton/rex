@@ -1,8 +1,10 @@
 <%@ include file="/views/taglibsIncludeAll.jspf" %>
 <%@page import="com.exlibris.primo.srvinterface.FacetResultDTO"%>
 <%@ taglib uri="/WEB-INF/tlds/exlibris-ajax.tld" prefix="eas" %>
-<button id="refine" class="btn btn-toolbar" name="refine" data-toggle="collapse" href=".index" >Refine Button</button>
-<c:if test="${form.displayGeneralPageActionsOnTop}">
+    <p>
+        <button id="refine" class="btn btn-lg btn-primary btn-block" name="refine" data-toggle="collapse" href=".index" ><span class="glyphicon glyphicon-filter"></span></button>
+    </p>
+    <c:if test="${form.displayGeneralPageActionsOnTop}">
 	<!--RSS, Save Search and Add page to e-Shelf Links-->
 	<%@ include file="generalPageActions.jspf" %>
 </c:if>
@@ -114,7 +116,7 @@
 <%--Display the content of this page only if we have results --%>
 <c:if test="${form.searchResult.numberOfResults>0 and form.facetResult.displayFacets}" >
 
-	<div id="facetList${facetIndex.index}" class="facet-collapse slide index" >
+	<div id="facetList${facetIndex.index}" class="facet-collapse slide index panel-group" >
 
 		<c:set var="facetTitleDisplayed" value="false"/>
 		<c:forEach items="${form.facetResult.facetOrder}" var="facetField" varStatus="facetIndex">
@@ -147,8 +149,8 @@
 							</c:if>
                             <div class="panel-heading">
                                 <h4 class="panel-title">
-                                    <a title="<fmt:message key='facets.moreoptions.tooltip'/>" id="exlidFacet${facetIndex.index}-more" data-toggle="collapse" data-parent="#facetList${facetIndex.index}" href="#exlidFacetSublist${facetIndex.index}">
-                                        <fmt:message key="facets.facet.${facetField}"/>
+                                    <a title="<fmt:message key='facets.moreoptions.tooltip'/>" id="exlidFacet${facetIndex.index}-more" class="btn-block" data-toggle="collapse" data-parent="#facetList${facetIndex.index}" href="#exlidFacetSublist${facetIndex.index}">
+                                        <span class="glyphicon glyphicon-filter text-muted"></span> <fmt:message key="facets.facet.${facetField}"/>
                                     </a>
 							    </h4>
                             </div>
