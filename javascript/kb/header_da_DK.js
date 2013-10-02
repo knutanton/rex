@@ -135,8 +135,9 @@ function replaceTextInLocationsTab(textReplaceObjects) {
 
             $.each(textReplaceObjects, function (index, textReplaceObject) {
                 if (matchText.indexOf(textReplaceObject.originalText) > -1) {
-                    html.find(".EXLLocationTableActionsMenu ul li:contains(ikke)").html(textReplaceObject.newText);
-		            return;
+                    //html.find(".EXLLocationTableActionsMenu ul li:contains(ikke)").html(textReplaceObject.newText);
+		            html.find(".EXLLocationTableColumn2:contains(DFS) ~ td li.EXLLocationTableActionsFirstItem").html(textReplaceObject.newText);
+                    return;
                 }
             });
         }
