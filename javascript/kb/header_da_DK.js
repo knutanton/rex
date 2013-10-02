@@ -302,7 +302,7 @@ $(document).ready(function () {
     $('.EXLResultTabContainerClosed').addClass('collapse');
 
     //we need the user's IP to call Trafiklys
-   getIP().done(trafiklys);
+//   getIP().done(trafiklys); // FIXME: outcommented because it causes an error in the javascript console /HAFE
     var dod = new TextReplaceObject("Brug Digital Version", '<a href="http://www.kb.dk/da/nb/samling/dod/DODbestilling.html" target="_blank">Efter særlig ansøgning</a>'),
         kob = new TextReplaceObject("Mail til kob", '<a href="http://www.kb.dk/da/nb/samling/ks/kobbestilling.html" target="_blank">Mail til kob</a>'),
         mailToDfs = new TextReplaceObject("DFS Brug", '<a href="mailto:dfs-mail@kb.dk">Mail til dfs-mail@kb.dk</a>'),
