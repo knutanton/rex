@@ -2,7 +2,7 @@
 
 /* Hacks for my_account_layout.jsp (folder view)
 ******************************************************/
-@import url("/primo_library/libweb/css/my_account_layout.css");
+@import url("my_account_layout.css");
 
 /*-------------Primo CSS Document-------------*/
 *     {margin:0; padding:0; }
@@ -393,7 +393,7 @@ strong {font-style:normal; font-weight:bold }
 #exlidUserAreaRibbon li.EXLSelectedItem {}
 #exlidUserAreaRibbon li.EXLLastItem {}
 
-#exlidSearchTileWrapper{font-size:80%; z-index:100; position:relative; margin-bottom:60px; margin-top:42px; padding:0px 0; background:#FFF url(bg.gif) repeat-x 0px -24px; min-height:85px;}
+#exlidSearchTileWrapper{font-size:80%; z-index:100; position:relative; margin-bottom:60px; margin-top:42px; padding:0px 0; background:#FFF url(/primo_library/libweb/css/bg.gif) repeat-x 0px -24px; min-height:85px;}
 /* ----------Search --------------- */
 
 /* ----------Search Box--------------- */
@@ -422,7 +422,7 @@ strong {font-style:normal; font-weight:bold }
 #exlidSearchTabs{list-style-type: none;}
 #exlidSearchTabs li { display:inline; }
 #exlidSearchTabs a{display:inline-block; text-decoration:none; padding:0px 10px; line-height:26px; color:#436367; background:#D7DDE3;}
-#exlidSearchTabs li.EXLSearchTabSelected  a{ font-weight:bold; text-decoration:none; color:#FFF; background:#436367 url(bg.gif) repeat-x 0 0; }
+#exlidSearchTabs li.EXLSearchTabSelected  a{ font-weight:bold; text-decoration:none; color:#FFF; background:#436367 url(/primo_library/libweb//css/bg.gif) repeat-x 0 0; }
 
 .EXLSearchFieldRibbonFormFields{float:left; width:89%; height:26px; text-align:left;}
 .EXLSearchFieldRibbonFormSearchFor { float:left; width:48%;}
@@ -2181,8 +2181,3 @@ padding-right:10px !important;
 	margin:4.5px 0;
 	font-size:1.0em;
 }
-
-
-
-
-
