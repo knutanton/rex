@@ -1,6 +1,7 @@
 //KB
 //Changes to tiles/facetTile
 
+/* RESPONSIVE TOGGLE */
 .EXLFacetTile .EXLAdditionalFacet{
     .collapse;
 }
@@ -26,91 +27,107 @@
 
 
 
-
-
-
-
-
-
+/* SHOW MORE lightbox*/
 #exliGreyOverlay {
     .modal-backdrop;
     .fade;
     .in;
+     iframe{
+         border: none;
+     }
 }
 #exliWhiteContent{
     .modal;
 }
-#exliWhiteContent div:first-child{
+#exliWhiteContent > div{
     .modal-dialog;
 }
-#exliWhiteContent div #exlidFacetsLightboxContainer{
+@media screen and (min-width: 768px) {
+    #exliWhiteContent > div{
+        right: auto;
+        left: 50%;
+        width: 600px;
+        padding-top: 30px;
+        padding-bottom: 30px;
+    }
+}
+#exlidFacetsLightboxContainer{
     .modal-content;
-    .clearfix;
 }
-.EXLFacetsLightboxHeader {
+.EXLFacetsLightboxHeader{
     .modal-header;
-}
-#exlidFacetsLightboxListWrapper {
-    .modal-body;
-}
-/*
-.EXLFacetsLightboxTabsRibbon{
-    background:red;
-    .row;
-}
-
-.EXLFacetsLightboxTabsRibbon span{
-    font-weight: bold;
-    display: inline-block;
-    background:yellow;
-    width:50px;
-
-}
-
-.EXLFacetsLightboxListRow{
     .clearfix;
-    background:silver;
-    padding-bottom: 5px;
+    h1{
+        .h4;
+        .modal-title;
+        .pull-left;
+    }
+    .EXLFacetsLightboxHeaderButtons{
+        .close;
+        ul{
+            .list-unstyled;
+            a{
+                text-decoration:none;
+                }
+            li a span:first-child{
+                display:none;
+                }
+            a span:after{
+                content:"×";
+                }
+        }
+    }
 }
-
-.EXLFacetsLightboxList .legend{
-
+#exlidFacetsLightboxListWrapper{
+    .modal-body;
+    .clearfix;
 }
-.EXLFacetsLightboxList .EXLCheckboxGroup{
-    width:50px;
-    .pull-left;
+.EXLFacetsLightboxTabsRibbon{
+    .clearfix;
+    span{
+        .col-xs-2;
+        font-weight: bold;
+        padding-left:0px;
+    }
+    span:last-child{
+        .col-xs-8;
+    }
 }
-.EXLFacetsLightboxTabsRibbon span{
-
+.EXLFacetsLightboxListRow {
+    .clearfix;
+    padding:5px 0;
+    div{
+        .col-xs-2;
+    }
+    .legend{
+        .col-xs-8;
+        span{
+            margin-right:3px ;
+            .badge;
+            .pull-left;
+        }
+    }
+    label{
+        .collapse;
+    }
 }
-.EXLFacetsLightboxList .legend span{
-    .badge;
+.EXLFacetsLightboxListRow:nth-child(odd) {
+    background: @gray-lighter;
 }
-
-
-.EXLCheckboxGroup label, .EXLFacetsLightboxHeaderButtons{
-    .collapse;
+.EXLFacetsLightboxListRow:last-child {
+    border-bottom: 1px solid @modal-footer-border-color;
 }
-
-
-
-
-
-.EXLSubmit{
-    .btn;
-    .btn-primary;
-}
-.EXLReset {
-    .btn;
-    .btn-default;
-}
-
-.EXLFacetsLightboxFieldRibbonFormResetSearch{
-    .pull-left;
-}
-.EXLFacetsLightboxFieldRibbonFormSubmitSelected{
+.EXLFacetsLightboxFieldRibbonFormSubmitSelected, .EXLFacetsLightboxFieldRibbonFormResetSearch{
     .pull-right;
 }
+.EXLReset, .EXLSubmit{
+   .btn;
+   .btn-default;
+}
+.EXLSubmit{
+    .btn-primary;
+    margin-left:5px;
+}
 
-    */
+
 
