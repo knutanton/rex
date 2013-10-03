@@ -1,5 +1,5 @@
 /*global $, document, setTimeout */
-function kBFixTabs() {
+function kBFixTabs() { // FIXME: All these functions lays in the global scope - they ought to be wrapped in a kb object!
     // Tilret Bestil-fanebladet
     $(".EXLLocationTableActionsMenu>ul:not(:has(.requestForm))").each(function (index) {
         // Faa fat i en identifier paa dokumentet ved at sakse den fra et link
@@ -37,11 +37,58 @@ function kBFixTabs() {
     });
 }
 
-function kbBootstrapifyTabs() {
-    var tabContainersToFix = $('.EXLResultTabContainer:visible:not(.kbTabDone):not(:has(\'.EXLTabLoading\'))');
-    if (tabContainersToFix.length) {
-        // this is a fully loaded tab we have not bootstrapified before
+/**
+ * Flag one or more elements as fixed (have gotten whatever DOM manipulations are needed to them done)
+ * @param elem {jQuery|HTMLElement|string} jQuery object, HTMLElement or Qualified jQuery selector string.
+ */
+function flagFixed(elem) {
+    ((elem instanceof HTMLElement) || (typeof elem === 'string') || (elem instanceof String) ? $(elem) : elem).addClass('jsFlagDomFixed');
+}
 
+/**
+ * Get all elements that are not yet flagged as fixed (see flagFixed)
+ * @param selector {string} Qualified jQuery selector string. The elements that should be fixed.
+ * @param cantHave {string} Optional Qualified jQuery selector string. What the selected elements can not contain (eg. don't fix if there is a loading spinner).
+ * @return {jQuery} One or more matching elements that are not flagged as fixed yet.
+ */
+function getUnfixedElems(selector, cantHave) { // TODO: I don't think the cantHave is necessary anymore, now we are tagging the directly involved elements?
+    return $(selector + ':not(.jsFlagDomFixed)' + (cantHave ? ':not(:has(\'' + cantHave + '\'))' : ''));
+}
+
+function kbBootstrapifyTabs() {
+    var exlResultTabHeaderButtonsToFix = getUnfixedElems('.EXLResultTabContainer .EXLTabHeaderButtons'),
+        exlResultTabContainerToFix = $(exlResultTabHeaderButtonsToFix).closest('.EXLResultTabContainer:not(\'jsFlagDomFixed\')'),
+        exlDetailsContentToFix = getUnfixedElems('.EXLResultTabContainer .EXLDetailsContent');
+
+    if (exlResultTabContainerToFix.length) {
+        exlResultTabContainerToFix.addClass('well well-sm');
+        flagFixed(exlResultTabContainerToFix);
+    }
+
+    if (exlResultTabHeaderButtonsToFix.length) {
+        /* HAFE
+         * Reverse order of buttons in Tab Header, and mark them up to match bootstrap classes
+         * Responsive Rex:
+         *  Masking on: .EXLTabHeaderButtons
+         *  Adding bootstrap classes:
+         *      'nav nav-pills' to .EXLTabHeaderButtons ul,
+         *      'pull-right' to .EXLTabHeaderButtons .EXLTabHeaderButtonCloseTabs
+         *      'pull-right' to .EXLTabHeaderButtons .EXLTabHeaderButtonPopout
+         *      'dropdown pull-right' to .EXLTabHeaderButtons .EXLTabHeaderButtonSendTo
+         *      'dropdown-menu' to .EXLTabHeaderButtons .EXTTabHeaderButtonSendTo ol
+         * and reverting the order of the .EXLTabHeaderButtons ul li
+         */
+        var buttons = $('>ul', exlResultTabHeaderButtonsToFix).addClass('nav nav-pills');
+        $.each(buttons, function (index, buttonset) {
+            $(buttonset).append($('>li', buttonset).get().reverse());
+        });
+        $('.EXLTabHeaderButtonCloseTabs, .EXLTabHeaderButtonPopout, .EXLTabHeaderButtonSendTo', exlResultTabHeaderButtonsToFix).addClass('pull-right');
+        $('.EXLTabHeaderButtonSendTo', exlResultTabHeaderButtonsToFix).addClass('dropdown');
+        $('.EXLTabHeaderButtonSendTo ol', exlResultTabHeaderButtonsToFix).addClass('dropdown-menu');
+        flagFixed(exlResultTabHeaderButtonsToFix);
+    }
+
+    if (exlDetailsContentToFix.length) {
         /* HAFE
          * Replace ul stuctures in detailsTab with dl
          * Responsive Rex: .EXLContainer-detailsTab .EXLDetailsContent
@@ -58,36 +105,13 @@ function kbBootstrapifyTabs() {
          *   [...]
          * </dl>
          */
-        $('.EXLDetailsContent>ul', tabContainersToFix).changeElementType('dl');
-        $('.EXLDetailsContent>dl', tabContainersToFix).addClass('dl-horizontal'); // would have loved to put this in the end of the line a    bove, but it seems that jQuery misses out on the elementType change?
-        $('.EXLDetailsContent>dl>li', tabContainersToFix).changeElementType('dd');
-        $.each($('.EXLDetailsContent>dl>dd>strong:first-child', tabContainersToFix), function (idx, elem) {
+        $('>ul', exlDetailsContentToFix).changeElementType('dl');
+        $('>dl', exlDetailsContentToFix).addClass('dl-horizontal'); // would have loved to put this in the end of the line above, but it seems that jQuery misses out on the elementType change?
+        $('>dl>li', exlDetailsContentToFix).changeElementType('dd');
+        $.each($('>dl>dd>strong:first-child', exlDetailsContentToFix), function (idx, elem) {
             $(elem).insertBefore($(elem).closest('dd')).changeElementType('dt');
         });
-
-        /* HAFE
-         * Reverse order of buttons in Tab Header, and mark them up to match bootstrap classes
-         * Responsive Rex:
-         *  Masking on: .EXLTabHeader
-         *  Adding bootstrap classes:
-         *      'nav nav-pills' to .EXLTabHeaderButtons ul,
-         *      'pull-right' to .EXLTabHeaderButtons .EXLTabHeaderButtonCloseTabs
-         *      'pull-right' to .EXLTabHeaderButtons .EXLTabHeaderButtonPopout
-         *      'dropdown pull-right' to .EXLTabHeaderButtons .EXLTabHeaderButtonSendTo
-         *      'dropdown-menu' to .EXLTabHeaderButtons .EXTTabHeaderButtonSendTo ol
-         * and reverting the order of the .EXLTabHeaderButtons ul li
-         */
-        var exlTabHeader = $('.EXLTabHeader', tabContainersToFix),
-            buttons = $('.EXLTabHeaderButtons > ul', exlTabHeader).addClass('nav nav-pills');
-        $.each(buttons, function (index, buttonset) {
-            $(buttonset).append($('>li', buttonset).get().reverse());
-        });
-        $('.EXLTabHeaderButtonCloseTabs, .EXLTabHeaderButtonPopout, .EXLTabHeaderButtonSendTo', exlTabHeader).addClass('pull-right');
-        $('.EXLTabHeaderButtonSendTo', exlTabHeader).addClass('dropdown');
-        $('.EXLTabHeaderButtonSendTo ol', exlTabHeader).addClass('dropdown-menu');
-        $('.EXLResultTabContainer').addClass('well well-sm');
-
-        tabContainersToFix.addClass('kbTabDone');
+        flagFixed(exlDetailsContentToFix);
     }
 }
 
@@ -302,7 +326,7 @@ $(document).ready(function () {
     $('.EXLResultTabContainerClosed').addClass('collapse');
 
     //we need the user's IP to call Trafiklys
-   getIP().done(trafiklys);
+//   getIP().done(trafiklys); // FIXME: outcommented because it causes an error in the javascript console /HAFE
     var dod = new TextReplaceObject("Brug Digital Version", '<a href="http://www.kb.dk/da/nb/samling/dod/DODbestilling.html" target="_blank">Efter særlig ansøgning</a>'),
         kob = new TextReplaceObject("Mail til kob", '<a href="http://www.kb.dk/da/nb/samling/ks/kobbestilling.html" target="_blank">Mail til kob</a>'),
         mailToDfs = new TextReplaceObject("DFS Brug", '<a href="mailto:dfs-mail@kb.dk">Mail til dfs-mail@kb.dk</a>'),

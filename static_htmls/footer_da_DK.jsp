@@ -105,6 +105,7 @@
 <script type="text/javascript" src="../sites/kb/<%= view %>/javascript/bootstrap/dropdown.js"></script>
 <script type="text/javascript" src="../sites/kb/<%= view %>/javascript/bootstrap/modal.js"></script>
 <script type="text/javascript" src="../sites/kb/<%= view %>/javascript/bootstrap/carousel.js"></script>
+<script type="text/javascript" src="../sites/kb/<%= view %>/javascript/bootstrap/transition.js"></script>
 
 
 <!-- CUSTOM JS -->
