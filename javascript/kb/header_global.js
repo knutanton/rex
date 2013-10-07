@@ -1,7 +1,20 @@
+/**
+ * Unique - object with method getUid() that returns unique numbers
+ * Used to generate unique ids to postfix element ids, when creating collapsible elements and bootstrap controlers on the fly
+ */
+window.Unique = (function ($, window) {
+    var id = 1;
+    return {
+        getUid : function () {
+            id += 1;
+            return id;
+        }
+    };
+}(jQuery, window));
+
 // Adding function changeElementType to $. Changes element type. NOTE: The changing elements eventHandlers are lost in the process (childNodes handl    ers are preserved)
 // Usage: $(selector).changeElementType(newType) where selector is any valid jQuery selector and newType is a HTMLElemnent typeName
 // code heavily inspired of http://stackoverflow.com/questions/8584098/how-to-change-an-element-type-using-jquery
-
 (function ($) {
     $.fn.changeElementType = function (newType) {
         var attrs = [],
