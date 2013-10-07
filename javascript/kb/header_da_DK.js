@@ -38,10 +38,39 @@ function kBFixTabs() { // FIXME: All these functions lays in the global scope - 
 }
 
 function kbBootstrapifyTabs() {
-    var tabContainersToFix = $('.EXLResultTabContainer:visible:not(.kbTabDone):not(:has(\'.EXLTabLoading\'))');
-    if (tabContainersToFix.length) {
-        // this is a fully loaded tab we have not bootstrapified before
+    var exlResultTabHeaderButtonsToFix = getUnfixedElems('.EXLResultTabContainer .EXLTabHeaderButtons');
+    var exlResultTabContainerToFix = $(exlResultTabHeaderButtonsToFix).closest('.EXLResultTabContainer:not(\'jsFlagDomFixed\')');
 
+    if (exlResultTabContainerToFix.length) { // Make the tab a well
+        exlResultTabContainerToFix.addClass('well well-sm');
+        flagFixed(exlResultTabContainerToFix);
+    }
+
+    if (exlResultTabHeaderButtonsToFix.length) { // fix header buttons - reverse order, horizontal, align right
+        /* HAFE
+         * Reverse order of buttons in Tab Header, and mark them up to match bootstrap classes
+         * Responsive Rex:
+         *  Masking on: .EXLTabHeaderButtons
+         *  Adding bootstrap classes:
+         *      'nav nav-pills' to .EXLTabHeaderButtons ul,
+         *      'pull-right' to .EXLTabHeaderButtons .EXLTabHeaderButtonCloseTabs
+         *      'pull-right' to .EXLTabHeaderButtons .EXLTabHeaderButtonPopout
+         *      'dropdown pull-right' to .EXLTabHeaderButtons .EXLTabHeaderButtonSendTo
+         *      'dropdown-menu' to .EXLTabHeaderButtons .EXTTabHeaderButtonSendTo ol
+         * and reverting the order of the .EXLTabHeaderButtons ul li
+         */
+        var buttons = $('>ul', exlResultTabHeaderButtonsToFix).addClass('nav nav-pills');
+        $.each(buttons, function (index, buttonset) {
+            $(buttonset).append($('>li', buttonset).get().reverse());
+        });
+        $('.EXLTabHeaderButtonCloseTabs, .EXLTabHeaderButtonPopout, .EXLTabHeaderButtonSendTo', exlResultTabHeaderButtonsToFix).addClass('pull-right');
+        $('.EXLTabHeaderButtonSendTo', exlResultTabHeaderButtonsToFix).addClass('dropdown');
+        $('.EXLTabHeaderButtonSendTo ol', exlResultTabHeaderButtonsToFix).addClass('dropdown-menu');
+        flagFixed(exlResultTabHeaderButtonsToFix);
+    }
+
+    var exlDetailsContentToFix = getUnfixedElems('.EXLResultTabContainer .EXLDetailsContent');
+    if (exlDetailsContentToFix.length) { // transform ul to dl
         /* HAFE
          * Replace ul stuctures in detailsTab with dl
          * Responsive Rex: .EXLContainer-detailsTab .EXLDetailsContent
@@ -64,30 +93,6 @@ function kbBootstrapifyTabs() {
         $.each($('.EXLDetailsContent>dl>dd>strong:first-child', tabContainersToFix), function (idx, elem) {
             $(elem).insertBefore($(elem).closest('dd')).changeElementType('dt');
         });
-
-        /* HAFE
-         * Reverse order of buttons in Tab Header, and mark them up to match bootstrap classes
-         * Responsive Rex:
-         *  Masking on: .EXLTabHeader
-         *  Adding bootstrap classes:
-         *      'nav nav-pills' to .EXLTabHeaderButtons ul,
-         *      'pull-right' to .EXLTabHeaderButtons .EXLTabHeaderButtonCloseTabs
-         *      'pull-right' to .EXLTabHeaderButtons .EXLTabHeaderButtonPopout
-         *      'dropdown pull-right' to .EXLTabHeaderButtons .EXLTabHeaderButtonSendTo
-         *      'dropdown-menu' to .EXLTabHeaderButtons .EXTTabHeaderButtonSendTo ol
-         * and reverting the order of the .EXLTabHeaderButtons ul li
-         */
-        var exlTabHeader = $('.EXLTabHeader', tabContainersToFix),
-            buttons = $('.EXLTabHeaderButtons > ul', exlTabHeader).addClass('nav nav-pills');
-        $.each(buttons, function (index, buttonset) {
-            $(buttonset).append($('>li', buttonset).get().reverse());
-        });
-        $('.EXLTabHeaderButtonCloseTabs, .EXLTabHeaderButtonPopout, .EXLTabHeaderButtonSendTo', exlTabHeader).addClass('pull-right');
-        $('.EXLTabHeaderButtonSendTo', exlTabHeader).addClass('dropdown');
-        $('.EXLTabHeaderButtonSendTo ol', exlTabHeader).addClass('dropdown-menu');
-        $('.EXLResultTabContainer').addClass('well well-sm');
-
-        tabContainersToFix.addClass('kbTabDone');
     }
 }
 
