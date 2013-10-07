@@ -87,12 +87,13 @@ function kbBootstrapifyTabs() {
          *   [...]
          * </dl>
          */
-        $('.EXLDetailsContent>ul', tabContainersToFix).changeElementType('dl');
-        $('.EXLDetailsContent>dl', tabContainersToFix).addClass('dl-horizontal'); // would have loved to put this in the end of the line a    bove, but it seems that jQuery misses out on the elementType change?
-        $('.EXLDetailsContent>dl>li', tabContainersToFix).changeElementType('dd');
-        $.each($('.EXLDetailsContent>dl>dd>strong:first-child', tabContainersToFix), function (idx, elem) {
+        $('.EXLDetailsContent>ul', exlDetailsContentToFix).changeElementType('dl');
+        $('.EXLDetailsContent>dl', exlDetailsContentToFix).addClass('dl-horizontal'); // would have loved to put this in the end of the line a    bove, but it seems that jQuery misses out on the elementType change?
+        $('.EXLDetailsContent>dl>li', exlDetailsContentToFix).changeElementType('dd');
+        $.each($('.EXLDetailsContent>dl>dd>strong:first-child', exlDetailsContentToFix), function (idx, elem) {
             $(elem).insertBefore($(elem).closest('dd')).changeElementType('dt');
         });
+        flagFixed(exlDetailsContentToFix);
     }
 }
 
