@@ -16,9 +16,13 @@
             attrs[idx] = attrList;
         });
 
-        return this.replaceWith(function (idx) {
-            return $("<" + newType + "/>", attrs[idx]).data(data[idx]).append($(this).contents());
+        var allReplacedElements = $();
+        this.replaceWith(function (idx) {
+            var newElement = $("<" + newType + "/>", attrs[idx]).data(data[idx]).append($(this).contents());
+            allReplacedElements = allReplacedElements.add(newElement); // Add to the list of new elements
+            return newElement;
         });
+        return allReplacedElements;
     };
 }(jQuery));
 
