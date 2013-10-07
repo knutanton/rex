@@ -39,6 +39,24 @@ window.Unique = (function ($, window) {
     };
 }(jQuery));
 
+/**
+ * Flag one or more elements as fixed (have gotten whatever DOM manipulations are needed to them done)
+ * @param elem {jQuery|HTMLElement|string} jQuery object, HTMLElement or Qualified jQuery selector string.
+ */
+function flagFixed(elem) {
+    ((elem instanceof HTMLElement) || (typeof elem === 'string') || (elem instanceof String) ? $(elem) : elem).addClass('jsFlagDomFixed');
+}
+
+/**
+ * Get all elements that are not yet flagged as fixed (see flagFixed)
+ * @param selector {string} Qualified jQuery selector string. The elements that should be fixed.
+ * @param cantHave {string} Optional Qualified jQuery selector string. What the selected elements can not contain (eg. don't fix if there is a loading spinner).
+ * @return {jQuery} One or more matching elements that are not flagged as fixed yet.
+ */
+function getUnfixedElems(selector, cantHave) { // TODO: I don't think the cantHave is necessary anymore, now we are tagging the directly involved elements?
+    return $(selector + ':not(.jsFlagDomFixed)' + (cantHave ? ':not(:has(\'' + cantHave + '\'))' : ''));
+}
+
 //NKH Start (EOD functions)
 var t = 0;
 
