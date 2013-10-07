@@ -1,5 +1,5 @@
 /*global $, document, setTimeout */
-function kBFixTabs() {
+function kBFixTabs() { // FIXME: All these functions lays in the global scope - they ought to be wrapped in a kb object!
     // Tilret Bestil-fanebladet
     $(".EXLLocationTableActionsMenu>ul:not(:has(.requestForm))").each(function (index) {
         // Faa fat i en identifier paa dokumentet ved at sakse den fra et link
