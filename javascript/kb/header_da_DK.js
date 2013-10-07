@@ -87,11 +87,10 @@ function kbBootstrapifyTabs() {
          *   [...]
          * </dl>
          */
-        $('>ul', exlDetailsContentToFix).changeElementType('dl');
-        $('>dl', exlDetailsContentToFix).addClass('dl-horizontal'); // would have loved to put this in the end of the line a    bove, but it seems that jQuery misses out on the elementType change?
+        $('>ul', exlDetailsContentToFix).changeElementType('dl').addClass('dl-horizontal');
         $('>dl>li', exlDetailsContentToFix).changeElementType('dd');
         $.each($('>dl>dd>strong:first-child', exlDetailsContentToFix), function (idx, elem) {
-            $(elem).insertBefore($(elem).closest('dd')).changeElementType('dt');
+            $(elem).insertBefore($(elem).closest('dd')).changeElementType('dt'); // NOTE: If we want to get rid of those ":" this would be the right place to do it
         });
         flagFixed(exlDetailsContentToFix);
     }
