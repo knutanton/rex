@@ -47,6 +47,7 @@
 					<!--</div>-->
 				</c:if>
 
+				<!-- TOM - denne udkommentering gør at det ikke virker -->
 				<!--<div class="EXLFacetSaveToEShelfAction EXLFacetSaveToEShelfActionOff">-->
 					<a class="btn btn-default" onclick="reportAddPageToEshelfClick();" href="${fn:escapeXml(modifyShelfUrl)}" title="<fmt:message key="results.eshelf" />">
 						<fmt:message key="results.addpagetoeshelf"/>
