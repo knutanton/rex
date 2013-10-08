@@ -416,6 +416,7 @@ function removePleaseWait() {
     $('script[src*="pleaseWait.js"]').remove();
 }
 
+/*
 // Hey Hasse lidt til dig ;)
 $(document).ready(function () {
     removePleaseWait();
@@ -430,3 +431,4 @@ $(document).ready(function () {
     }(document, 'script', 'facebook-jssdk'));
 
 });
+*/
