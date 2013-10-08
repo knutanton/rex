@@ -57,6 +57,193 @@ function getUnfixedElems(selector, cantHave) { // TODO: I don't think the cantHa
     return $(selector + ':not(.jsFlagDomFixed)' + (cantHave ? ':not(:has(\'' + cantHave + '\'))' : ''));
 }
 
+function kbBootstrapifyTabs() {
+    var exlResultTabHeaderButtonsToFix = getUnfixedElems('.EXLResultTabContainer .EXLTabHeaderButtons');
+    var exlResultTabContainerToFix = $(exlResultTabHeaderButtonsToFix).closest('.EXLResultTabContainer:not(\'jsFlagDomFixed\')');
+
+    if (exlResultTabContainerToFix.length) { // Make the tab a well
+        exlResultTabContainerToFix.addClass('well well-sm');
+        flagFixed(exlResultTabContainerToFix);
+    }
+
+    if (exlResultTabHeaderButtonsToFix.length) { // fix header buttons - reverse order, horizontal, align right
+        /* HAFE
+         * Reverse order of buttons in Tab Header, and mark them up to match bootstrap classes
+         * Responsive Rex:
+         *  Masking on: .EXLTabHeaderButtons
+         *  Adding bootstrap classes:
+         *      'nav nav-pills' to .EXLTabHeaderButtons ul,
+         *      'pull-right' to .EXLTabHeaderButtons .EXLTabHeaderButtonCloseTabs
+         *      'pull-right' to .EXLTabHeaderButtons .EXLTabHeaderButtonPopout
+         *      'dropdown pull-right' to .EXLTabHeaderButtons .EXLTabHeaderButtonSendTo
+         *      'dropdown-menu' to .EXLTabHeaderButtons .EXTTabHeaderButtonSendTo ol
+         * and reverting the order of the .EXLTabHeaderButtons ul li
+         */
+        var buttons = $('>ul', exlResultTabHeaderButtonsToFix).addClass('nav nav-pills');
+        $.each(buttons, function (index, buttonset) {
+            $(buttonset).append($('>li', buttonset).get().reverse());
+        });
+        $('.EXLTabHeaderButtonCloseTabs, .EXLTabHeaderButtonPopout, .EXLTabHeaderButtonSendTo', exlResultTabHeaderButtonsToFix).addClass('pull-right');
+        $('.EXLTabHeaderButtonSendTo', exlResultTabHeaderButtonsToFix).addClass('dropdown');
+        $('.EXLTabHeaderButtonSendTo ol', exlResultTabHeaderButtonsToFix).addClass('dropdown-menu');
+        flagFixed(exlResultTabHeaderButtonsToFix);
+    }
+
+    var exlDetailsContentToFix = getUnfixedElems('.EXLResultTabContainer .EXLDetailsContent');
+    if (exlDetailsContentToFix.length) { // transform ul to dl
+        /* HAFE
+         * Replace ul stuctures in detailsTab with dl
+         * Responsive Rex: .EXLContainer-detailsTab .EXLDetailsContent
+         * We transform this:
+         * <ul>
+         *   <li>
+         *     <strong>Forfatter:</strong><a href="[...]/a>
+         *   </li>
+         * [...]
+         * </ul>
+         * into this:
+         * <dl>
+         *   <dt>Forfatter:<dt><dd><a href="[...]/a></dd>
+         *   [...]
+         * </dl>
+         */
+        $('>ul', exlDetailsContentToFix).changeElementType('dl').addClass('dl-horizontal');
+        $('>dl>li', exlDetailsContentToFix).changeElementType('dd');
+        $.each($('>dl>dd>strong:first-child', exlDetailsContentToFix), function (idx, elem) {
+            $(elem).insertBefore($(elem).closest('dd')).changeElementType('dt'); // NOTE: If we want to get rid of those ":" this would be the right place to do it
+        });
+        flagFixed(exlDetailsContentToFix);
+    }
+
+    var exlLocationTableToFix = getUnfixedElems('.EXLResultTabContainer .EXLLocationsTabContent .EXLLocationTable');
+    if (exlLocationTableToFix.length) { // transform table to divs for responsive design
+        /* HAFE
+         * Replace table structure in locationTab with div/cols Bootstrap DOM
+         * Responsice Rex: .EXLContainer-locationsTab .EXLSubLocation .EXLLocationTable
+         * We transform this:
+         * <table class="EXLLocationTable">
+         *   <tbody>
+         *     <tr class="EXLLocationTitlesRow">
+         *       <th>Placering</th>
+         *       <th>Opstilling</th>
+         *       <th>Status</th>
+         *       <th>Beskrivelse</th>
+         *       <th>Bestillingsmuligheder</th>
+         *     </tr>
+         *     <tr>
+         *       <td>
+         *         <a href="URL">MAGASIN_LINK</a>
+         *       </td>
+         *       <td>OPSTILLINGSNR</td>
+         *       <td>STATUS</td>
+         *       <td>BESKRIVELSE</td>
+         *       <td>
+         *         <div class="EXLLocationTableActions">
+         *           <span class="EXLLocationTableActionsLabel">Select Request Option:</span>
+         *           <div class="EXLLocationTableActionsMenu">
+         *             <ul>
+         *               <li><a href="URL1">Bestilling</a></li>
+         *               <li><a href="URL2">Fotokopibestilling</a></li>
+         *               <li><a href="URL3">Prøv bibliotek.dk</a></li>
+         *             </ul>
+         *           </div>
+         *         </div>
+         *       </td>
+         *     </tr>
+         *     <tr class="EXLAdditionalFieldsRow EXLLocationDetails1" style="display: none;">
+         *       <td class="EXLLocationTableMargin EXLHideInfo" colspan="5">
+         *         <ul>
+         *           <li>
+         *             <strong>Afdeling: </strong> AFDELING
+         *           </li>
+         *           <li>
+         *             <strong>Beskrivelse: </strong> BESKRIVELSE
+         *           </li>
+         *           [...]
+         *         </ul>
+         *       </td>
+         *     </tr>
+         *     [...]
+         *     </tr>
+         *   </tbody>
+         * </table>
+         * into this:
+         * <div class="EXLLocationTable">
+         *   <div class="row">
+         *     <div class="cols-md-3">Placering</div>
+         *     <div class="cols-md-3">Opstilling</div>
+         *     <div class="cols-md-3">Status</div>
+         *     <div class="cols-md-3">Beskrivelse</div>
+         *   </div>
+         *   <div class="row">
+         *     <div class="cols-md-3"><a href="" data-toggle="collapse" data-target="EXLLocationDescription[#uid]">MAGASIN_LINK</a></div>
+         *     <div class="cols-md-3">OPSTILLINGSNR</div>
+         *     <div class="cols-md-3">STATUS</div>
+         *     <div class="cols-md-3">BESKRIVELSE</div>
+         *   </div>
+         *   <div id="EXLLocationDescription[#uid]" class="panel-collapse collapse in">
+         *     <div class="panel-body">
+         *       <dl>
+         *         <dt>Afdeling:</dt><dd>AFDELING</dd>
+         *         <dt>Beskrivelse:<dt><dd>BESKRIVELSE</dd>
+         *         [...]
+         *       </dl>
+         *     </div>
+         *   </div>
+         *   <div class="row">
+         *     <a href="URL1" class="btn btn-default cols-xs-12 cols-sm-6 cols-md-3">Bestilling</a>
+         *     <a href="URL2" class="btn btn-default cols-xs-12 cols-sm-6 cols-md-3">Fotokopibestilling</a>
+         *     <a href="URL3" class="btn btn-default cols-xs-12 cols-sm-6 cols-md-3">Prøv bibliotek.dk</a>
+         *   </div>
+         * </div>
+         */
+        var actionButtons = $('.EXLLocationTableActionsMenu', exlLocationTableToFix),
+            headingRow = $('.EXLLocationTitlesRow', exlLocationTableToFix);
+
+        // transform the action buttons
+        $.each(actionButtons, function () {
+            $('>ul>li', this).remove().children().appendTo(this).addClass('btn btn-default btn-xs col-xs-12 col-sm-6 col-md-3');
+            $('>ul', this).remove();
+        });
+        var actionRows = actionButtons.closest('td').changeElementType('div').addClass('EXLLocationTableActions row');
+        $.each(actionRows, function (index, actionRow) {
+            actionRow = $(actionRow);
+            actionRow.empty().append(actionButtons[index]);
+            actionRow.insertAfter(actionRow.parent());
+        });
+        // transform the headings
+        headingRow.children().last().remove();
+        headingRow.children().changeElementType('div').addClass('col-md-3');
+        headingRow = headingRow.changeElementType('div').addClass('row');
+        headingRow.insertBefore(headingRow.parent().parent());
+        // transform the locations
+        var locationAndInfoRows = $('tr', exlLocationTableToFix),
+            tmpAdditionalFieldsId;
+        $.each(locationAndInfoRows, function (index, row) {
+            if ($('td.EXLAdditionalFieldsLink', row).length) {
+                // This is a header for a location
+                tmpAdditionalFieldsId = Unique.getUid();
+                $(row).changeElementType('div')
+                    .addClass('locationHeaderRow row')
+                    .children().changeElementType('div')
+                    .addClass('col-md-3');
+                $('div.EXLAdditionalFieldsLink>a', exlLocationTableToFix)
+                    .attr('data-target', 'additionalLocationFields' + tmpAdditionalFieldsId)
+                    .attr('data-toggle', 'collapse');
+            } else {
+                // This is a collapsible additional info for a location
+                $(row).changeElementType('div')
+                    .addClass('panel-collapse collapse in')
+                    .attr('id', 'additionalLocationFields' + tmpAdditionalFieldsId)
+                    .children().changeElementType('div');
+            }
+        });
+        exlLocationTableToFix.children().children().insertBefore(exlLocationTableToFix);
+        exlLocationTableToFix.remove();
+        // NOTE: We do not need to flag the table fixed, since we have removed it!
+    }
+}
+
 //NKH Start (EOD functions)
 var t = 0;
 

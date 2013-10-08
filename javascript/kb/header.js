@@ -1,4 +1,4 @@
-/*global jQuery, $, document, setTimeout, window */
+/*global jQuery, $, document, setTimeout, window, kbBootstrapifyTabs */
 function kBFixTabs() {
     // Tilret Bestil-fanebladet
     $(".EXLLocationTableActionsMenu>ul:not(:has(.requestForm))").each(function (index) {
@@ -26,60 +26,6 @@ function kBFixTabs() {
         var link = $(this).attr("href");
         $(this).prepend("<img alt='thumbnail' src='" + link.replace("present", "thumbnail") + "'><br/>");
     });
-}
-
-function kbBootstrapifyTabs() {
-    var tabContainersToFix = $('.EXLResultTabContainer:visible:not(.kbTabDone):not(:has(\'.EXLTabLoading\'))');
-    if (tabContainersToFix.length) {
-        // this is a fully loaded tab we have not bootstrapified before
-
-        /* HAFE
-         * Replace ul stuctures in detailsTab with dl
-         * Responsive Rex: .EXLContainer-detailsTab .EXLDetailsContent
-         * We transform this:
-         * <ul>
-         *   <li>
-         *     <strong>Forfatter:</strong><a href="[...]/a>
-         *   </li>
-         * [...]
-         * </ul>
-         * into this:
-         * <dl>
-         *   <dt>Forfatter:<dt><dd><a href="[...]/a></dd>
-         *   [...]
-         * </dl>
-         */
-        $('.EXLDetailsContent>ul', tabContainersToFix).changeElementType('dl');
-        $('.EXLDetailsContent>dl', tabContainersToFix).addClass('dl-horizontal'); // would have loved to put this in the end of the line a    bove, but it seems that jQuery misses out on the elementType change?
-        $('.EXLDetailsContent>dl>li', tabContainersToFix).changeElementType('dd');
-        $.each($('.EXLDetailsContent>dl>dd>strong:first-child', tabContainersToFix), function (idx, elem) {
-            $(elem).insertBefore($(elem).closest('dd')).changeElementType('dt');
-        });
-
-        /* HAFE
-         * Reverse order of buttons in Tab Header, and mark them up to match bootstrap classes
-         * Responsive Rex:
-         *  Masking on: .EXLTabHeader
-         *  Adding bootstrap classes:
-         *      'nav nav-pills' to .EXLTabHeaderButtons ul,
-         *      'pull-right' to .EXLTabHeaderButtons .EXLTabHeaderButtonCloseTabs
-         *      'pull-right' to .EXLTabHeaderButtons .EXLTabHeaderButtonPopout
-         *      'dropdown pull-right' to .EXLTabHeaderButtons .EXLTabHeaderButtonSendTo
-         *      'dropdown-menu' to .EXLTabHeaderButtons .EXTTabHeaderButtonSendTo ol
-         * and reverting the order of the .EXLTabHeaderButtons ul li
-         */
-        var exlTabHeader = $('.EXLTabHeader', tabContainersToFix),
-            buttons = $('.EXLTabHeaderButtons > ul', exlTabHeader).addClass('nav nav-pills');
-        $.each(buttons, function (index, buttonset) {
-            $(buttonset).append($('>li', buttonset).get().reverse());
-        });
-        $('.EXLTabHeaderButtonCloseTabs, .EXLTabHeaderButtonPopout, .EXLTabHeaderButtonSendTo', exlTabHeader).addClass('pull-right');
-        $('.EXLTabHeaderButtonSendTo', exlTabHeader).addClass('dropdown');
-        $('.EXLTabHeaderButtonSendTo ol', exlTabHeader).addClass('dropdown-menu');
-        $('.EXLResultTabContainer').addClass('well well-sm');
-
-        tabContainersToFix.addClass('kbTabDone');
-    }
 }
 
 function hideLocationInfo() {
