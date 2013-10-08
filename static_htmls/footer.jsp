@@ -87,15 +87,32 @@
   </div>
 </div>
 
-<!-- dynamic inclusion of js files -->
 <%
-    String view = request.getParameter("vid");
-    if(view.startsWith("kb")){
-        view = view.substring(2);
-    }
+          // jac: points to search tile in our dev environments
+        String view = "";
+
+        // Try to read  view from from URI
+        if(request.getParameter("vid") != null ){
+            view = request.getParameter("vid");
+        }
+
+        // remove 'kb', so it fits our folder structure
+        if(view.startsWith("kb")){
+            view = view.substring(2);
+        }
+
+        if(view.equals("")){ // no vid parameter in url
+                view = request.getSession().getAttribute( "vid" )+""; // read from session
+                if(view.equals("")){
+                        view = "KGL"; // last default to KGL
+                }
+        } else {
+                 request.getSession().setAttribute( "vid", view ); // set session parameter
+        }
+
+
 
 %>
-
 
 
 <!-- BOOTSTRAP JS -->
