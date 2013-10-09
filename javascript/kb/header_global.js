@@ -202,10 +202,14 @@ function kbBootstrapifyTabs() {
 
         // transform the action buttons
         $.each(actionButtons, function () {
-            $('>ul>li', this).remove().children().appendTo(this).addClass('btn btn-default btn-xs col-xs-12 col-sm-6 col-md-3');
+            $('>ul>li', this).remove()
+                .children().appendTo(this)
+                .addClass('btn btn-default btn-xs');
             $('>ul', this).remove();
         });
-        var actionRows = actionButtons.closest('td').changeElementType('div').addClass('EXLLocationTableActions row');
+        var actionRows = actionButtons.closest('td')
+                .changeElementType('div')
+                .addClass('EXLLocationTableActions row');
         $.each(actionRows, function (index, actionRow) {
             actionRow = $(actionRow);
             actionRow.empty().append(actionButtons[index]);
