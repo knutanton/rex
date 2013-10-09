@@ -244,6 +244,9 @@ function gup(name) {
 
 
 $(document).ready(function () {
+    // Remove unwanted content (Function defined in header_global.js)
+    removeUnWantedContent();
+
     // Closing all closed result tab containers (they expand upon tab header clicks)
     $('.EXLResultTabContainerClosed').addClass('collapse');
 

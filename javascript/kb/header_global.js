@@ -405,15 +405,18 @@ function EXLTA_isFullDisplay() {
 
 /*
 *JAC
-* remove the exlidPleaseWaitContainer div
-* plus the javascript that is right after the div.
-*  
+* Remove unwanted content from the page:
+*   - removes the exlidPleaseWaitContainer div
+*   - removes the javascript that is right after the div.
+*   - removes "opdater automatisk" container
+*
 * The code comes from the views folder
 * so this is the way we decidede to fix it
 */
-function removePleaseWait() {
+function removeUnWantedContent() {
     $('#exlidPleaseWaitContainer').remove();
     $('script[src*="pleaseWait.js"]').remove();
+    $('.EXLFooterUpdateContainer').remove();
 }
 
 /*
