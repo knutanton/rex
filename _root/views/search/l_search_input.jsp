@@ -4,27 +4,12 @@
 <%@ page import="com.exlibris.primo.utils.SessionUtils" %>
 
 <%
-         // jac: points to search tile in our dev environments
-                 String view = "";
-
-        // Try to read  view from from URI
-        if(request.getParameter("vid") != null ){
-            view = request.getParameter("vid");
-        }
-
+        // jac: points to search tile in our dev environments
+        String view = request.getSession().getAttribute( "vid" )+ "";
 
         // remove 'kb', so it fits our folder structure
         if(view.startsWith("kb")){
-                    view = view.substring(2);
-        }
-
-        if(view.equals("")){ // no vid parameter in url
-			view = request.getSession().getAttribute( "vid" )+""; // read from session
-			if(view.equals("")){
-				view = "KGL"; // last default to KGL
-			}
-        } else {
-			request.getSession().setAttribute( "vid", view ); // set session parameter
+            view = view.substring(2);
         }
 
         String key = "l_search_input.jsp";
