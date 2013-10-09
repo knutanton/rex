@@ -227,11 +227,12 @@ function kbBootstrapifyTabs() {
             if ($('td.EXLAdditionalFieldsLink', row).length) {
                 // This is a header for a location
                 tmpAdditionalFieldsId = Unique.getUid();
-                $(row).changeElementType('div')
+                row = $(row).changeElementType('div')
                     .addClass('locationHeaderRow row')
                     .children().changeElementType('div')
                     .addClass('col-md-3');
-                $('div.EXLAdditionalFieldsLink>a', exlLocationTableToFix)
+                $('>a', row[0])
+                    .removeAttr('href')
                     .attr('data-target', 'additionalLocationFields' + tmpAdditionalFieldsId)
                     .attr('data-toggle', 'collapse');
             } else {
