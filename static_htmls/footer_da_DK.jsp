@@ -7,7 +7,7 @@
             <strong class="lead">REX</strong>
             <ul class="list-unstyled">
                 <li><a href="http://www.kb.dk/da/REX/sider?codekitCB=401828938.835484">Hjælp</a></li>
-                <li><a href="https://rex.kb.dk/F/?func=file&file_name=find-b&local_base=kgl01_rexclassic&con_lng=DAN">REX Classic</a></li>
+                <li><a href="https://rex.kb.dk/F/?func=file&amp;file_name=find-b&amp;local_base=kgl01_rexclassic&amp;con_lng=DAN">REX Classic</a></li>
                 <li><a href="http://www.kb.dk/da/REX/sider/biblioteker.html">Biblioteker i REX-samarbejdet</a></li>
                 <li><a href="http://www.kb.dk/da/kub/service/sporgbib/forslag.html">Bogforslag</a></li>
             </ul>
@@ -91,25 +91,11 @@
 <!-- dynamic inclusion of js files -->
 <%
       // jac: points to search tile in our dev environments
-        String view = "";
-
-        // Try to read  view from from URI
-        if(request.getParameter("vid") != null ){
-            view = request.getParameter("vid");
-        }
+        String view = request.getSession().getAttribute( "vid" )+ "";
 
         // remove 'kb', so it fits our folder structure
         if(view.startsWith("kb")){
             view = view.substring(2);
-        }
-
-        if(view.equals("")){ // no vid parameter in url
-            view = request.getSession().getAttribute( "vid" )+""; // read from session
-            if(view.equals("")){
-                        view = "KGL"; // last default to KGL
-                }
-        } else {
-                 request.getSession().setAttribute( "vid", view ); // set session parameter
         }
 %>
 
