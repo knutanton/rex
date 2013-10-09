@@ -99,6 +99,28 @@
 
         <div class="collapse navbar-collapse navbar-ex1-collapse">
             <ul id="exlidUserAreaRibbon" class="${loggedInClass} nav navbar-nav navbar-right">
+                <%-- Ny Låner --%>
+                <c:set var="newBorrowerUrl" value="https://login.kb.dk/kbuser/regguide" />
+                <c:choose>
+                    <c:when test="${loggedIn}">
+                        <li>
+                    </c:when>
+                    <c:otherwise>
+                        <li id="exlidMyAccount" class="disabled">
+                    </c:otherwise>
+                </c:choose>
+                    <c:choose>
+                        <c:when test="${sessionScope.chosenInterfaceLanguage == 'da_DK'}">
+                            <a href="<c:out value="${newBorrowerUrl}"/>?pref_lang=da" target="_blank">Ny låner</a>
+                        </c:when>
+                        <c:otherwise>
+                            <a href="<c:out value="${newBorrowerUrl}"/>?pref_lang=en" target="_blank">New user</a>
+                        </c:otherwise>
+                    </c:choose>
+                </a>
+                </li>
+
+                <%-- log ind / log ud --%>
                 <li>
                     <c:choose>
                         <c:when test="${loggedIn}">
@@ -126,7 +148,9 @@
                             </fmt:message>
                                 <b class="caret"></b>
                     </a>
+
                     <ul class="dropdown-menu">
+                        <%-- Din konto --%>
                         <c:choose>
                             <c:when test="${loggedIn}">
                                 <li id="exlidMyAccount" class="EXLMyAccount">
@@ -139,6 +163,31 @@
                                 <fmt:message key="menu.myaccount"/>
                             </a>
                         </li>
+
+                        <%-- Se og forny dine lån --%>
+                        <c:set var="renewUrl" value="http://pds.primo-17.kb.dk/pds?func=load-login&institute=KGL&calling_system=primo&url=http://rex.kb.dk:80/primo_library/libweb/action/login.do?afterPDS=true&vid=KGL&dscnt=1&targetURL=http://rex.kb.dk/primo_library/libweb/action/myAccountMenu.do?dscnt=0&vid=" />
+
+                        <c:choose>
+                            <c:when test="${loggedIn}">
+                                <li>
+                            </c:when>
+                            <c:otherwise>
+                                <li id="exlidMyAccount" class="disabled">
+                            </c:otherwise>
+                        </c:choose>
+                        <a href="<c:out value="${renewUrl}${vid}"/>">
+                            <c:choose>
+                                <c:when test="${sessionScope.chosenInterfaceLanguage == 'da_DK'}">
+                                    Se og forny dine lån
+                                </c:when>
+                                <c:otherwise>
+                                    Renew loans
+                                </c:otherwise>
+                            </c:choose>
+                            </a>
+                        </li>
+
+                        <%-- Søgehistorie --%>
                         <li id="exlidMyShelf" class="EXLMyShelf">
                             <a href="${fn:escapeXml(eshelfURL)}">
                                 <fmt:message key="eshelf.basket.title"/>
