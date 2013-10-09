@@ -44,7 +44,7 @@ window.Unique = (function ($, window) {
  * @param elem {jQuery|HTMLElement|string} jQuery object, HTMLElement or Qualified jQuery selector string.
  */
 function flagFixed(elem) {
-    ((elem instanceof HTMLElement) || (typeof elem === 'string') || (elem instanceof String) ? $(elem) : elem).addClass('jsFlagDomFixed');
+    ((elem.nodeType === 3) || (typeof elem === 'string') || (elem instanceof String) ? $(elem) : elem).addClass('jsFlagDomFixed');
 }
 
 /**
