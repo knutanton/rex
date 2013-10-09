@@ -217,9 +217,11 @@ function kbBootstrapifyTabs() {
         });
         // transform the headings
         headingRow.children().last().remove();
-        headingRow.children().changeElementType('div').addClass('col-md-3');
+        headingRow.addClass('visible-md visible-lg').children().changeElementType('div').addClass('col-md-3');
         headingRow = headingRow.changeElementType('div').addClass('row');
         headingRow.insertBefore(headingRow.parent().parent());
+        // Get the header texts for injecting into each cell, so they can be shown in xs and sm mode
+        var headerText = headingRow.children().map(function (index, elem) { return $(elem).text().trim(); });
         // transform the locations
         var locationAndInfoRows = $('tr', exlLocationTableToFix),
             tmpAdditionalFieldsId;
@@ -231,21 +233,34 @@ function kbBootstrapifyTabs() {
                     .addClass('locationHeaderRow row')
                     .children().changeElementType('div')
                     .addClass('col-md-3');
+                // inject headers for xs and sm views
+                $.each(row, function (index, div) {
+                    $(div).prepend('<div class="locationColumnTitle visible-xs visible-sm">' + headerText[index]  + '</div>');
+                });
+                // Change the link to collapse/expand the corresponding #additionalLocationFields
                 $('>a', row[0])
                     .removeAttr('href')
                     .attr('data-target', 'additionalLocationFields' + tmpAdditionalFieldsId)
                     .attr('data-toggle', 'collapse');
             } else {
-                // This is a collapsible additional info for a location
-                $(row).changeElementType('div')
-                    .addClass('panel-collapse collapse in')
-                    .attr('id', 'additionalLocationFields' + tmpAdditionalFieldsId)
-                    .children().changeElementType('div');
+                if ($(row).hasClass('EXLAdditionalFieldsRow')) {
+                    // This is a collapsible additional info for a location
+                    $(row).changeElementType('div')
+                        .addClass('panel-collapse collapse')
+                        .removeAttr('style') // removing the inline display:none
+                        .attr('id', 'additionalLocationFields' + tmpAdditionalFieldsId)
+                        .children().changeElementType('div');
+                } else {
+                    // This is everything else in the table - just convert tr and td to divs and do nothing else
+                    $(row).changeElementType('div')
+                        .children().changeElementType('div');
+                }
             }
         });
         exlLocationTableToFix.children().children().insertBefore(exlLocationTableToFix);
         exlLocationTableToFix.remove();
         // NOTE: We do not need to flag the table fixed, since we have removed it!
+// FIXME: When users are not logged in, and there only is one button "log ind for at reservere", the a seems to loose its button classes somewhere outside here!
     }
 }
 
