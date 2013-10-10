@@ -233,6 +233,20 @@ function kbBootstrapifyTabs() {
                     .addClass('locationHeaderRow row')
                     .children().changeElementType('div')
                     .addClass('col-md-3');
+                // Eventlisteners for toggle=collapse elements :( For some obscure reason they don't work out of the bootstrap box, so I have rewritten them here /HAFE
+                // TODO: Given more time, we should figure out why bootstraps toggle does not work here (it might just be some structural thing?), and fix it.
+                row.children('a').on('click', function () {
+                    var targetDiv = $('#' + $(this).attr('data-target'));
+                    if (targetDiv.hasClass('in')) {
+                        targetDiv.slideUp(400, function () {
+                            $(this).removeClass('in');
+                        });
+                    } else {
+                        targetDiv.slideDown(400, function () {
+                            $(this).addClass('in');
+                        });
+                    }
+                });
                 // inject headers for xs and sm views
                 $.each(row, function (index, div) {
                     $(div).prepend('<div class="locationColumnTitle visible-xs visible-sm">' + headerText[index]  + '</div>');
