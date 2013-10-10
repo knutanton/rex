@@ -49,24 +49,6 @@ function hideLocationInfo() {
 //	$("span.EXLLocationInfo>cite").hide();
 }
 
-function addLoginLink() {
-    //DGJ
-    var url = $('#exlidSignOut>a').attr('href');
-    $(".EXLLocationTableActions:contains('Log ind for at reservere')").html('<a href="' + url + '">Log ind for at reservere </a>');
-}
-
-function addLoginLinkAlleMaterialer() {
-    // DGJ : til 'alle materialer'
-    var url = $('#exlidSignOut>a').attr('href');
-    $(".EXLLocationTableActionsFirstItem:contains('Log ind for at reservere')").html('<a href="' + url + '">Log ind for at reservere</a>');
-}
-
-function addLoginLinkFilter() {
-    //DGJ --> udvidet til sub-library filtering KNAB
-    var url = $('#exlidSignOut>a').attr('href');
-    $(".EXLLocationTableActionsFirstItem:contains('Log ind for at reservere')").html('<a href="' + url + '">Log ind for at reservere</a>');
-}
-
 function TextReplaceObject(originalText, newText) {
     this.originalText = originalText.toLowerCase().trim();
     this.newText = newText;
@@ -280,8 +262,6 @@ $(document).ready(function () {
         //$("#exlidMyAccount").hide();
         $("#exlidMyAccount>a").attr("href", "login.do?loginFn=signin&targetURL=myAccountMenu.do%3fvid%3d" + gup('vid')); 
 
-        addLoginLinkAlleMaterialer();
-
     }
     $(".EXLMyAccountTable>tbody>tr>td:eq(6)").hide();
     // set text til "annuleret" for bestemte REQ-STATUS (midlertidigt fix) -- DGJ
@@ -477,8 +457,6 @@ $(document).ajaxComplete(function () {
     kBFixTabs();
     kbBootstrapifyTabs();
     hideLocationInfo();
-    addLoginLink();
-    addLoginLinkFilter();
     bestil();
 });
 
@@ -486,7 +464,6 @@ $('.EXLLocationsIcon').live('click', function () {
     kBFixTabs();
     setTimeout(function () { // FIXME: What is this? Why call KBFixTab again after 2 secs? Shouldn't be necessary! (and is this called at all?)
         kBFixTabs();
-        addLoginLinkFilter();
     }, 2000);
 });
 

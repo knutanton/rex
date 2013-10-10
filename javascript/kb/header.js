@@ -34,20 +34,6 @@ function hideLocationInfo() {
     $("span.EXLLocationInfo>cite").hide();
 }
 
-function addLoginLink() {
-    //DGJ
-    var url = $('#exlidSignOut>a').attr('href');
-    $(".EXLLocationTableActions:contains('Sign in to request')")
-        .html('<a href="' + url + '">Sign in to request</a>');
-}
-
-function addLoginLinkFilter() {
-    //DGJ --> udvidet til sub-library filtering KNAB
-    var url = $('#exlidSignOut>a').attr('href');
-    $(".EXLLocationTableActionsFirstItem:contains('Sign in to request')")
-        .html('<a href="' + url + '">Sign in to request</a>');
-}
-
 function TextReplaceObject(originalText, newText) {
     this.originalText = originalText.toLowerCase().trim();
     this.newText = newText;
@@ -240,7 +226,6 @@ $(document).ajaxComplete(function () {
     kBFixTabs();
     kbBootstrapifyTabs();
     hideLocationInfo();
-    addLoginLink();
     bestil();
 });
 
@@ -248,7 +233,6 @@ $('.EXLLocationsIcon').live('click', function () {
     kBFixTabs();
     setTimeout(function () {
         kBFixTabs();
-        addLoginLinkFilter();
     }, 2000);
 });
 
