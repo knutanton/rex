@@ -1,9 +1,7 @@
 <%@ include file="/views/taglibsIncludeAll.jspf" %>
 <%@page import="com.exlibris.primo.srvinterface.FacetResultDTO"%>
 <%@ taglib uri="/WEB-INF/tlds/exlibris-ajax.tld" prefix="eas" %>
-    <p>
-        <button id="refine" class="btn btn-lg btn-primary btn-block" name="refine" data-toggle="collapse" href=".index" ><span class="glyphicon glyphicon-filter"></span></button>
-    </p>
+    <button id="refine" class="btn btn-lg btn-primary btn-block " name="refine" data-toggle="collapse" href=".index" ><span class="glyphicon glyphicon-filter"></span></button>
     <c:if test="${form.displayGeneralPageActionsOnTop}">
 	<!--RSS, Save Search and Add page to e-Shelf Links-->
 	<%@ include file="generalPageActions.jspf" %>
