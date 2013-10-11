@@ -131,7 +131,7 @@
                 </div>
 
 		        <!-- start right column -->
-                <div class="EXLSearchFieldRibbonFormFieldsGroup2">
+                <div class="EXLSearchFieldRibbonFormFieldsGroup2 clearfix">
                     <c:forEach var="queryTerm" items="${searchForm.queryTerms}" varStatus="queryTermStatus">
                         <c:if test="${searchForm.location[queryTermStatus.index]=='R'}">
                             <c:choose>
@@ -260,11 +260,11 @@
                     </div>
                 </div>
                 <!-- End right column -->
-
             </fieldset>
             <%-- end submit button and simple search link --%>
                     <%-- end advanced search render --%>
         </div>
     </div>
+    <hr/>
 </html:form>
 
