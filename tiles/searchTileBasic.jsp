@@ -33,7 +33,7 @@
         <%@ include file="/views/search/search_hidden.jspf" %>
 
 
-        <legend class="EXLHiddenCue sr-only">Primo Search</legend>
+        <!--<legend class="EXLHiddenCue collapse">Primo Search</legend>-->
         <%-- begin tabs handling --%>
         <div class="EXLSearchTabsContainer">
 

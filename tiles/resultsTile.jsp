@@ -41,7 +41,8 @@
 </c:if>
 <!-- boomerang -->
 
-<div id="exlidResult${resultStatus.index}" class="EXLResult EXLResultMediaTYPE${result.values[c_value_fmticon]} row">
+<div id="exlidResult${resultStatus.index}" class="EXLResult EXLResultMediaTYPE${result.values[c_value_fmticon]}">
+
   <div class="EXLResultNumber collapse">${result.resultNumber}</div>
 
 	<c:set var="baseFrbrUrl" value="${form.responseEncodeReqDecUrl}"/>
@@ -69,21 +70,33 @@
 
   	<!-- Use new display of frbr (generic record) -->
   	<c:if test="${isFrbrNewDisplay}">
-		<div class="EXLThumbnail col-md-2">
-			<a name="${result.id}" id="${result.id}" class="EXLResultRecordId"></a>
-			<c:if test="${form.alma != null && !form.alma}">
-				<div class="multipleCoverImageContainer">
-					<a id="thumbLink" target="_parent" href="${fn:escapeXml(frbrUrl)}" title="<fmt:message key='mediatype.multiplever'/>">
-						<img src="../images/icon_versions.png" alt="<fmt:message key='mediatype.multiplever'/>">
-					</a>
-				</div>
-		 		<div class="EXLHiddenCue sr-only">Material Type: </div><span class="EXLThumbnailCaption" id="mediaTypeCaption-${result.resultNumber}"><fmt:message key="mediatype.multiplever"/></span>
-			</c:if>
-		</div>
 
-		<div class="EXLSummary col-md-10">
-		  	<div class="EXLSummaryContainer">
+
+		<div class="EXLSummary row">
+            <div class="EXLThumbnail col-md-2">
+                <a name="${result.id}" id="${result.id}" class="EXLResultRecordId"></a>
+                <c:if test="${form.alma != null && !form.alma}">
+                    <div class="EXLThumbnailCaption" id="mediaTypeCaption-${result.resultNumber}">
+                        <span class="label label-default">
+                            <fmt:message key="mediatype.multiplever"/>
+                        </span>
+                    </div>
+
+                    <div class="multipleCoverImageContainer">
+                        <a id="thumbLink" target="_parent" href="${fn:escapeXml(frbrUrl)}" title="<fmt:message key='mediatype.multiplever'/>">
+                            <img src="../images/icon_versions.png" alt="<fmt:message key='mediatype.multiplever'/>">
+                        </a>
+                    </div>
+                    <div class="EXLHiddenCue collapse">Material Type: </div>
+                </c:if>
+            </div>
+		  	<div class="EXLSummaryContainer col-md-10">
 	  			<div class="EXLSummaryFields">
+                      <div class="EXLThumbnailCaption visible-xs visible-sm"  id="mediaTypeCaption-${result.resultNumber}">
+                        <span class="label label-default">
+                            <fmt:message key="mediatype.multiplever"/>
+                        </span>
+                      </div>
 		  			<h3 class="EXLResultTitle">
 						<a id="titleLink" target="_parent" href="${fn:escapeXml(frbrUrl)}" onclick="reportClick();${boomCall}reportBibTip('${result.id}');${azJournalPopUp}">
 		  					${title}
@@ -121,7 +134,7 @@
 		    </div>
 				<cite class="EXLResultFRBR">
 					<span class="EXLResultBgFRBR"></span>
-						<a class="EXLBriefResultsDisplayMultipleLink" target="_parent" href="${fn:escapeXml(frbrUrl)}">${result.values[c_value_versions][0]}</a>
+						<a class="EXLBriefResultsDisplayMultipleLink btn btn-primary" target="_parent" href="${fn:escapeXml(frbrUrl)}">${result.values[c_value_versions][0]}</a>
 					<span class="EXLResultBgRtlFRBR"></span>
 				</cite>
 			</div>
@@ -131,21 +144,30 @@
 
   <!-- Use old display of frbr (preferred record) -->
   <c:if test="${!isFrbrNewDisplay}">
-	  <div class="EXLThumbnail col-md-2"><a name="${result.id}" id="${result.id}" class="EXLResultRecordId"></a>
-	  	<c:if test="${form.alma != null && !form.alma}">
-			<!--begin thumbnails-->
-				<prm:thumbnails thumbLocation="display" thumbnailLinks="${form.delivery[resultStatus.index].thumbnailLinks}" index="${resultStatus.index}" resultTitleUrl="${resultTitleUrl}" displayURL="${displayURL}" isOnline="${isOnline}"/>
-		    <!--end thumbnails-->
-		 	<div class="EXLHiddenCue collapse">Material Type: </div>
-            <span class="EXLThumbnailCaption" id="mediaTypeCaption-${result.resultNumber}">
-                <fmt:message key="mediatype.${result.values[c_value_fmticon]}" />
-            </span>
-	  	</c:if>
-	  </div>
 
-	  <div class="EXLSummary col-md-10">
-		  <div class="EXLSummaryContainer">
+
+	  <div class="EXLSummary row">
+          <div class="EXLThumbnail col-md-2">
+              <a name="${result.id}" id="${result.id}" class="EXLResultRecordId"></a>
+
+              <c:if test="${form.alma != null && !form.alma}">
+                  <div class="EXLThumbnailCaption label label-default" id="mediaTypeCaption-${result.resultNumber}">
+                      <fmt:message key="mediatype.${result.values[c_value_fmticon]}" />
+                  </div>
+                  <!--begin thumbnails-->
+                  <div>
+                      <prm:thumbnails thumbLocation="display" thumbnailLinks="${form.delivery[resultStatus.index].thumbnailLinks}" index="${resultStatus.index}" resultTitleUrl="${resultTitleUrl}" displayURL="${displayURL}" isOnline="${isOnline}"/>
+                  </div>
+                      <!--end thumbnails-->
+              </c:if>
+          </div>
+
+		  <div class="EXLSummaryContainer col-md-10">
 			<div class="EXLSummaryFields">
+                <div class="EXLHiddenCue collapse">Material Type: </div>
+                <div class="EXLThumbnailCaption visible-xs visible-sm" id="mediaTypeCaption-${result.resultNumber}">
+                    <span class="label label-default "><fmt:message key="mediatype.${result.values[c_value_fmticon]}" /></span>
+                </div>
                 <div class="EXLMyShelfStar pull-right">
                     <c:choose>
                         <c:when test="${result.remote}">
@@ -253,301 +275,306 @@
 				<iframe src="http://www.facebook.com/plugins/like.php?href=${sessionScope.serverPwd}${fn:replace(dlRecordURL,"&","%26")}&amp;send=false&amp;layout=button_count&amp;width=46&amp;show_faces=false&amp;action=like&amp;colorscheme=light&amp;font&amp;height=60" scrolling="no" frameborder="0" class="EXLFacebookIframe" allowTransparency="true"></iframe>
 			</c:if>
 			<!-- End of Facebook Like Button -->
-		</div>
 
-		<div class="EXLTabsRibbon EXLTabsRibbonClosed">
-	      <div>
-	        <ul id="exlidResult${resultStatus.index}-TabsList" class="EXLResultTabs nav nav-tabs">
 
-			<c:set var="noFirstTab" value="true"/>
-			<c:forEach items="${tabState.tabsOrder}" var="tab" varStatus="tabStatus">
-				<!-- index: ${tabStatus.index} length: ${fn:length(tabState.tabsOrder)} -->
-			  <c:choose>
-				  <c:when test="${noFirstTab==true}">
-				  	<c:set var="specialTabClass" value="EXLResultFirstTab "/>
-				  </c:when>
-				  <c:when test="${tab==tabState.tabsOrder[fn:length(tabState.tabsOrder)-1]}">
-				  	<c:set var="specialTabClass" value="EXLResultLastTab "/>
-				  </c:when>
-				  <c:otherwise>
-				  	<c:set var="specialTabClass" value=""/>
-				  </c:otherwise>
-			  </c:choose>
-			  <%-- viewonline,getit_link1,locations,details,reviewsandtags,recommendations,getit_link2 --%>
-			  <c:if test="${tab=='viewonline' && not empty tabState.viewOnlineTab}">
-		          <li id="exlidResult${resultStatus.index}-ViewOnlineTab" class="EXLViewOnlineTab EXLResultTab ${specialTabClass} ${tabState.viewOnlineTab.iconCode}">
-					<!-- rum statistics -->
-						<prm:boomerang id="getit1_${resultStatus.index}" boomForm="${searchForm}" pageId="brief"
-						opId="getit1" resultDoc="${result}" type="delivery"
-						delivery="${searchForm.delivery[resultStatus.index]}" noOther="false" index="${result.resultNumber}"/>
-					<!-- end rum statistics -->
+            <div class="EXLTabsRibbon EXLTabsRibbonClosed">
+            <div>
+            <ul id="exlidResult${resultStatus.index}-TabsList" class="EXLResultTabs nav nav-pills">
 
-					<c:choose>
-						<c:when test="${tabState.viewOnlineTab.popOut == 'on'}">
-							<c:set var="taburl" value="${tabState.viewOnlineTab.link}"/>
-							<c:set var="popoutTarget"> target='_blank' </c:set>
-						</c:when>
-						<c:otherwise>
-							<c:url var="taburl" value="${displayURL}">
-								<c:param name="tabs" value="viewOnlineTab"/>
-								<c:param name="gathStatTab" value="true"/>
-							</c:url>
-							<c:set var="popoutTarget"></c:set>
-						</c:otherwise>
-					</c:choose>
-					<!-- Here we go now jiminy!
+            <c:set var="noFirstTab" value="true"/>
+            <c:forEach items="${tabState.tabsOrder}" var="tab" varStatus="tabStatus">
+            <!-- index: ${tabStatus.index} length: ${fn:length(tabState.tabsOrder)} -->
+            <c:choose>
+                <c:when test="${noFirstTab==true}">
+                    <c:set var="specialTabClass" value="EXLResultFirstTab "/>
+                </c:when>
+                <c:when test="${tab==tabState.tabsOrder[fn:length(tabState.tabsOrder)-1]}">
+                    <c:set var="specialTabClass" value="EXLResultLastTab "/>
+                </c:when>
+                <c:otherwise>
+                    <c:set var="specialTabClass" value=""/>
+                </c:otherwise>
+            </c:choose>
+            <%-- viewonline,getit_link1,locations,details,reviewsandtags,recommendations,getit_link2 --%>
+            <c:if test="${tab=='viewonline' && not empty tabState.viewOnlineTab}">
+                <li id="exlidResult${resultStatus.index}-ViewOnlineTab" class="EXLViewOnlineTab EXLResultTab ${specialTabClass} ${tabState.viewOnlineTab.iconCode}">
+                    <!-- rum statistics -->
+                    <prm:boomerang id="getit1_${resultStatus.index}" boomForm="${searchForm}" pageId="brief"
+                                   opId="getit1" resultDoc="${result}" type="delivery"
+                                   delivery="${searchForm.delivery[resultStatus.index]}" noOther="false" index="${result.resultNumber}"/>
+                    <!-- end rum statistics -->
+
+                    <c:choose>
+                        <c:when test="${tabState.viewOnlineTab.popOut == 'on'}">
+                            <c:set var="taburl" value="${tabState.viewOnlineTab.link}"/>
+                            <c:set var="popoutTarget"> target='_blank' </c:set>
+                        </c:when>
+                        <c:otherwise>
+                            <c:url var="taburl" value="${displayURL}">
+                                <c:param name="tabs" value="viewOnlineTab"/>
+                                <c:param name="gathStatTab" value="true"/>
+                            </c:url>
+                            <c:set var="popoutTarget"></c:set>
+                        </c:otherwise>
+                    </c:choose>
+                    <!-- Here we go now jiminy!
 					displayURL = ${displayURL}
 					tabState.viewOnlineTab.link = ${tabState.viewOnlineTab.link}
 					-->
-				  	<c:set var="linkTitle">
-					  <fmt:message key="brief.tabs.links.title.viewOnlineTab">
-					  	<fmt:param>${strippedTitle}</fmt:param>
-					  </fmt:message>
-				  	</c:set>
-					<a href="${fn:escapeXml(taburl)}"  title="${linkTitle}" ${popoutTarget}>
-					<fmt:message key="${tabState.viewOnlineTab.label}"/></a>
-				  </li>
-	  			  <c:set var="noFirstTab" value="false"/>
-			  </c:if>
-			  <%--<c:if test="${tab=='getit_link1' && not empty tabState.requestTab}">
-				<li id="exlidResult${resultStatus.index}-RequestTab" class="EXLRequestTab EXLResultTab ${specialTabClass} ${tabState.requestTab.iconCode}">
-					<!-- rum statistics -->
-					<prm:boomerang id="getit1_${resultStatus.index}" boomForm="${searchForm}" pageId="brief"
-					opId="getit1" resultDoc="${result}" type="delivery"
-					delivery="${searchForm.delivery[resultStatus.index]}" noOther="false" index="${result.resultNumber}"/>
-					<!-- end rum statistics -->
-					<c:choose>
-					<c:when test="${tabState.requestTab.popOut == 'on' && fn:contains(tabState.requestTab.link,'requestTab.do')}">
-						<c:url var="taburl" value="${displayURL}">
-							<c:param name="tabs" value="requestTab"/>
-							<c:param name="gathStatTab" value="true"/>
-						</c:url>
-						<c:set var="popoutTarget"> target='_blank' </c:set>
-					</c:when>
-					<c:when test="${tabState.requestTab.popOut == 'on'}">
-						<c:set var="taburl" value="${tabState.requestTab.link}"/>
-						<c:set var="popoutTarget"> target='_blank' </c:set>
-					</c:when>
-					<c:otherwise>
-						<c:url var="taburl" value="${displayURL}">
-							<c:param name="tabs" value="requestTab"/>
-							<c:param name="gathStatTab" value="true"/>
-						</c:url>
-						<c:set var="popoutTarget"></c:set>
-					</c:otherwise>
-					</c:choose>
-				  <c:set var="linkTitle">
-					  <fmt:message key="brief.tabs.links.title.requestTab">
-					  	<fmt:param>${strippedTitle}</fmt:param>
-					  </fmt:message>
-				  </c:set>
-					<a href="${fn:escapeXml(taburl)}"  title="${linkTitle}" ${popoutTarget}>
-					<fmt:message key="${tabState.requestTab.label}"/></a>
-				  </li>
-	  			  <c:set var="noFirstTab" value="false"/>
-			  </c:if> --%>
+                    <c:set var="linkTitle">
+                        <fmt:message key="brief.tabs.links.title.viewOnlineTab">
+                            <fmt:param>${strippedTitle}</fmt:param>
+                        </fmt:message>
+                    </c:set>
+                    <a href="${fn:escapeXml(taburl)}"  title="${linkTitle}" ${popoutTarget}>
+                        <fmt:message key="${tabState.viewOnlineTab.label}"/></a>
+                </li>
+                <c:set var="noFirstTab" value="false"/>
+            </c:if>
+            <%--<c:if test="${tab=='getit_link1' && not empty tabState.requestTab}">
+                   <li id="exlidResult${resultStatus.index}-RequestTab" class="EXLRequestTab EXLResultTab ${specialTabClass} ${tabState.requestTab.iconCode}">
+                       <!-- rum statistics -->
+                       <prm:boomerang id="getit1_${resultStatus.index}" boomForm="${searchForm}" pageId="brief"
+                       opId="getit1" resultDoc="${result}" type="delivery"
+                       delivery="${searchForm.delivery[resultStatus.index]}" noOther="false" index="${result.resultNumber}"/>
+                       <!-- end rum statistics -->
+                       <c:choose>
+                       <c:when test="${tabState.requestTab.popOut == 'on' && fn:contains(tabState.requestTab.link,'requestTab.do')}">
+                           <c:url var="taburl" value="${displayURL}">
+                               <c:param name="tabs" value="requestTab"/>
+                               <c:param name="gathStatTab" value="true"/>
+                           </c:url>
+                           <c:set var="popoutTarget"> target='_blank' </c:set>
+                       </c:when>
+                       <c:when test="${tabState.requestTab.popOut == 'on'}">
+                           <c:set var="taburl" value="${tabState.requestTab.link}"/>
+                           <c:set var="popoutTarget"> target='_blank' </c:set>
+                       </c:when>
+                       <c:otherwise>
+                           <c:url var="taburl" value="${displayURL}">
+                               <c:param name="tabs" value="requestTab"/>
+                               <c:param name="gathStatTab" value="true"/>
+                           </c:url>
+                           <c:set var="popoutTarget"></c:set>
+                       </c:otherwise>
+                       </c:choose>
+                     <c:set var="linkTitle">
+                         <fmt:message key="brief.tabs.links.title.requestTab">
+                             <fmt:param>${strippedTitle}</fmt:param>
+                         </fmt:message>
+                     </c:set>
+                       <a href="${fn:escapeXml(taburl)}"  title="${linkTitle}" ${popoutTarget}>
+                       <fmt:message key="${tabState.requestTab.label}"/></a>
+                     </li>
+                       <c:set var="noFirstTab" value="false"/>
+                 </c:if> --%>
 
-			  <c:if test="${tab=='locations' && not empty tabState.locationsTab}">
-				 <c:url var="taburl" value="${displayURL}">
-						<c:param name="tabs" value="locationsTab"/>
-						<c:param name="gathStatTab" value="true"/>
-				 </c:url>
-				 <c:set var="linkTitle">
-					  <fmt:message key="brief.tabs.links.title.locationsTab">
-					  	<fmt:param>${strippedTitle}</fmt:param>
-					  </fmt:message>
-				 </c:set>
-		         <li id="exlidResult${resultStatus.index}-LocationsTab" class="EXLLocationsTab EXLResultTab ${specialTabClass}">
-		         	<a href="${fn:escapeXml(taburl)}" title="${linkTitle}"><fmt:message key="${tabState.locationsTab.label}"/></a>
+            <c:if test="${tab=='locations' && not empty tabState.locationsTab}">
+                <c:url var="taburl" value="${displayURL}">
+                    <c:param name="tabs" value="locationsTab"/>
+                    <c:param name="gathStatTab" value="true"/>
+                </c:url>
+                <c:set var="linkTitle">
+                    <fmt:message key="brief.tabs.links.title.locationsTab">
+                        <fmt:param>${strippedTitle}</fmt:param>
+                    </fmt:message>
+                </c:set>
+                <li id="exlidResult${resultStatus.index}-LocationsTab" class="EXLLocationsTab EXLResultTab ${specialTabClass}">
+                    <a href="${fn:escapeXml(taburl)}" title="${linkTitle}"><fmt:message key="${tabState.locationsTab.label}"/></a>
 
-					 <!-- rum statistics -->
-					<prm:boomerang id="locations_${resultStatus.index}" boomForm="${searchForm}" pageId="brief"
-					opId="locationTab" resultDoc="${result}" type="locations"
-					delivery="${searchForm.delivery[resultStatus.index]}" noOther="false" index="${result.resultNumber}"/>
-					<!-- end rum statistics -->
-				 </li>
-				 <c:set var="noFirstTab" value="false"/>
-			  </c:if>
+                    <!-- rum statistics -->
+                    <prm:boomerang id="locations_${resultStatus.index}" boomForm="${searchForm}" pageId="brief"
+                                   opId="locationTab" resultDoc="${result}" type="locations"
+                                   delivery="${searchForm.delivery[resultStatus.index]}" noOther="false" index="${result.resultNumber}"/>
+                    <!-- end rum statistics -->
+                </li>
+                <c:set var="noFirstTab" value="false"/>
+            </c:if>
 
-			  <c:if test="${tab=='details' && not empty tabState.detailsTab}">
-				  <c:url var="taburl" value="${displayURL}">
-						<c:param name="tabs" value="detailsTab"/>
-						<c:param name="gathStatTab" value="true"/>
-				  </c:url>
-				  <c:set var="linkTitle">
-					  <fmt:message key="brief.tabs.links.title.detailsTab">
-					  	<fmt:param>${strippedTitle}</fmt:param>
-					  </fmt:message>
-				  </c:set>
-		          <li id="exlidResult${resultStatus.index}-DetailsTab" class="EXLDetailsTab EXLResultTab ${specialTabClass}"><a href="${fn:escapeXml(taburl)}"  title="${linkTitle}"><fmt:message key="${tabState.detailsTab.label}"/></a>
-					<!-- rum statistics -->
-				 	<prm:boomerang id="details_${resultStatus.index}" boomForm="${searchForm}" pageId="brief"
-					opId="detailsTab" resultDoc="${result}" type="details"
-					delivery="${searchForm.delivery[resultStatus.index]}" noOther="false" index="${result.resultNumber}"/>
-				 	<!-- end rum statistics -->
-				  </li>
-				  <c:set var="noFirstTab" value="false"/>
-			  </c:if>
-			  <%--<c:if test="${tab=='reviewsandtags' && not empty tabState.tagsReviewsTab}">
-				  <c:url var="taburl" value="${displayURL}">
-						<c:param name="tabs" value="tagreviewsTab"/>
-						<c:param name="gathStatTab" value="true"/>
-				  </c:url>
-				  <c:set var="linkTitle">
-					  <fmt:message key="brief.tabs.links.title.tagreviewsTab">
-					  	<fmt:param>${strippedTitle}</fmt:param>
-					  </fmt:message>
-				  </c:set>
-		          <li id="exlidResult${resultStatus.index}-ReviewsTab" class="EXLReviewsTab EXLResultTab ${specialTabClass}"><a href="${fn:escapeXml(taburl)}"  title="${linkTitle}"><fmt:message key="${tabState.tagsReviewsTab.label}"/></a>
-				 	 <!-- rum statistics -->
-					 <prm:boomerang id="tagsreview_${resultStatus.index}" boomForm="${searchForm}" pageId="brief"
-						opId="tagReviewTab" resultDoc="${result}" type="tagsreview"
-						delivery="${searchForm.delivery[resultStatus.index]}" noOther="false" index="${result.resultNumber}"/>
-					 <!-- end rum statistics -->
-				 </li>
-				  <c:set var="noFirstTab" value="false"/>
-			  </c:if>--%>
-			  <%--<c:if test="${tab=='recommendations' && not empty tabState.recommendationsTab}">
-				  <c:url var="taburl" value="${displayURL}">
-						<c:param name="tabs" value="recommendTab"/>
-						<c:param name="gathStatTab" value="true"/>
-				  </c:url>--%>
-				  <%--
-				  <c:set var="linkTitle">
-					  <fmt:message key="brief.tabs.links.title.recommendTab">
-					  	<fmt:param>${strippedTitle}</fmt:param>
-					  </fmt:message>
-				  </c:set>
-				  --%>
-				  <%--<c:set var="linkTitle">
-					  <fmt:message key="default.recommendationtab.recommendations_loading">
-					  	<fmt:param>${strippedTitle}</fmt:param>
-					  </fmt:message>
-				  </c:set>
-				  <li id="exlidResult${resultStatus.index}-RecommendTab" class="EXLRecommendTab EXLResultTab ${specialTabClass}"><a href="${fn:escapeXml(taburl)}"  title="${linkTitle}"><fmt:message key="${tabState.recommendationsTab.label}"/></a>
-					<!-- rum statistics -->
-					<prm:boomerang id="recommendation_${resultStatus.index}" boomForm="${searchForm}" pageId="brief"
-					opId="recommendationTab" resultDoc="${result}" type="recommendation"
-					delivery="${searchForm.delivery[resultStatus.index]}" noOther="false" index="${result.resultNumber}"/>
-					<!-- end rum statistics -->
-				  </li>
-				  <c:set var="noFirstTab" value="false"/>--%>
+            <c:if test="${tab=='details' && not empty tabState.detailsTab}">
+                <c:url var="taburl" value="${displayURL}">
+                    <c:param name="tabs" value="detailsTab"/>
+                    <c:param name="gathStatTab" value="true"/>
+                </c:url>
+                <c:set var="linkTitle">
+                    <fmt:message key="brief.tabs.links.title.detailsTab">
+                        <fmt:param>${strippedTitle}</fmt:param>
+                    </fmt:message>
+                </c:set>
+                <li id="exlidResult${resultStatus.index}-DetailsTab" class="EXLDetailsTab EXLResultTab ${specialTabClass}"><a href="${fn:escapeXml(taburl)}"  title="${linkTitle}"><fmt:message key="${tabState.detailsTab.label}"/></a>
+                    <!-- rum statistics -->
+                    <prm:boomerang id="details_${resultStatus.index}" boomForm="${searchForm}" pageId="brief"
+                                   opId="detailsTab" resultDoc="${result}" type="details"
+                                   delivery="${searchForm.delivery[resultStatus.index]}" noOther="false" index="${result.resultNumber}"/>
+                    <!-- end rum statistics -->
+                </li>
+                <c:set var="noFirstTab" value="false"/>
+            </c:if>
+            <%--<c:if test="${tab=='reviewsandtags' && not empty tabState.tagsReviewsTab}">
+                     <c:url var="taburl" value="${displayURL}">
+                           <c:param name="tabs" value="tagreviewsTab"/>
+                           <c:param name="gathStatTab" value="true"/>
+                     </c:url>
+                     <c:set var="linkTitle">
+                         <fmt:message key="brief.tabs.links.title.tagreviewsTab">
+                             <fmt:param>${strippedTitle}</fmt:param>
+                         </fmt:message>
+                     </c:set>
+                     <li id="exlidResult${resultStatus.index}-ReviewsTab" class="EXLReviewsTab EXLResultTab ${specialTabClass}"><a href="${fn:escapeXml(taburl)}"  title="${linkTitle}"><fmt:message key="${tabState.tagsReviewsTab.label}"/></a>
+                         <!-- rum statistics -->
+                        <prm:boomerang id="tagsreview_${resultStatus.index}" boomForm="${searchForm}" pageId="brief"
+                           opId="tagReviewTab" resultDoc="${result}" type="tagsreview"
+                           delivery="${searchForm.delivery[resultStatus.index]}" noOther="false" index="${result.resultNumber}"/>
+                        <!-- end rum statistics -->
+                    </li>
+                     <c:set var="noFirstTab" value="false"/>
+                 </c:if>--%>
+            <%--<c:if test="${tab=='recommendations' && not empty tabState.recommendationsTab}">
+                     <c:url var="taburl" value="${displayURL}">
+                           <c:param name="tabs" value="recommendTab"/>
+                           <c:param name="gathStatTab" value="true"/>
+                     </c:url>--%>
+            <%--
+                     <c:set var="linkTitle">
+                         <fmt:message key="brief.tabs.links.title.recommendTab">
+                             <fmt:param>${strippedTitle}</fmt:param>
+                         </fmt:message>
+                     </c:set>
+                     --%>
+            <%--<c:set var="linkTitle">
+                         <fmt:message key="default.recommendationtab.recommendations_loading">
+                             <fmt:param>${strippedTitle}</fmt:param>
+                         </fmt:message>
+                     </c:set>
+                     <li id="exlidResult${resultStatus.index}-RecommendTab" class="EXLRecommendTab EXLResultTab ${specialTabClass}"><a href="${fn:escapeXml(taburl)}"  title="${linkTitle}"><fmt:message key="${tabState.recommendationsTab.label}"/></a>
+                       <!-- rum statistics -->
+                       <prm:boomerang id="recommendation_${resultStatus.index}" boomForm="${searchForm}" pageId="brief"
+                       opId="recommendationTab" resultDoc="${result}" type="recommendation"
+                       delivery="${searchForm.delivery[resultStatus.index]}" noOther="false" index="${result.resultNumber}"/>
+                       <!-- end rum statistics -->
+                     </li>
+                     <c:set var="noFirstTab" value="false"/>--%>
 
-				  <%-- variable showRecommendTab is set to true when at least record
-				  has recommendation, prechecked by SearchHelper.isRecommendationEnabled.
-				  In another word, showRecommendTab is false when neither bX nor bibtip
-				  is enabled to indicate there's no need to call RecommendationsTabAction for further check.
-				  --%>
-				  <%--<c:set var="showRecommendTab" value="true"/>
-			  </c:if>--%>
-			  <c:if test="${tab=='getit_link2' && not empty tabState.moreTab}">
-		          <li id="exlidResult${resultStatus.index}-MoreTab" class="EXLMoreTab EXLResultTab ${specialTabClass} ${tabState.moreTab.iconCode}">
-					<!-- rum statistics -->
-				 	<prm:boomerang id="getit2_${resultStatus.index}" boomForm="${searchForm}" pageId="brief"
-					opId="getit2" resultDoc="${result}" type="getit2"
-					delivery="${searchForm.delivery[resultStatus.index]}" noOther="false" index="${result.resultNumber}"/>
-				 	<!-- end rum statistics -->
-					<c:choose>
-						<c:when test="${tabState.moreTab.popOut == 'on'}">
-							<c:set var="taburl" value="${tabState.moreTab.link}"/>
-							<c:set var="popoutTarget"> target='_blank' </c:set>
-						</c:when>
-						<c:otherwise>
-							<c:url var="taburl" value="${displayURL}">
-								<c:param name="tabs" value="moreTab"/>
-								<c:param name="gathStatTab" value="true"/>
-							</c:url>
-							<c:set var="popoutTarget"></c:set>
-						</c:otherwise>
-					</c:choose>
-				  	<c:set var="linkTitle">
-					  <fmt:message key="brief.tabs.links.title.moreTab">
-					  	<fmt:param>${strippedTitle}</fmt:param>
-					  </fmt:message>
-				  	</c:set>
-					<a href="${fn:escapeXml(taburl)}"  title="${linkTitle}" ${popoutTarget}>
-						<fmt:message key="${tabState.moreTab.label}"/>
-					</a>
-				  </li>
-				  <c:set var="noFirstTab" value="false"/>
-			  </c:if>
-			  <c:if test="${tab=='citations' && not empty tabState.citationsTab}">
-		      	<li id="exlidResult${resultStatus.index}-CitationsTab" class="EXLCitationsTab EXLResultTab ${specialTabClass} EXLServiceConditionalTab" style="display:none;">
-		          	<input class="EXLServiceConditionalTabService" type="hidden" value="${tabState.citationsTab.serviceName}"/>
-		          	<input class="EXLServiceConditionalTabRecord" type="hidden" value="${result.id}"/>
-	 	          	<c:url var="taburl" value="${displayURL}">
-						<c:param name="tabs" value="conditionalTab"/>
-						<c:param name="gathStatTab" value="true"/>
-						<c:param name="tabRealType" value="citations"/>
-				  	</c:url>
-				  	<c:set var="linkTitle">
-					  <fmt:message key="brief.tabs.links.title.citationsTab">
-					  	<fmt:param>${strippedTitle}</fmt:param>
-					  </fmt:message>
-				  	</c:set>
- 		          	<a href="${fn:escapeXml(taburl)}" title="${linkTitle}"><fmt:message key="${tabState.citationsTab.label}"/></a>
-				 	<!-- rum statistics -->
-					<prm:boomerang id="citations_${resultStatus.index}" boomForm="${searchForm}" pageId="brief"
-						opId="citationsTab" resultDoc="${result}" type="citations"
-						delivery="${searchForm.delivery[resultStatus.index]}" noOther="false" index="${result.resultNumber}"/>
-					 <!-- end rum statistics -->
-				 </li>
-				 <c:set var="noFirstTab" value="false"/>
-			  </c:if>
-			  <c:if test="${tab=='onlinereviews' && not empty tabState.onlinereviewsTab}">
-		         <li id="exlidResult${resultStatus.index}-OnlinereviewsTab" class="EXLOnlinereviewsTab EXLResultTab ${specialTabClass} EXLServiceConditionalTab" style="display:none;">
-		          	<input class="EXLServiceConditionalTabService" type="hidden" value="${tabState.citationsTab.serviceName}"/>
-		          	<input class="EXLServiceConditionalTabRecord" type="hidden" value="${result.id}"/>
-	 	          	<c:url var="taburl" value="${displayURL}">
-						<c:param name="tabs" value="conditionalTab"/>
-						<c:param name="gathStatTab" value="true"/>
-						<c:param name="tabRealType" value="onlinereviews"/>
-				  	</c:url>
-				  	<c:set var="linkTitle">
-					  <fmt:message key="brief.tabs.links.title.onlinereviewsTab">
-					  	<fmt:param>${strippedTitle}</fmt:param>
-					  </fmt:message>
-				  	</c:set>
- 		          	<a href="${fn:escapeXml(taburl)}"  title="${linkTitle}"><fmt:message key="${tabState.onlinereviewsTab.label}"/></a>
-				 	<!-- rum statistics -->
-					<prm:boomerang id="onlinereviews_${resultStatus.index}" boomForm="${searchForm}" pageId="brief"
-						opId="onlinereviewsTab" resultDoc="${result}" type="onlinereviews"
-						delivery="${searchForm.delivery[resultStatus.index]}" noOther="false" index="${result.resultNumber}"/>
-					 <!-- end rum statistics -->
-				 </li>
-				 <c:set var="noFirstTab" value="false"/>
-			  </c:if>
-			</c:forEach>
-	        </ul>
-	      </div>
-	    </div>
+            <%-- variable showRecommendTab is set to true when at least record
+                     has recommendation, prechecked by SearchHelper.isRecommendationEnabled.
+                     In another word, showRecommendTab is false when neither bX nor bibtip
+                     is enabled to indicate there's no need to call RecommendationsTabAction for further check.
+                     --%>
+            <%--<c:set var="showRecommendTab" value="true"/>
+                 </c:if>--%>
+            <c:if test="${tab=='getit_link2' && not empty tabState.moreTab}">
+                <li id="exlidResult${resultStatus.index}-MoreTab" class="EXLMoreTab EXLResultTab ${specialTabClass} ${tabState.moreTab.iconCode}">
+                    <!-- rum statistics -->
+                    <prm:boomerang id="getit2_${resultStatus.index}" boomForm="${searchForm}" pageId="brief"
+                                   opId="getit2" resultDoc="${result}" type="getit2"
+                                   delivery="${searchForm.delivery[resultStatus.index]}" noOther="false" index="${result.resultNumber}"/>
+                    <!-- end rum statistics -->
+                    <c:choose>
+                        <c:when test="${tabState.moreTab.popOut == 'on'}">
+                            <c:set var="taburl" value="${tabState.moreTab.link}"/>
+                            <c:set var="popoutTarget"> target='_blank' </c:set>
+                        </c:when>
+                        <c:otherwise>
+                            <c:url var="taburl" value="${displayURL}">
+                                <c:param name="tabs" value="moreTab"/>
+                                <c:param name="gathStatTab" value="true"/>
+                            </c:url>
+                            <c:set var="popoutTarget"></c:set>
+                        </c:otherwise>
+                    </c:choose>
+                    <c:set var="linkTitle">
+                        <fmt:message key="brief.tabs.links.title.moreTab">
+                            <fmt:param>${strippedTitle}</fmt:param>
+                        </fmt:message>
+                    </c:set>
+                    <a href="${fn:escapeXml(taburl)}"  title="${linkTitle}" ${popoutTarget}>
+                        <fmt:message key="${tabState.moreTab.label}"/>
+                    </a>
+                </li>
+                <c:set var="noFirstTab" value="false"/>
+            </c:if>
+            <c:if test="${tab=='citations' && not empty tabState.citationsTab}">
+                <li id="exlidResult${resultStatus.index}-CitationsTab" class="EXLCitationsTab EXLResultTab ${specialTabClass} EXLServiceConditionalTab" style="display:none;">
+                    <input class="EXLServiceConditionalTabService" type="hidden" value="${tabState.citationsTab.serviceName}"/>
+                    <input class="EXLServiceConditionalTabRecord" type="hidden" value="${result.id}"/>
+                    <c:url var="taburl" value="${displayURL}">
+                        <c:param name="tabs" value="conditionalTab"/>
+                        <c:param name="gathStatTab" value="true"/>
+                        <c:param name="tabRealType" value="citations"/>
+                    </c:url>
+                    <c:set var="linkTitle">
+                        <fmt:message key="brief.tabs.links.title.citationsTab">
+                            <fmt:param>${strippedTitle}</fmt:param>
+                        </fmt:message>
+                    </c:set>
+                    <a href="${fn:escapeXml(taburl)}" title="${linkTitle}"><fmt:message key="${tabState.citationsTab.label}"/></a>
+                    <!-- rum statistics -->
+                    <prm:boomerang id="citations_${resultStatus.index}" boomForm="${searchForm}" pageId="brief"
+                                   opId="citationsTab" resultDoc="${result}" type="citations"
+                                   delivery="${searchForm.delivery[resultStatus.index]}" noOther="false" index="${result.resultNumber}"/>
+                    <!-- end rum statistics -->
+                </li>
+                <c:set var="noFirstTab" value="false"/>
+            </c:if>
+            <c:if test="${tab=='onlinereviews' && not empty tabState.onlinereviewsTab}">
+                <li id="exlidResult${resultStatus.index}-OnlinereviewsTab" class="EXLOnlinereviewsTab EXLResultTab ${specialTabClass} EXLServiceConditionalTab" style="display:none;">
+                    <input class="EXLServiceConditionalTabService" type="hidden" value="${tabState.citationsTab.serviceName}"/>
+                    <input class="EXLServiceConditionalTabRecord" type="hidden" value="${result.id}"/>
+                    <c:url var="taburl" value="${displayURL}">
+                        <c:param name="tabs" value="conditionalTab"/>
+                        <c:param name="gathStatTab" value="true"/>
+                        <c:param name="tabRealType" value="onlinereviews"/>
+                    </c:url>
+                    <c:set var="linkTitle">
+                        <fmt:message key="brief.tabs.links.title.onlinereviewsTab">
+                            <fmt:param>${strippedTitle}</fmt:param>
+                        </fmt:message>
+                    </c:set>
+                    <a href="${fn:escapeXml(taburl)}"  title="${linkTitle}"><fmt:message key="${tabState.onlinereviewsTab.label}"/></a>
+                    <!-- rum statistics -->
+                    <prm:boomerang id="onlinereviews_${resultStatus.index}" boomForm="${searchForm}" pageId="brief"
+                                   opId="onlinereviewsTab" resultDoc="${result}" type="onlinereviews"
+                                   delivery="${searchForm.delivery[resultStatus.index]}" noOther="false" index="${result.resultNumber}"/>
+                    <!-- end rum statistics -->
+                </li>
+                <c:set var="noFirstTab" value="false"/>
+            </c:if>
+            </c:forEach>
+            </ul>
+            </div>
+            </div>
 
-			<c:set var="resultStatusIndex" value="${resultStatus.index}"/>
-		    <div id="exlidResult${resultStatusIndex}-TabContainer-viewOnlineTab" class="EXLResultTabContainer EXLContainer-viewOnlineTab EXLResultTabContainerClosed">
-		    </div>
-		    <div id="exlidResult${resultStatusIndex}-TabContainer-requestTab" class="EXLResultTabContainer EXLContainer-requestTab EXLResultTabContainerClosed">
-		    </div>
-		    <div id="exlidResult${resultStatusIndex}-TabContainer-locationsTab" class="EXLResultTabContainer EXLContainer-locationsTab EXLResultTabContainerClosed">
-		    </div>
-		    <div id="exlidResult${resultStatusIndex}-TabContainer-detailsTab" class="EXLResultTabContainer EXLContainer-detailsTab EXLResultTabContainerClosed">
-		    </div>
-		    <div id="exlidResult${resultStatusIndex}-TabContainer-tagreviewsTab" class="EXLResultTabContainer EXLContainer-tagreviewsTab EXLResultTabContainerClosed">
-		    </div>
-		    <div id="exlidResult${resultStatusIndex}-TabContainer-recommendTab" class="EXLResultTabContainer EXLContainer-recommendTab EXLResultTabContainerClosed">
-		    </div>
-		    <div id="exlidResult${resultStatusIndex}-TabContainer-moreTab" class="EXLResultTabContainer EXLContainer-moreTab EXLResultTabContainerClosed">
-		    </div>
-		    <div id="exlidResult${resultStatusIndex}-TabContainer-citationsTab" class="EXLResultTabContainer EXLContainer-citationsTab EXLResultTabContainerClosed">
-		    </div>
-		    <div id="exlidResult${resultStatusIndex}-TabContainer-onlinereviewsTab" class="EXLResultTabContainer EXLContainer-onlinereviewsTab EXLResultTabContainerClosed">
-		    </div>
+            <c:set var="resultStatusIndex" value="${resultStatus.index}"/>
+            <div id="exlidResult${resultStatusIndex}-TabContainer-viewOnlineTab" class="EXLResultTabContainer EXLContainer-viewOnlineTab EXLResultTabContainerClosed">
+            </div>
+            <div id="exlidResult${resultStatusIndex}-TabContainer-requestTab" class="EXLResultTabContainer EXLContainer-requestTab EXLResultTabContainerClosed">
+            </div>
+            <div id="exlidResult${resultStatusIndex}-TabContainer-locationsTab" class="EXLResultTabContainer EXLContainer-locationsTab EXLResultTabContainerClosed">
+            </div>
+            <div id="exlidResult${resultStatusIndex}-TabContainer-detailsTab" class="EXLResultTabContainer EXLContainer-detailsTab EXLResultTabContainerClosed">
+            </div>
+            <div id="exlidResult${resultStatusIndex}-TabContainer-tagreviewsTab" class="EXLResultTabContainer EXLContainer-tagreviewsTab EXLResultTabContainerClosed">
+            </div>
+            <div id="exlidResult${resultStatusIndex}-TabContainer-recommendTab" class="EXLResultTabContainer EXLContainer-recommendTab EXLResultTabContainerClosed">
+            </div>
+            <div id="exlidResult${resultStatusIndex}-TabContainer-moreTab" class="EXLResultTabContainer EXLContainer-moreTab EXLResultTabContainerClosed">
+            </div>
+            <div id="exlidResult${resultStatusIndex}-TabContainer-citationsTab" class="EXLResultTabContainer EXLContainer-citationsTab EXLResultTabContainerClosed">
+            </div>
+            <div id="exlidResult${resultStatusIndex}-TabContainer-onlinereviewsTab" class="EXLResultTabContainer EXLContainer-onlinereviewsTab EXLResultTabContainerClosed">
+            </div>
+
+
+		</div>
+
+
 
 		</div>
 
 	</c:if><!-- End of ${!isFrbrNewDisplay} condition -->
 
    </div>
-    <hr/>
+
  </c:forEach>
 </div>
 

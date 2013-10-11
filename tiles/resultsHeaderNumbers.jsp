@@ -132,7 +132,7 @@
 
     <%@ include file="resultsHeaderNavigation.jsp" %>
 
-	<div class="EXLResultsSortBy clearfix">
+	<div class="EXLResultsSortBy btn-toolbar">
 		<!--<span class="EXLResultsSortByLabel"><fmt:message key='results.sortby' /></span>
 		<span class="EXLResultsSortBySelected">
 			<a href="#" title="<fmt:message key='results.tooltip.sortby'/>">
@@ -141,14 +141,7 @@
 		</span>-->
 		<input type="hidden" name="searchForm.frbrSrt" value=""/>
 		<div class="EXLResultsSortByMenu ">
-
-                <c:if test="${!form.displayGeneralPageActionsOnTop}">
-                    <!--RSS, Save Search and Add page to e-Shelf Links-->
-                    <%@ include file="generalPageActions.jspf" %>
-                </c:if>
-
-                <div class="pull-right btn-group">
-
+                <div class="btn-group">
                     <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
                         <span class="EXLResultsSortByLabel"><fmt:message key='results.sortby' /></span> <fmt:message key="results.sortby.option.${fn:escapeXml(srtField)}"/>&nbsp;<span class="caret"></span>
                     </button>
@@ -262,9 +255,14 @@
                         </c:choose>
                     </ul>
                 </div>
+                    <c:if test="${!form.displayGeneralPageActionsOnTop}">
+                        <!--RSS, Save Search and Add page to e-Shelf Links-->
+                        <%@ include file="generalPageActions.jspf" %>
+                    </c:if>
 
-		</div>
+            </div>
 	</div>
+
     <hr/>
 	<c:if
 		test="${(searchForm.rfnGrp == null || searchForm.rfnGrp[0] != 'frbr') && (searchForm.mode != null) &&(searchForm.mode eq 'BrowseSearch')}">
@@ -279,7 +277,7 @@
 		<div id="exlidBrowseFooterNavigation" class="EXLBackToResults">
 			<a href="${BackToBrowseSearch}"
 				title="<fmt:message key='browse.back.to.${form.searchField}s' />">
-				<fmt:message key="browse.back.to.${form.searchField}s" />
+				<fmt:message key="browse.back.to.${form.searchField}s" /> hest2
 			</a>
 		</div>
 	</c:if>
