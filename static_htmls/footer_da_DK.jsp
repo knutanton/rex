@@ -7,7 +7,7 @@
             <strong class="lead">REX</strong>
             <ul class="list-unstyled">
                 <li><a href="http://www.kb.dk/da/REX/sider?codekitCB=401828938.835484">Hjælp</a></li>
-                <li><a href="https://rex.kb.dk/F/?func=file&file_name=find-b&local_base=kgl01_rexclassic&con_lng=DAN">REX Classic</a></li>
+                <li><a href="https://rex.kb.dk/F/?func=file&amp;file_name=find-b&amp;local_base=kgl01_rexclassic&amp;con_lng=DAN">REX Classic</a></li>
                 <li><a href="http://www.kb.dk/da/REX/sider/biblioteker.html">Biblioteker i REX-samarbejdet</a></li>
                 <li><a href="http://www.kb.dk/da/kub/service/sporgbib/forslag.html">Bogforslag</a></li>
             </ul>
@@ -44,7 +44,7 @@
                         </strong>
                         <small>
                             <br/>
-                            Søren Kierkegaards Plads 1 - 1219 København K - EAN: 5798 000795297 - <abbr title="Telefon nr.">Tlf: </abbr>+45 33 47 47 47 - E-mail <a href="mailto//:kb@kb.dk">kb@kb.dk</a>
+                            Søren Kierkegaards Plads 1 - 1219 København K - EAN: 5798 000795297 - <abbr title="Telefon nr.">Tlf: </abbr>+45 33 47 47 47 - E-mail <a href="mailto:kb@kb.dk">kb@kb.dk</a>
                             <br/>
                             <span class="glyphicon glyphicon-thumbs-up"></span> <a href="#">Følg os på Facebook</a>
                         </small>
@@ -90,11 +90,13 @@
 
 <!-- dynamic inclusion of js files -->
 <%
-    String view = request.getParameter("vid");
-    if(view.startsWith("kb")){
-        view = view.substring(2);
-    }
+      // jac: points to search tile in our dev environments
+        String view = request.getSession().getAttribute( "vid" )+ "";
 
+        // remove 'kb', so it fits our folder structure
+        if(view.startsWith("kb")){
+            view = view.substring(2);
+        }
 %>
 
 

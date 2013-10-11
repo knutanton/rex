@@ -49,24 +49,6 @@ function hideLocationInfo() {
 //	$("span.EXLLocationInfo>cite").hide();
 }
 
-function addLoginLink() {
-    //DGJ
-    var url = $('#exlidSignOut>a').attr('href');
-    $(".EXLLocationTableActions:contains('Log ind for at reservere')").html('<a href="' + url + '">Log ind for at reservere </a>');
-}
-
-function addLoginLinkAlleMaterialer() {
-    // DGJ : til 'alle materialer'
-    var url = $('#exlidSignOut>a').attr('href');
-    $(".EXLLocationTableActionsFirstItem:contains('Log ind for at reservere')").html('<a href="' + url + '">Log ind for at reservere</a>');
-}
-
-function addLoginLinkFilter() {
-    //DGJ --> udvidet til sub-library filtering KNAB
-    var url = $('#exlidSignOut>a').attr('href');
-    $(".EXLLocationTableActionsFirstItem:contains('Log ind for at reservere')").html('<a href="' + url + '">Log ind for at reservere</a>');
-}
-
 function TextReplaceObject(originalText, newText) {
     this.originalText = originalText.toLowerCase().trim();
     this.newText = newText;
@@ -244,6 +226,9 @@ function gup(name) {
 
 
 $(document).ready(function () {
+    // Remove unwanted content (Function defined in header_global.js)
+    removeUnWantedContent();
+
     // Closing all closed result tab containers (they expand upon tab header clicks)
     $('.EXLResultTabContainerClosed').addClass('collapse');
 
@@ -276,8 +261,6 @@ $(document).ready(function () {
         $("li.EXLMyAccountTab").filter(":contains('Din konto')").hide();
         //$("#exlidMyAccount").hide();
         $("#exlidMyAccount>a").attr("href", "login.do?loginFn=signin&targetURL=myAccountMenu.do%3fvid%3d" + gup('vid')); 
-
-        addLoginLinkAlleMaterialer();
 
     }
     $(".EXLMyAccountTable>tbody>tr>td:eq(6)").hide();
@@ -460,15 +443,6 @@ $(document).ready(function () {
     // stop mine ERessourcer
 
     // Copied from footer_da_DK stop /HAFE
-
-    // Start Ny låner
-    $('#exlidUserAreaRibbon li:eq(0)').after('<li><a href="https://login.kb.dk/kbuser/regguide">Ny låner</a></li>');
-    // End Ny låner /TJAN;)
-
-    // Start Se og forny dine lån
-        $('#exlidUserAreaRibbon .dropdown-menu li:eq(0)').after('<li' + (window.EXLUserName ? '' : ' class="disabled"') + '><a href="http://pds.primo-97.kb.dk/pds?func=load-login&institute=KGL&calling_system=primo&url=http://rex.kb.dk:80/primo_library/libweb/action/login.do?afterPDS=true&vid=KGL&dscnt=1&targetURL=http://rex.kb.dk/primo_library/libweb/action/myAccountMenu.do?dscnt=0&vid=KGL">Se og forny dine lån</a></li>');
-    // End Se og forny dine lån /TJAN;)
-
 });
 
 function bestil() {
@@ -483,8 +457,6 @@ $(document).ajaxComplete(function () {
     kBFixTabs();
     kbBootstrapifyTabs();
     hideLocationInfo();
-    addLoginLink();
-    addLoginLinkFilter();
     bestil();
 });
 
@@ -492,7 +464,6 @@ $('.EXLLocationsIcon').live('click', function () {
     kBFixTabs();
     setTimeout(function () { // FIXME: What is this? Why call KBFixTab again after 2 secs? Shouldn't be necessary! (and is this called at all?)
         kBFixTabs();
-        addLoginLinkFilter();
     }, 2000);
 });
 

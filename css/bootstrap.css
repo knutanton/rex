@@ -5912,6 +5912,13 @@ td.visible-print {
 /*!
  * Det Kongelige bibliotek v0.0.1
  */
+/* HIDE THINGS */
+.EXLHide {
+  display: none;
+}
+.EXLHide.in {
+  display: block;
+}
 #exlidHeaderSearchLimits .EXLHide {
   position: absolute;
   width: 1px;
@@ -6068,6 +6075,12 @@ header img {
   #refine {
     display: block;
   }
+}
+html[lang="da_DK"] #refine:after {
+  content: " Facetter";
+}
+html[lang="en_US"] #refine:after {
+  content: " Facets";
 }
 /* SHOW MORE lightbox*/
 #exliGreyOverlay {
@@ -6621,6 +6634,175 @@ fieldset[disabled] .EXLMyShelfStar a.active {
   background-color: #ffffff;
   border-color: #cccccc;
 }
-.EXLMyShelfStar a.after {
-  content: "hest";
+@media (max-width: 991px) {
+  EXLResult .EXLThumbnail {
+    display: none;
+  }
+  EXLResult .EXLThumbnail.in {
+    display: block;
+  }
+}
+@media (min-width: 991px) {
+  html[lang="da_DK"] .EXLMyShelfStar a:after {
+    content: " Tilføj til e-hylde";
+  }
+}
+@media (min-width: 991px) {
+  html[lang="en_US"] .EXLMyShelfStar a:after {
+    content: " Add to e-shelf";
+  }
+}
+.EXLThumbnail .label {
+  display: block;
+  text-align: left;
+}
+.EXLResult {
+  padding: 10px 0;
+  border-bottom: 1px dotted #eeeeee;
+}
+.EXLResult:before,
+.EXLResult:after {
+  content: " ";
+  /* 1 */
+
+  display: table;
+  /* 2 */
+
+}
+.EXLResult:after {
+  clear: both;
+}
+.EXLResult:before,
+.EXLResult:after {
+  content: " ";
+  /* 1 */
+
+  display: table;
+  /* 2 */
+
+}
+.EXLResult:after {
+  clear: both;
+}
+.EXLResultStatusNotAvailable {
+  display: inline;
+  padding: .2em .6em .3em;
+  font-size: 75%;
+  font-weight: bold;
+  line-height: 1;
+  color: #ffffff;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: baseline;
+  border-radius: .25em;
+  background-color: #d9534f;
+}
+.EXLResultStatusNotAvailable[href]:hover,
+.EXLResultStatusNotAvailable[href]:focus {
+  color: #ffffff;
+  text-decoration: none;
+  cursor: pointer;
+}
+.EXLResultStatusNotAvailable:empty {
+  display: none;
+}
+.EXLResultStatusNotAvailable[href]:hover,
+.EXLResultStatusNotAvailable[href]:focus {
+  background-color: #c9302c;
+}
+li.EXLResultSelectedTab > a {
+  color: #ffffff;
+  background-color: #428bca;
+}
+/*  Classic thumbnails */
+.EXLResultMediaTYPEarticle .multipleCoverImageContainer .EXLBriefResultsDisplayCoverImageBackup a {
+  background-image: url(/primo_library/libweb/images/icon_article.png);
+}
+.EXLResultMediaTYPEaudio .multipleCoverImageContainer .EXLBriefResultsDisplayCoverImageBackup a {
+  background-image: url(/primo_library/libweb/images/icon_audio.png);
+}
+.EXLResultMediaTYPEbook .multipleCoverImageContainer .EXLBriefResultsDisplayCoverImageBackup a {
+  background-image: url(/primo_library/libweb/images/icon_book.png);
+}
+.EXLResultMediaTYPEdatabase .multipleCoverImageContainer .EXLBriefResultsDisplayCoverImageBackup a {
+  background-image: url(/primo_library/libweb/images/icon_database.png);
+}
+.EXLResultMediaTYPEimage .multipleCoverImageContainer .EXLBriefResultsDisplayCoverImageBackup a {
+  background-image: url(/primo_library/libweb/images/icon_image.png);
+}
+.EXLResultMediaTYPEjournal .multipleCoverImageContainer .EXLBriefResultsDisplayCoverImageBackup a {
+  background-image: url(/primo_library/libweb/images/icon_journal.png);
+}
+.EXLResultMediaTYPEmap .multipleCoverImageContainer .EXLBriefResultsDisplayCoverImageBackup a {
+  background-image: url(/primo_library/libweb/images/icon_map.png);
+}
+.EXLResultMediaTYPEother .multipleCoverImageContainer .EXLBriefResultsDisplayCoverImageBackup a {
+  background-image: url(/primo_library/libweb/images/icon_other.png);
+}
+.EXLResultMediaTYPEreference_entry .multipleCoverImageContainer .EXLBriefResultsDisplayCoverImageBackup a {
+  background-image: url(/primo_library/libweb/images/icon_other.png);
+}
+.EXLResultMediaTYPEtext_resource .multipleCoverImageContainer .EXLBriefResultsDisplayCoverImageBackup a {
+  background-image: url(/primo_library/libweb/images/icon_article.png);
+}
+.EXLResultMediaTYPEmanuscript .multipleCoverImageContainer .EXLBriefResultsDisplayCoverImageBackup a {
+  background-image: url(/primo_library/libweb/images/icon_text_resource.png);
+}
+.EXLResultMediaTYPEvideo .multipleCoverImageContainer .EXLBriefResultsDisplayCoverImageBackup a {
+  background-image: url(/primo_library/libweb/images/icon_video.png);
+}
+.EXLResultMediaTYPEcomputer .multipleCoverImageContainer .EXLBriefResultsDisplayCoverImageBackup a {
+  background-image: url(/primo_library/libweb/images/icon_game.png);
+}
+.EXLResultMediaTYPEvwebsite .multipleCoverImageContainer .EXLBriefResultsDisplayCoverImageBackup a {
+  background-image: url(/primo_library/libweb/images/icon_website.png);
+}
+.EXLResultMediaTYPEnewspaper_article .multipleCoverImageContainer .EXLBriefResultsDisplayCoverImageBackup a {
+  background-image: url(/primo_library/libweb/images/icon_newspaper.png);
+}
+.EXLResultMediaTYPEreview .multipleCoverImageContainer .EXLBriefResultsDisplayCoverImageBackup a {
+  background-image: url(/primo_library/libweb/images/icon_article.png);
+}
+.multipleCoverImageContainer {
+  position: relative;
+}
+.multipleCoverImageContainer .coverImageDiv {
+  position: absolute;
+  top: 0px;
+  width: 100%;
+}
+.multipleCoverImageContainer .coverImageDiv img {
+  padding: 4px;
+  line-height: 1.428571429;
+  background-color: #ffffff;
+  border: 1px solid #dddddd;
+  border-radius: 4px;
+  -webkit-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+  display: inline-block;
+  max-width: 100%;
+  height: auto;
+  width: 100%;
+}
+.multipleCoverImageContainer .EXLBriefResultsDisplayCoverImageBackup a {
+  padding: 4px;
+  line-height: 1.428571429;
+  background-color: #ffffff;
+  border: 1px solid #dddddd;
+  border-radius: 4px;
+  -webkit-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+  display: inline-block;
+  max-width: 100%;
+  height: auto;
+  background: transparent none no-repeat 50% 50%;
+  height: 100px;
+  width: 100%;
+  display: block;
+}
+.multipleCoverImageContainer .coverImageDiv a img[src*="pixel"] {
+  display: none;
+}
+.multipleCoverImageContainer .coverImageDiv a img[src*="pixel"].in {
+  display: block;
 }

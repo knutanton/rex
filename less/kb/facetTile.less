@@ -14,7 +14,7 @@
 @media (min-width: @screen-sm-max) {
     display:block;
     }
-    }
+  }
 
 #refine {
 @media (min-width: @screen-sm-max) {
@@ -23,8 +23,14 @@
 @media (max-width: @screen-sm-max) {
     display:block;
     }
-    }
+  }
 
+html[lang="da_DK"] #refine:after{
+    content:" Facetter";
+}
+html[lang="en_US"] #refine:after{
+    content:" Facets";
+}
 
 
 /* SHOW MORE lightbox*/

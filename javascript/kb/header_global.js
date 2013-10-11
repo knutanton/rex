@@ -44,7 +44,7 @@ window.Unique = (function ($, window) {
  * @param elem {jQuery|HTMLElement|string} jQuery object, HTMLElement or Qualified jQuery selector string.
  */
 function flagFixed(elem) {
-    ((elem instanceof HTMLElement) || (typeof elem === 'string') || (elem instanceof String) ? $(elem) : elem).addClass('jsFlagDomFixed');
+    ((elem.nodeType === 3) || (typeof elem === 'string') || (elem instanceof String) ? $(elem) : elem).addClass('jsFlagDomFixed');
 }
 
 /**
@@ -202,10 +202,14 @@ function kbBootstrapifyTabs() {
 
         // transform the action buttons
         $.each(actionButtons, function () {
-            $('>ul>li', this).remove().children().appendTo(this).addClass('btn btn-default btn-xs col-xs-12 col-sm-6 col-md-3');
+            $('>ul>li', this).remove()
+                .children().appendTo(this)
+                .addClass('btn btn-default btn-xs');
             $('>ul', this).remove();
         });
-        var actionRows = actionButtons.closest('td').changeElementType('div').addClass('EXLLocationTableActions row');
+        var actionRows = actionButtons.closest('td')
+                .changeElementType('div')
+                .addClass('EXLLocationTableActions row');
         $.each(actionRows, function (index, actionRow) {
             actionRow = $(actionRow);
             actionRow.empty().append(actionButtons[index]);
@@ -213,9 +217,11 @@ function kbBootstrapifyTabs() {
         });
         // transform the headings
         headingRow.children().last().remove();
-        headingRow.children().changeElementType('div').addClass('col-md-3');
+        headingRow.addClass('visible-md visible-lg').children().changeElementType('div').addClass('col-md-3');
         headingRow = headingRow.changeElementType('div').addClass('row');
         headingRow.insertBefore(headingRow.parent().parent());
+        // Get the header texts for injecting into each cell, so they can be shown in xs and sm mode
+        var headerText = headingRow.children().map(function (index, elem) { return $(elem).text().trim(); });
         // transform the locations
         var locationAndInfoRows = $('tr', exlLocationTableToFix),
             tmpAdditionalFieldsId;
@@ -223,24 +229,52 @@ function kbBootstrapifyTabs() {
             if ($('td.EXLAdditionalFieldsLink', row).length) {
                 // This is a header for a location
                 tmpAdditionalFieldsId = Unique.getUid();
-                $(row).changeElementType('div')
+                row = $(row).changeElementType('div')
                     .addClass('locationHeaderRow row')
                     .children().changeElementType('div')
                     .addClass('col-md-3');
-                $('div.EXLAdditionalFieldsLink>a', exlLocationTableToFix)
+                // Eventlisteners for toggle=collapse elements :( For some obscure reason they don't work out of the bootstrap box, so I have rewritten them here /HAFE
+                // TODO: Given more time, we should figure out why bootstraps toggle does not work here (it might just be some structural thing?), and fix it.
+                row.children('a').on('click', function () {
+                    var targetDiv = $('#' + $(this).attr('data-target'));
+                    if (targetDiv.hasClass('in')) {
+                        targetDiv.slideUp(400, function () {
+                            $(this).removeClass('in');
+                        });
+                    } else {
+                        targetDiv.slideDown(400, function () {
+                            $(this).addClass('in');
+                        });
+                    }
+                });
+                // inject headers for xs and sm views
+                $.each(row, function (index, div) {
+                    $(div).prepend('<div class="locationColumnTitle visible-xs visible-sm">' + headerText[index]  + '</div>');
+                });
+                // Change the link to collapse/expand the corresponding #additionalLocationFields
+                $('>a', row[0])
+                    .removeAttr('href')
                     .attr('data-target', 'additionalLocationFields' + tmpAdditionalFieldsId)
                     .attr('data-toggle', 'collapse');
             } else {
-                // This is a collapsible additional info for a location
-                $(row).changeElementType('div')
-                    .addClass('panel-collapse collapse in')
-                    .attr('id', 'additionalLocationFields' + tmpAdditionalFieldsId)
-                    .children().changeElementType('div');
+                if ($(row).hasClass('EXLAdditionalFieldsRow')) {
+                    // This is a collapsible additional info for a location
+                    $(row).changeElementType('div')
+                        .addClass('panel-collapse collapse')
+                        .removeAttr('style') // removing the inline display:none
+                        .attr('id', 'additionalLocationFields' + tmpAdditionalFieldsId)
+                        .children().changeElementType('div');
+                } else {
+                    // This is everything else in the table - just convert tr and td to divs and do nothing else
+                    $(row).changeElementType('div')
+                        .children().changeElementType('div');
+                }
             }
         });
         exlLocationTableToFix.children().children().insertBefore(exlLocationTableToFix);
         exlLocationTableToFix.remove();
         // NOTE: We do not need to flag the table fixed, since we have removed it!
+// FIXME: When users are not logged in, and there only is one button "log ind for at reservere", the a seems to loose its button classes somewhere outside here!
     }
 }
 
@@ -405,17 +439,21 @@ function EXLTA_isFullDisplay() {
 
 /*
 *JAC
-* remove the exlidPleaseWaitContainer div
-* plus the javascript that is right after the div.
-*  
+* Remove unwanted content from the page:
+*   - removes the exlidPleaseWaitContainer div
+*   - removes the javascript that is right after the div.
+*   - removes "opdater automatisk" container
+*
 * The code comes from the views folder
 * so this is the way we decidede to fix it
 */
-function removePleaseWait() {
+function removeUnWantedContent() {
     $('#exlidPleaseWaitContainer').remove();
     $('script[src*="pleaseWait.js"]').remove();
+    $('.EXLFooterUpdateContainer').remove();
 }
 
+/*
 // Hey Hasse lidt til dig ;)
 $(document).ready(function () {
     removePleaseWait();
@@ -430,3 +468,4 @@ $(document).ready(function () {
     }(document, 'script', 'facebook-jssdk'));
 
 });
+*/

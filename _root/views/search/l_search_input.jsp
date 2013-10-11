@@ -5,10 +5,13 @@
 
 <%
         // jac: points to search tile in our dev environments
-        String view = request.getParameter("vid");
+        String view = request.getSession().getAttribute( "vid" )+ "";
+
+        // remove 'kb', so it fits our folder structure
         if(view.startsWith("kb")){
             view = view.substring(2);
         }
+
         String key = "l_search_input.jsp";
         String prefix = "/sites/kb/"+view+"/a/b/";
         String jsp_default = "/tiles/searchTile.jsp";

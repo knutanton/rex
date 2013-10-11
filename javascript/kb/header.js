@@ -34,20 +34,6 @@ function hideLocationInfo() {
     $("span.EXLLocationInfo>cite").hide();
 }
 
-function addLoginLink() {
-    //DGJ
-    var url = $('#exlidSignOut>a').attr('href');
-    $(".EXLLocationTableActions:contains('Sign in to request')")
-        .html('<a href="' + url + '">Sign in to request</a>');
-}
-
-function addLoginLinkFilter() {
-    //DGJ --> udvidet til sub-library filtering KNAB
-    var url = $('#exlidSignOut>a').attr('href');
-    $(".EXLLocationTableActionsFirstItem:contains('Sign in to request')")
-        .html('<a href="' + url + '">Sign in to request</a>');
-}
-
 function TextReplaceObject(originalText, newText) {
     this.originalText = originalText.toLowerCase().trim();
     this.newText = newText;
@@ -104,6 +90,9 @@ $(".EXLLocationsTab").ajaxComplete(function(event, xhr, settings) {
 }*/
 
 $(document).ready(function () {
+    // Remove unwanted content (Function defined in header_global.js)
+    removeUnWantedContent();
+
     // Closing all closed result tab containers (they expand upon tab header clicks)
     $('.EXLResultTabContainerClosed').addClass('collapse');
 
@@ -222,14 +211,8 @@ $(document).ready(function () {
 
     // copied from footer.html stop /HAFE
 
-    // Start New user
-    $('#exlidUserAreaRibbon li:eq(0)').after('<li><a href="https://login.kb.dk/kbuser/regguide?change_lang=en&pref_lang=en">New user</a></li>');
-    // End Ny låner /TJAN;)
 
-    // Start Renew Loans
-    $('#exlidUserAreaRibbon .dropdown-menu li:eq(0)').after('<li' + (window.EXLUserName ? '' : ' class="disabled"') + '><a href="https://www.kb.dk/cas/login?service=https%3A%2F%2Fshibboleth.kb.dk%2Fshibboleth-test%2FSSO%3Fshire%3Dhttp%253A%252F%252Fpds.primo-97.kb.dk%252FShibboleth.sso%252FSAML%252FPOST%26time%3D1379624698%26target%3Dcookie%253A53b99b51%26providerId%3Dpds.primo-97.kb.dk">Renew Loans</a></li>');
-    // End Renew Loans /TJAN;)
-});
+    });
 
 function bestil() {
     $("div.EXLRequestTabContent").each(function (index) {
@@ -243,7 +226,6 @@ $(document).ajaxComplete(function () {
     kBFixTabs();
     kbBootstrapifyTabs();
     hideLocationInfo();
-    addLoginLink();
     bestil();
 });
 
@@ -251,7 +233,6 @@ $('.EXLLocationsIcon').live('click', function () {
     kBFixTabs();
     setTimeout(function () {
         kBFixTabs();
-        addLoginLinkFilter();
     }, 2000);
 });
 

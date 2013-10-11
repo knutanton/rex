@@ -1,6 +1,7 @@
 //KB
 //Changes to tiles/resultsTile.jsp
 
+
 .EXLResult .EXLThumbnail {
 @media (max-width: @screen-sm-max ) {
     .collapse;
@@ -15,6 +16,92 @@
     .btn;
     .btn-default;
 }
-.EXLMyShelfStar a.after{
-        content:"hest";
+
+EXLResult .EXLThumbnail {
+@media (max-width: @screen-sm-max ) {
+    .collapse;
     }
+ }
+
+
+html[lang="da_DK"] .EXLMyShelfStar a:after {
+@media (min-width: @screen-sm-max ){
+    content:" Tilføj til e-hylde";
+    }
+}
+html[lang="en_US"] .EXLMyShelfStar a:after{
+    @media (min-width: @screen-sm-max ){
+    content:" Add to e-shelf";
+    }
+}
+
+.EXLThumbnail .label{
+    display: block;
+    .text-left;
+}
+.EXLResult{
+    padding:10px 0;
+    border-bottom: 1px dotted @gray-lighter;
+    .clearfix;
+}
+
+.EXLResultStatusNotAvailable{
+    .label;
+    .label-danger;
+}
+li.EXLResultSelectedTab > a{
+    color: @nav-pills-active-link-hover-color;
+    background-color: @nav-pills-active-link-hover-bg;
+}
+
+/*  Classic thumbnails */
+
+
+.EXLResultMediaTYPEarticle .multipleCoverImageContainer .EXLBriefResultsDisplayCoverImageBackup a{background-image: url(/primo_library/libweb/images/icon_article.png);}
+.EXLResultMediaTYPEaudio .multipleCoverImageContainer .EXLBriefResultsDisplayCoverImageBackup a {background-image: url(/primo_library/libweb/images/icon_audio.png);}
+.EXLResultMediaTYPEbook .multipleCoverImageContainer .EXLBriefResultsDisplayCoverImageBackup a{background-image: url(/primo_library/libweb/images/icon_book.png);}
+.EXLResultMediaTYPEdatabase .multipleCoverImageContainer .EXLBriefResultsDisplayCoverImageBackup a{background-image: url(/primo_library/libweb/images/icon_database.png);}
+.EXLResultMediaTYPEimage .multipleCoverImageContainer .EXLBriefResultsDisplayCoverImageBackup a{background-image: url(/primo_library/libweb/images/icon_image.png);}
+.EXLResultMediaTYPEjournal .multipleCoverImageContainer .EXLBriefResultsDisplayCoverImageBackup a{background-image: url(/primo_library/libweb/images/icon_journal.png);}
+.EXLResultMediaTYPEmap .multipleCoverImageContainer .EXLBriefResultsDisplayCoverImageBackup a{background-image: url(/primo_library/libweb/images/icon_map.png);}
+.EXLResultMediaTYPEother .multipleCoverImageContainer .EXLBriefResultsDisplayCoverImageBackup a{background-image: url(/primo_library/libweb/images/icon_other.png);}
+.EXLResultMediaTYPEreference_entry .multipleCoverImageContainer .EXLBriefResultsDisplayCoverImageBackup a{background-image: url(/primo_library/libweb/images/icon_other.png);}
+.EXLResultMediaTYPEtext_resource .multipleCoverImageContainer .EXLBriefResultsDisplayCoverImageBackup a{background-image: url(/primo_library/libweb/images/icon_article.png);}
+.EXLResultMediaTYPEmanuscript .multipleCoverImageContainer .EXLBriefResultsDisplayCoverImageBackup a {background-image: url(/primo_library/libweb/images/icon_text_resource.png);}
+.EXLResultMediaTYPEvideo .multipleCoverImageContainer .EXLBriefResultsDisplayCoverImageBackup a{background-image: url(/primo_library/libweb/images/icon_video.png);}
+.EXLResultMediaTYPEcomputer .multipleCoverImageContainer .EXLBriefResultsDisplayCoverImageBackup a{background-image: url(/primo_library/libweb/images/icon_game.png);}
+.EXLResultMediaTYPEvwebsite .multipleCoverImageContainer .EXLBriefResultsDisplayCoverImageBackup a{background-image: url(/primo_library/libweb/images/icon_website.png);}
+.EXLResultMediaTYPEnewspaper_article .multipleCoverImageContainer .EXLBriefResultsDisplayCoverImageBackup a{background-image: url(/primo_library/libweb/images/icon_newspaper.png);}
+.EXLResultMediaTYPEreview .multipleCoverImageContainer .EXLBriefResultsDisplayCoverImageBackup a{background-image: url(/primo_library/libweb/images/icon_article.png);}
+.coverImageDiv {}
+.popThumbnailToTop {
+
+}
+
+
+
+.multipleCoverImageContainer  {
+    position: relative;
+}
+.multipleCoverImageContainer .coverImageDiv  {
+    position:absolute;
+    top:0px;
+    width:100%;
+}
+.multipleCoverImageContainer .coverImageDiv img {
+    .img-thumbnail;
+    width:100%;
+}
+.multipleCoverImageContainer .EXLBriefResultsDisplayCoverImageBackup {
+    a{
+        .img-thumbnail;
+        background: transparent none no-repeat 50% 50%;
+        height: 100px;
+        width:100%;
+        display:block;
+    }
+}
+.multipleCoverImageContainer .coverImageDiv a img[src*="pixel"]{
+    .collapse;
+}
+
