@@ -57,6 +57,34 @@ function getUnfixedElems(selector, cantHave) { // TODO: I don't think the cantHa
     return $(selector + ':not(.jsFlagDomFixed)' + (cantHave ? ':not(:has(\'' + cantHave + '\'))' : ''));
 }
 
+/* HAFE
+ * Transforms an ul list to a dl list. Used in details tab and location tab.
+ * @param divWithUl {jQuery Object} The element that contains an ul that has to be transformed.
+ * @param selector {String/selector} Optional Selector for the ul to to transform. Defaults to '>ul'.
+ * @return {jQuery Object} The element that is now containing a dl.
+ * Transform this:
+ * <ul>
+ *   <li>
+ *     <strong>Forfatter:</strong><a href="[...]/a>
+ *   </li>
+ * [...]
+ * </ul>
+ * into this:
+ * <dl>
+ *   <dt>Forfatter:<dt><dd><a href="[...]/a></dd>
+ *   [...]
+ * </dl>
+ */
+function transformUlToDl(divWithUl, selector) {
+    selector = selector || '>ul';
+    $(selector, divWithUl).changeElementType('dl').addClass('dl-horizontal'); // FIXME: chain with .children().
+    $('>dl>li', divWithUl).changeElementType('dd');
+    $.each($('>dl>dd>strong:first-child', divWithUl), function (idx, elem) {
+        $(elem).insertBefore($(elem).closest('dd')).changeElementType('dt'); // NOTE: If we want to get rid of those ":" this would be the right place to do it
+    });
+    return divWithUl;
+}
+
 function kbBootstrapifyTabs() {
     var exlResultTabHeaderButtonsToFix = getUnfixedElems('.EXLResultTabContainer .EXLTabHeaderButtons');
     var exlResultTabContainerToFix = $(exlResultTabHeaderButtonsToFix).closest('.EXLResultTabContainer:not(\'jsFlagDomFixed\')');
@@ -94,24 +122,8 @@ function kbBootstrapifyTabs() {
         /* HAFE
          * Replace ul stuctures in detailsTab with dl
          * Responsive Rex: .EXLContainer-detailsTab .EXLDetailsContent
-         * We transform this:
-         * <ul>
-         *   <li>
-         *     <strong>Forfatter:</strong><a href="[...]/a>
-         *   </li>
-         * [...]
-         * </ul>
-         * into this:
-         * <dl>
-         *   <dt>Forfatter:<dt><dd><a href="[...]/a></dd>
-         *   [...]
-         * </dl>
          */
-        $('>ul', exlDetailsContentToFix).changeElementType('dl').addClass('dl-horizontal');
-        $('>dl>li', exlDetailsContentToFix).changeElementType('dd');
-        $.each($('>dl>dd>strong:first-child', exlDetailsContentToFix), function (idx, elem) {
-            $(elem).insertBefore($(elem).closest('dd')).changeElementType('dt'); // NOTE: If we want to get rid of those ":" this would be the right place to do it
-        });
+        transformUlToDl(exlDetailsContentToFix);
         flagFixed(exlDetailsContentToFix);
     }
 
