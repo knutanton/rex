@@ -115,7 +115,7 @@
                         <c:if test="${empty sbutton }">
                             <c:set var="sbutton" value="submit"/>
                         </c:if>
-                        <button id="goButton" type="submit" value="<fmt:message key='link.title.search.search'/>" class="${sbutton} btn btn-primary" accesskey="g"><span class="glyphicon glyphicon-search "></span> <span class=""><fmt:message key='link.title.search.search'/></span></button>
+                        <button id="goButton" type="submit" value="<fmt:message key='link.title.search.search'/>" class="${sbutton} btn btn-primary" accesskey="g"><span class="glyphicon glyphicon-search "></span> <span class="collapse"><fmt:message key='link.title.search.search'/></span></button>
                     </div>
                 </div>
                 <%-- begin scopes dropdown --%>
