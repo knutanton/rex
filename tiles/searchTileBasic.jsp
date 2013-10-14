@@ -126,16 +126,7 @@
         </div>
 
         <jsp:include page="systemFeedbackTile.jsp" />
-
-
-        <div>
-            <div class="form-group">
-                <div class="btn-group">
-                    <a href="${fn:escapeXml(advanced_search_url)}" class="${browseAlign} btn btn-default" title="<fmt:message key='link.title.advanced_search'/>" id="advancedSearchBtn"><fmt:message key='label.advanced_search'/></a>
-                    <a href="/primo_library/libweb/action/search.do?menuitem=0" class="btn btn-default" title="ny søgning" target="_self">Ny søgning</a>
-                </div>
-            </div>
-        </div>
+        <jsp:include page="searchLimitsTile.jsp" />
 
         <c:set var="browseAlign" value=""/>
             <c:if test="${searchForm.showBrowseLink }">
