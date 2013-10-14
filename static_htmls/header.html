@@ -1,9 +1,9 @@
 <script>
 	(function removeBootsrapCss() {
    if (!(document.URL.indexOf('search.do') > -1 || document.URL.indexOf('display.do') > -1)){
-    var currCssLink = $("link[href*='global.css']").attr("href");
-    var newCssLink = currCssLink.replace("global.css","KGL.css");
-    $("link[href*='global.css']").attr("href",newCssLink);
+    var currCssLink = $("link[href*='bootstrap.css']").attr("href");
+    var newCssLink = currCssLink.replace("bootstrap.css","KGL.css");
+    $("link[href*='bootstrap.css']").attr("href",newCssLink);
 
    }
 }());

@@ -101,14 +101,7 @@
             <ul id="exlidUserAreaRibbon" class="${loggedInClass} nav navbar-nav navbar-right">
                 <%-- Ny Låner --%>
                 <c:set var="newBorrowerUrl" value="https://login.kb.dk/kbuser/regguide" />
-                <c:choose>
-                    <c:when test="${loggedIn}">
-                        <li>
-                    </c:when>
-                    <c:otherwise>
-                        <li id="exlidMyAccount" class="disabled">
-                    </c:otherwise>
-                </c:choose>
+                <li>
                     <c:choose>
                         <c:when test="${sessionScope.chosenInterfaceLanguage == 'da_DK'}">
                             <a href="<c:out value="${newBorrowerUrl}"/>?pref_lang=da" target="_blank">Ny låner</a>
@@ -117,7 +110,6 @@
                             <a href="<c:out value="${newBorrowerUrl}"/>?pref_lang=en" target="_blank">New user</a>
                         </c:otherwise>
                     </c:choose>
-                </a>
                 </li>
 
                 <%-- log ind / log ud --%>

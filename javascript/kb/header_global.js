@@ -57,6 +57,35 @@ function getUnfixedElems(selector, cantHave) { // TODO: I don't think the cantHa
     return $(selector + ':not(.jsFlagDomFixed)' + (cantHave ? ':not(:has(\'' + cantHave + '\'))' : ''));
 }
 
+/* HAFE
+ * Transforms an ul list to a dl list. Used in details tab and location tab.
+ * @param divWithUl {jQuery Object} The element that contains an ul that has to be transformed.
+ * @param selector {String/selector} Optional Selector for the ul to to transform. Defaults to '>ul'.
+ * @return {jQuery Object} The element that is now containing a dl.
+ * Transform this:
+ * <ul>
+ *   <li>
+ *     <strong>Forfatter:</strong><a href="[...]/a>
+ *   </li>
+ * [...]
+ * </ul>
+ * into this:
+ * <dl>
+ *   <dt>Forfatter:<dt><dd><a href="[...]/a></dd>
+ *   [...]
+ * </dl>
+ */
+function transformUlToDl(divWithUl, selector) {
+    selector = selector || '>ul';
+    $(selector, divWithUl).changeElementType('dl')
+        .addClass('dl-horizontal')
+        .children().changeElementType('dd');
+    $.each($('>dl>dd>strong:first-child', divWithUl), function (idx, elem) {
+        $(elem).insertBefore($(elem).closest('dd')).changeElementType('dt'); // NOTE: If we want to get rid of those ":" this would be the right place to do it
+    });
+    return divWithUl;
+}
+
 function kbBootstrapifyTabs() {
     var exlResultTabHeaderButtonsToFix = getUnfixedElems('.EXLResultTabContainer .EXLTabHeaderButtons');
     var exlResultTabContainerToFix = $(exlResultTabHeaderButtonsToFix).closest('.EXLResultTabContainer:not(\'jsFlagDomFixed\')');
@@ -94,24 +123,8 @@ function kbBootstrapifyTabs() {
         /* HAFE
          * Replace ul stuctures in detailsTab with dl
          * Responsive Rex: .EXLContainer-detailsTab .EXLDetailsContent
-         * We transform this:
-         * <ul>
-         *   <li>
-         *     <strong>Forfatter:</strong><a href="[...]/a>
-         *   </li>
-         * [...]
-         * </ul>
-         * into this:
-         * <dl>
-         *   <dt>Forfatter:<dt><dd><a href="[...]/a></dd>
-         *   [...]
-         * </dl>
          */
-        $('>ul', exlDetailsContentToFix).changeElementType('dl').addClass('dl-horizontal');
-        $('>dl>li', exlDetailsContentToFix).changeElementType('dd');
-        $.each($('>dl>dd>strong:first-child', exlDetailsContentToFix), function (idx, elem) {
-            $(elem).insertBefore($(elem).closest('dd')).changeElementType('dt'); // NOTE: If we want to get rid of those ":" this would be the right place to do it
-        });
+        transformUlToDl(exlDetailsContentToFix);
         flagFixed(exlDetailsContentToFix);
     }
 
@@ -197,84 +210,96 @@ function kbBootstrapifyTabs() {
          *   </div>
          * </div>
          */
-        var actionButtons = $('.EXLLocationTableActionsMenu', exlLocationTableToFix),
-            headingRow = $('.EXLLocationTitlesRow', exlLocationTableToFix);
 
-        // transform the action buttons
-        $.each(actionButtons, function () {
-            $('>ul>li', this).remove()
-                .children().appendTo(this)
-                .addClass('btn btn-default btn-xs');
-            $('>ul', this).remove();
-        });
-        var actionRows = actionButtons.closest('td')
-                .changeElementType('div')
-                .addClass('EXLLocationTableActions row');
-        $.each(actionRows, function (index, actionRow) {
-            actionRow = $(actionRow);
-            actionRow.empty().append(actionButtons[index]);
-            actionRow.insertAfter(actionRow.parent());
-        });
-        // transform the headings
-        headingRow.children().last().remove();
-        headingRow.addClass('visible-md visible-lg').children().changeElementType('div').addClass('col-md-3');
-        headingRow = headingRow.changeElementType('div').addClass('row');
-        headingRow.insertBefore(headingRow.parent().parent());
-        // Get the header texts for injecting into each cell, so they can be shown in xs and sm mode
-        var headerText = headingRow.children().map(function (index, elem) { return $(elem).text().trim(); });
-        // transform the locations
-        var locationAndInfoRows = $('tr', exlLocationTableToFix),
-            tmpAdditionalFieldsId;
-        $.each(locationAndInfoRows, function (index, row) {
-            if ($('td.EXLAdditionalFieldsLink', row).length) {
-                // This is a header for a location
-                tmpAdditionalFieldsId = Unique.getUid();
-                row = $(row).changeElementType('div')
-                    .addClass('locationHeaderRow row')
-                    .children().changeElementType('div')
-                    .addClass('col-md-3');
-                // Eventlisteners for toggle=collapse elements :( For some obscure reason they don't work out of the bootstrap box, so I have rewritten them here /HAFE
-                // TODO: Given more time, we should figure out why bootstraps toggle does not work here (it might just be some structural thing?), and fix it.
-                row.children('a').on('click', function () {
-                    var targetDiv = $('#' + $(this).attr('data-target'));
-                    if (targetDiv.hasClass('in')) {
-                        targetDiv.slideUp(400, function () {
-                            $(this).removeClass('in');
-                        });
-                    } else {
-                        targetDiv.slideDown(400, function () {
-                            $(this).addClass('in');
-                        });
-                    }
-                });
-                // inject headers for xs and sm views
-                $.each(row, function (index, div) {
-                    $(div).prepend('<div class="locationColumnTitle visible-xs visible-sm">' + headerText[index]  + '</div>');
-                });
-                // Change the link to collapse/expand the corresponding #additionalLocationFields
-                $('>a', row[0])
-                    .removeAttr('href')
-                    .attr('data-target', 'additionalLocationFields' + tmpAdditionalFieldsId)
-                    .attr('data-toggle', 'collapse');
-            } else {
-                if ($(row).hasClass('EXLAdditionalFieldsRow')) {
-                    // This is a collapsible additional info for a location
-                    $(row).changeElementType('div')
-                        .addClass('panel-collapse collapse')
-                        .removeAttr('style') // removing the inline display:none
-                        .attr('id', 'additionalLocationFields' + tmpAdditionalFieldsId)
-                        .children().changeElementType('div');
+        exlLocationTableToFix.hide();
+        var rows = $('tr', exlLocationTableToFix), // FIXME: This will break badly if there is more than one exlLocationTableToFix at a time!
+            row,
+            headerRow = $(rows[0]),
+            headerText = headerRow.children().map(function (index, elem) { return $(elem).text().trim(); }),
+            headerFieldCount = headerRow.children().length - 1, // NOTE: The very last field is the action buttons, and they are appended in their own row
+            colsPerColumn = Math.floor(12 / headerFieldCount), // Magic number 12 = bootstrap cols
+            locations = $('<div class="locations" />'),
+            tmpLocation,
+            tmpButtons,
+            tmpAdditionalFieldsId,
+            i, j,
+            clickHandler = function () {
+                var targetDiv = $('#' + $(this).attr('data-target'));
+                if (targetDiv.hasClass('in')) {
+                    targetDiv.slideUp(400, function () {
+                        $(this).removeClass('in');
+                    });
                 } else {
-                    // This is everything else in the table - just convert tr and td to divs and do nothing else
-                    $(row).changeElementType('div')
-                        .children().changeElementType('div');
+                    targetDiv.slideDown(400, function () {
+                        $(this).addClass('in');
+                    });
+                }
+            };
+        headerRow.children().last().remove();
+        headerRow = headerRow.changeElementType('div').addClass('row visible-md visible-lg');
+        headerRow.children().changeElementType('div').addClass('col-md-' + colsPerColumn);
+        locations.append(headerRow);
+        // loop thru all rows and generate locationDivs on the way
+        for (i = 1; i < rows.length; i += 1) { // NOTE: Starting with row 1 because row 0 is the headlines
+            row = $(rows[i]);
+            if (row.hasClass('EXLAdditionalFieldsRow')) {
+                // this is a (hidden) additional fields line
+                transformUlToDl(row.children().changeElementType('div'))
+                    .attr('id', 'additionalLocationFields' + tmpAdditionalFieldsId)
+                    .attr('class', row.attr('class'))
+                    .addClass('collapse')
+                    .appendTo(tmpLocation);
+            } else {
+                if ($('td.EXLAdditionalFieldsLink', row).length) {
+                    // this is a location headline
+                    if (tmpLocation) {
+                        // push the previous location
+                        if (tmpButtons) {
+                            tmpLocation.append(tmpButtons);
+                            tmpButtons = null;
+                        }
+                        locations.append(tmpLocation);
+                    }
+                    // start new location
+                    tmpAdditionalFieldsId = Unique.getUid();
+                    tmpLocation = $('<div class="locationDiv"/>');
+                    var headerFields = row.children(),
+                        tmpHeader = $('<div class="locationHeader row" />');
+                    for (j = 0; j < headerFieldCount; j += 1) {
+                        tmpHeader.append(($(headerFields[j])
+                            .changeElementType('div')
+                            .addClass('locationHeaderField col-md-' + colsPerColumn)
+                            .prepend('<div class="locationColumnTitle visible-xs visible-sm">' + headerText[j]  + '</div>')));
+                    }
+                    // setup event listener to additionalFieldsLink
+                    $('.EXLAdditionalFieldsLink a', tmpHeader)
+                        .attr('data-target', 'additionalLocationFields' + tmpAdditionalFieldsId)
+                        .attr('data-toggle', 'collapse')
+                        .removeAttr('href')
+                    // TODO: since the above bootstrap attempts does not work properly, we also sets eventlisteners up manually - we might wanna examine why it does not work
+                        .on('click', clickHandler);
+                    tmpLocation.append(tmpHeader);
+                    tmpButtons = $('<div class="locationButtons" />');
+                    $('.EXLLocationTableActionsMenu a', headerFields[headerFields.length - 1])
+                        .addClass('btn btn-default btn-xs')
+                        .appendTo(tmpButtons);
+                } else {
+                    // This is anything else - just wrap it in divs and append it? (the very last "show all locations" link is in here!)
+                    if (tmpLocation) {
+                        // push the previous location
+                        if (tmpButtons) {
+                            tmpLocation.append(tmpButtons);
+                            tmpButtons = null;
+                        }
+                        locations.append(tmpLocation);
+                    }
+                    // append what ever there is of content cells in this row
+                    locations.append(row.children().changeElementType('div'));
                 }
             }
-        });
-        exlLocationTableToFix.children().children().insertBefore(exlLocationTableToFix);
-        exlLocationTableToFix.remove();
+        }
+        exlLocationTableToFix.replaceWith(locations);
         // NOTE: We do not need to flag the table fixed, since we have removed it!
-// FIXME: When users are not logged in, and there only is one button "log ind for at reservere", the a seems to loose its button classes somewhere outside here!
     }
 }
 
