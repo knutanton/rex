@@ -95,6 +95,5 @@
 
 </div>
 </c:if>
-<hr/>
 <!-- searchLimitsTile.jsp end -->
 
