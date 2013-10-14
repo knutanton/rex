@@ -33,7 +33,7 @@ loadPyrPreferencesPage('pyrFromInitial');
 
 <jsp:include page="searchTileBasic.jsp" />
 
-<jsp:include page="searchLimitsTile.jsp" />
+<%--<jsp:include page="searchLimitsTile.jsp" /> Bliver includeret i searchTileBasic.jsp--%>
 
 
 </html:form>
