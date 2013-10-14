@@ -130,7 +130,7 @@
 		</h1>
 	</c:if>
 
-    <%@ include file="resultsHeaderNavigation.jsp" %>
+    <%--<%@ include file="resultsHeaderNavigation.jsp" %>--%>
 
 	<div class="EXLResultsSortBy btn-toolbar">
 		<!--<span class="EXLResultsSortByLabel"><fmt:message key='results.sortby' /></span>
