@@ -265,6 +265,6 @@
                     <%-- end advanced search render --%>
         </div>
     </div>
-    <hr/>
+
 </html:form>
 
