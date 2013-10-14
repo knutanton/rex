@@ -77,8 +77,9 @@ function getUnfixedElems(selector, cantHave) { // TODO: I don't think the cantHa
  */
 function transformUlToDl(divWithUl, selector) {
     selector = selector || '>ul';
-    $(selector, divWithUl).changeElementType('dl').addClass('dl-horizontal'); // FIXME: chain with .children().
-    $('>dl>li', divWithUl).changeElementType('dd');
+    $(selector, divWithUl).changeElementType('dl')
+        .addClass('dl-horizontal')
+        .children().changeElementType('dd');
     $.each($('>dl>dd>strong:first-child', divWithUl), function (idx, elem) {
         $(elem).insertBefore($(elem).closest('dd')).changeElementType('dt'); // NOTE: If we want to get rid of those ":" this would be the right place to do it
     });
