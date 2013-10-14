@@ -1,3 +1,4 @@
+<%@ page contentType="text/xml;charset=UTF-8" language="java"%>
 <%@ include file="/views/taglibsIncludeAll.jspf" %>
 <%@ include file="/javascript/TitleSearch.js" %>
 <!-- searchLimitsTile.jsp begin -->
@@ -34,7 +35,7 @@
 				<span class="EXLHiddenCue sr-only"><prm:userText styleId="search-simple" type="lookForText" inline="true"/></span>
                 <div class="col-xs-6 col-md-3">
                     <div class="form-group">
-                        <prm:select selectForm="${searchForm}" input="${currentInput}" styleClass="blue EXLSimpleSearchSelect" valueOptionsPrefix='search-simple' count="1"/>
+                        <prm:select selectForm="${searchForm}" input="${currentInput}" styleClass="blue EXLSimpleSearchSelect form-control input-sm" valueOptionsPrefix='search-simple' count="1"/>
                     </div>
                 </div>
 			</c:if>		
@@ -52,14 +53,14 @@
 			</span>
                 <div class="col-xs-6 col-md-3">
                     <div class="form-group">
-                        <prm:select selectForm="${searchForm}" input="${currentInput}" styleClass="blue EXLSimpleSearchSelect" valueOptionsPrefix='search-simple' count="1"/>
+                        <prm:select selectForm="${searchForm}" input="${currentInput}" styleClass="EXLSimpleSearchSelect form-control input-sm" valueOptionsPrefix='search-simple' count="1"/>
                     </div>
                 </div>
 			</c:if>
 		</c:forEach>
           <div class="col-xs-6 col-md-3">
               <div class="form-group">
-                  <select id="exlidSearchIn" class="EXLSearchInputScopesSelect form-control" name="scp.scps" ${(searchForm.displayDefinition=='false')?'disabled="disabled"':''}>
+                  <select id="exlidSearchIn" class="EXLSearchInputScopesSelect form-control input-sm" name="scp.scps" ${(searchForm.displayDefinition=='false')?'disabled="disabled"':''}>
                       <c:forEach items='${searchForm.scp.scopesOptions}' var="option" varStatus="status">
                           <c:set var="classes" value="${option.locationrefs==searchForm.scp.scps?'EXLSelectedOption':'EXLSelectOption'}"/>
                           <c:set var="selected" value="${option.locationrefs==searchForm.scp.scps?'selected=\"selected\"':''}"/>
@@ -85,10 +86,18 @@
                 </div>
             </div>
 
+
+
       </fieldset>
       <!--<input name="Submit" type="submit" class="btn btn-default" value="Apply Search Limits"/>-->
 
       <!--<input name="Reset" type="reset" class="btn btn-default" value="Clear Limits"/>-->
+
+        <div class="col-md-12">
+                <a href="${fn:escapeXml(advanced_search_url)}" class="${browseAlign} btn btn-primary" title="<fmt:message key='link.title.advanced_search'/>" id="advancedSearchBtn"><fmt:message key='label.advanced_search'/></a>
+                <a href="/primo_library/libweb/action/search.do?menuitem=0" class="btn btn-primary" title="ny søgning" target="_self">Ny søgning</a>
+        </div>
+
 
 
 
