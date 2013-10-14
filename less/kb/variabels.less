@@ -1,0 +1,112 @@
+// VAR
+// *************************
+
+
+
+
+
+// Brand colors
+// -------------------------
+@brand-primary:             #38555f;
+@brand-success:             #5cb85c;
+@brand-warning:             #f0ad4e;
+@brand-danger:              #d9534f;
+@brand-info:                #5bc0de;
+
+@neutral:                   #FFFFFF;
+
+
+// Alert
+// -------------------------
+
+@state-info-text:             #c09853;
+@state-info-bg:               #fcf8e3;
+@state-info-border:           darken(spin(@state-warning-bg, -10), 3%);
+// Borders
+// -------------------------
+/*@border-radius-base:             0px;
+@border-radius-large:            6px;
+@border-radius-small:            3px;
+*/
+// STYLE
+// *************************
+
+body{
+    background:             @gray-lighter;
+}
+
+// Header
+// -------------------------
+
+#header{
+    margin-bottom:          0;
+
+}
+
+
+// Search
+// -------------------------
+
+#search{
+    background:             darken(@btn-primary-bg, -10%);
+    color:                  @neutral;
+
+    .EXLSearchWrapper{
+       padding:             @jumbotron-padding;
+    }
+    .btn-primary{
+        border:             0;
+    }
+    #search_field{
+        border:0;
+    }
+
+    .nav-tabs{
+        border-bottom:      none;
+        > li > a{
+            background:     @brand-primary;
+            color:          @neutral;
+            border:         none;
+
+        }
+        .active > a {
+            &,
+            &:hover,
+            &:focus {
+                color: @btn-default-color;
+                background-color: @neutral;
+                border: none;
+
+            }
+        }
+    }
+
+}
+
+// Content
+// ------------------------------------
+
+#content{
+    background:             @neutral;
+    padding-top:            @padding-large-vertical;
+
+    #resultContent{
+        h1{
+            .h3;
+        }
+        h3{
+            .h4;
+        }
+        h4{
+            .h5;
+        }
+    }
+}
+
+// Footer
+// -------------------------
+
+#footer{
+    padding:                @jumbotron-padding;
+    border-top:             20px solid @brand-primary;
+}
