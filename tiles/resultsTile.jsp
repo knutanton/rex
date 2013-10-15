@@ -73,14 +73,10 @@
 
 
 		<div class="EXLSummary row">
-            <div class="EXLThumbnail col-md-2">
+            <div class="EXLThumbnail col-md-1">
                 <a name="${result.id}" id="${result.id}" class="EXLResultRecordId"></a>
                 <c:if test="${form.alma != null && !form.alma}">
-                    <div class="EXLThumbnailCaption" id="mediaTypeCaption-${result.resultNumber}">
-                        <span class="label label-default">
-                            <fmt:message key="mediatype.multiplever"/>
-                        </span>
-                    </div>
+
 
                     <div class="multipleCoverImageContainer">
                         <a id="thumbLink" target="_parent" href="${fn:escapeXml(frbrUrl)}" title="<fmt:message key='mediatype.multiplever'/>">
@@ -90,13 +86,15 @@
                     <div class="EXLHiddenCue collapse">Material Type: </div>
                 </c:if>
             </div>
-		  	<div class="EXLSummaryContainer col-md-10">
+		  	<div class="EXLSummaryContainer col-md-11">
 	  			<div class="EXLSummaryFields">
+
                       <div class="EXLThumbnailCaption visible-xs visible-sm"  id="mediaTypeCaption-${result.resultNumber}">
                         <span class="label label-default">
                             <fmt:message key="mediatype.multiplever"/>
                         </span>
                       </div>
+
 		  			<h3 class="EXLResultTitle">
 						<a id="titleLink" target="_parent" href="${fn:escapeXml(frbrUrl)}" onclick="reportClick();${boomCall}reportBibTip('${result.id}');${azJournalPopUp}">
 		  					${title}
@@ -147,13 +145,10 @@
 
 
 	  <div class="EXLSummary row">
-          <div class="EXLThumbnail col-md-2">
+          <div class="EXLThumbnail col-md-1">
               <a name="${result.id}" id="${result.id}" class="EXLResultRecordId"></a>
 
               <c:if test="${form.alma != null && !form.alma}">
-                  <div class="EXLThumbnailCaption label label-default" id="mediaTypeCaption-${result.resultNumber}">
-                      <fmt:message key="mediatype.${result.values[c_value_fmticon]}" />
-                  </div>
                   <!--begin thumbnails-->
                   <div>
                       <prm:thumbnails thumbLocation="display" thumbnailLinks="${form.delivery[resultStatus.index].thumbnailLinks}" index="${resultStatus.index}" resultTitleUrl="${resultTitleUrl}" displayURL="${displayURL}" isOnline="${isOnline}"/>
@@ -162,12 +157,14 @@
               </c:if>
           </div>
 
-		  <div class="EXLSummaryContainer col-md-10">
+		  <div class="EXLSummaryContainer col-md-11">
 			<div class="EXLSummaryFields">
                 <div class="EXLHiddenCue collapse">Material Type: </div>
-                <div class="EXLThumbnailCaption visible-xs visible-sm" id="mediaTypeCaption-${result.resultNumber}">
+
+                <div class="EXLThumbnailCaption" id="mediaTypeCaption-${result.resultNumber}">
                     <span class="label label-default "><fmt:message key="mediatype.${result.values[c_value_fmticon]}" /></span>
                 </div>
+
                 <div class="EXLMyShelfStar pull-right">
                     <c:choose>
                         <c:when test="${result.remote}">
@@ -178,6 +175,7 @@
                         </c:otherwise>
                     </c:choose>
                 </div>
+
 				<h3 class="EXLResultTitle">
 				<c:set var="strippedTitle">${fn:replace(fn:replace(title,'<span class="searchword">',''),'</span>','')}</c:set>
 				<c:choose>
