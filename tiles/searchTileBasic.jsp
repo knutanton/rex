@@ -18,10 +18,7 @@
             <c:set var="resloc">_self</c:set>
         </c:if>
 
-        <c:url value="search.do?${requestScope.switchModeURL_reqDecQryUTF8}" var="advanced_search_url">
-            <c:param name="mode" value="Advanced"/>
-            <c:param name="ct" value="AdvancedSearch"/>
-        </c:url>
+
 
         <c:if test="${searchForm.displayDefinition=='false'}">
             <%-- determine whether scope will be visible or not, grow text search box accordingly, all of these are classes --%>
