@@ -122,11 +122,89 @@ function kbBootstrapifyTabs() {
         flagFixed(exlDetailsContentToFix);
     }
 
+    var exlLocationListToFix = getUnfixedElems('.EXLResultTabContainer .EXLLocationsTabContent .EXLLocationListContainer');
+    if (exlLocationListToFix.length) { // transform Location groups into bootstrap accordion-panels
+        /* HAFE
+         * Transform locationList to bootstrap accordion panels
+         * NOTE: We do not use the bootstrap accordion events, since we have to hook up with EXLIBRIS ajax system. The very first time an accordion is clicked,
+         *       we use EXLIBRIS ajax call. On success (OBS OBS: in the end of the transformation of the recieved locationTable!!) we remove the href from the link,
+         *       and we setup our own event handlers to handle the accordion collapse/expand.
+         * Responsive Rex: .EXLLocationListContainer .EXLLocationList .EXLLocationsTitle .EXLLocationInfo
+         * We transform this:
+         * <div class="EXLLocationListContainer">
+         *   <div class="EXLLocationList">
+         *     <span class="EXLLocationsTitle">
+         *       <a href="AJAXLINK" class="EXLLocationsIcon">
+         *         <img>
+         *       </a>
+         *       [...]
+         *     </span>
+         *     <span class="EXLLocationInfo">
+         *         [...]
+         *     </span>
+         *     <br>
+         *     <div class="EXLSubLocation">
+         *       [...]
+         *     </div>
+         *   </div>
+         * </div>
+         * into this:
+         * <div class="EXLLocationListContainer">
+         *   <div class="EXLLocationList panel panel-default">
+         *     <div class="panel-heading">
+         *       <h4 class="panel-title">
+         *         <a href="AJAXLINK" class="EXLLocationsIcon accordion-toggle" data-target="#locationAccordionUID" data-toggle="collapse">
+         *           <img>      (<--- display=none)
+         *           <span class="EXLLocationsTitle">
+         *             [...]
+         *           </span>
+         *           <span class="EXLLocationInfo">
+         *             [...]
+         *           </span>
+         *         </a>
+         *       </h4>
+         *     </div>
+         *     <div id="locationAccordionUID" class="panel-collapse collapse in">
+         *       <div class="EXLSubLocation panel-body">
+         *         [...]
+         *       </div>
+         *     </div>
+         *   </div>
+         * </div>
+         */
+        var locationLists = $('.EXLLocationList', exlLocationListToFix).addClass('panel panel-default');
+        $.each(locationLists, function (index, locationList) {
+            locationList = $(locationList);
+            var tmpUid = Unique.getUid(),
+                accordionHeaderElement = $('<div class="panel-heading"><h4 class="panel-title"><a class="accordion-toggle" data-toggle="collapse" href="#locationAccordion' + tmpUid + '"></a></h4></div>'),
+                oldLink = $('.EXLLocationsTitle a', locationList),
+                accordionHeaderLink = $('a', accordionHeaderElement),
+                accordionBodyContainer = $('<div id="locationAccordion' + tmpUid + '" class="panel-collapse collapse' + (oldLink.length ? '' : ' in') + '"></div>');
+            if (oldLink.length) {
+                oldLink.children().hide();
+                accordionHeaderLink.replaceWith(oldLink.addClass('accordion-toggle').attr({
+                    'data-toggle' : 'collapse',
+                    'data-target' : 'locationAccordion' + tmpUid
+                }));
+                accordionHeaderLink = oldLink;
+            }
+            $('.EXLLocationsTitle', locationList).appendTo(accordionHeaderLink);
+            $('.EXLLocationInfo', locationList).appendTo(accordionHeaderLink);
+            $('br', locationList).remove();
+            accordionBodyContainer.appendTo(locationList);
+            accordionHeaderElement.prependTo(locationList);
+            $('.EXLSublocation', locationList).addClass('panel-body').appendTo(accordionBodyContainer);
+        });
+        flagFixed(exlLocationListToFix);
+    }
+
     var exlLocationTableToFix = getUnfixedElems('.EXLResultTabContainer .EXLLocationsTabContent .EXLLocationTable');
     if (exlLocationTableToFix.length) { // transform table to divs for responsive design
         /* HAFE
          * Replace table structure in locationTab with div/cols Bootstrap DOM
          * Responsice Rex: .EXLContainer-locationsTab .EXLSubLocation .EXLLocationTable
+         * NOTE: In the end of this function, we expands the parent accordion (that we made earlier), and kills the EXLIBRIS ajax link, and sets up our own accordion events
+         *       We unfortunately had to do this to make EXLIBRIS ajax system work with our bootstrappish accordions.
          * We transform this:
          * <table class="EXLLocationTable">
          *   <tbody>
@@ -290,6 +368,24 @@ function kbBootstrapifyTabs() {
         appendTmpLocation(); // if there is a tmpLocation left, append it to locations
         exlLocationTableToFix.replaceWith(locations);
         // NOTE: We do not need to flag the table fixed, since we have removed it!
+        // =====================================================================================================================================================
+        // ================ the rest of the code here is about the parent accordion, and really belongs to the code that fixes the LocationsLists! =============
+        // =====================================================================================================================================================
+        // Unfortunately, due to our accordion-hack above, we do need to expand the accordion this table reside on, and swap the a href to bootstraps data-target after it has been fetched the first time. :( FIXME: This is freaking ugly, and I pitty you who have to debug this after 3 month (HAFE) :-(
+        locations.closest('.panel-collapse').slideDown(400, function () {
+            $(this).addClass('in');
+            // FIXME: it OUGHT to be enough to change the href of the a tag to change the link, but for some strange reason my chrome browser linger on to the old link
+            //$('a', this.previousElementSibling).attr('href', '#' + $(this).attr('id'));
+            var accordionAnchor = $('a', this.previousElementSibling);
+            if (accordionAnchor.attr('href').charAt(0) !== '#') {
+                // This is an ExLibris ajax call - remove the href and install our own accordion handlers, since bootstraps does not work here.
+                accordionAnchor
+                    .removeAttr('href')
+                    .on('click', function () {
+                        $('#' + $(this).attr('data-target')).slideToggle().toggleClass('in'); // FIXME: - shitty code, but the bootstrap accordion/link change did not work out! :(
+                    });
+            }
+        });
     }
 }
 
