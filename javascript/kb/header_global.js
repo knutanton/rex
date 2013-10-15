@@ -129,7 +129,6 @@ function kbBootstrapifyTabs() {
          * NOTE: We do not use the bootstrap accordion events, since we have to hook up with EXLIBRIS ajax system. The very first time an accordion is clicked,
          *       we use EXLIBRIS ajax call. On success (OBS OBS: in the end of the transformation of the recieved locationTable!!) we remove the href from the link,
          *       and we setup our own event handlers to handle the accordion collapse/expand.
-         * NOTE: If EXLIBRIS does not have a LocationsIcon, we just expands the panel by default, and the panel is effectively uncollapsible!
          * Responsive Rex: .EXLLocationListContainer .EXLLocationList .EXLLocationsTitle .EXLLocationInfo
          * We transform this:
          * <div class="EXLLocationListContainer">
@@ -369,16 +368,23 @@ function kbBootstrapifyTabs() {
         appendTmpLocation(); // if there is a tmpLocation left, append it to locations
         exlLocationTableToFix.replaceWith(locations);
         // NOTE: We do not need to flag the table fixed, since we have removed it!
+        // =====================================================================================================================================================
+        // ================ the rest of the code here is about the parent accordion, and really belongs to the code that fixes the LocationsLists! =============
+        // =====================================================================================================================================================
         // Unfortunately, due to our accordion-hack above, we do need to expand the accordion this table reside on, and swap the a href to bootstraps data-target after it has been fetched the first time. :( FIXME: This is freaking ugly, and I pitty you who have to debug this after 3 month (HAFE) :-(
         locations.closest('.panel-collapse').slideDown(400, function () {
             $(this).addClass('in');
             // FIXME: it OUGHT to be enough to change the href of the a tag to change the link, but for some strange reason my chrome browser linger on to the old link
             //$('a', this.previousElementSibling).attr('href', '#' + $(this).attr('id'));
-            $('a', this.previousElementSibling)
-                .removeAttr('href')
-                .on('click', function () {
-                    $('#' + $(this).attr('data-target')).slideToggle().toggleClass('in'); // FIXME: - shitty code, but the bootstrap accordion/link change did not work out! :(
-                });
+            var accordionAnchor = $('a', this.previousElementSibling);
+            if (accordionAnchor.attr('href').charAt(0) !== '#') {
+                // This is an ExLibris ajax call - remove the href and install our own accordion handlers, since bootstraps does not work here.
+                accordionAnchor
+                    .removeAttr('href')
+                    .on('click', function () {
+                        $('#' + $(this).attr('data-target')).slideToggle().toggleClass('in'); // FIXME: - shitty code, but the bootstrap accordion/link change did not work out! :(
+                    });
+            }
         });
     }
 }
