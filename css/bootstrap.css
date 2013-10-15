@@ -6488,6 +6488,44 @@ fieldset[disabled] .EXLSubmit.active {
   background-color: #38555f;
   border-color: #2f474f;
 }
+.EXLRefinementsList .EXLExcludedElement {
+  color: #ffffff;
+  background-color: #d9534f;
+  border-color: #d43f3a;
+  text-decoration: line-through;
+}
+.EXLRefinementsList .EXLExcludedElement:hover,
+.EXLRefinementsList .EXLExcludedElement:focus,
+.EXLRefinementsList .EXLExcludedElement:active,
+.EXLRefinementsList .EXLExcludedElement.active,
+.open .dropdown-toggle.EXLRefinementsList .EXLExcludedElement {
+  color: #ffffff;
+  background-color: #d2322d;
+  border-color: #ac2925;
+}
+.EXLRefinementsList .EXLExcludedElement:active,
+.EXLRefinementsList .EXLExcludedElement.active,
+.open .dropdown-toggle.EXLRefinementsList .EXLExcludedElement {
+  background-image: none;
+}
+.EXLRefinementsList .EXLExcludedElement.disabled,
+.EXLRefinementsList .EXLExcludedElement[disabled],
+fieldset[disabled] .EXLRefinementsList .EXLExcludedElement,
+.EXLRefinementsList .EXLExcludedElement.disabled:hover,
+.EXLRefinementsList .EXLExcludedElement[disabled]:hover,
+fieldset[disabled] .EXLRefinementsList .EXLExcludedElement:hover,
+.EXLRefinementsList .EXLExcludedElement.disabled:focus,
+.EXLRefinementsList .EXLExcludedElement[disabled]:focus,
+fieldset[disabled] .EXLRefinementsList .EXLExcludedElement:focus,
+.EXLRefinementsList .EXLExcludedElement.disabled:active,
+.EXLRefinementsList .EXLExcludedElement[disabled]:active,
+fieldset[disabled] .EXLRefinementsList .EXLExcludedElement:active,
+.EXLRefinementsList .EXLExcludedElement.disabled.active,
+.EXLRefinementsList .EXLExcludedElement[disabled].active,
+fieldset[disabled] .EXLRefinementsList .EXLExcludedElement.active {
+  background-color: #d9534f;
+  border-color: #d43f3a;
+}
 @media (max-width: 991px) {
   .EXLResult .EXLThumbnail {
     display: none;
@@ -6663,181 +6701,194 @@ li.EXLResultSelectedTab > a {
   background-color: #38555f;
 }
 /*  Classic thumbnails */
-.EXLResultMediaTYPEarticle .multipleCoverImageContainer .EXLBriefResultsDisplayCoverImageBackup a {
+.EXLResultMediaTYPEarticle .multipleCoverImageContainer {
   background-image: url(/primo_library/libweb/images/icon_article.png);
 }
-.EXLResultMediaTYPEaudio .multipleCoverImageContainer .EXLBriefResultsDisplayCoverImageBackup a {
+.EXLResultMediaTYPEaudio .multipleCoverImageContainer {
   background-image: url(/primo_library/libweb/images/icon_audio.png);
 }
-.EXLResultMediaTYPEbook .multipleCoverImageContainer .EXLBriefResultsDisplayCoverImageBackup a {
+.EXLResultMediaTYPEbook .multipleCoverImageContainer {
   background-image: url(/primo_library/libweb/images/icon_book.png);
 }
-.EXLResultMediaTYPEdatabase .multipleCoverImageContainer .EXLBriefResultsDisplayCoverImageBackup a {
+.EXLResultMediaTYPEdatabase .multipleCoverImageContainer {
   background-image: url(/primo_library/libweb/images/icon_database.png);
 }
-.EXLResultMediaTYPEimage .multipleCoverImageContainer .EXLBriefResultsDisplayCoverImageBackup a {
+.EXLResultMediaTYPEimage .multipleCoverImageContainer {
   background-image: url(/primo_library/libweb/images/icon_image.png);
 }
-.EXLResultMediaTYPEjournal .multipleCoverImageContainer .EXLBriefResultsDisplayCoverImageBackup a {
+.EXLResultMediaTYPEjournal .multipleCoverImageContainer {
   background-image: url(/primo_library/libweb/images/icon_journal.png);
 }
-.EXLResultMediaTYPEmap .multipleCoverImageContainer .EXLBriefResultsDisplayCoverImageBackup a {
+.EXLResultMediaTYPEmap .multipleCoverImageContainer {
   background-image: url(/primo_library/libweb/images/icon_map.png);
 }
-.EXLResultMediaTYPEother .multipleCoverImageContainer .EXLBriefResultsDisplayCoverImageBackup a {
+.EXLResultMediaTYPEother .multipleCoverImageContainer {
   background-image: url(/primo_library/libweb/images/icon_other.png);
 }
-.EXLResultMediaTYPEreference_entry .multipleCoverImageContainer .EXLBriefResultsDisplayCoverImageBackup a {
+.EXLResultMediaTYPEreference_entry .multipleCoverImageContainer {
   background-image: url(/primo_library/libweb/images/icon_other.png);
 }
-.EXLResultMediaTYPEtext_resource .multipleCoverImageContainer .EXLBriefResultsDisplayCoverImageBackup a {
+.EXLResultMediaTYPEtext_resource .multipleCoverImageContainer {
   background-image: url(/primo_library/libweb/images/icon_article.png);
 }
-.EXLResultMediaTYPEmanuscript .multipleCoverImageContainer .EXLBriefResultsDisplayCoverImageBackup a {
+.EXLResultMediaTYPEmanuscript .multipleCoverImageContainer {
   background-image: url(/primo_library/libweb/images/icon_text_resource.png);
 }
-.EXLResultMediaTYPEvideo .multipleCoverImageContainer .EXLBriefResultsDisplayCoverImageBackup a {
+.EXLResultMediaTYPEvideo .multipleCoverImageContainer {
   background-image: url(/primo_library/libweb/images/icon_video.png);
 }
-.EXLResultMediaTYPEcomputer .multipleCoverImageContainer .EXLBriefResultsDisplayCoverImageBackup a {
+.EXLResultMediaTYPEcomputer .multipleCoverImageContainer {
   background-image: url(/primo_library/libweb/images/icon_game.png);
 }
-.EXLResultMediaTYPEvwebsite .multipleCoverImageContainer .EXLBriefResultsDisplayCoverImageBackup a {
+.EXLResultMediaTYPEvwebsite .multipleCoverImageContainer {
   background-image: url(/primo_library/libweb/images/icon_website.png);
 }
-.EXLResultMediaTYPEnewspaper_article .multipleCoverImageContainer .EXLBriefResultsDisplayCoverImageBackup a {
+.EXLResultMediaTYPEnewspaper_article .multipleCoverImageContainer {
   background-image: url(/primo_library/libweb/images/icon_newspaper.png);
 }
-.EXLResultMediaTYPEreview .multipleCoverImageContainer .EXLBriefResultsDisplayCoverImageBackup a {
+.EXLResultMediaTYPEreview .multipleCoverImageContainer {
   background-image: url(/primo_library/libweb/images/icon_article.png);
+}
+.coverImageDiv {
+  position: absolute;
+  top: 0px;
+  left: 0px;
 }
 .multipleCoverImageContainer {
   position: relative;
+  margin: auto;
+  width: 38px;
+  height: 56px;
+  font-size: 0px;
+  background-image: url(../images/icon_book.png);
+  background-repeat: none;
+  border: 1px solid #bdbcbd;
 }
-.multipleCoverImageContainer .coverImageDiv {
-  position: absolute;
-  top: 0px;
-  width: 100%;
+.EXLResultsList .EXLThumbnail img {
+  padding: 0em;
+  margin: 0px;
+  border: none;
+  vertical-align: bottom;
+  width: 38px;
+  height: 56px;
 }
-.multipleCoverImageContainer .coverImageDiv img {
-  padding: 4px;
-  line-height: 1.428571429;
-  background-color: #ffffff;
-  border: 1px solid #dddddd;
+/* AJAX  Visning af poster (bestil)*/
+.EXLTabsRibbon .nav-pills > li > a {
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+.nav > li > a:hover,
+.nav > li > a:focus {
+  color: #1c2a2f;
+}
+li.EXLResultSelectedTab > a {
+  color: #FFF;
+  background-color: #38555f;
+}
+.EXLResultTabContainer {
+  background: #eeeeee;
+  padding: 10px 16px;
   border-radius: 4px;
-  -webkit-transition: all 0.2s ease-in-out;
-  transition: all 0.2s ease-in-out;
+  border-top-left-radius: 0;
+}
+.EXLResultTabContainer .EXLLocationViewAllLink {
+  padding-top: 16px;
+}
+.EXLLocationTitlesRow div,
+div.locationColumnTitle {
+  font-weight: bold;
+}
+.locationDiv:nth-child(even) {
+  background: #e2e2e2;
+}
+.locationDiv:nth-child(odd) {
+  background: #d5d5d5;
+}
+.locationDiv {
+  padding: 10px 16px;
+}
+.locationButtons a {
   display: inline-block;
-  max-width: 100%;
-  height: auto;
-  width: 100%;
-}
-.multipleCoverImageContainer .EXLBriefResultsDisplayCoverImageBackup a {
-  padding: 4px;
-  line-height: 1.428571429;
-  background-color: #ffffff;
-  border: 1px solid #dddddd;
-  border-radius: 4px;
-  -webkit-transition: all 0.2s ease-in-out;
-  transition: all 0.2s ease-in-out;
-  display: inline-block;
-  max-width: 100%;
-  height: auto;
-  background: transparent none no-repeat 50% 50%;
-  height: 100px;
-  width: 100%;
-  display: block;
-}
-.multipleCoverImageContainer .coverImageDiv a img[src*="pixel"] {
-  display: none;
-}
-.multipleCoverImageContainer .coverImageDiv a img[src*="pixel"].in {
-  display: block;
-}
-/* AJAX */
-#holdings {
-  margin-left: -15px;
-  margin-right: -15px;
-}
-#holdings:before,
-#holdings:after {
-  content: " ";
-  /* 1 */
-
-  display: table;
-  /* 2 */
-
-}
-#holdings:after {
-  clear: both;
-}
-#holdings:before,
-#holdings:after {
-  content: " ";
-  /* 1 */
-
-  display: table;
-  /* 2 */
-
-}
-#holdings:after {
-  clear: both;
-}
-#holdings label {
-  position: relative;
-  min-height: 1px;
-  padding-left: 15px;
-  padding-right: 15px;
-}
-#holdings select {
-  display: block;
-  width: 100%;
-  height: 34px;
   padding: 6px 12px;
+  margin-bottom: 0;
   font-size: 14px;
+  font-weight: normal;
   line-height: 1.428571429;
-  color: #555555;
+  text-align: center;
   vertical-align: middle;
-  background-color: #ffffff;
-  border: 1px solid #cccccc;
+  cursor: pointer;
+  border: 1px solid transparent;
   border-radius: 4px;
-  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
-  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
-  -webkit-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
-  transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
-  position: relative;
-  min-height: 1px;
-  padding-left: 15px;
-  padding-right: 15px;
+  white-space: nowrap;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -o-user-select: none;
+  user-select: none;
+  color: #333333;
+  background-color: #ffffff;
+  border-color: #cccccc;
 }
-#holdings select:-moz-placeholder {
-  color: #999999;
+.locationButtons a:focus {
+  outline: thin dotted #333;
+  outline: 5px auto -webkit-focus-ring-color;
+  outline-offset: -2px;
 }
-#holdings select::-moz-placeholder {
-  color: #999999;
+.locationButtons a:hover,
+.locationButtons a:focus {
+  color: #333333;
+  text-decoration: none;
 }
-#holdings select:-ms-input-placeholder {
-  color: #999999;
-}
-#holdings select::-webkit-input-placeholder {
-  color: #999999;
-}
-#holdings select:focus {
-  border-color: #66afe9;
+.locationButtons a:active,
+.locationButtons a.active {
   outline: 0;
-  -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102, 175, 233, 0.6);
-  box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102, 175, 233, 0.6);
+  background-image: none;
+  -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+  box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
 }
-#holdings select[disabled],
-#holdings select[readonly],
-fieldset[disabled] #holdings select {
+.locationButtons a.disabled,
+.locationButtons a[disabled],
+fieldset[disabled] .locationButtons a {
   cursor: not-allowed;
-  background-color: #eeeeee;
+  pointer-events: none;
+  opacity: 0.65;
+  filter: alpha(opacity=65);
+  -webkit-box-shadow: none;
+  box-shadow: none;
 }
-textarea#holdings select {
-  height: auto;
+.locationButtons a:hover,
+.locationButtons a:focus,
+.locationButtons a:active,
+.locationButtons a.active,
+.open .dropdown-toggle.locationButtons a {
+  color: #333333;
+  background-color: #ebebeb;
+  border-color: #adadad;
 }
-#holdings input[type="submit"] {
+.locationButtons a:active,
+.locationButtons a.active,
+.open .dropdown-toggle.locationButtons a {
+  background-image: none;
+}
+.locationButtons a.disabled,
+.locationButtons a[disabled],
+fieldset[disabled] .locationButtons a,
+.locationButtons a.disabled:hover,
+.locationButtons a[disabled]:hover,
+fieldset[disabled] .locationButtons a:hover,
+.locationButtons a.disabled:focus,
+.locationButtons a[disabled]:focus,
+fieldset[disabled] .locationButtons a:focus,
+.locationButtons a.disabled:active,
+.locationButtons a[disabled]:active,
+fieldset[disabled] .locationButtons a:active,
+.locationButtons a.disabled.active,
+.locationButtons a[disabled].active,
+fieldset[disabled] .locationButtons a.active {
+  background-color: #ffffff;
+  border-color: #cccccc;
+}
+.EXLLocationViewAllLink a {
   display: inline-block;
   padding: 6px 12px;
   margin-bottom: 0;
@@ -6859,26 +6910,26 @@ textarea#holdings select {
   background-color: #38555f;
   border-color: #2f474f;
 }
-#holdings input[type="submit"]:focus {
+.EXLLocationViewAllLink a:focus {
   outline: thin dotted #333;
   outline: 5px auto -webkit-focus-ring-color;
   outline-offset: -2px;
 }
-#holdings input[type="submit"]:hover,
-#holdings input[type="submit"]:focus {
+.EXLLocationViewAllLink a:hover,
+.EXLLocationViewAllLink a:focus {
   color: #333333;
   text-decoration: none;
 }
-#holdings input[type="submit"]:active,
-#holdings input[type="submit"].active {
+.EXLLocationViewAllLink a:active,
+.EXLLocationViewAllLink a.active {
   outline: 0;
   background-image: none;
   -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
   box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
 }
-#holdings input[type="submit"].disabled,
-#holdings input[type="submit"][disabled],
-fieldset[disabled] #holdings input[type="submit"] {
+.EXLLocationViewAllLink a.disabled,
+.EXLLocationViewAllLink a[disabled],
+fieldset[disabled] .EXLLocationViewAllLink a {
   cursor: not-allowed;
   pointer-events: none;
   opacity: 0.65;
@@ -6886,37 +6937,48 @@ fieldset[disabled] #holdings input[type="submit"] {
   -webkit-box-shadow: none;
   box-shadow: none;
 }
-#holdings input[type="submit"]:hover,
-#holdings input[type="submit"]:focus,
-#holdings input[type="submit"]:active,
-#holdings input[type="submit"].active,
-.open .dropdown-toggle#holdings input[type="submit"] {
+.EXLLocationViewAllLink a:hover,
+.EXLLocationViewAllLink a:focus,
+.EXLLocationViewAllLink a:active,
+.EXLLocationViewAllLink a.active,
+.open .dropdown-toggle.EXLLocationViewAllLink a {
   color: #ffffff;
   background-color: #293e45;
   border-color: #182428;
 }
-#holdings input[type="submit"]:active,
-#holdings input[type="submit"].active,
-.open .dropdown-toggle#holdings input[type="submit"] {
+.EXLLocationViewAllLink a:active,
+.EXLLocationViewAllLink a.active,
+.open .dropdown-toggle.EXLLocationViewAllLink a {
   background-image: none;
 }
-#holdings input[type="submit"].disabled,
-#holdings input[type="submit"][disabled],
-fieldset[disabled] #holdings input[type="submit"],
-#holdings input[type="submit"].disabled:hover,
-#holdings input[type="submit"][disabled]:hover,
-fieldset[disabled] #holdings input[type="submit"]:hover,
-#holdings input[type="submit"].disabled:focus,
-#holdings input[type="submit"][disabled]:focus,
-fieldset[disabled] #holdings input[type="submit"]:focus,
-#holdings input[type="submit"].disabled:active,
-#holdings input[type="submit"][disabled]:active,
-fieldset[disabled] #holdings input[type="submit"]:active,
-#holdings input[type="submit"].disabled.active,
-#holdings input[type="submit"][disabled].active,
-fieldset[disabled] #holdings input[type="submit"].active {
+.EXLLocationViewAllLink a.disabled,
+.EXLLocationViewAllLink a[disabled],
+fieldset[disabled] .EXLLocationViewAllLink a,
+.EXLLocationViewAllLink a.disabled:hover,
+.EXLLocationViewAllLink a[disabled]:hover,
+fieldset[disabled] .EXLLocationViewAllLink a:hover,
+.EXLLocationViewAllLink a.disabled:focus,
+.EXLLocationViewAllLink a[disabled]:focus,
+fieldset[disabled] .EXLLocationViewAllLink a:focus,
+.EXLLocationViewAllLink a.disabled:active,
+.EXLLocationViewAllLink a[disabled]:active,
+fieldset[disabled] .EXLLocationViewAllLink a:active,
+.EXLLocationViewAllLink a.disabled.active,
+.EXLLocationViewAllLink a[disabled].active,
+fieldset[disabled] .EXLLocationViewAllLink a.active {
   background-color: #38555f;
   border-color: #2f474f;
+}
+.locationHeaderField {
+  padding-bottom: 10px;
+}
+.nav > li.EXLRequestTab,
+.nav > li.EXLReviewsTab {
+  display: none;
+}
+.nav > li.EXLRequestTab.in,
+.nav > li.EXLReviewsTab.in {
+  display: block;
 }
 /*@border-radius-base:             0px;
 @border-radius-large:            6px;
@@ -6996,4 +7058,7 @@ body {
 #footer {
   padding: 30px;
   border-top: 20px solid #38555f;
+}
+#footer hr {
+  border-top: 1px solid #bed2d8;
 }
