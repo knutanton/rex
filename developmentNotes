@@ -1,0 +1,8 @@
+notes
+---------------------
+
+ vim layouts/dynamic_layout.jsp
+
+# UX diskussioner vi kan tage i næste iteration #
+---
+* Hvis vi gerne vil slippe for at klippe listen af placeringer op med grimme knapper, så kunne vi måske smide knapperne som additionalFields der først åbnede op når man trykker på en location. Linket kunne eventuelt blive byttet ud med noget mere sigende - f.eks. "vis mere" eller lignende (i øjeblikket hedder den f.eks. "på hylden"??)

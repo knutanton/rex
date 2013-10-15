@@ -204,7 +204,6 @@ function kbBootstrapifyTabs() {
          *   </div>
          * </div>
          */
-
         exlLocationTableToFix.hide();
         var rows = $('tr', exlLocationTableToFix), // FIXME: This will break badly if there is more than one exlLocationTableToFix at a time!
             row,
@@ -217,6 +216,16 @@ function kbBootstrapifyTabs() {
             tmpButtons,
             tmpAdditionalFieldsId,
             i, j,
+            appendTmpLocation = function () {
+                if (tmpLocation) {
+                    if (tmpButtons) {
+                        tmpLocation.append(tmpButtons);
+                        tmpButtons = null;
+                    }
+                    locations.append(tmpLocation);
+                    tmpLocation = null;
+                }
+            },
             clickHandler = function () {
                 var targetDiv = $('#' + $(this).attr('data-target'));
                 if (targetDiv.hasClass('in')) {
@@ -246,14 +255,7 @@ function kbBootstrapifyTabs() {
             } else {
                 if ($('td.EXLAdditionalFieldsLink', row).length) {
                     // this is a location headline
-                    if (tmpLocation) {
-                        // push the previous location
-                        if (tmpButtons) {
-                            tmpLocation.append(tmpButtons);
-                            tmpButtons = null;
-                        }
-                        locations.append(tmpLocation);
-                    }
+                    appendTmpLocation();
                     // start new location
                     tmpAdditionalFieldsId = Unique.getUid();
                     tmpLocation = $('<div class="locationDiv"/>');
@@ -279,19 +281,13 @@ function kbBootstrapifyTabs() {
                         .appendTo(tmpButtons);
                 } else {
                     // This is anything else - just wrap it in divs and append it? (the very last "show all locations" link is in here!)
-                    if (tmpLocation) {
-                        // push the previous location
-                        if (tmpButtons) {
-                            tmpLocation.append(tmpButtons);
-                            tmpButtons = null;
-                        }
-                        locations.append(tmpLocation);
-                    }
+                    appendTmpLocation();
                     // append what ever there is of content cells in this row
                     locations.append(row.children().changeElementType('div'));
                 }
             }
         }
+        appendTmpLocation(); // if there is a tmpLocation left, append it to locations
         exlLocationTableToFix.replaceWith(locations);
         // NOTE: We do not need to flag the table fixed, since we have removed it!
     }
