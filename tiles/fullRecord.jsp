@@ -129,7 +129,7 @@
         <!-- index: ${tabStatus.index} length: ${fn:length(tabState.tabsOrder)} -->
         <c:choose>
             <c:when test="${tab == renderForm.tabs[0]}">
-                <c:set var="selectedTabClass" value="EXLResultSelectedTab, active"/>
+                <c:set var="selectedTabClass" value="EXLResultSelectedTab"/>
             </c:when>
             <c:otherwise>
                 <c:set var="selectedTabClass" value=""/>
@@ -149,7 +149,7 @@
         </c:choose>
         <%-- viewonline,getit_link1,locations,details,reviewsandtags,recommendations,getit_link2 --%>
         <c:if test="${tab=='viewonline' && not empty tabState.viewOnlineTab}">
-            <li id="exlidResult0-ViewOnlineTab" class="EXLViewOnlineTab EXLResultTab ${specialTabClass} ${ (renderForm.tabs[0] eq 'viewOnlineTab') ? 'EXLResultSelectedTab, active':''} ${tabState.viewOnlineTab.iconCode}">
+            <li id="exlidResult0-ViewOnlineTab" class="EXLViewOnlineTab EXLResultTab ${specialTabClass} ${ (renderForm.tabs[0] eq 'viewOnlineTab') ? 'EXLResultSelectedTab':''} ${tabState.viewOnlineTab.iconCode}">
                 <c:choose>
                     <c:when test="${tabState.viewOnlineTab.popOut == 'on'}">
                         <c:set var="taburl" value="${tabState.viewOnlineTab.link}"/>
@@ -175,7 +175,7 @@
             <c:set var="noFirstTab" value="false"/>
         </c:if>
         <c:if test="${tab=='getit_link1' && not empty tabState.requestTab}">
-            <li id="exlidResult0-RequestTab" class="EXLRequestTab EXLResultTab ${specialTabClass} ${ (renderForm.tabs[0] eq 'requestTab') ? 'EXLResultSelectedTab, active':''} ${tabState.requestTab.iconCode}">
+            <li id="exlidResult0-RequestTab" class="EXLRequestTab EXLResultTab ${specialTabClass} ${ (renderForm.tabs[0] eq 'requestTab') ? 'EXLResultSelectedTab':''} ${tabState.requestTab.iconCode}">
                 <c:choose>
                     <c:when test="${tabState.requestTab.popOut == 'on' && !fn:contains(tabState.requestTab.link,'requestTab.do')}">
                         <c:set var="taburl" value="${tabState.requestTab.link}"/>
@@ -202,7 +202,7 @@
             <c:set var="noFirstTab" value="false"/>
         </c:if>
         <c:if test="${tab=='locations' && not empty tabState.locationsTab}">
-            <li id="exlidResult0-LocationsTab" class="EXLLocationsTab EXLResultTab ${ (renderForm.tabs[0] eq 'locationsTab') ? 'EXLResultSelectedTab, active ':''} ${specialTabClass}"><a href="${fn:escapeXml(displayURL)}&amp;tabs=locationsTab&amp;gathStatTab=true" title=""><fmt:message key="${tabState.locationsTab.label}"/></a>
+            <li id="exlidResult0-LocationsTab" class="EXLLocationsTab EXLResultTab ${ (renderForm.tabs[0] eq 'locationsTab') ? 'EXLResultSelectedTab ':''} ${specialTabClass}"><a href="${fn:escapeXml(displayURL)}&amp;tabs=locationsTab&amp;gathStatTab=true" title=""><fmt:message key="${tabState.locationsTab.label}"/></a>
                 <!-- rum statistics -->
 
                 <prm:boomerang id="locations_${0}" boomForm="${displayForm}" pageId="brief"
@@ -214,7 +214,7 @@
             <c:set var="noFirstTab" value="false"/>
         </c:if>
         <c:if test="${tab=='details' && not empty tabState.detailsTab}">
-            <li id="exlidResult0-DetailsTab" class="EXLDetailsTab EXLResultTab ${ (empty renderForm.tabs or renderForm.tabs[0] eq 'detailsTab') ? 'EXLResultSelectedTab, active ':''} ${specialTabClass}"><a href="${fn:escapeXml(displayURL)}&amp;tabs=detailsTab&amp;gathStatTab=true" title=""><fmt:message key="${tabState.detailsTab.label}"/></a>
+            <li id="exlidResult0-DetailsTab" class="EXLDetailsTab EXLResultTab ${ (empty renderForm.tabs or renderForm.tabs[0] eq 'detailsTab') ? 'EXLResultSelectedTab ':''} ${specialTabClass}"><a href="${fn:escapeXml(displayURL)}&amp;tabs=detailsTab&amp;gathStatTab=true" title=""><fmt:message key="${tabState.detailsTab.label}"/></a>
                 <!-- rum statistics -->
 
                 <prm:boomerang id="details_${0}" boomForm="${displayForm}" pageId="brief"
@@ -226,7 +226,7 @@
             <c:set var="noFirstTab" value="false"/>
         </c:if>
         <c:if test="${tab=='reviewsandtags' && not empty tabState.tagsReviewsTab}">
-            <li id="exlidResult0-ReviewsTab" class="EXLReviewsTab EXLResultTab ${ (renderForm.tabs[0] eq 'tagreviewsTab') ? 'EXLResultSelectedTab, active ':''} ${specialTabClass}"><a href="${fn:escapeXml(displayURL)}&amp;tabs=tagreviewsTab&amp;gathStatTab=true" title=""><fmt:message key="${tabState.tagsReviewsTab.label}"/></a>
+            <li id="exlidResult0-ReviewsTab" class="EXLReviewsTab EXLResultTab ${ (renderForm.tabs[0] eq 'tagreviewsTab') ? 'EXLResultSelectedTab ':''} ${specialTabClass}"><a href="${fn:escapeXml(displayURL)}&amp;tabs=tagreviewsTab&amp;gathStatTab=true" title=""><fmt:message key="${tabState.tagsReviewsTab.label}"/></a>
                 <!-- rum statistics -->
 
                 <prm:boomerang id="tagsreview_${0}" boomForm="${displayForm}" pageId="brief"
@@ -241,7 +241,7 @@
             <c:set var="linkTitle">
                 <fmt:message key="default.recommendationtab.recommendations_loading"/>
             </c:set>
-            <li id="exlidResult0-RecommendTab" class="EXLRecommendTab EXLResultTab ${ (renderForm.tabs[0] eq 'recommendTab') ? 'EXLResultSelectedTab, active ':''} ${specialTabClass}"><a href="${fn:escapeXml(displayURL)}&amp;tabs=recommendTab&amp;gathStatTab=true" title="${linkTitle}" id="exlidHref0"><fmt:message key="${tabState.recommendationsTab.label}"/></a>
+            <li id="exlidResult0-RecommendTab" class="EXLRecommendTab EXLResultTab ${ (renderForm.tabs[0] eq 'recommendTab') ? 'EXLResultSelectedTab ':''} ${specialTabClass}"><a href="${fn:escapeXml(displayURL)}&amp;tabs=recommendTab&amp;gathStatTab=true" title="${linkTitle}" id="exlidHref0"><fmt:message key="${tabState.recommendationsTab.label}"/></a>
                 <!-- rum statistics -->
 
                 <prm:boomerang id="recommendation_${0}" boomForm="${displayForm}" pageId="brief"
@@ -253,7 +253,7 @@
             <c:set var="noFirstTab" value="false"/>
         </c:if>
         <c:if test="${tab=='getit_link2' && not empty tabState.moreTab}">
-            <li id="exlidResult0-MoreTab" class="EXLMoreTab EXLResultTab ${ (renderForm.tabs[0] eq 'moreTab') ? 'EXLResultSelectedTab, active ':''} ${specialTabClass} ${tabState.moreTab.iconCode}">
+            <li id="exlidResult0-MoreTab" class="EXLMoreTab EXLResultTab ${ (renderForm.tabs[0] eq 'moreTab') ? 'EXLResultSelectedTab ':''} ${specialTabClass} ${tabState.moreTab.iconCode}">
                 <c:choose>
                     <c:when test="${tabState.moreTab.popOut == 'on'}">
                         <c:set var="taburl" value="${tabState.moreTab.link}"/>
@@ -277,7 +277,7 @@
             <c:set var="noFirstTab" value="false"/>
         </c:if>
         <c:if test="${tab=='citations' && not empty tabState.citationsTab}">
-            <li id="exlidResult0-CitationsTab" style="display:none;" class="EXLCitationsTab EXLServiceConditionalTab EXLResultTab ${ (empty renderForm.tabs or renderForm.tabs[0] eq 'citationsTab') ? 'EXLResultSelectedTab, active ':''} ${specialTabClass}">
+            <li id="exlidResult0-CitationsTab" style="display:none;" class="EXLCitationsTab EXLServiceConditionalTab EXLResultTab ${ (empty renderForm.tabs or renderForm.tabs[0] eq 'citationsTab') ? 'EXLResultSelectedTab ':''} ${specialTabClass}">
 
                 <input class="EXLServiceConditionalTabService" type="hidden" value="${tabState.citationsTab.serviceName}"/>
                 <input class="EXLServiceConditionalTabRecord" type="hidden" value="${result.id}"/>
@@ -294,7 +294,7 @@
             <c:set var="noFirstTab" value="false"/>
         </c:if>
         <c:if test="${tab=='onlinereviews' && not empty tabState.onlinereviewsTab}">
-            <li id="exlidResult0-OnlinereviewsTab" style="display:none;" class="EXLOnlinereviewsTab EXLServiceConditionalTab EXLResultTab ${ (empty renderForm.tabs or renderForm.tabs[0] eq 'onlinereviewsTab') ? 'EXLResultSelectedTab, active ':''} ${specialTabClass}">
+            <li id="exlidResult0-OnlinereviewsTab" style="display:none;" class="EXLOnlinereviewsTab EXLServiceConditionalTab EXLResultTab ${ (empty renderForm.tabs or renderForm.tabs[0] eq 'onlinereviewsTab') ? 'EXLResultSelectedTab ':''} ${specialTabClass}">
                 <input class="EXLServiceConditionalTabService" type="hidden" value="${tabState.citationsTab.serviceName}"/>
                 <input class="EXLServiceConditionalTabRecord" type="hidden" value="${result.id}"/>
                 <a href="${fn:escapeXml(displayURL)}&amp;tabs=conditionalTab&amp;gathStatTab=true&amp;tabRealType=onlinereviews" title="">
