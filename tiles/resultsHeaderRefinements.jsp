@@ -52,7 +52,7 @@
 </c:choose>
 <c:if test="${fn:length(form.refinements)>0}">
 	<c:set var="removeFacetTitle"><fmt:message key="refinement.remove" /></c:set>
-	<div class="EXLRefinementRibbonWithExclude alert alert-success">
+	<div class="EXLRefinementRibbonWithExclude alert alert-info">
 		<div class="EXLRefinementsList">
 			<span class="EXLRefinementsListTitle"><fmt:message key="search.header.facets.refined_by"/></span>
 
