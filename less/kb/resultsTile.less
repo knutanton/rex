@@ -55,8 +55,6 @@ li.EXLResultSelectedTab > a{
 }
 
 /*  Classic thumbnails */
-
-
 .EXLResultMediaTYPEarticle .multipleCoverImageContainer{background-image: url(/primo_library/libweb/images/icon_article.png);}
 .EXLResultMediaTYPEaudio .multipleCoverImageContainer {background-image: url(/primo_library/libweb/images/icon_audio.png);}
 .EXLResultMediaTYPEbook .multipleCoverImageContainer {background-image: url(/primo_library/libweb/images/icon_book.png);}
@@ -75,9 +73,7 @@ li.EXLResultSelectedTab > a{
 .EXLResultMediaTYPEreview .multipleCoverImageContainer {background-image: url(/primo_library/libweb/images/icon_article.png);}
 .coverImageDiv {}
 .popThumbnailToTop {
-
 }
-
 .coverImageDiv {
     position: absolute;
     top: 0px;
@@ -100,68 +96,62 @@ li.EXLResultSelectedTab > a{
     vertical-align: bottom;
     width: 38px;
     height: 56px;
-
-
 }
-
-
-/* Håndtering af thumbnails på liste visning
-
-.multipleCoverImageContainer  {
-    position: relative;
-}
-.multipleCoverImageContainer .coverImageDiv  {
-    position:absolute;
-    top:0px;
-    width:100%;
-}
-.multipleCoverImageContainer .coverImageDiv img {
-    .img-thumbnail;
-    width:100%;
-}
-.multipleCoverImageContainer .EXLBriefResultsDisplayCoverImageBackup {
-    a{
-        .img-thumbnail;
-        background: transparent none no-repeat 50% 50%;
-        height: 100px;
-        width:100%;
-        display:block;
-    }
-}
-.multipleCoverImageContainer .coverImageDiv a img[src*="pixel"]{
-    .collapse;
-}  */
-
-
 
 /* AJAX  Visning af poster (bestil)*/
-/*#holdings{
-    .row;
-}
-#holdings label{
-    .col-md-2;
-}
-#holdings select{
-    .form-control;
-    .col-md-2;
 
+.EXLTabsRibbon {
+    .nav-pills > li > a {
+        border-bottom-left-radius: 0;
+        border-bottom-right-radius: 0;
+    } }
+
+.nav > li > a:hover, .nav > li > a:focus {
+           color: #1c2a2f;
+       }
+li.EXLResultSelectedTab > a {
+    color: #FFF;
+    background-color: #38555f;
 }
-#holdings input[type="submit"]{
-    .btn;
-    .btn-primary;
-}*/
+
+
+
+.EXLResultTabContainer{
+    background:             @gray-lighter;
+    padding:                @padding-large-vertical @padding-large-horizontal;
+    border-radius:          @border-radius-base;
+    border-top-left-radius: 0;
+
+    .EXLLocationViewAllLink{
+        padding-top:        @padding-large-horizontal;
+    }
+}
 
 .EXLLocationTitlesRow div, div.locationColumnTitle{
     font-weight:            @badge-font-weight;
 
 }
 .locationDiv:nth-child(even){
-    background: @gray-lighter;
- }
-.locationDiv{
-   padding:@padding-base-horizontal @padding-base-vertical;
+    background: lighten(@gray-lighter, -5%);
 }
-.locationButtons a, .EXLLocationViewAllLink a{
+.locationDiv:nth-child(odd){
+    background: lighten(@gray-lighter, -10%);
+}
+.locationDiv{
+    padding:@padding-large-vertical @padding-large-horizontal;
+}
+.locationButtons{
+     a{
+        .btn;
+        .btn-default;
+    }
+}
+
+.EXLLocationViewAllLink a{
     .btn;
-    .btn-default;
+    .btn-primary;
+}
+
+.locationHeaderField{
+    padding-bottom:@padding-large-vertical;
 }
