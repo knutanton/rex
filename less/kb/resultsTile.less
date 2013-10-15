@@ -57,28 +57,55 @@ li.EXLResultSelectedTab > a{
 /*  Classic thumbnails */
 
 
-.EXLResultMediaTYPEarticle .multipleCoverImageContainer .EXLBriefResultsDisplayCoverImageBackup a{background-image: url(/primo_library/libweb/images/icon_article.png);}
-.EXLResultMediaTYPEaudio .multipleCoverImageContainer .EXLBriefResultsDisplayCoverImageBackup a {background-image: url(/primo_library/libweb/images/icon_audio.png);}
-.EXLResultMediaTYPEbook .multipleCoverImageContainer .EXLBriefResultsDisplayCoverImageBackup a{background-image: url(/primo_library/libweb/images/icon_book.png);}
-.EXLResultMediaTYPEdatabase .multipleCoverImageContainer .EXLBriefResultsDisplayCoverImageBackup a{background-image: url(/primo_library/libweb/images/icon_database.png);}
-.EXLResultMediaTYPEimage .multipleCoverImageContainer .EXLBriefResultsDisplayCoverImageBackup a{background-image: url(/primo_library/libweb/images/icon_image.png);}
-.EXLResultMediaTYPEjournal .multipleCoverImageContainer .EXLBriefResultsDisplayCoverImageBackup a{background-image: url(/primo_library/libweb/images/icon_journal.png);}
-.EXLResultMediaTYPEmap .multipleCoverImageContainer .EXLBriefResultsDisplayCoverImageBackup a{background-image: url(/primo_library/libweb/images/icon_map.png);}
-.EXLResultMediaTYPEother .multipleCoverImageContainer .EXLBriefResultsDisplayCoverImageBackup a{background-image: url(/primo_library/libweb/images/icon_other.png);}
-.EXLResultMediaTYPEreference_entry .multipleCoverImageContainer .EXLBriefResultsDisplayCoverImageBackup a{background-image: url(/primo_library/libweb/images/icon_other.png);}
-.EXLResultMediaTYPEtext_resource .multipleCoverImageContainer .EXLBriefResultsDisplayCoverImageBackup a{background-image: url(/primo_library/libweb/images/icon_article.png);}
-.EXLResultMediaTYPEmanuscript .multipleCoverImageContainer .EXLBriefResultsDisplayCoverImageBackup a {background-image: url(/primo_library/libweb/images/icon_text_resource.png);}
-.EXLResultMediaTYPEvideo .multipleCoverImageContainer .EXLBriefResultsDisplayCoverImageBackup a{background-image: url(/primo_library/libweb/images/icon_video.png);}
-.EXLResultMediaTYPEcomputer .multipleCoverImageContainer .EXLBriefResultsDisplayCoverImageBackup a{background-image: url(/primo_library/libweb/images/icon_game.png);}
-.EXLResultMediaTYPEvwebsite .multipleCoverImageContainer .EXLBriefResultsDisplayCoverImageBackup a{background-image: url(/primo_library/libweb/images/icon_website.png);}
-.EXLResultMediaTYPEnewspaper_article .multipleCoverImageContainer .EXLBriefResultsDisplayCoverImageBackup a{background-image: url(/primo_library/libweb/images/icon_newspaper.png);}
-.EXLResultMediaTYPEreview .multipleCoverImageContainer .EXLBriefResultsDisplayCoverImageBackup a{background-image: url(/primo_library/libweb/images/icon_article.png);}
+.EXLResultMediaTYPEarticle .multipleCoverImageContainer{background-image: url(/primo_library/libweb/images/icon_article.png);}
+.EXLResultMediaTYPEaudio .multipleCoverImageContainer {background-image: url(/primo_library/libweb/images/icon_audio.png);}
+.EXLResultMediaTYPEbook .multipleCoverImageContainer {background-image: url(/primo_library/libweb/images/icon_book.png);}
+.EXLResultMediaTYPEdatabase .multipleCoverImageContainer {background-image: url(/primo_library/libweb/images/icon_database.png);}
+.EXLResultMediaTYPEimage .multipleCoverImageContainer {background-image: url(/primo_library/libweb/images/icon_image.png);}
+.EXLResultMediaTYPEjournal .multipleCoverImageContainer {background-image: url(/primo_library/libweb/images/icon_journal.png);}
+.EXLResultMediaTYPEmap .multipleCoverImageContainer {background-image: url(/primo_library/libweb/images/icon_map.png);}
+.EXLResultMediaTYPEother .multipleCoverImageContainer {background-image: url(/primo_library/libweb/images/icon_other.png);}
+.EXLResultMediaTYPEreference_entry .multipleCoverImageContainer {background-image: url(/primo_library/libweb/images/icon_other.png);}
+.EXLResultMediaTYPEtext_resource .multipleCoverImageContainer {background-image: url(/primo_library/libweb/images/icon_article.png);}
+.EXLResultMediaTYPEmanuscript .multipleCoverImageContainer {background-image: url(/primo_library/libweb/images/icon_text_resource.png);}
+.EXLResultMediaTYPEvideo .multipleCoverImageContainer {background-image: url(/primo_library/libweb/images/icon_video.png);}
+.EXLResultMediaTYPEcomputer .multipleCoverImageContainer {background-image: url(/primo_library/libweb/images/icon_game.png);}
+.EXLResultMediaTYPEvwebsite .multipleCoverImageContainer {background-image: url(/primo_library/libweb/images/icon_website.png);}
+.EXLResultMediaTYPEnewspaper_article .multipleCoverImageContainer {background-image: url(/primo_library/libweb/images/icon_newspaper.png);}
+.EXLResultMediaTYPEreview .multipleCoverImageContainer {background-image: url(/primo_library/libweb/images/icon_article.png);}
 .coverImageDiv {}
 .popThumbnailToTop {
 
 }
 
+.coverImageDiv {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+}
+.multipleCoverImageContainer {
+    position: relative;
+    margin: auto;
+    width: 38px;
+    height: 56px;
+    font-size: 0px;
+    background-image: url(../images/icon_book.png);
+    background-repeat: none;
+    border: 1px solid #bdbcbd;
+}
+.EXLResultsList .EXLThumbnail img {
+    padding: 0em;
+    margin: 0px;
+    border: none;
+    vertical-align: bottom;
+    width: 38px;
+    height: 56px;
 
+
+}
+
+
+/* Håndtering af thumbnails på liste visning
 
 .multipleCoverImageContainer  {
     position: relative;
@@ -103,12 +130,12 @@ li.EXLResultSelectedTab > a{
 }
 .multipleCoverImageContainer .coverImageDiv a img[src*="pixel"]{
     .collapse;
-}
+}  */
 
 
 
-/* AJAX */
-#holdings{
+/* AJAX  Visning af poster (bestil)*/
+/*#holdings{
     .row;
 }
 #holdings label{
@@ -122,6 +149,19 @@ li.EXLResultSelectedTab > a{
 #holdings input[type="submit"]{
     .btn;
     .btn-primary;
+}*/
+
+.EXLLocationTitlesRow div, div.locationColumnTitle{
+    font-weight:            @badge-font-weight;
+
 }
-
-
+.locationDiv:nth-child(even){
+    background: @gray-lighter;
+ }
+.locationDiv{
+   padding:@padding-base-horizontal @padding-base-vertical;
+}
+.locationButtons a, .EXLLocationViewAllLink a{
+    .btn;
+    .btn-default;
+}
