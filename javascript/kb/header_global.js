@@ -88,12 +88,6 @@ function transformUlToDl(divWithUl, selector) {
 
 function kbBootstrapifyTabs() {
     var exlResultTabHeaderButtonsToFix = getUnfixedElems('.EXLResultTabContainer .EXLTabHeaderButtons');
-    var exlResultTabContainerToFix = $(exlResultTabHeaderButtonsToFix).closest('.EXLResultTabContainer:not(\'jsFlagDomFixed\')');
-
-    if (exlResultTabContainerToFix.length) { // Make the tab a well
-        exlResultTabContainerToFix.addClass('well well-sm');
-        flagFixed(exlResultTabContainerToFix);
-    }
 
     if (exlResultTabHeaderButtonsToFix.length) { // fix header buttons - reverse order, horizontal, align right
         /* HAFE
