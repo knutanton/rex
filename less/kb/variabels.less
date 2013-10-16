@@ -20,7 +20,21 @@
 @state-info-bg:               #fcf8e3;
 @state-info-border:           darken(spin(@state-warning-bg, -10), 3%);
 
+// Carousel
+// ------------------------
+@carousel-caption-bg:                      #000;
 
+@carousel-text-shadow:                        0 3px 6px rgba(0,0,0,.8);
+
+@carousel-control-color:                      #fff;
+@carousel-control-width:                      15%;
+@carousel-control-opacity:                    1.0;
+@carousel-control-font-size:                  20px;
+
+@carousel-indicator-active-bg:                #fff;
+@carousel-indicator-border-color:             #fff;
+
+@carousel-caption-color:                      #fff;
 
 // STYLE
 // *************************
@@ -86,11 +100,9 @@ body{
     img{
         width:100%;
     }
-    div[class*="col-"]{
-        padding-top:        @padding-large-vertical ;
-        padding-bottom:        @padding-large-vertical ;
+    .col-md-9, col-lg-9, .col-lg-12{
+        margin-bottom: 20px
     }
-
 }
 
 

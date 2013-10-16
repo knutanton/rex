@@ -157,12 +157,16 @@ li.EXLResultSelectedTab > a {
 
 .EXLLocationTitlesRow div, div.locationColumnTitle{
     font-weight:            @badge-font-weight;
-
+}
+.EXLLocationTitlesRow {
+    padding:@padding-large-vertical @padding-large-horizontal;
 }
 .locationDiv:nth-child(even){
     background: lighten(@gray-lighter, -5%);
 }
-
+.EXLLocationList .panel-body{
+    padding:0px;
+}
 .locationDiv{
     padding:@padding-large-vertical @padding-large-horizontal;
 }
@@ -173,9 +177,12 @@ li.EXLResultSelectedTab > a {
     }
 }
 
-.EXLLocationViewAllLink a{
-    .btn;
-    .btn-primary;
+.EXLLocationViewAllLink{
+    padding:@padding-large-vertical @padding-large-horizontal;
+    a{
+        .btn;
+        .btn-primary;
+    }
 }
 
 .locationHeaderField{
@@ -210,6 +217,9 @@ li.EXLResultSelectedTab > a {
         .btn;
         .btn-default;
     }
+    a.reset{
+        .collapse;
+    }
     input[type="submit"]{
         .btn-primary;
     }
@@ -234,3 +244,4 @@ li.EXLResultSelectedTab > a {
         }
     }
 }
+
