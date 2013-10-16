@@ -76,6 +76,8 @@
     var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
   })();
 
+  $('#facetList div ul:lt(2)').addClass('in');
+
 </script>
 <!-- autocomplete imports -->
 <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.0/themes/base/jquery-ui.css" />
