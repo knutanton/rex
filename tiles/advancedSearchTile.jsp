@@ -149,7 +149,7 @@
                                                                 <c:choose>
                                                                     <c:when test="${fn:escapeXml(searchForm.values[input.id]) == ''}">
                                                                         <div class="col-xs-4 col-md-4">
-                                                                            <input type="text" class="form-control" id="input_${input.id}" name="vl(${input.id})" placeholder="<fmt:message key="search-advanced.DateRange.label.Year" />" />
+                                                                            <input type="text" class="form-control input-sm" id="input_${input.id}" name="vl(${input.id})" placeholder="<fmt:message key="search-advanced.DateRange.label.Year" />" />
                                                                         </div>
                                                                     </c:when>
                                                                 <c:otherwise>
@@ -185,12 +185,12 @@
                                                                 <c:choose>
                                                                     <c:when test="${fn:escapeXml(searchForm.values[input.id]) == ''}">
                                                                         <div class="col-xs-4 col-md-4">
-                                                                            <input type="text" class="form-control" id="input_${input.id}" name="vl(${input.id})" placeholder="<fmt:message key="search-advanced.DateRange.label.Year" />" />
+                                                                            <input type="text" class="form-control input-sm" id="input_${input.id}" name="vl(${input.id})" placeholder="<fmt:message key="search-advanced.DateRange.label.Year" />" />
                                                                         </div>
                                                                     </c:when>
                                                                     <c:otherwise>
                                                                         <div class="col-xs-4 col-md-4">
-                                                                            <input type="text" id="input_${input.id}" name="vl(${input.id})" value="${fn:escapeXml(searchForm.values[input.id])}" />
+                                                                            <input type="text" class="form-control input-sm" id="input_${input.id}" name="vl(${input.id})" value="${fn:escapeXml(searchForm.values[input.id])}" />
                                                                         </div>
                                                                     </c:otherwise>
                                                                 </c:choose>
@@ -246,13 +246,13 @@
                     <c:set var="basic_search_title"><fmt:message key="link.title.advanced.search.basic.search"/></c:set>
 
                     <div class="EXLSearchFieldRibbonFormSubmitSearch pull-right">
-                        <a href="${fn:escapeXml(simple_search_url)}" title="${basic_search_title}" class="btn btn-default"><fmt:message key="label.simple_search" /></a>
-                        <input id="goButton" name="Submit" type="submit" value='<fmt:message key="link.title.search.search"/>' class="submit btn btn-primary"/>
+                        <a href="${fn:escapeXml(simple_search_url)}" title="${basic_search_title}" class="btn btn-default btn-sm"><fmt:message key="label.simple_search" /></a>
+                        <input id="goButton" name="Submit" type="submit" value='<fmt:message key="link.title.search.search"/>' class="btn btn-primary"/>
                     </div>
 
                     <div class="EXLSearchFieldRibbonFormLinks ">
                         <span class="NEWSearchFieldRibbonNewSearchLink pull-left">
-                            <a href="<fmt:message key='new_search_url_advanced'/>" class="btn btn-default" title="<fmt:message key='link.title.search.new_search'/>">
+                            <a href="<fmt:message key='new_search_url_advanced'/>" class="btn btn-default btn-sm" title="<fmt:message key='link.title.search.new_search'/>">
                                 <fmt:message key="label.new_search" />
                             </a>
                         </span>

@@ -18,7 +18,7 @@
 				</c:if>
 				</label>
 
-				<select id="exlidSearchIn" class="EXLSearchInputScopesSelect form-control" name="scp.scps" ${(searchForm.displayDefinition=='false')?'disabled="disabled"':''}>
+				<select id="exlidSearchIn" class="EXLSearchInputScopesSelect form-control input-sm" name="scp.scps" ${(searchForm.displayDefinition=='false')?'disabled="disabled"':''}>
 					<c:forEach items='${searchForm.scp.scopesOptions}' var="option" varStatus="status">
 						<c:set var="classes" value="${option.locationrefs==searchForm.scp.scps?'EXLSelectedOption':'EXLSelectOption'}"/>
 						<c:set var="selected" value="${option.locationrefs==searchForm.scp.scps?'selected=\"selected\"':''}"/>
