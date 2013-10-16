@@ -1,5 +1,14 @@
 <%@ page contentType="text/xml;charset=UTF-8" language="java"%>
+<!-- dynamic inclusion of js files -->
+<%
+      // jac: points to search tile in our dev environments
+        String view = request.getSession().getAttribute( "vid" )+ "";
 
+        // remove 'kb', so it fits our folder structure
+        if(view.startsWith("kb")){
+            view = view.substring(2);
+        }
+%>
 <footer>
 
     <div class="row">
@@ -33,7 +42,7 @@
     <div class="row">
 
             <a href="http://www.kb.dk" class="col-xs-2 col-sm-1">
-                <img src="../sites/kb/dev02/images/kb/footerLogo.png" class="img-responsive" alt="Det Kongelige Bibliotek"   />
+                <img src="../sites/kb/<%= view %>/images/kb/footerLogo.png" class="img-responsive" alt="Det Kongelige Bibliotek"   />
             </a>
             <div class="col-xs-10 col-sm-11">
                 <address>
@@ -46,7 +55,7 @@
                             <br/>
                             Søren Kierkegaards Plads 1 - 1219 København K - EAN: 5798 000795297 - <abbr title="Telefon nr.">Tlf: </abbr>+45 33 47 47 47 - E-mail <a href="mailto:kb@kb.dk">kb@kb.dk</a>
                             <br/>
-                            <span class="glyphicon glyphicon-thumbs-up"></span> <a href="#">Følg os på Facebook</a>
+                            <span class="glyphicon glyphicon-thumbs-up"></span> <a href="https://www.facebook.com/DetKongeligeBibliotek" target="_blank">Følg os på Facebook</a>
                         </small>
                     </p>
                 </address>
@@ -87,35 +96,5 @@
     </div>
   </div>
 </div>
-
-<!-- dynamic inclusion of js files -->
-<%
-      // jac: points to search tile in our dev environments
-        String view = request.getSession().getAttribute( "vid" )+ "";
-
-        // remove 'kb', so it fits our folder structure
-        if(view.startsWith("kb")){
-            view = view.substring(2);
-        }
-%>
-
-
-<!-- BOOTSTRAP JS -->
-<!-- Include all compiled plugins (below), or include individual files as needed -->
-<script type="text/javascript" src="../sites/kb/<%= view %>/javascript/bootstrap/alert.js"></script>
-<script type="text/javascript" src="../sites/kb/<%= view %>/javascript/bootstrap/collapse.js"></script>
-<script type="text/javascript" src="../sites/kb/<%= view %>/javascript/bootstrap/dropdown.js"></script>
-<script type="text/javascript" src="../sites/kb/<%= view %>/javascript/bootstrap/modal.js"></script>
-<script type="text/javascript" src="../sites/kb/<%= view %>/javascript/bootstrap/carousel.js"></script>
-<script type="text/javascript" src="../sites/kb/<%= view %>/javascript/bootstrap/transition.js"></script>
-
-
-<!-- CUSTOM JS -->
-<script type="text/javascript" src="../sites/kb/<%= view %>/javascript/kb/cookieInformerBooklet_da_DK.js"></script>
-<script type="text/javascript" src="../sites/kb/<%= view %>/javascript/kb/header_global.js"></script>
-<script type="text/javascript" src="../sites/kb/<%= view %>/javascript/kb/header_da_DK.js"></script>
-
-<!-- respond.js -->
-<script type="text/javascript" src="../sites/kb/<%= view %>/javascript/kb/respond-min.js"></script>
 
 <!--end footer-->
