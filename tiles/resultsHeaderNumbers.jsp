@@ -42,107 +42,111 @@
 		<div class="EXLSystemFeedback"><fmt:message key='default.error.search.sortfield.title.missing' /></div>
 	</c:if>
 
-	<c:if test="${form.searchResult.numberOfResults>=0}">
-		<h1 class="text-muted">
-			<c:if test="${form.remote and form.searchResult.numberOfResults>0}">
-		   		<em><fmt:message key='brief.results.first'/></em>
-		   	</c:if>
-		  	<c:if test="${form.searchResult.numberOfResults>=0}">
-				<c:set var="noScope" value="false"/>
-				<c:choose>
-					<c:when test="${(searchForm.mode != null) &&(searchForm.mode eq 'BrowseSearch')}">
-						<c:choose>
-							<c:when test="${(form.refinementsCount == 0) && (searchForm.rfnGrp == null || searchForm.rfnGrp[0] != 'frbr') && param.docCount != null && param.docCount > form.searchResult.numberOfResults }">
-							<c:if test="${form.searchResult.numberOfResults <= sessionScope.bulk}">
-								<fmt:message key='browse.no.linkedpnx.frbr'>
-									<fmt:param value="${form.searchResult.numberOfResults}" />
-									<fmt:param value="${searchForm.browseDisplayedEntry}" />
-									<fmt:param value="${param.docCount}" />
-								</fmt:message>
-							</c:if>
-							<c:if test="${form.searchResult.numberOfResults > sessionScope.bulk}">
-								<fmt:message key='browse.no.linkedpnx_paging.frbr'>
-								    <fmt:param value="${form.searchResult.firstResultIndex}" />
-								    <fmt:param value="${form.searchResult.lastResultIndex}" />
-									<fmt:param value="${form.searchResult.numberOfResults}" />
-									<fmt:param value="${searchForm.browseDisplayedEntry}" />
-									<fmt:param value="${param.docCount}" />
-								</fmt:message>
-							</c:if>
-							</c:when>
-							<c:otherwise>
-							   <c:if test="${form.searchResult.numberOfResults <= sessionScope.bulk}">
-								<fmt:message key='browse.no.linkedpnx'>
-									<fmt:param value="${form.searchResult.numberOfResults}" />
-									<fmt:param value="${searchForm.browseDisplayedEntry}" />
-								</fmt:message>
-								</c:if>
-								<c:if test="${form.searchResult.numberOfResults > sessionScope.bulk}">
-								<fmt:message key='browse.no.linkedpnx_paging'>
-								    <fmt:param value="${form.searchResult.firstResultIndex}" />
-								    <fmt:param value="${form.searchResult.lastResultIndex}" />
-									<fmt:param value="${form.searchResult.numberOfResults}" />
-									<fmt:param value="${searchForm.browseDisplayedEntry}" />
-								</fmt:message>
-								</c:if>
-							</c:otherwise>
-						</c:choose>
-						<c:set var="noScope" value="true"/>
-					</c:when>
-					<c:otherwise>
-					<c:if test="${form.presentPaging}">
-					    <c:if test="${form.searchResult.numberOfResults > sessionScope.bulk}"> 
-					      <span class="EXLDisplayedCount EXLBriefResultsPaginationPageCount">
-					      <fmt:message key='brief.results.results_of'>
-					      <fmt:param value="${form.searchResult.firstResultIndex}" />
-					      <fmt:param value="${form.searchResult.lastResultIndex}" />
-					      </fmt:message>
-		  	        </span>
-		  	            </c:if>
-		            </c:if>
-						<em>
-					  		<fmt:formatNumber value="${form.searchResult.numberOfResults}" />
-					 		<c:if test="${form.searchResult.numberOfResults>0}">
-							 	<c:if test="${form.searchResult.maxNumberOfResults>0 and fn:length(form.refinements)==0}">
-							 		(<fmt:message key='brief.results.outof' />&nbsp;
-							 		<fmt:formatNumber value="${form.searchResult.maxNumberOfResults}" />)
-							 	</c:if>
-				  			</c:if>
-			  			</em>
-			  			<c:if test="${!form.presentPaging or form.searchResult.numberOfResults <= sessionScope.bulk}">
-						<fmt:message key='results.rescount' />
-						</c:if>
-					</c:otherwise>
-				</c:choose>
-			</c:if>
-			<c:if test="${not empty searchForm.scp.selectedScopesId && noScope == 'false'}">
-				&nbsp;<fmt:message key="results.scopes.for"/>
-				<em>
-				<c:if test="${searchForm.scp.selectedScopesId == 'Selected_Databases'}">
-				<fmt:message key='scopes.option.current.selected'/>
-			    </c:if>
-                <c:if test="${searchForm.scp.selectedScopesId != 'Selected_Databases'}">
-				<fmt:message key='scopes.option.${searchForm.scp.selectedScopesId}'/>
-			    </c:if>
-				</em>
-			</c:if>
 
-		</h1>
-	</c:if>
 
     <%--<%@ include file="resultsHeaderNavigation.jsp" %>--%>
 
-	<div class="EXLResultsSortBy btn-toolbar">
+<div class="EXLResultsSortBy row">
 		<!--<span class="EXLResultsSortByLabel"><fmt:message key='results.sortby' /></span>
 		<span class="EXLResultsSortBySelected">
 			<a href="#" title="<fmt:message key='results.tooltip.sortby'/>">
 				<fmt:message key="results.sortby.option.${fn:escapeXml(srtField)}"/>					
 			</a>
 		</span>-->
+
+        <div class="col-xs-12 col-sm-6 col-md-5">
+            <c:if test="${form.searchResult.numberOfResults>=0}">
+                <h1 class="text-muted">
+                    <c:if test="${form.remote and form.searchResult.numberOfResults>0}">
+                        <em><fmt:message key='brief.results.first'/></em>
+                    </c:if>
+                    <c:if test="${form.searchResult.numberOfResults>=0}">
+                        <c:set var="noScope" value="false"/>
+                        <c:choose>
+                            <c:when test="${(searchForm.mode != null) &&(searchForm.mode eq 'BrowseSearch')}">
+                                <c:choose>
+                                    <c:when test="${(form.refinementsCount == 0) && (searchForm.rfnGrp == null || searchForm.rfnGrp[0] != 'frbr') && param.docCount != null && param.docCount > form.searchResult.numberOfResults }">
+                                        <c:if test="${form.searchResult.numberOfResults <= sessionScope.bulk}">
+                                            <fmt:message key='browse.no.linkedpnx.frbr'>
+                                                <fmt:param value="${form.searchResult.numberOfResults}" />
+                                                <fmt:param value="${searchForm.browseDisplayedEntry}" />
+                                                <fmt:param value="${param.docCount}" />
+                                            </fmt:message>
+                                        </c:if>
+                                        <c:if test="${form.searchResult.numberOfResults > sessionScope.bulk}">
+                                            <fmt:message key='browse.no.linkedpnx_paging.frbr'>
+                                                <fmt:param value="${form.searchResult.firstResultIndex}" />
+                                                <fmt:param value="${form.searchResult.lastResultIndex}" />
+                                                <fmt:param value="${form.searchResult.numberOfResults}" />
+                                                <fmt:param value="${searchForm.browseDisplayedEntry}" />
+                                                <fmt:param value="${param.docCount}" />
+                                            </fmt:message>
+                                        </c:if>
+                                    </c:when>
+                                    <c:otherwise>
+                                        <c:if test="${form.searchResult.numberOfResults <= sessionScope.bulk}">
+                                            <fmt:message key='browse.no.linkedpnx'>
+                                                <fmt:param value="${form.searchResult.numberOfResults}" />
+                                                <fmt:param value="${searchForm.browseDisplayedEntry}" />
+                                            </fmt:message>
+                                        </c:if>
+                                        <c:if test="${form.searchResult.numberOfResults > sessionScope.bulk}">
+                                            <fmt:message key='browse.no.linkedpnx_paging'>
+                                                <fmt:param value="${form.searchResult.firstResultIndex}" />
+                                                <fmt:param value="${form.searchResult.lastResultIndex}" />
+                                                <fmt:param value="${form.searchResult.numberOfResults}" />
+                                                <fmt:param value="${searchForm.browseDisplayedEntry}" />
+                                            </fmt:message>
+                                        </c:if>
+                                    </c:otherwise>
+                                </c:choose>
+                                <c:set var="noScope" value="true"/>
+                            </c:when>
+                            <c:otherwise>
+                                <c:if test="${form.presentPaging}">
+                                    <c:if test="${form.searchResult.numberOfResults > sessionScope.bulk}">
+                              <span class="EXLDisplayedCount EXLBriefResultsPaginationPageCount">
+                              <fmt:message key='brief.results.results_of'>
+                                  <fmt:param value="${form.searchResult.firstResultIndex}" />
+                                  <fmt:param value="${form.searchResult.lastResultIndex}" />
+                              </fmt:message>
+                        </span>
+                                    </c:if>
+                                </c:if>
+                                <em>
+                                    <fmt:formatNumber value="${form.searchResult.numberOfResults}" />
+                                    <c:if test="${form.searchResult.numberOfResults>0}">
+                                        <c:if test="${form.searchResult.maxNumberOfResults>0 and fn:length(form.refinements)==0}">
+                                            (<fmt:message key='brief.results.outof' />&nbsp;
+                                            <fmt:formatNumber value="${form.searchResult.maxNumberOfResults}" />)
+                                        </c:if>
+                                    </c:if>
+                                </em>
+                                <c:if test="${!form.presentPaging or form.searchResult.numberOfResults <= sessionScope.bulk}">
+                                    <fmt:message key='results.rescount' />
+                                </c:if>
+                            </c:otherwise>
+                        </c:choose>
+                    </c:if>
+                    <c:if test="${not empty searchForm.scp.selectedScopesId && noScope == 'false'}">
+                        &nbsp;<fmt:message key="results.scopes.for"/>
+                        <em>
+                            <c:if test="${searchForm.scp.selectedScopesId == 'Selected_Databases'}">
+                                <fmt:message key='scopes.option.current.selected'/>
+                            </c:if>
+                            <c:if test="${searchForm.scp.selectedScopesId != 'Selected_Databases'}">
+                                <fmt:message key='scopes.option.${searchForm.scp.selectedScopesId}'/>
+                            </c:if>
+                        </em>
+                    </c:if>
+
+                </h1>
+            </c:if>
+        </div>
 		<input type="hidden" name="searchForm.frbrSrt" value=""/>
-		<div class="EXLResultsSortByMenu ">
-                <div class="btn-group">
-                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+		    <div class="EXLResultsSortByMenu col-xs-12 col-sm-6 col-md-3">
+                <div class="btn-group pull-right">
+                    <button type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown">
                         <span class="EXLResultsSortByLabel"><fmt:message key='results.sortby' /></span> <fmt:message key="results.sortby.option.${fn:escapeXml(srtField)}"/>&nbsp;<span class="caret"></span>
                     </button>
 
@@ -255,15 +259,22 @@
                         </c:choose>
                     </ul>
                 </div>
-                    <c:if test="${!form.displayGeneralPageActionsOnTop}">
-                        <!--RSS, Save Search and Add page to e-Shelf Links-->
-                        <%@ include file="generalPageActions.jspf" %>
-                    </c:if>
-
             </div>
-	</div>
 
-    <hr/>
+            <div class="col-xs-12 col-sm-12 col-md-4">
+                <c:if test="${!form.displayGeneralPageActionsOnTop}">
+                    <!--RSS, Save Search and Add page to e-Shelf Links-->
+                    <%@ include file="generalPageActions.jspf" %>
+
+                </c:if>
+            </div>
+
+   </div>
+
+
+<hr/>
+
+
 	<c:if
 		test="${(searchForm.rfnGrp == null || searchForm.rfnGrp[0] != 'frbr') && (searchForm.mode != null) &&(searchForm.mode eq 'BrowseSearch')}">
 		<c:url value="search.do" var="BackToBrowseSearch">
