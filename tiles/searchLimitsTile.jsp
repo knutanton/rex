@@ -98,8 +98,8 @@
                 <c:param name="mode" value="Advanced"/>
                 <c:param name="ct" value="AdvancedSearch"/>
             </c:url>
-                <a href="${fn:escapeXml(advanced_search_url)}" class="${browseAlign} btn btn-primary" title="<fmt:message key='link.title.advanced_search'/>" id="advancedSearchBtn"><fmt:message key='label.advanced_search'/></a>
-                <a href="/primo_library/libweb/action/search.do?menuitem=0" class="btn btn-primary" title="ny søgning" target="_self">Ny søgning</a>
+                <a href="${fn:escapeXml(advanced_search_url)}" class="${browseAlign} btn btn-primary btn-sm" title="<fmt:message key='link.title.advanced_search'/>" id="advancedSearchBtn"><fmt:message key='label.advanced_search'/></a>
+                <a href="/primo_library/libweb/action/search.do?menuitem=0" class="btn btn-primary btn-sm" title="ny søgning" target="_self">Ny søgning</a>
         </div>
 
 
