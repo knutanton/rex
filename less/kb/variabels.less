@@ -11,7 +11,7 @@
 @brand-info:                #5bc0de;
 
 @neutral:                   #FFFFFF;
-
+@dark:                      #000000;
 
 // Alert
 // -------------------------
@@ -19,12 +19,9 @@
 @state-info-text:             #c09853;
 @state-info-bg:               #fcf8e3;
 @state-info-border:           darken(spin(@state-warning-bg, -10), 3%);
-// Borders
-// -------------------------
-/*@border-radius-base:             0px;
-@border-radius-large:            6px;
-@border-radius-small:            3px;
-*/
+
+
+
 // STYLE
 // *************************
 
@@ -83,23 +80,19 @@ body{
 // Content
 // ------------------------------------
 
-#content{
-    background:             @neutral;
-    padding-top:            @padding-large-vertical;
-
-    #resultContent{
-        h1{
-            .h3;
-        }
-        h3{
-            .h4;
-        }
-        h4{
-            .h5;
-        }
+#homePage #content{
+    background:             @dark;
+    padding:                0px;
+    img{
+        width:100%;
+    }
+    div[class*="col-"]{
+        padding-top:        @padding-large-vertical ;
+        padding-bottom:        @padding-large-vertical ;
     }
 
 }
+
 
 
 // Footer

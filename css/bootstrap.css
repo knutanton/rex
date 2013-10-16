@@ -5951,6 +5951,11 @@ td.visible-print {
   box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
   -webkit-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
   transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+  height: 30px;
+  padding: 5px 10px;
+  font-size: 12px;
+  line-height: 1.5;
+  border-radius: 3px;
   position: relative;
   min-height: 1px;
   padding-left: 15px;
@@ -5979,6 +5984,13 @@ td.visible-print {
 fieldset[disabled] #exlidAdvancedSearchTile .EXLSelectTag {
   cursor: not-allowed;
   background-color: #eeeeee;
+}
+textarea#exlidAdvancedSearchTile .EXLSelectTag {
+  height: auto;
+}
+select#exlidAdvancedSearchTile .EXLSelectTag {
+  height: 30px;
+  line-height: 30px;
 }
 textarea#exlidAdvancedSearchTile .EXLSelectTag {
   height: auto;
@@ -6022,6 +6034,7 @@ header img {
 @media (max-width: 991px) {
   #refine {
     display: block;
+    margin-bottom: 6px;
   }
 }
 html[lang="da_DK"] #refine:after {
@@ -6560,6 +6573,10 @@ fieldset[disabled] .EXLRefinementsList .EXLExcludedElement.active {
   color: #333333;
   background-color: #ffffff;
   border-color: #cccccc;
+  padding: 5px 10px;
+  font-size: 12px;
+  line-height: 1.5;
+  border-radius: 3px;
 }
 .EXLMyShelfStar a:focus {
   outline: thin dotted #333;
@@ -6644,7 +6661,7 @@ fieldset[disabled] .EXLMyShelfStar a.active {
 }
 .EXLResult {
   padding: 10px 0;
-  border-bottom: 1px dotted #eeeeee;
+  border-bottom: 1px solid #eeeeee;
 }
 .EXLResult:before,
 .EXLResult:after {
@@ -6772,6 +6789,51 @@ li.EXLResultSelectedTab > a {
   width: 38px;
   height: 56px;
 }
+#content {
+  background: #ffffff;
+  padding-top: 10px;
+}
+#content #resultContent h1 {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: 500;
+  line-height: 1.1;
+  font-size: 14px;
+  font-weight: normal;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+#content #resultContent h1 small {
+  font-weight: normal;
+  line-height: 1;
+  color: #999999;
+}
+#content #resultContent h3 {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: 500;
+  line-height: 1.1;
+  font-size: 18px;
+  margin: 6px 0 0 0;
+}
+#content #resultContent h3 small {
+  font-weight: normal;
+  line-height: 1;
+  color: #999999;
+}
+#content #resultContent h4 {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: 500;
+  line-height: 1.1;
+  font-size: 14px;
+  margin: 6px 0 0 0;
+}
+#content #resultContent h4 small {
+  font-weight: normal;
+  line-height: 1;
+  color: #999999;
+}
+#content #resultContent p {
+  margin: 6px 0;
+}
 /* AJAX  Visning af poster (bestil)*/
 .EXLTabsRibbon .nav-pills > li > a {
   border-bottom-left-radius: 0;
@@ -6800,9 +6862,6 @@ div.locationColumnTitle {
 }
 .locationDiv:nth-child(even) {
   background: #e2e2e2;
-}
-.locationDiv:nth-child(odd) {
-  background: #d5d5d5;
 }
 .locationDiv {
   padding: 10px 16px;
@@ -6972,6 +7031,305 @@ fieldset[disabled] .EXLLocationViewAllLink a.active {
 .locationHeaderField {
   padding-bottom: 10px;
 }
+/*Bestil */
+.EXLTabHeader:before,
+.EXLTabHeader:after {
+  content: " ";
+  /* 1 */
+
+  display: table;
+  /* 2 */
+
+}
+.EXLTabHeader:after {
+  clear: both;
+}
+.EXLTabHeader:before,
+.EXLTabHeader:after {
+  content: " ";
+  /* 1 */
+
+  display: table;
+  /* 2 */
+
+}
+.EXLTabHeader:after {
+  clear: both;
+}
+.EXLTabHeaderButtons {
+  float: right !important;
+}
+.EXLTabHeaderContent {
+  display: none;
+}
+.EXLTabHeaderContent.in {
+  display: block;
+}
+.EXLRequestTabContent caption {
+  display: none;
+}
+.EXLRequestTabContent caption.in {
+  display: block;
+}
+.EXLRequestTabContent .KBExtraSubmit,
+.EXLRequestTabContent .EXLRequestTip {
+  display: none;
+}
+.EXLRequestTabContent .KBExtraSubmit.in,
+.EXLRequestTabContent .EXLRequestTip.in {
+  display: block;
+}
+.EXLRequestTabContent input[type="text"],
+.EXLRequestTabContent input.date-pick,
+.EXLRequestTabContent select {
+  display: block;
+  width: 100%;
+  height: 34px;
+  padding: 6px 12px;
+  font-size: 14px;
+  line-height: 1.428571429;
+  color: #555555;
+  vertical-align: middle;
+  background-color: #ffffff;
+  border: 1px solid #cccccc;
+  border-radius: 4px;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+  -webkit-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+  transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+}
+.EXLRequestTabContent input[type="text"]:-moz-placeholder,
+.EXLRequestTabContent input.date-pick:-moz-placeholder,
+.EXLRequestTabContent select:-moz-placeholder {
+  color: #999999;
+}
+.EXLRequestTabContent input[type="text"]::-moz-placeholder,
+.EXLRequestTabContent input.date-pick::-moz-placeholder,
+.EXLRequestTabContent select::-moz-placeholder {
+  color: #999999;
+}
+.EXLRequestTabContent input[type="text"]:-ms-input-placeholder,
+.EXLRequestTabContent input.date-pick:-ms-input-placeholder,
+.EXLRequestTabContent select:-ms-input-placeholder {
+  color: #999999;
+}
+.EXLRequestTabContent input[type="text"]::-webkit-input-placeholder,
+.EXLRequestTabContent input.date-pick::-webkit-input-placeholder,
+.EXLRequestTabContent select::-webkit-input-placeholder {
+  color: #999999;
+}
+.EXLRequestTabContent input[type="text"]:focus,
+.EXLRequestTabContent input.date-pick:focus,
+.EXLRequestTabContent select:focus {
+  border-color: #66afe9;
+  outline: 0;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102, 175, 233, 0.6);
+  box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102, 175, 233, 0.6);
+}
+.EXLRequestTabContent input[type="text"][disabled],
+.EXLRequestTabContent input.date-pick[disabled],
+.EXLRequestTabContent select[disabled],
+.EXLRequestTabContent input[type="text"][readonly],
+.EXLRequestTabContent input.date-pick[readonly],
+.EXLRequestTabContent select[readonly],
+fieldset[disabled] .EXLRequestTabContent input[type="text"],
+fieldset[disabled] .EXLRequestTabContent input.date-pick,
+fieldset[disabled] .EXLRequestTabContent select {
+  cursor: not-allowed;
+  background-color: #eeeeee;
+}
+textarea.EXLRequestTabContent input[type="text"],
+textarea.EXLRequestTabContent input.date-pick,
+textarea.EXLRequestTabContent select {
+  height: auto;
+}
+.EXLRequestTabContent tr,
+.EXLRequestTabContent td,
+.EXLRequestTabContent th {
+  border: none!important;
+}
+.EXLRequestTabContent input[type="submit"],
+.EXLRequestTabContent a.reset {
+  display: inline-block;
+  padding: 6px 12px;
+  margin-bottom: 0;
+  font-size: 14px;
+  font-weight: normal;
+  line-height: 1.428571429;
+  text-align: center;
+  vertical-align: middle;
+  cursor: pointer;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  white-space: nowrap;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -o-user-select: none;
+  user-select: none;
+  color: #333333;
+  background-color: #ffffff;
+  border-color: #cccccc;
+}
+.EXLRequestTabContent input[type="submit"]:focus,
+.EXLRequestTabContent a.reset:focus {
+  outline: thin dotted #333;
+  outline: 5px auto -webkit-focus-ring-color;
+  outline-offset: -2px;
+}
+.EXLRequestTabContent input[type="submit"]:hover,
+.EXLRequestTabContent a.reset:hover,
+.EXLRequestTabContent input[type="submit"]:focus,
+.EXLRequestTabContent a.reset:focus {
+  color: #333333;
+  text-decoration: none;
+}
+.EXLRequestTabContent input[type="submit"]:active,
+.EXLRequestTabContent a.reset:active,
+.EXLRequestTabContent input[type="submit"].active,
+.EXLRequestTabContent a.reset.active {
+  outline: 0;
+  background-image: none;
+  -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+  box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+}
+.EXLRequestTabContent input[type="submit"].disabled,
+.EXLRequestTabContent a.reset.disabled,
+.EXLRequestTabContent input[type="submit"][disabled],
+.EXLRequestTabContent a.reset[disabled],
+fieldset[disabled] .EXLRequestTabContent input[type="submit"],
+fieldset[disabled] .EXLRequestTabContent a.reset {
+  cursor: not-allowed;
+  pointer-events: none;
+  opacity: 0.65;
+  filter: alpha(opacity=65);
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+.EXLRequestTabContent input[type="submit"]:hover,
+.EXLRequestTabContent a.reset:hover,
+.EXLRequestTabContent input[type="submit"]:focus,
+.EXLRequestTabContent a.reset:focus,
+.EXLRequestTabContent input[type="submit"]:active,
+.EXLRequestTabContent a.reset:active,
+.EXLRequestTabContent input[type="submit"].active,
+.EXLRequestTabContent a.reset.active,
+.open .dropdown-toggle.EXLRequestTabContent input[type="submit"],
+.open .dropdown-toggle.EXLRequestTabContent a.reset {
+  color: #333333;
+  background-color: #ebebeb;
+  border-color: #adadad;
+}
+.EXLRequestTabContent input[type="submit"]:active,
+.EXLRequestTabContent a.reset:active,
+.EXLRequestTabContent input[type="submit"].active,
+.EXLRequestTabContent a.reset.active,
+.open .dropdown-toggle.EXLRequestTabContent input[type="submit"],
+.open .dropdown-toggle.EXLRequestTabContent a.reset {
+  background-image: none;
+}
+.EXLRequestTabContent input[type="submit"].disabled,
+.EXLRequestTabContent a.reset.disabled,
+.EXLRequestTabContent input[type="submit"][disabled],
+.EXLRequestTabContent a.reset[disabled],
+fieldset[disabled] .EXLRequestTabContent input[type="submit"],
+fieldset[disabled] .EXLRequestTabContent a.reset,
+.EXLRequestTabContent input[type="submit"].disabled:hover,
+.EXLRequestTabContent a.reset.disabled:hover,
+.EXLRequestTabContent input[type="submit"][disabled]:hover,
+.EXLRequestTabContent a.reset[disabled]:hover,
+fieldset[disabled] .EXLRequestTabContent input[type="submit"]:hover,
+fieldset[disabled] .EXLRequestTabContent a.reset:hover,
+.EXLRequestTabContent input[type="submit"].disabled:focus,
+.EXLRequestTabContent a.reset.disabled:focus,
+.EXLRequestTabContent input[type="submit"][disabled]:focus,
+.EXLRequestTabContent a.reset[disabled]:focus,
+fieldset[disabled] .EXLRequestTabContent input[type="submit"]:focus,
+fieldset[disabled] .EXLRequestTabContent a.reset:focus,
+.EXLRequestTabContent input[type="submit"].disabled:active,
+.EXLRequestTabContent a.reset.disabled:active,
+.EXLRequestTabContent input[type="submit"][disabled]:active,
+.EXLRequestTabContent a.reset[disabled]:active,
+fieldset[disabled] .EXLRequestTabContent input[type="submit"]:active,
+fieldset[disabled] .EXLRequestTabContent a.reset:active,
+.EXLRequestTabContent input[type="submit"].disabled.active,
+.EXLRequestTabContent a.reset.disabled.active,
+.EXLRequestTabContent input[type="submit"][disabled].active,
+.EXLRequestTabContent a.reset[disabled].active,
+fieldset[disabled] .EXLRequestTabContent input[type="submit"].active,
+fieldset[disabled] .EXLRequestTabContent a.reset.active {
+  background-color: #ffffff;
+  border-color: #cccccc;
+}
+.EXLRequestTabContent input[type="submit"] {
+  color: #ffffff;
+  background-color: #38555f;
+  border-color: #2f474f;
+}
+.EXLRequestTabContent input[type="submit"]:hover,
+.EXLRequestTabContent input[type="submit"]:focus,
+.EXLRequestTabContent input[type="submit"]:active,
+.EXLRequestTabContent input[type="submit"].active,
+.open .dropdown-toggle.EXLRequestTabContent input[type="submit"] {
+  color: #ffffff;
+  background-color: #293e45;
+  border-color: #182428;
+}
+.EXLRequestTabContent input[type="submit"]:active,
+.EXLRequestTabContent input[type="submit"].active,
+.open .dropdown-toggle.EXLRequestTabContent input[type="submit"] {
+  background-image: none;
+}
+.EXLRequestTabContent input[type="submit"].disabled,
+.EXLRequestTabContent input[type="submit"][disabled],
+fieldset[disabled] .EXLRequestTabContent input[type="submit"],
+.EXLRequestTabContent input[type="submit"].disabled:hover,
+.EXLRequestTabContent input[type="submit"][disabled]:hover,
+fieldset[disabled] .EXLRequestTabContent input[type="submit"]:hover,
+.EXLRequestTabContent input[type="submit"].disabled:focus,
+.EXLRequestTabContent input[type="submit"][disabled]:focus,
+fieldset[disabled] .EXLRequestTabContent input[type="submit"]:focus,
+.EXLRequestTabContent input[type="submit"].disabled:active,
+.EXLRequestTabContent input[type="submit"][disabled]:active,
+fieldset[disabled] .EXLRequestTabContent input[type="submit"]:active,
+.EXLRequestTabContent input[type="submit"].disabled.active,
+.EXLRequestTabContent input[type="submit"][disabled].active,
+fieldset[disabled] .EXLRequestTabContent input[type="submit"].active {
+  background-color: #38555f;
+  border-color: #2f474f;
+}
+.EXLRequestTabContent table {
+  width: 100%;
+}
+.EXLRequestTabContent .EXLTabFormValidationFeedback {
+  padding: 15px;
+  margin-bottom: 20px;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  background-color: #f2dede;
+  border-color: #eed3d7;
+  color: #b94a48;
+}
+.EXLRequestTabContent .EXLTabFormValidationFeedback h4 {
+  margin-top: 0;
+  color: inherit;
+}
+.EXLRequestTabContent .EXLTabFormValidationFeedback .alert-link {
+  font-weight: bold;
+}
+.EXLRequestTabContent .EXLTabFormValidationFeedback > p,
+.EXLRequestTabContent .EXLTabFormValidationFeedback > ul {
+  margin-bottom: 0;
+}
+.EXLRequestTabContent .EXLTabFormValidationFeedback > p + p {
+  margin-top: 5px;
+}
+.EXLRequestTabContent .EXLTabFormValidationFeedback hr {
+  border-top-color: #e6c1c7;
+}
+.EXLRequestTabContent .EXLTabFormValidationFeedback .alert-link {
+  color: #953b39;
+}
 .nav > li.EXLRequestTab,
 .nav > li.EXLReviewsTab {
   display: none;
@@ -6980,10 +7338,6 @@ fieldset[disabled] .EXLLocationViewAllLink a.active {
 .nav > li.EXLReviewsTab.in {
   display: block;
 }
-/*@border-radius-base:             0px;
-@border-radius-large:            6px;
-@border-radius-small:            3px;
-*/
 body {
   background: #eeeeee;
 }
@@ -7018,42 +7372,16 @@ body {
   background-color: #ffffff;
   border: none;
 }
-#content {
-  background: #ffffff;
+#homePage #content {
+  background: #000000;
+  padding: 0px;
+}
+#homePage #content img {
+  width: 100%;
+}
+#homePage #content div[class*="col-"] {
   padding-top: 10px;
-}
-#content #resultContent h1 {
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-weight: 500;
-  line-height: 1.1;
-  font-size: 24px;
-}
-#content #resultContent h1 small {
-  font-weight: normal;
-  line-height: 1;
-  color: #999999;
-}
-#content #resultContent h3 {
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-weight: 500;
-  line-height: 1.1;
-  font-size: 18px;
-}
-#content #resultContent h3 small {
-  font-weight: normal;
-  line-height: 1;
-  color: #999999;
-}
-#content #resultContent h4 {
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-weight: 500;
-  line-height: 1.1;
-  font-size: 14px;
-}
-#content #resultContent h4 small {
-  font-weight: normal;
-  line-height: 1;
-  color: #999999;
+  padding-bottom: 10px;
 }
 #footer {
   padding: 30px;
