@@ -86,8 +86,95 @@ function transformUlToDl(divWithUl, selector) {
     return divWithUl;
 }
 
+function transformLocationTrToBootstrap(rows, headerText) {
+    var locationArray = [],
+        row,
+        headerFieldCount = headerText.length,
+        colsPerColumn = Math.floor(12 / headerFieldCount), // Magic number 12 = bootstrap cols
+        tmpLocation,
+        tmpButtons,
+        tmpAdditionalFieldsId,
+        i, j,
+        pushTmpLocation = function () {
+            if (tmpLocation) {
+                if (tmpButtons) {
+                    tmpLocation.append(tmpButtons);
+                    tmpButtons = null;
+                }
+                locationArray.push(tmpLocation);
+                tmpLocation = null;
+            }
+        },
+        clickHandler = function () {
+            var targetDiv = $('#' + $(this).attr('data-target'));
+            if (targetDiv.hasClass('in')) {
+                targetDiv.slideUp(400, function () {
+                    $(this).removeClass('in');
+                });
+            } else {
+                targetDiv.slideDown(400, function () {
+                    $(this).addClass('in');
+                });
+            }
+        };
+
+    // loop thru all rows and generate locationDivs on the way
+    for (i = 0; i < rows.length; i += 1) { // NOTE: Starting with row 1 because row 0 is the headlines
+        row = $(rows[i]);
+        if (row.hasClass('EXLLocationTitlesRow')) {
+            continue; // NOTE: titles are supposed to come as second parameter - title rows will just be ignored in here.
+        }
+        if (row.hasClass('EXLAdditionalFieldsRow')) {
+            // this is a (hidden) additional fields line
+            transformUlToDl(row.children().changeElementType('div'))
+                .attr('id', 'additionalLocationFields' + tmpAdditionalFieldsId)
+                .attr('class', row.attr('class'))
+                .addClass('collapse')
+                .appendTo(tmpLocation);
+        } else {
+            if ($('td.EXLAdditionalFieldsLink', row).length) {
+                // this is a location headline
+                pushTmpLocation();
+                // start new location
+                tmpAdditionalFieldsId = Unique.getUid();
+                tmpLocation = $('<div class="locationDiv"/>');
+                var headerFields = row.children(),
+                    tmpHeader = $('<div class="locationHeader row" />');
+                for (j = 0; j < headerFieldCount; j += 1) {
+                    tmpHeader.append(($(headerFields[j])
+                        .changeElementType('div')
+                        .removeClass('EXLLocationLink-1_1') // NOTE: This class gets all click handlers reset by ExLibris on more rows recieved! :(
+                        .addClass('locationHeaderField col-md-' + colsPerColumn)
+                        .prepend('<div class="locationColumnTitle visible-xs visible-sm">' + headerText[j]  + '</div>')));
+                }
+                // setup event listener to additionalFieldsLink
+                $('.EXLAdditionalFieldsLink a', tmpHeader)
+                    .attr('data-target', 'additionalLocationFields' + tmpAdditionalFieldsId)
+                    .attr('data-toggle', 'collapse')
+                    .removeAttr('href')
+                // TODO: since the above bootstrap attempts does not work properly, we also sets eventlisteners up manually - we might wanna examine why it does not work
+                    .on('click', clickHandler);
+                tmpLocation.append(tmpHeader);
+                tmpButtons = $('<div class="locationButtons" />');
+                $('.EXLLocationTableActionsMenu a', headerFields[headerFields.length - 1])
+                    .addClass('btn btn-default btn-xs')
+                    .appendTo(tmpButtons);
+            } else {
+                // This is anything else - just wrap it in divs and append it? (the very last "show all locations" link is in here!)
+                pushTmpLocation();
+                // append what ever there is of content cells in this row
+                locationArray.push(row.children().changeElementType('div'));
+            }
+        }
+    }
+    pushTmpLocation(); // if there is a tmpLocation left, append it to locationArray
+
+    return locationArray;
+}
+
 function kbBootstrapifyTabs() {
     var exlResultTabHeaderButtonsToFix = getUnfixedElems('.EXLResultTabContainer .EXLTabHeaderButtons');
+    var locations;
 
     if (exlResultTabHeaderButtonsToFix.length) { // fix header buttons - reverse order, horizontal, align right
         /* HAFE
@@ -284,90 +371,26 @@ function kbBootstrapifyTabs() {
          */
         exlLocationTableToFix.hide();
         var rows = $('tr', exlLocationTableToFix), // FIXME: This will break badly if there is more than one exlLocationTableToFix at a time!
-            row,
             headerRow = $(rows[0]),
-            headerText = headerRow.children().map(function (index, elem) { return $(elem).text().trim(); }),
-            headerFieldCount = headerRow.children().length - 1, // NOTE: The very last field is the action buttons, and they are appended in their own row
-            colsPerColumn = Math.floor(12 / headerFieldCount), // Magic number 12 = bootstrap cols
-            locations = $('<div class="locations" />'),
-            tmpLocation,
-            tmpButtons,
-            tmpAdditionalFieldsId,
-            i, j,
-            appendTmpLocation = function () {
-                if (tmpLocation) {
-                    if (tmpButtons) {
-                        tmpLocation.append(tmpButtons);
-                        tmpButtons = null;
-                    }
-                    locations.append(tmpLocation);
-                    tmpLocation = null;
-                }
-            },
-            clickHandler = function () {
-                var targetDiv = $('#' + $(this).attr('data-target'));
-                if (targetDiv.hasClass('in')) {
-                    targetDiv.slideUp(400, function () {
-                        $(this).removeClass('in');
-                    });
-                } else {
-                    targetDiv.slideDown(400, function () {
-                        $(this).addClass('in');
-                    });
-                }
-            };
+            headerText = $.makeArray(headerRow.children().map(function (index, elem) { return $(elem).text().trim(); })),
+            colsPerColumn;
+        locations = $('<div class="locations" />');
+        headerText.pop(); // The very last column is the action buttons, and they are appended in their own row
+        exlLocationTableToFix.data('headerText', headerText); // Saving the header texts for when recieving more results
         headerRow.children().last().remove();
+        colsPerColumn = Math.floor(12 / headerText.length); // Magic number 12 = bootstrap cols
         headerRow = headerRow.changeElementType('div').addClass('row visible-md visible-lg');
         headerRow.children().changeElementType('div').addClass('col-md-' + colsPerColumn);
         locations.append(headerRow);
-        // loop thru all rows and generate locationDivs on the way
-        for (i = 1; i < rows.length; i += 1) { // NOTE: Starting with row 1 because row 0 is the headlines
-            row = $(rows[i]);
-            if (row.hasClass('EXLAdditionalFieldsRow')) {
-                // this is a (hidden) additional fields line
-                transformUlToDl(row.children().changeElementType('div'))
-                    .attr('id', 'additionalLocationFields' + tmpAdditionalFieldsId)
-                    .attr('class', row.attr('class'))
-                    .addClass('collapse')
-                    .appendTo(tmpLocation);
-            } else {
-                if ($('td.EXLAdditionalFieldsLink', row).length) {
-                    // this is a location headline
-                    appendTmpLocation();
-                    // start new location
-                    tmpAdditionalFieldsId = Unique.getUid();
-                    tmpLocation = $('<div class="locationDiv"/>');
-                    var headerFields = row.children(),
-                        tmpHeader = $('<div class="locationHeader row" />');
-                    for (j = 0; j < headerFieldCount; j += 1) {
-                        tmpHeader.append(($(headerFields[j])
-                            .changeElementType('div')
-                            .addClass('locationHeaderField col-md-' + colsPerColumn)
-                            .prepend('<div class="locationColumnTitle visible-xs visible-sm">' + headerText[j]  + '</div>')));
-                    }
-                    // setup event listener to additionalFieldsLink
-                    $('.EXLAdditionalFieldsLink a', tmpHeader)
-                        .attr('data-target', 'additionalLocationFields' + tmpAdditionalFieldsId)
-                        .attr('data-toggle', 'collapse')
-                        .removeAttr('href')
-                    // TODO: since the above bootstrap attempts does not work properly, we also sets eventlisteners up manually - we might wanna examine why it does not work
-                        .on('click', clickHandler);
-                    tmpLocation.append(tmpHeader);
-                    tmpButtons = $('<div class="locationButtons" />');
-                    $('.EXLLocationTableActionsMenu a', headerFields[headerFields.length - 1])
-                        .addClass('btn btn-default btn-xs')
-                        .appendTo(tmpButtons);
-                } else {
-                    // This is anything else - just wrap it in divs and append it? (the very last "show all locations" link is in here!)
-                    appendTmpLocation();
-                    // append what ever there is of content cells in this row
-                    locations.append(row.children().changeElementType('div'));
-                }
-            }
-        }
-        appendTmpLocation(); // if there is a tmpLocation left, append it to locations
-        exlLocationTableToFix.replaceWith(locations);
-        // NOTE: We do not need to flag the table fixed, since we have removed it!
+
+        $.each(transformLocationTrToBootstrap(rows, headerText), function (index, location) {
+            locations.append(location);
+        });
+
+        $('tbody', exlLocationTableToFix).empty();
+        locations.insertBefore(exlLocationTableToFix);
+        flagFixed(exlLocationTableToFix);
+
         // =====================================================================================================================================================
         // ================ the rest of the code here is about the parent accordion, and really belongs to the code that fixes the LocationsLists! =============
         // =====================================================================================================================================================
@@ -386,6 +409,22 @@ function kbBootstrapifyTabs() {
                     });
             }
         });
+    }
+
+    // When a locationList is dynamically extended by user pressing "more" - create new location elements from the new rows in the dummy table, and append them to the list
+    // FIXME: shall the more button also be changed, or is that already done by ExLibris?
+    var additionalLocationRowsToSpliceIn = $('body.EXLFullView .EXLLocationTable.jsFlagDomFixed tr');
+    if (additionalLocationRowsToSpliceIn.length) {
+        var dummyTable = additionalLocationRowsToSpliceIn.closest('table'),
+            newLocations = transformLocationTrToBootstrap(additionalLocationRowsToSpliceIn, dummyTable.data('headerText'));
+        locations = dummyTable.prev();
+        var insertionPoint = locations.children().last();
+        $.each(newLocations, function (index, location) {
+            if (!location.find('.EXLLocationsButton').length) { // unless it is a location button (because we already have the button), insert it into the location list
+                location.insertBefore(insertionPoint);
+            }
+        });
+        $('tbody', dummyTable).empty();
     }
 }
 
