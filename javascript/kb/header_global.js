@@ -383,8 +383,15 @@ function kbBootstrapifyTabs() {
         headerRow.children().changeElementType('div').addClass('col-md-' + colsPerColumn);
         locations.append(headerRow);
 
-        $.each(transformLocationTrToBootstrap(rows, headerText), function (index, location) {
-            locations.append(location);
+        $.each(transformLocationTrToBootstrap(rows, headerText), function (index, location) { // TODO: Duplicate code - look beneath here
+            if (!location.find('.EXLLocationsButton').length) {
+                locations.append(location);
+            } else {
+                location.find('.EXLLocationsButton').on('click', function () {
+                    $(this).removeAttr('id'); // When new rows arrive, they are bundled with a new button with this id! :-/
+                });
+                locations.append(location);
+            }
         });
 
         $('tbody', exlLocationTableToFix).empty();
@@ -418,10 +425,16 @@ function kbBootstrapifyTabs() {
         var dummyTable = additionalLocationRowsToSpliceIn.closest('table'),
             newLocations = transformLocationTrToBootstrap(additionalLocationRowsToSpliceIn, dummyTable.data('headerText'));
         locations = dummyTable.prev();
-        var insertionPoint = locations.children().last();
-        $.each(newLocations, function (index, location) {
+        locations.children().last().remove();
+        $.each(newLocations, function (index, location) { // TODO: Duplicate code - look above
             if (!location.find('.EXLLocationsButton').length) { // unless it is a location button (because we already have the button), insert it into the location list
-                location.insertBefore(insertionPoint);
+                locations.append(location);
+            } else {
+                // this is a more button. Ensure that it looses it's id when pressed, so it won't steal the handler of the next button that comes with the ajax :(
+                location.find('.EXLLocationsButton').on('click', function () {
+                    $(this).removeAttr('id'); // when the new rows arrives, they are bundled with a new button that has the same id (doh!)
+                });
+                locations.append(location);
             }
         });
         $('tbody', dummyTable).empty();
