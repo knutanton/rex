@@ -230,7 +230,7 @@ $(document).ready(function () {
     removeUnWantedContent();
 
     // Closing all closed result tab containers (they expand upon tab header clicks)
-    $('.EXLResultTabContainerClosed').addClass('collapse');
+    //$('.EXLResultTabContainerClosed').addClass('collapse');
 
     //we need the user's IP to call Trafiklys
 //   getIP().done(trafiklys); // FIXME: outcommented because it causes an error in the javascript console /HAFE

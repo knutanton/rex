@@ -94,7 +94,7 @@ $(document).ready(function () {
     removeUnWantedContent();
 
     // Closing all closed result tab containers (they expand upon tab header clicks)
-    $('.EXLResultTabContainerClosed').addClass('collapse');
+    //$('.EXLResultTabContainerClosed').addClass('collapse');
 
     /*changeRequestOptions();*/
     var dod = new TextReplaceObject("Use Digital Version", '<a href="http://www.kb.dk/en/nb/samling/dod/DODbestilling.html" target="_blank">By special request</a>'),
