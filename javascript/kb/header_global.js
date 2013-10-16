@@ -86,6 +86,8 @@ function transformUlToDl(divWithUl, selector) {
     return divWithUl;
 }
 
+// helper function that transforms a table of locations into a bootstrapish list of nested divs
+// for more info look inside the kbBootstrapifyTabs method, where this snippet originally came from. // FIXME: move documentation up here!
 function transformLocationTrToBootstrap(rows, headerText) {
     var locationArray = [],
         row,
@@ -159,6 +161,8 @@ function transformLocationTrToBootstrap(rows, headerText) {
                 $('.EXLLocationTableActionsMenu a', headerFields[headerFields.length - 1])
                     .addClass('btn btn-default btn-xs')
                     .appendTo(tmpButtons);
+                $('.EXLLocationTableActionsMenu', headerFields[headerFields.length - 1]).children(':not(a)')
+                    .appendTo(tmpButtons); // add everything that is not an a-tag too (eg. "Bestilling ikke mulig")
             } else {
                 // This is anything else - just wrap it in divs and append it? (the very last "show all locations" link is in here!)
                 pushTmpLocation();
