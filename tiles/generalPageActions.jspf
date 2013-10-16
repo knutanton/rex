@@ -14,6 +14,7 @@
 		<div class="EXLFacetActionsV2">
 				<div class="EXLFacetRSSAction btn-group ">-->
 <div class="pull-right">
+    <div class="btn-group">
 				    <c:if test="${!form.remote}">
 						<form method="post" name="rssForm" class="pull-left" action="${form.rssLinks[0].actionUrl}" >
                				 <c:set var="srVar" value="${form.rssLinks[0].searchVar}" />
@@ -22,7 +23,7 @@
              				   <input type="hidden" name="sr" value="${fn:escapeXml(srVar)}" />
             				   <input type="hidden" name="ctx" value="${fn:escapeXml(ctxVar)}" />
            					   <input type="hidden" name="ver" value="${fn:escapeXml(verVar)}" />
-         					   <a href="#" class="btn btn-default" onclick="document.rssForm.submit();">
+         					   <a href="#" class="btn btn-default btn-sm" onclick="document.rssForm.submit();">
                                <fmt:message key='default.eshelf.basket.querypop.rss '/></a>
          					   <noscript>
 									<input type="submit" value="Save"/>
@@ -39,7 +40,7 @@
 							<c:param name="queryUrl" value="${form.reqEncUrl}" />
 						</c:url>
 
-						<a class="backTo btn btn-default" onclick="openSaveQuery(this.href); return false;"
+						<a class="backTo btn btn-default btn-sm" onclick="openSaveQuery(this.href); return false;"
 								target="_blank" href="${fn:escapeXml(saveUrl)}"
 								title="<fmt:message key='results.saveCurrentQuery'/><fmt:message key='link.title.opens.in.a.popup'/>">
                             <fmt:message key="results.savequery" />
@@ -48,12 +49,12 @@
 					<!--</div>-->
 				</c:if>
 
-                &nbsp;
 				<span class="EXLFacetSaveToEShelfAction EXLFacetSaveToEShelfActionOff">
-					<a class="btn btn-default" onclick="reportAddPageToEshelfClick();" href="${fn:escapeXml(modifyShelfUrl)}" title="<fmt:message key="results.eshelf" />">
+					<a class="btn btn-default btn-sm" onclick="reportAddPageToEshelfClick();" href="${fn:escapeXml(modifyShelfUrl)}" title="<fmt:message key="results.eshelf" />">
                     <img src="../images/icon_star_off.png" alt="Add to e-Shelf"> <fmt:message key="results.addpagetoeshelf"/>
 					</a>
                 </span>
+        </div>
 </div>
 
 		<!--</div>
