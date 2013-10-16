@@ -6,7 +6,7 @@
         <div class="col-xs-12 col-sm-4">
             <strong class="lead">REX</strong>
             <ul class="list-unstyled">
-                <li><a href="http://www.kb.dk/en/REX/sider">Help</a></li>
+                <li><a href="http://www.kb.dk/en/REX/sider">Help / FAQ</a></li>
                 <li><a href="https://rex.kb.dk/F/?func=file&file_name=find-b&local_base=kgl01_rexclassic&con_lng=eng">REX Classic</a></li>
                 <li><a href="http://www.kb.dk/da/REX/sider/biblioteker.html">Other libraries in REX</a></li>
                 <li><a href="http://www.kb.dk/en/kub/service/sporgbib/forslag.html">Suggest a title</a></li>
