@@ -132,7 +132,7 @@
 		    </div>
 				<cite class="EXLResultFRBR">
 					<span class="EXLResultBgFRBR"></span>
-						<a class="EXLBriefResultsDisplayMultipleLink btn btn-primary" target="_parent" href="${fn:escapeXml(frbrUrl)}">${result.values[c_value_versions][0]}</a>
+						<a class="EXLBriefResultsDisplayMultipleLink btn btn-link btn-sm" target="_parent" href="${fn:escapeXml(frbrUrl)}"><span class="glyphicon glyphicon-folder-open"></span> ${result.values[c_value_versions][0]}</a>
 					<span class="EXLResultBgRtlFRBR"></span>
 				</cite>
 			</div>
