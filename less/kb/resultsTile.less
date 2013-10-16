@@ -15,6 +15,7 @@
 .EXLMyShelfStar a{
     .btn;
     .btn-default;
+    .btn-sm;
 }
 
 EXLResult .EXLThumbnail {
@@ -40,8 +41,8 @@ html[lang="en_US"] .EXLMyShelfStar a:after{
     .text-left;
 }
 .EXLResult{
-    padding:10px 0;
-    border-bottom: 1px dotted @gray-lighter;
+    padding:@padding-large-vertical 0;
+    border-bottom: 1px solid @gray-lighter;
     .clearfix;
 }
 
@@ -98,7 +99,34 @@ li.EXLResultSelectedTab > a{
     height: 56px;
 }
 
+#content{
+    background:             @neutral;
+    padding-top:            @padding-large-vertical;
+
+    #resultContent{
+        h1{
+            .h5;
+            font-weight:    @btn-font-weight;
+            margin-top: (@line-height-computed / 2);
+            margin-bottom: (@line-height-computed / 2);
+        }
+        h3{
+            .h4;
+            margin: @padding-base-vertical 0 0 0;
+        }
+        h4{
+            .h5;
+            margin: @padding-base-vertical 0 0 0;
+        }
+        p{
+            margin: @padding-base-vertical 0;
+        }
+    }
+
+}
 /* AJAX  Visning af poster (bestil)*/
+
+
 
 .EXLTabsRibbon {
     .nav-pills > li > a {
@@ -134,9 +162,7 @@ li.EXLResultSelectedTab > a {
 .locationDiv:nth-child(even){
     background: lighten(@gray-lighter, -5%);
 }
-.locationDiv:nth-child(odd){
-    background: lighten(@gray-lighter, -10%);
-}
+
 .locationDiv{
     padding:@padding-large-vertical @padding-large-horizontal;
 }
@@ -154,4 +180,45 @@ li.EXLResultSelectedTab > a {
 
 .locationHeaderField{
     padding-bottom:@padding-large-vertical;
+}
+
+
+/*Bestil */
+.EXLTabHeader{
+    .clearfix;
+}
+.EXLTabHeaderButtons{
+    .pull-right;
+}
+.EXLTabHeaderContent{
+        .collapse;
+}
+.EXLRequestTabContent {
+    caption{
+        .collapse;
+    }
+    .KBExtraSubmit, .EXLRequestTip{
+        .collapse;
+    }
+    input[type="text"], input.date-pick, select{
+        .form-control;
+    }
+    tr, td, th{
+        border:none!important;
+    }
+    input[type="submit"], a.reset{
+        .btn;
+        .btn-default;
+    }
+    input[type="submit"]{
+        .btn-primary;
+    }
+    table{
+        width:100%;
+    }
+    .EXLTabFormValidationFeedback{
+       .alert;
+       .alert-danger;
+    }
+
 }
