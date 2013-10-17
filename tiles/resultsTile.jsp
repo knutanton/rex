@@ -104,12 +104,12 @@
 					<c:if test="${not empty author}">
 				    	<h4 class="EXLResultAuthor">${fmt:escapeLooseAmpersands(author)}</h4>
 					</c:if>
-                      <%--<span class="EXLResultVersionFound">
+                      <span class="EXLResultVersionFound">
                      <fmt:message key="frbrversion.found"/>
-                 </s
-                   <%--<h4 class="EXLResultSeeFrbrLink">
+                 </span>
+                   <h4 class="EXLResultSeeFrbrLink">
                           <fmt:message key="frbrversion.see.link"/>
-                      </h4>--%>
+                      </h4>
 		  		</div>
                 <c:set var="resultStatusIndex" value="${resultStatus.index}"/>
 		    <div id="exlidResult${resultStatusIndex}-TabContainer-viewOnlineTab" class="EXLResultTabContainer EXLContainer-viewOnlineTab EXLResultTabContainerClosed collapse">
@@ -315,10 +315,10 @@
                             <c:set var="popoutTarget"></c:set>
                         </c:otherwise>
                     </c:choose>
-                    <!-- Here we go now jiminy!
+                    <%-- Here we go now jiminy!
 					displayURL = ${displayURL}
 					tabState.viewOnlineTab.link = ${tabState.viewOnlineTab.link}
-					-->
+					--%>
                     <c:set var="linkTitle">
                         <fmt:message key="brief.tabs.links.title.viewOnlineTab">
                             <fmt:param>${strippedTitle}</fmt:param>
