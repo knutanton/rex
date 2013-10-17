@@ -408,7 +408,7 @@
                 </li>
                 <c:set var="noFirstTab" value="false"/>
             </c:if>
-            <%--<c:if test="${tab=='reviewsandtags' && not empty tabState.tagsReviewsTab}">
+            <c:if test="${tab=='reviewsandtags' && not empty tabState.tagsReviewsTab}">
                      <c:url var="taburl" value="${displayURL}">
                            <c:param name="tabs" value="tagreviewsTab"/>
                            <c:param name="gathStatTab" value="true"/>
@@ -426,20 +426,19 @@
                         <!-- end rum statistics -->
                     </li>
                      <c:set var="noFirstTab" value="false"/>
-                 </c:if>--%>
-            <%--<c:if test="${tab=='recommendations' && not empty tabState.recommendationsTab}">
+                 </c:if>
+            <c:if test="${tab=='recommendations' && not empty tabState.recommendationsTab}">
                      <c:url var="taburl" value="${displayURL}">
                            <c:param name="tabs" value="recommendTab"/>
                            <c:param name="gathStatTab" value="true"/>
-                     </c:url>--%>
-            <%--
-                     <c:set var="linkTitle">
+                     </c:url>
+
+                     <%-- c:set var="linkTitle">
                          <fmt:message key="brief.tabs.links.title.recommendTab">
                              <fmt:param>${strippedTitle}</fmt:param>
                          </fmt:message>
-                     </c:set>
-                     --%>
-            <%--<c:set var="linkTitle">
+                     </c:set --%>
+                    <c:set var="linkTitle">
                          <fmt:message key="default.recommendationtab.recommendations_loading">
                              <fmt:param>${strippedTitle}</fmt:param>
                          </fmt:message>
@@ -451,15 +450,15 @@
                        delivery="${searchForm.delivery[resultStatus.index]}" noOther="false" index="${result.resultNumber}"/>
                        <!-- end rum statistics -->
                      </li>
-                     <c:set var="noFirstTab" value="false"/>--%>
+                     <c:set var="noFirstTab" value="false"/>
 
             <%-- variable showRecommendTab is set to true when at least record
                      has recommendation, prechecked by SearchHelper.isRecommendationEnabled.
                      In another word, showRecommendTab is false when neither bX nor bibtip
                      is enabled to indicate there's no need to call RecommendationsTabAction for further check.
                      --%>
-            <%--<c:set var="showRecommendTab" value="true"/>
-                 </c:if>--%>
+            <c:set var="showRecommendTab" value="true"/>
+                 </c:if>
             <c:if test="${tab=='getit_link2' && not empty tabState.moreTab}">
                 <li id="exlidResult${resultStatus.index}-MoreTab" class="EXLMoreTab EXLResultTab ${specialTabClass} ${tabState.moreTab.iconCode}">
                     <!-- rum statistics -->
