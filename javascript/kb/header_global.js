@@ -273,6 +273,7 @@ function kbBootstrapifyTabs() {
             var tmpUid = Unique.getUid(),
                 accordionHeaderElement = $('<div class="panel-heading"><h4 class="panel-title"><a class="accordion-toggle" data-toggle="collapse" href="#locationAccordion' + tmpUid + '"></a></h4></div>'),
                 oldLink = $('.EXLLocationsTitle a', locationList),
+                accordionIcon = $('<span class="glyphicon glyphicon-chevron-' + (oldLink.length ? 'right' : 'down') + '"/>'),
                 accordionHeaderLink = $('a', accordionHeaderElement),
                 accordionBodyContainer = $('<div id="locationAccordion' + tmpUid + '" class="panel-collapse collapse' + (oldLink.length ? '' : ' in') + '"></div>');
             if (oldLink.length) {
@@ -283,12 +284,21 @@ function kbBootstrapifyTabs() {
                 }));
                 accordionHeaderLink = oldLink;
             }
+            accordionIcon.prependTo(accordionHeaderLink);
             $('.EXLLocationsTitle', locationList).appendTo(accordionHeaderLink);
             $('.EXLLocationInfo', locationList).appendTo(accordionHeaderLink);
             $('br', locationList).remove();
             accordionBodyContainer.appendTo(locationList);
             accordionHeaderElement.prependTo(locationList);
             $('.EXLSublocation', locationList).addClass('panel-body').appendTo(accordionBodyContainer);
+            // eventhandler for toggling the accordion icon
+            accordionHeaderLink.on('click', function () {
+                if (accordionBodyContainer.hasClass('in')) {
+                    accordionIcon.removeClass('glyphicon-chevron-down').addClass('glyphicon-chevron-right');
+                } else {
+                    accordionIcon.removeClass('glyphicon-chevron-right').addClass('glyphicon-chevron-down');
+                }
+            }); // FIXME: Is this invoked on keyboard input? :(
         });
         flagFixed(exlLocationListToFix);
     }
@@ -420,7 +430,13 @@ function kbBootstrapifyTabs() {
                 accordionAnchor
                     .removeAttr('href')
                     .on('click', function () {
-                        $('#' + $(this).attr('data-target')).slideToggle().toggleClass('in'); // FIXME: - shitty code, but the bootstrap accordion/link change did not work out! :(
+                        var accordionBody = $('#' + $(this).attr('data-target'));
+                        accordionBody.slideToggle().toggleClass('in'); // FIXME: - shitty code, but the bootstrap accordion/link change did not work out! :(
+                        if (accordionBody.hasClass('in')) {
+                            accordionAnchor.find('.glyphicon').removeClass('glyphicon-chevron-right').addClass('glyphicon-chevron-down');
+                        } else {
+                            accordionAnchor.find('.glyphicon').removeClass('glyphicon-chevron-down').addClass('glyphicon-chevron-right');
+                        }
                     });
             }
         });
