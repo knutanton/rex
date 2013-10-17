@@ -157,10 +157,14 @@ function transformLocationTrToBootstrap(rows, headerText) {
                 // TODO: since the above bootstrap attempts does not work properly, we also sets eventlisteners up manually - we might wanna examine why it does not work
                     .on('click', clickHandler);
                 tmpLocation.append(tmpHeader);
+                // Fix the action buttons - 1) move action buttons, 2) remove the ul structure they used to reside in, 3) move everything else.
                 tmpButtons = $('<div class="locationButtons" />');
-                $('.EXLLocationTableActionsMenu a', headerFields[headerFields.length - 1])
+                var aTags = $('.EXLLocationTableActionsMenu a', headerFields[headerFields.length - 1]);
+                var aTagsParentUl = aTags.closest('ul');
+                aTags
                     .addClass('btn btn-default btn-xs')
                     .appendTo(tmpButtons);
+                aTagsParentUl.remove(); // Remove the empty ul that used to contain the a tags
                 $('.EXLLocationTableActionsMenu', headerFields[headerFields.length - 1]).children(':not(a)')
                     .appendTo(tmpButtons); // add everything that is not an a-tag too (eg. "Bestilling ikke mulig")
             } else {
