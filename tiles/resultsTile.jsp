@@ -161,9 +161,13 @@
 			<div class="EXLSummaryFields">
                 <div class="EXLHiddenCue collapse">Material Type: </div>
 
-                <div class="EXLThumbnailCaption" id="mediaTypeCaption-${result.resultNumber}">
+                <span class="EXLThumbnailCaption" id="mediaTypeCaption-${result.resultNumber}">
                     <span class="label label-default "><fmt:message key="mediatype.${result.values[c_value_fmticon]}" /></span>
-                </div>
+                    <c:if test="${!form.alma}">
+                        <prm:available availForm="${form}" dlvIndex="${resultStatus.index}"/>
+                    </c:if>
+                </span>
+
 
                 <div class="EXLMyShelfStar pull-right">
                     <c:choose>
@@ -239,9 +243,7 @@
 						<eas:ajaxPlaceHolder styleClass="EXLResultSnippet" id="snippet_${result.values[c_value_recordid][0]}" group="2" message="snippet_${result.values[c_value_recordid][0]}" taskName="snippet"  tagName="p"/>
 					</c:otherwise>
 				</c:choose>
-				<c:if test="${!form.alma}">
-					<prm:available availForm="${form}" dlvIndex="${resultStatus.index}"/>
-				</c:if>
+
 			</div>
 
 			<c:if test="${isFrbr}">
