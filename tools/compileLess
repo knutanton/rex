@@ -1,0 +1,3 @@
+#!/bin/sh
+REPOS_ROOT=$(git rev-parse --show-toplevel)
+lessc $REPOS_ROOT/less/bootstrap.less $REPOS_ROOT/css/bootstrap.css
