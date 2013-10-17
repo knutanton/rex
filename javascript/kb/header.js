@@ -35,7 +35,7 @@ function hideLocationInfo() {
 }
 
 function TextReplaceObject(originalText, newText) {
-    this.originalText = originalText.toLowerCase().trim();
+    this.originalText = originalText.trim();
     this.newText = newText;
 }
 
@@ -48,11 +48,13 @@ function replaceTextInLocationsTab(textReplaceObjects) {
         if ($(event.currentTarget).hasClass("EXLResultSelectedTab")) {
             htmlResult = $(event.currentTarget).parents().eq(3);
             html = htmlResult.find(".EXLSublocation");
-            matchText = html.find(".EXLLocationTableColumn2").text().trim().toLowerCase();
+            matchText = html.find(".EXLLocationTableColumn2").text().trim();
             $.each(textReplaceObjects, function (index, textReplaceObject) {
                 if (matchText.indexOf(textReplaceObject.originalText) > -1) {
-                    //html.find(".EXLLocationTableActionsMenu ul li:contains(not)").html(textReplaceObject.newText);
-                    html.find(".EXLLocationTableColumn2:contains(DFS) ~ td li.EXLLocationTableActionsFirstItem").html(textReplaceObject.newText);
+                    html.find('.EXLLocationTableColumn2:contains(' + textReplaceObject.originalText + ')')
+                        .closest('.locationDiv')
+                        .find('.locationButtons')
+                        .html(textReplaceObject.newText);
                     return;
                 }
             });
@@ -97,10 +99,9 @@ $(document).ready(function () {
     //$('.EXLResultTabContainerClosed').addClass('collapse');
 
     /*changeRequestOptions();*/
-    var dod = new TextReplaceObject("Use Digital Version", '<a href="http://www.kb.dk/en/nb/samling/dod/DODbestilling.html" target="_blank">By special request</a>'),
+    var dod = new TextReplaceObject("USE DIGITAL VERSION", '<a href="http://www.kb.dk/en/nb/samling/dod/DODbestilling.html" target="_blank">By special request</a>'),
         kob = new TextReplaceObject("Mail to kob", '<a href="http://www.kb.dk/en/nb/samling/ks/kobbestilling.html" target="_blank">Mail to kob</a>'),
         mailToDfs = new TextReplaceObject("DFS In-house", '<a href="mailto:dfs-mail@kb.dk">Mail to dfs-mail@kb.dk</a>'),
-        // mailToKob = new TextReplaceObject("Mail to kob", '<a href="mailto:kob@kb.dk">Mail to kob@kb.dk</a>'),
         textReplaceObjectArray = [dod, kob, mailToDfs];
 
         replaceTextInLocationsTab(textReplaceObjectArray);

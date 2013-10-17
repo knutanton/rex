@@ -50,7 +50,7 @@ function hideLocationInfo() {
 }
 
 function TextReplaceObject(originalText, newText) {
-    this.originalText = originalText.toLowerCase().trim();
+    this.originalText = originalText.trim();
     this.newText = newText;
 }
 
@@ -59,12 +59,14 @@ function replaceTextInLocationsTab(textReplaceObjects) {
         if ($(event.currentTarget).hasClass("EXLResultSelectedTab")) {
             var htmlResult = $(event.currentTarget).parents().eq(3),
                 html = htmlResult.find(".EXLSublocation"),
-                matchText = html.find(".EXLLocationTableColumn2, .EXLLocationTableColumn3").text().trim().toLowerCase();
+                matchText = html.find(".EXLLocationTableColumn2, .EXLLocationTableColumn3").text().trim();
 
             $.each(textReplaceObjects, function (index, textReplaceObject) {
                 if (matchText.indexOf(textReplaceObject.originalText) > -1) {
-                    //html.find(".EXLLocationTableActionsMenu ul li:contains(ikke)").html(textReplaceObject.newText);
-		            html.find(".EXLLocationTableColumn2:contains(DFS) ~ td li.EXLLocationTableActionsFirstItem").html(textReplaceObject.newText);
+                    html.find('.EXLLocationTableColumn2:contains(' + textReplaceObject.originalText + ')')
+                        .closest('.locationDiv')
+                        .find('.locationButtons')
+                        .html(textReplaceObject.newText);
                     return;
                 }
             });
@@ -234,10 +236,9 @@ $(document).ready(function () {
 
     //we need the user's IP to call Trafiklys
 //   getIP().done(trafiklys); // FIXME: outcommented because it causes an error in the javascript console /HAFE
-    var dod = new TextReplaceObject("Brug Digital Version", '<a href="http://www.kb.dk/da/nb/samling/dod/DODbestilling.html" target="_blank">Efter særlig ansøgning</a>'),
+    var dod = new TextReplaceObject("BRUG DIGITAL VERSION", '<a href="http://www.kb.dk/da/nb/samling/dod/DODbestilling.html" target="_blank">Efter særlig ansøgning</a>'),
         kob = new TextReplaceObject("Mail til kob", '<a href="http://www.kb.dk/da/nb/samling/ks/kobbestilling.html" target="_blank">Mail til kob</a>'),
-        mailToDfs = new TextReplaceObject("DFS Brug", '<a href="mailto:dfs-mail@kb.dk">Mail til dfs-mail@kb.dk</a>'),
-        // mailToKob = new TextReplaceObject("Mail til kob", '<a href="mailto:kob@kb.dk">Mail til kob@kb.dk</a>'),
+        mailToDfs = new TextReplaceObject("DFS Brug på stedet", '<a href="mailto:dfs-mail@kb.dk">Mail til dfs-mail@kb.dk</a>'),
         textReplaceObjectArray = [dod, kob, mailToDfs];
 
     replaceTextInLocationsTab(textReplaceObjectArray);
