@@ -168,12 +168,18 @@ li.EXLResultSelectedTab > a {
 .locationDiv:nth-child(even){
     background: lighten(@gray-lighter, -5%);
 }
+.EXLLocationListContainer .panel-heading .panel-title .glyphicon{
+    font-size:12px;
+}
 .EXLLocationList .panel-body{
     padding:0px;
 }
 .locationDiv{
     padding:@padding-large-vertical @padding-large-horizontal;
     .locationHeader .EXLAdditionalFieldsLink .glyphicon{
+        font-size:8px; /* All this is added by Hafe - Tjan should approve this before it is shipped! */
+        top:0;
+        margin-right:5px;
         margin-left:10px; /* FIXME: Reassess when the right icon has been found - it might not even need a margin, if we get icons in two sizes. */
     }
 }
