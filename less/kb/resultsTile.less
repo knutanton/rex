@@ -50,7 +50,7 @@ html[lang="en_US"] .EXLMyShelfStar a:after{
     .clearfix;
 }
 
-.EXLResultStatusNotAvailable{
+.EXLSummaryFields .EXLResultStatusNotAvailable{
     .label;
     .label-danger;
 }
@@ -170,6 +170,19 @@ li.EXLResultSelectedTab > a {
 }
 .EXLLocationListContainer .panel-heading .panel-title .glyphicon{
     font-size:12px;
+}
+.EXLLocationList .EXLLocationInfo {
+    em.EXLResultStatusNotAvailable{
+        color:#e54f4f;
+        font-weight:bold;
+    }
+    em.EXLResultStatusAvailable{
+        color: #5ca301;
+        font-weight:bold;
+    }
+    em.EXLResultStatusMaybeAvailable{
+        font-weight:bold;
+    }
 }
 .EXLLocationList .panel-body{
     padding:0px;
