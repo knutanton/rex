@@ -28,6 +28,22 @@ function kBFixTabs() {
     });
 }
 
+
+/**
+* //JAC
+* rewrites loginlinks to use the "global" loginlink.
+* Instead of a rewrite the href, we add a clickhandler to the surrounding button.
+* This makes the <a href.. a nice fallback
+*/
+function addLoginLink() {
+    var loginUrl = $('#exlidSignOut>a').attr('href');
+    $(document).on("click", ".locationButtons:contains('Sign in to request')", function () {
+        window.location = loginUrl;
+        return false;
+    });
+}
+
+
 function hideLocationInfo() {
     //DGJ
     $("span.EXLLocationInfo>strong").hide();
@@ -92,6 +108,9 @@ $(".EXLLocationsTab").ajaxComplete(function(event, xhr, settings) {
 }*/
 
 $(document).ready(function () {
+
+    addLoginLink();
+
     // Remove unwanted content (Function defined in header_global.js)
     removeUnWantedContent();
 

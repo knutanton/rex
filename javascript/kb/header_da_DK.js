@@ -43,6 +43,21 @@ $('.EXLRecommendTab').live('click', function () {
     });
 });
 
+/**
+* //JAC
+* rewrites loginlinks to use the "global" loginlink.
+* Instead of a rewrite the href, we add a clickhandler to the surrounding button.
+* This makes the <a href.. a nice fallback
+*/
+function addLoginLink() {
+    var loginUrl = $('#exlidSignOut>a').attr('href');
+    $(document).on("click", ".locationButtons:contains('Log ind for at reservere')", function () {
+        window.location = loginUrl;
+        return false;
+    });
+}
+
+
 function hideLocationInfo() {
     //DGJ
     $("span.EXLLocationInfo>strong").hide();
@@ -228,6 +243,9 @@ function gup(name) {
 
 
 $(document).ready(function () {
+
+    addLoginLink();
+
     // Remove unwanted content (Function defined in header_global.js)
     removeUnWantedContent();
 
@@ -445,6 +463,7 @@ $(document).ready(function () {
 
     // Copied from footer_da_DK stop /HAFE
 });
+
 
 function bestil() {
     $("div.EXLRequestTabContent").each(function (index) {
