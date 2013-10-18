@@ -110,10 +110,12 @@ function transformLocationTrToBootstrap(rows, headerText) {
         clickHandler = function () {
             var targetDiv = $('#' + $(this).attr('data-target'));
             if (targetDiv.hasClass('in')) {
+                $('.glyphicon', this).addClass('glyphicon-chevron-right').removeClass('glyphicon-chevron-down');
                 targetDiv.slideUp(400, function () {
                     $(this).removeClass('in');
                 });
             } else {
+                $('.glyphicon', this).addClass('glyphicon-chevron-down').removeClass('glyphicon-chevron-right');
                 targetDiv.slideDown(400, function () {
                     $(this).addClass('in');
                 });
@@ -155,7 +157,8 @@ function transformLocationTrToBootstrap(rows, headerText) {
                     .attr('data-toggle', 'collapse')
                     .removeAttr('href')
                 // TODO: since the above bootstrap attempts does not work properly, we also sets eventlisteners up manually - we might wanna examine why it does not work
-                    .on('click', clickHandler);
+                    .on('click', clickHandler)
+                    .prepend('<span class="glyphicon glyphicon-chevron-right"></span>');
                 tmpLocation.append(tmpHeader);
                 // Fix the action buttons - 1) move action buttons, 2) remove the ul structure they used to reside in, 3) move everything else.
                 tmpButtons = $('<div class="locationButtons" />');
