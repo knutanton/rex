@@ -6869,11 +6869,24 @@ div.locationColumnTitle {
 .locationDiv:nth-child(even) {
   background: #e2e2e2;
 }
+.EXLLocationListContainer .panel-heading .panel-title .glyphicon {
+  font-size: 12px;
+}
 .EXLLocationList .panel-body {
   padding: 0px;
 }
 .locationDiv {
   padding: 10px 16px;
+}
+.locationDiv .locationHeader .EXLAdditionalFieldsLink .glyphicon {
+  font-size: 8px;
+  /* All this is added by Hafe - Tjan should approve this before it is shipped! */
+
+  top: 0;
+  margin-right: 5px;
+  margin-left: 10px;
+  /* FIXME: Reassess when the right icon has been found - it might not even need a margin, if we get icons in two sizes. */
+
 }
 .locationButtons a {
   display: inline-block;
@@ -7375,6 +7388,24 @@ fieldset[disabled] .EXLRequestTabContent input[type="submit"].active {
 /*  Anbefalinger  */
 .EXLRecommendTabDisable {
   display: none !important;
+}
+.EXLTabLoading {
+  width: 100%;
+  text-align: center;
+  height: 5em;
+  background-image: url(../images/kb/loader.gif);
+  background-repeat: no-repeat;
+  background-position: center;
+}
+.EXLHiddenCue {
+  position: absolute;
+  left: -10000px;
+  top: auto;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  /*display:none*/
+
 }
 .nav > li.EXLRequestTab,
 .nav > li.EXLReviewsTab {
