@@ -168,20 +168,26 @@ li.EXLResultSelectedTab > a {
 .locationDiv:nth-child(even){
     background: lighten(@gray-lighter, -5%);
 }
+
+.EXLLocationListContainer .panel-heading .panel-title a{
+    .show;
+    text-decoration: none;
+}
 .EXLLocationListContainer .panel-heading .panel-title .glyphicon{
     font-size:12px;
 }
-.EXLLocationList .EXLLocationInfo {
-    em.EXLResultStatusNotAvailable{
-        color:#e54f4f;
-        font-weight:bold;
+.EXLLocationList .EXLLocationInfo{
+    em{
+    .label;
     }
-    em.EXLResultStatusAvailable{
-        color: #5ca301;
-        font-weight:bold;
+    .EXLResultStatusNotAvailable{
+        .label-danger;
     }
-    em.EXLResultStatusMaybeAvailable{
-        font-weight:bold;
+    .EXLResultStatusAvailable{
+        .label-success;
+    }
+    .EXLResultStatusMaybeAvailable{
+        .label-warning;
     }
 }
 .EXLLocationList .panel-body{
