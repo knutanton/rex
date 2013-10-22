@@ -1,37 +1,55 @@
-// Optional captions
-// -----------------------------
-// Hidden by default for smaller viewports
-.carousel img {
-    opacity: 0.7;
-}
 
-.carousel-caption {
-    position: absolute;
-    left: 15%;
-    right: 15%;
-    top: 10%;
-    bottom: none;
-    z-index: 10;
-    padding: 0px;
-    color: @carousel-caption-color;
+.carousel-caption{
+    top:0;
+    left:0;
+    bottom:0;
     text-align: left;
-    text-shadow: @carousel-text-shadow;
-    font-size:16px;
-    & .btn {
-        text-shadow: none; // No shadow for button elements in carousel-caption
-    }
+    padding:20px 15% 20px 15%;
+    background: rgba(0, 0, 0, 0.6);
+    width:100%;
+    z-index: 0;
+    font-family:@font-family-serif ;
 }
-.carousel-caption {
+.carousel-indicators{
+    bottom:0px;
+}
 
-/* Small devices (tablets, 768px and up) */
-    @media (min-width: @screen-sm) {
-        font-size:30px;
-    }
-
-    /* Large devices (large desktops, 1200px and up) */
-    @media (min-width: @screen-lg) {
-        font-size:35px;
-    }
+.carousel-control {
+    .opacity(1.0);
 }
 
 
+
+@media (min-width: @screen-xs) {
+    .carousel-caption{
+        font-size: 18px;
+        padding-top:5%;
+    }
+}
+
+@media (min-width: @screen-sm) {
+    .carousel-caption{
+        font-size: 22px;
+    }
+}
+
+@media (min-width: @screen-md) {
+
+
+    .carousel-caption{
+        font-size: 24px;
+    }
+}
+
+
+@media (min-width: @screen-lg) {
+    .carousel-inner{
+        max-height: 330px;
+    }
+    .carousel-caption{
+        font-size: 26px;
+
+    }
+
+
+}
