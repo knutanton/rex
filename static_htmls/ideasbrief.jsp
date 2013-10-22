@@ -5,8 +5,8 @@
     </div>
     <div class="panel-body">
         <p>
-            <a title="Special Request" href="javascript:void(window.open('https://rex.kb.dk/userServices/menu/Order'));" class="btn btn-success btn-sm" target="_self">
-               Can't find what you're looking for? <span class="glyphicon glyphicon-comment"></span>
+            <a title="Special Request" href="javascript:void(window.open('https://rex.kb.dk/userServices/menu/Order'));" target="_self">
+               Can't find what you're looking for?
             </a>
         </p>
         <ul class="list-unstyled">

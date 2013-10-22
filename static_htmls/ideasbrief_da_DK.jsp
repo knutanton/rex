@@ -5,8 +5,8 @@
     </div>
     <div class="panel-body">
         <p>
-        <a title="Fandt du ikke hvad du søgte?" href="javascript:void(window.open('https://rex.kb.dk/userServices/menu/Order'));" class="btn btn-success btn-sm" target="_self">
-            Fandt du ikke hvad du søgte? <span class="glyphicon glyphicon-comment"></span>
+        <a title="Fandt du ikke hvad du søgte?" href="javascript:void(window.open('https://rex.kb.dk/userServices/menu/Order'));" target="_self">
+            Fandt du ikke hvad du søgte?
         </a>
         </p>
 
