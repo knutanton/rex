@@ -14,34 +14,12 @@
 <c:if test="${form.pcAvailabiltyMode == 'true'}">
 	<c:set value="false" var="chagedPCAvailMode" />
 </c:if>
-<c:if test="${form.scp.showPCAvailabilityCheckbox}">
-  <c:if test="${form.mode == 'Basic' or (form.mode == 'Advanced' and !form.showFullText)}">
-	<c:url value="${form.reqDecUrl}" var="pc_avail_url">
-		<c:param name="ct" value="facet"/>
-	 	<c:param name="pcAvailabiltyMode" value="${chagedPCAvailMode}"/>
-	</c:url>
-      <div class="EXLFacetList EXLTopLevelFacetList panel panel-default">
-          <div class="EXLFacetContainer panel-heading">
-              <h4 class="panel-title"><fmt:message key="expand.options"/></h4>
-          </div>
-          <div class="checkbox">
-              <p class="col-md-12">
-                  <label for="pcAvailabiltyMode">
-                      <html:checkbox name="searchForm"  property="pcAvailabiltyMode" styleClass="uncheckable" styleId="pcAvailabiltyMode" onclick="location.replace('${fn:escapeXml(pc_avail_url)}');" />
-                      &nbsp;&nbsp;<fmt:message key="expandresults"/>
-                  </label>
-              </p>
-          </div>
-      </div>
 
-  </c:if>
-</c:if>
 
 <c:if test="${form.displayTopLevelSideFacet}">
 	<c:set value="${form.facetResult.facets[c_facet_tlevel]}" var="facet" />
 	<c:if test="${not empty facet && not empty facet.facetValues and fn:length(facet.facetValues)>0}">
 		<div id="facetList" class="EXLFacetList EXLTopLevelFacetList">
-
 
 	  	    <div class="EXLFacetContainer">
 				<h3><fmt:message key="results.showonly"/></h3>
@@ -130,7 +108,27 @@
 <c:if test="${form.searchResult.numberOfResults>0 and form.facetResult.displayFacets}" >
 
 	<div id="facetList${facetIndex.index}" class="facet-collapse slide index panel-group" >
-
+	<c:if test="${form.scp.showPCAvailabilityCheckbox}">
+	  <c:if test="${form.mode == 'Basic' or (form.mode == 'Advanced' and !form.showFullText)}">
+		<c:url value="${form.reqDecUrl}" var="pc_avail_url">
+			<c:param name="ct" value="facet"/>
+			<c:param name="pcAvailabiltyMode" value="${chagedPCAvailMode}"/>
+		</c:url>
+		<div class="EXLFacetList EXLTopLevelFacetList panel panel-default">
+          <div class="EXLFacetContainer panel-heading">
+              <h4 class="panel-title"><fmt:message key="expand.options"/></h4>
+          </div>
+          <div class="checkbox">
+              <p class="col-md-12">
+                  <label for="pcAvailabiltyMode">
+                      <html:checkbox name="searchForm"  property="pcAvailabiltyMode" styleClass="uncheckable" styleId="pcAvailabiltyMode" onclick="location.replace('${fn:escapeXml(pc_avail_url)}');" />
+                      &nbsp;&nbsp;<fmt:message key="expandresults"/>
+                  </label>
+              </p>
+          </div>
+		</div>
+		</c:if>
+	</c:if>
 		<c:set var="facetTitleDisplayed" value="false"/>
 		<c:forEach items="${form.facetResult.facetOrder}" var="facetField" varStatus="facetIndex">
 			<c:set value='${form.filteredFacetResult.facets[facetField]}' var="facet" />
