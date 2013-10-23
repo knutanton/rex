@@ -78,7 +78,7 @@
     <div>
         <div id="exlidHeaderSystemFeedbackContent" class="alert alert-info alert-dismissable">
             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-            <strong>${feedbackMessage}!</strong>
+            <strong>${feedbackMessage}</strong>
         </div>
     </div>
 </c:if>
