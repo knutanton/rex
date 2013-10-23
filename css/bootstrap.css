@@ -7435,6 +7435,24 @@ fieldset[disabled] .EXLRequestTabContent input[type="submit"].active {
 .EXLRecommendTabDisable {
   display: none !important;
 }
+.EXLTabLoading {
+  width: 100%;
+  text-align: center;
+  height: 5em;
+  background-image: url(../images/kb/loader.gif);
+  background-repeat: no-repeat;
+  background-position: center;
+}
+.EXLHiddenCue {
+  position: absolute;
+  left: -10000px;
+  top: auto;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  /*display:none*/
+
+}
 .nav > li.EXLRequestTab,
 .nav > li.EXLReviewsTab {
   display: none;
@@ -7506,6 +7524,9 @@ body {
   z-index: 0;
   font-family: Georgia, "Times New Roman", Times, serif;
 }
+.carousel-caption p {
+  font-size: 10px;
+}
 .carousel-indicators {
   bottom: 0px;
 }
@@ -7515,18 +7536,23 @@ body {
 }
 @media (min-width: 480px) {
   .carousel-caption {
-    font-size: 18px;
-    padding-top: 5%;
+    font-size: 22px;
+  }
+  .carousel-caption p {
+    font-size: 22px;
   }
 }
 @media (min-width: 768px) {
   .carousel-caption {
     font-size: 22px;
   }
+  .carousel-caption p {
+    font-size: 22px;
+  }
 }
 @media (min-width: 992px) {
-  .carousel-caption {
-    font-size: 24px;
+  .carousel-inner {
+    max-height: 278px;
   }
 }
 @media (min-width: 1200px) {
@@ -7534,6 +7560,9 @@ body {
     max-height: 330px;
   }
   .carousel-caption {
+    font-size: 26px;
+  }
+  .carousel-caption p {
     font-size: 26px;
   }
 }
