@@ -9,6 +9,9 @@
     width:100%;
     z-index: 0;
     font-family:@font-family-serif ;
+    p{
+        font-size: 10px;
+    }
 }
 .carousel-indicators{
     bottom:0px;
@@ -18,27 +21,29 @@
     .opacity(1.0);
 }
 
-
-
 @media (min-width: @screen-xs) {
     .carousel-caption{
-        font-size: 18px;
-        padding-top:5%;
+        font-size: 22px;
+        p{
+            font-size: 22px;
+        }
     }
 }
-
 @media (min-width: @screen-sm) {
     .carousel-caption{
         font-size: 22px;
+        p{
+            font-size: 22px;
+        }
     }
 }
 
 @media (min-width: @screen-md) {
-
-
-    .carousel-caption{
-        font-size: 24px;
+    .carousel-inner{
+        max-height: 278px;
     }
+
+
 }
 
 
@@ -48,7 +53,9 @@
     }
     .carousel-caption{
         font-size: 26px;
-
+        p{
+            font-size: 26px;
+        }
     }
 
 
