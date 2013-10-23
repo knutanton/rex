@@ -406,7 +406,7 @@ $(document).ready(function () {
     // Highlight slut
 /*jslint nomen: true */
 
-    $(function () {
+  /*  $(function () {
         function log(message) {
             $('<div>').text(message).prependTo('#log');
             $('#log').scrollTop(0);
@@ -450,7 +450,7 @@ $(document).ready(function () {
             }
         });
     });
-
+*/
 
 
 
