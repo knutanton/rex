@@ -650,7 +650,10 @@ function removeUnWantedContent() {
 * the good alo css
 */
 (function removeBootsrapCss() {
-   if (!(document.URL.indexOf('search.do') > -1 || document.URL.indexOf('display.do') > -1) || document.URL.indexOf('dlDisplay.do') > -1) {
+   if (!(document.URL.indexOf('search.do') > -1 ||
+            document.URL.indexOf('display.do') > -1 ||
+            document.URL.indexOf('dlDisplay.do') > -1 ||
+            document.URL.indexOf('dlSearch.do') > -1)) {
     var currCssLink = $("link[href*='bootstrap.css']").attr("href");
     var newCssLink = currCssLink.replace("bootstrap.css", "KGL.css");
     $("link[href*='bootstrap.css']").attr("href", newCssLink);
