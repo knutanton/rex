@@ -394,6 +394,8 @@ $(document).ready(function () {
     // Highligt the typed in term
     // http://stackoverflow.com/questions/3695184/jquery-autocomplete-highlighting
 /*jslint nomen: false */
+
+/*
     $.ui.autocomplete.prototype._renderItem = function (ul, item) {
         var term = this.term.split(' ').join('|'),
             re = new RegExp('(' + term + ')', 'gi'),
@@ -403,10 +405,13 @@ $(document).ready(function () {
             .append('<a>' + t + '</a>')
             .appendTo(ul);
     };
+    */
     // Highlight slut
 /*jslint nomen: true */
 
   /*  $(function () {
+    /*
+    $(function () {
         function log(message) {
             $('<div>').text(message).prependTo('#log');
             $('#log').scrollTop(0);
