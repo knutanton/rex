@@ -115,9 +115,9 @@
 			<c:param name="pcAvailabiltyMode" value="${chagedPCAvailMode}"/>
 		</c:url>
 		<div class="EXLFacetList EXLTopLevelFacetList panel panel-default">
-          <div class="EXLFacetContainer panel-heading">
+          <%-- div class="EXLFacetContainer panel-heading">
               <h4 class="panel-title"><fmt:message key="expand.options"/></h4>
-          </div>
+          </div --%>
           <div class="checkbox">
               <p class="col-md-12">
                   <label for="pcAvailabiltyMode">
