@@ -1,7 +1,7 @@
 <%@ include file="/views/taglibsIncludeAll.jspf" %>
 
-<%--
-<div class="alert alert-warning">
+
+<div class="alert alert-danger">
 	<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
     <c:if test="${locale == 'da_DK'}">
 		<strong>Advarsel !</strong> Rex er ude af drift den. 7/10/2013 pga. opdatering af system.
@@ -11,4 +11,3 @@
 	</c:if>
 </div>
 
---%>

@@ -19,6 +19,9 @@
                 <li><a href="https://rex.kb.dk/F/?func=file&amp;file_name=find-b&amp;local_base=kgl01_rexclassic&amp;con_lng=DAN">REX Classic</a></li>
                 <li><a href="http://www.kb.dk/da/REX/sider/biblioteker.html">Biblioteker i REX-samarbejdet</a></li>
                 <li><a href="http://www.kb.dk/da/kub/service/sporgbib/forslag.html">Bogforslag</a></li>
+                <li><a title="Fandt du ikke hvad du søgte?" href="javascript:void(window.open('https://rex.kb.dk/userServices/menu/Order'));" target="_blank">Fandt du ikke hvad du søgte?</a></li>
+
+
             </ul>
         </div>
 
