@@ -1,39 +1,66 @@
 
 .carousel-caption{
-    top:0;
-    left:0;
-    bottom:0;
+    top:0px;
+    bottom: 0px;
+    padding:10px;
+    left:0%;
+    padding-left:8%;
     text-align: left;
-    padding:20px 15% 20px 15%;
-    background: rgba(0, 0, 0, 0.6);
-    width:100%;
+    background: rgba(0, 0, 0, 0.9);
+    width:50%;
     z-index: 0;
     font-family:@font-family-serif ;
     p{
         font-size: 10px;
+        span{
+            text-decoration: underline;
+            left:0!important;
+        }
     }
 }
-.carousel-indicators{
-    bottom:0px;
+
+.carousel-control{
+   width:10%;
+}
+.left.carousel-control{
+    span{
+        left:5px !important;
+    }
+}
+.right.carousel-control{
+    span{
+        right:5px !important;
+        left:inherit !important;
+    }
 }
 
-.carousel-control {
-    .opacity(1.0);
+
+.carousel-indicators{
+    bottom:-30px;
+    li {
+        border:none;
+        background: @gray-light;
+    }
+    li.active {
+        border:none;
+        background: @brand-primary;
+    }
 }
+
 
 @media (min-width: @screen-xs) {
     .carousel-caption{
-        font-size: 22px;
+        font-size: 14px;
         p{
-            font-size: 22px;
+            font-size: 14px;
         }
     }
 }
 @media (min-width: @screen-sm) {
     .carousel-caption{
-        font-size: 22px;
+        font-size: 20px;
         p{
-            font-size: 22px;
+            font-size: 20px;
         }
     }
 }
@@ -41,6 +68,14 @@
 @media (min-width: @screen-md) {
     .carousel-inner{
         max-height: 278px;
+    }
+    .carousel-caption{
+        font-size: 18px;
+        padding:20px;
+        padding-left:8%;
+        p{
+            font-size: 18px;
+        }
     }
 
 
@@ -52,9 +87,9 @@
         max-height: 330px;
     }
     .carousel-caption{
-        font-size: 26px;
+        font-size: 20px;
         p{
-            font-size: 26px;
+            font-size: 20px;
         }
     }
 
