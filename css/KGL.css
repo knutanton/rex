@@ -17,18 +17,18 @@ body  {background-color:#FFF ; color:#42403B; margin:0px;padding:10px;font-famil
 	font-family:"Times New Roman";
 	color:#000000;
         font-size: 14pt;
-	}	
+	}
 .EXLPrintableLayoutTable .EXLLinkedField{
 	font-family:"Times New Roman";
 	color:#000000;
         font-size: 14pt;
-	}	
+	}
 .EXLPrintableTitleTable {
 	display:none;
 	}
 .EXLEshelfFullRecordTable .EXLPrintableLayoutTable h4.EXLFullDetailsTitles {
-	font-size: 150%; 
-        font-weight: bold; 
+	font-size: 150%;
+        font-weight: bold;
         line-height: 170%;
 	margin-bottom: 5px;
         padding-top: 0;
@@ -45,7 +45,7 @@ body  {background-color:#FFF ; color:#42403B; margin:0px;padding:10px;font-famil
 	}
 .EXLPrintableLayoutTable .EXLFullDetailsDetailsList li.EXLFullDetailsField strong {
 	display:block;
-	}	
+	}
 .EXLPrintableLayoutTable .fulldetails table.Available{
 	display:none !important;
 	}
@@ -54,7 +54,7 @@ body  {background-color:#FFF ; color:#42403B; margin:0px;padding:10px;font-famil
 
 /*Personalized Ranking Lightbox - til test af personalized ranking, vers. 4 /kck 20120511*/
 .EXLPersonalizedRanking {width:100%; left:0px; top:0px; position:absolute; z-index:2000; }
-.EXLLightbox{ 
+.EXLLightbox{
 	background:#FFF;
 	width:100%;
 	min-width:620px;
@@ -188,9 +188,9 @@ body  {background-color:#FFF ; color:#42403B; margin:0px;padding:10px;font-famil
 	background:#D8E2DE;
 	border: 1px solid #D8E2DE;
 	color: #38555F;
-	padding:0.3em 0.5em 0em 0.5em; 
-	display:inline-block; 
-	margin:0em; 
+	padding:0.3em 0.5em 0em 0.5em;
+	display:inline-block;
+	margin:0em;
 	width:auto;
 	font-weight: bold;
 	height:18px;
@@ -497,7 +497,7 @@ float:right;  width:290px; height:auto; border-left:1px dotted #D4D4D4; margin-l
 #exlidAdvancedSearchRibbon span.NEWSearchFieldRibbonNewSearchLink {margin-right: 10px; float:left; display:inline; line-height:26px;}
 #exlidAdvancedSearchRibbon div.EXLSearchFieldRibbonFormLinks {margin-left: 5px; float:left; display:inline; line-height:26px;}
 #exlidAdvancedSearchRibbon div.EXLSearchFieldRibbonFormSubmitSearch {float:right; display:inline; clear:both; }
-#exlidAdvancedSearchRibbon input.submit  { 
+#exlidAdvancedSearchRibbon input.submit  {
     background: none repeat scroll 0 0 #D8E2DE;
     border: 1px solid #F3F7F6;
     color: #38555F;
@@ -749,7 +749,7 @@ body.EXLFullView div.EXLResultsList h2.EXLResultAuthor {font-size:100%; font-wei
 
 
 .EXLResultsList div.EXLSummaryContainer { clear:both; width:100%}
-.EXLResultsList div.EXLSummaryContainer div.EXLSummaryFields  {/* float:left; width:77%;*/} 
+.EXLResultsList div.EXLSummaryContainer div.EXLSummaryFields  {/* float:left; width:77%;*/}
 
 /*FRBR*/
 .EXLResultsList div.EXLSummaryContainer cite.EXLResultFRBR {/*float:right; width:auto; background-color:#efefef; */font-size:100%; font-style:normal; }
@@ -811,18 +811,18 @@ body.EXLFullView div.EXLResultsList h2.EXLResultAuthor {font-size:100%; font-wei
 .EXLTabsRibbon div li a{
 	display:block;
 	padding:5px 10px;
-	
+
 	}
 .EXLTabsRibbon div ul:after{clear:both;}
 .EXLTabsRibbon div li.EXLResultTab {}
 .EXLTabsRibbon div li.EXLRequestTab, .EXLTabsRibbon div li.EXLReviewsTab {display:none;}
 
- 
+
 .EXLTabsRibbon div li.EXLResultTab a {
 	color:#046344;
     padding:0.3em 0.5em;
 	border-left:1px solid #E1E1E1;
-	
+
 	}
 .EXLTabsRibbon div li.EXLResultTab a:hover  { text-decoration:underline; color:#4D9900;}
 
@@ -839,7 +839,7 @@ body.EXLFullView div.EXLResultsList h2.EXLResultAuthor {font-size:100%; font-wei
 
 .EXLTabsRibbon div a:hover  { text-decoration:underline;}
 .EXLTabsRibbon div li.EXLResultSelectedTab{
-	
+
 
 	}
 .EXLTabsRibbon div li.EXLResultSelectedTab a{
@@ -1206,8 +1206,8 @@ background-image: url(/primo_library/libweb/images/bullet_arrow_grey.png); backg
 .EXLTabContent  .EXLLocationsDataFrame fieldset{
 	border:none;
 	display:inline;
-	}	
-	 
+	}
+
 .EXLTabMessage{
 	display:none !important;
 	}
@@ -1215,7 +1215,7 @@ background-image: url(/primo_library/libweb/images/bullet_arrow_grey.png); backg
 	display:none;
     	} */
 .exlidLocationsHoldingsFilter{
-	
+
 	}
 /*Locations Tab Styles*/
 .EXLLocationsTabContent {overflow:auto; overflow-x:hidden; display:block; background:#FFF;}
@@ -1264,7 +1264,7 @@ background: #f3f3f7; /* Old browsers */
 .EXLLocationsTabContent div.EXLLocationList table.EXLLocationTable td.EXLHideInfo ul {
 	display:block;
 	padding-left:1.5em;
-	padding:0.5em 0 20px 0; 
+	padding:0.5em 0 20px 0;
 	position:relative;
 	position:static!ie;
 	border-top:1px dotted #E1E1E1;
@@ -1287,7 +1287,7 @@ background: #f3f3f7; /* Old browsers */
 .EXLLocationTableHeaderActions {width:auto; padding-left:0.3em}
 .EXLLocationsTabContent div.EXLLocationViewAllLink {padding-top:0.5em; padding-bottom:0.5em; }
 .EXLLocationsTabContent div.EXLLocationViewAllLink span { }
-.EXLLocationsTabContent div.EXLLocationViewAllLink span a{ 
+.EXLLocationsTabContent div.EXLLocationViewAllLink span a{
 	background: none repeat scroll 0 0 #D8E2DE;
     border: 1px solid #F3F7F6;
     color: #38555F!important;
@@ -1404,7 +1404,7 @@ body.EXLFullView div.EXLBackToResults { font-size:80%; float:left;width:30%; }
 
 .EXLFacetContainer div.EXLFacetActionsV2 li.EXLFacetSaveToEShelfAction a { background-image:url(/primo_library/libweb/images/icon_star_on.png); background-repeat:no-repeat; background-position:0% 50%; margin:0;}
 .EXLFacetContainer div.EXLFacetActionsV2 li.EXLFacetSaveSearchAction a { background-image:url(/primo_library/libweb/images/icon_save.png); background-repeat:no-repeat; background-position:0% 50%;}
- 
+
 
 
 .EXLFacetContainer .EXLRemoteDatabasesMoreInfo {display:block;float:right;font-size:0.8em;font-weight:bold;}
@@ -1839,7 +1839,7 @@ margin: auto; margin-top:11px; padding: 20px; width: 80%; background-color: #f0f
 */
 
 
-/*�Overskriver temp.css (Tjan ) 
+/*�Overskriver temp.css (Tjan )
 ***********************************************************************************************************/
 
 /*main tags page*/
@@ -2164,7 +2164,7 @@ padding-right:10px !important;
 .EXLMainMenuITEMcookie-_og_privatlivspolitik{
 	padding-right:15px!important;
 	background:transparent url(http://www.kb.dk/export/system/modules/dk.kb.local/resources/global/img/icon/iconsmall.png) no-repeat 100% 50% ;
-	
+
 }
 
 
@@ -2180,4 +2180,26 @@ padding-right:10px !important;
 #footer p {
 	margin:4.5px 0;
 	font-size:1.0em;
+}
+
+.EXLMyAccountMainHeaderTitle div.EXLMyAccountMainHeaderContent span.EXLMyAccountMainHeaderContentSelected {
+    font-size: 100%;
+    line-height: 150%;
+}
+
+.EXLMyAccountTable thead td:last-child{
+    position:absolute;
+    top:-35px;
+    right:-15px;
+}
+.EXLMyAccountTable thead td a{
+    margin:0 0 0 8px;
+    background: #4d9900 ;
+    padding:8px;
+    color: #FFFFFF;
+    font-weight: bold;
+    text-decoration: none;
+}
+.EXLMyAccountTable{
+    position: relative;
 }
