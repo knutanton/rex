@@ -29,6 +29,7 @@
 
         <%@ include file="/views/search/search_hidden.jspf" %>
 
+        <input id="fn" type="hidden" value="search" name="fn" />
 
         <!--<legend class="EXLHiddenCue collapse">Primo Search</legend>-->
         <%-- begin tabs handling --%>

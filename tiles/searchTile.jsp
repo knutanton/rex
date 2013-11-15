@@ -20,7 +20,7 @@
 	<c:set var="resloc">_self</c:set>
 </c:if>
 
-<html:form styleId="searchForm" method="post" styleClass="EXLSearchForm" action="${formAction}"
+<html:form styleId="searchForm" method="get" styleClass="EXLSearchForm" action="${formAction}"
 		   enctype="application/x-www-form-urlencoded; charset=utf-8"
 		   onsubmit="if(isRemoteSearch()){doPleaseWait();};if(window.manualFormSubmit){manualFormSubmit(this.id);return false;}" target="${resloc}">
 
