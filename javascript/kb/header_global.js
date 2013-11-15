@@ -156,7 +156,7 @@ function transformLocationTrToBootstrap(rows, headerText) {
                     .attr('data-target', 'additionalLocationFields' + tmpAdditionalFieldsId)
                     .attr('data-toggle', 'collapse')
                     .removeAttr('href')
-                // TODO: since the above bootstrap attempts does not work properly, we also sets eventlisteners up manually - we might wanna examine why it does not work
+                    // TODO: since the above bootstrap attempts does not work properly, we also sets eventlisteners up manually - we might wanna examine why it does not work
                     .on('click', clickHandler)
                     .prepend('<span class="glyphicon glyphicon-chevron-right"></span>');
                 tmpLocation.append(tmpHeader);
@@ -528,9 +528,9 @@ function EXLTA_creationdate(recordId) {
 
 function EXLTA_general(recordId) {
     var pnx = EXLTA_getPNX(recordId),
-/*jslint regexp: false */
+    /*jslint regexp: false */
         re = /(.*)(wbkkbd|wbkkba|wbkub1|wbkdnl|wbhdoe|wbheod)(.*)/i,
-/*jslint regexp: true */
+    /*jslint regexp: true */
         delbib = re.exec($(pnx).find('general').text());
     if (delbib) {
         return 1;
@@ -628,15 +628,15 @@ function EXLTA_isFullDisplay() {
 
 
 /*
-*JAC
-* Remove unwanted content from the page:
-*   - removes the exlidPleaseWaitContainer div
-*   - removes the javascript that is right after the div.
-*   - removes "opdater automatisk" container
-*
-* The code comes from the views folder
-* so this is the way we decidede to fix it
-*/
+ *JAC
+ * Remove unwanted content from the page:
+ *   - removes the exlidPleaseWaitContainer div
+ *   - removes the javascript that is right after the div.
+ *   - removes "opdater automatisk" container
+ *
+ * The code comes from the views folder
+ * so this is the way we decidede to fix it
+ */
 function removeUnWantedContent() {
     $('#exlidPleaseWaitContainer').remove();
     $('script[src*="pleaseWait.js"]').remove();
@@ -645,18 +645,21 @@ function removeUnWantedContent() {
 
 
 /**
-* When on "Min konto" we dont have
-* a bootstrap structure, so we switch back to
-* the good alo css
-*/
+ * When on "Min konto" we dont have
+ * a bootstrap structure, so we switch back to
+ * the good alo css
+ */
 (function removeBootsrapCss() {
-   if (!(document.URL.indexOf('search.do') > -1 ||
-            document.URL.indexOf('display.do') > -1 ||
-            document.URL.indexOf('dlDisplay.do') > -1 ||
-            document.URL.indexOf('dlSearch.do') > -1)) {
-    var currCssLink = $("link[href*='bootstrap.css']").attr("href");
-    var newCssLink = currCssLink.replace("bootstrap.css", "KGL.css");
-    $("link[href*='bootstrap.css']").attr("href", newCssLink);
+    if (!(document.URL.indexOf('search.do') > -1 ||
+        document.URL.indexOf('display.do') > -1 ||
+        document.URL.indexOf('dlDisplay.do') > -1 ||
+        document.URL.indexOf('dlSearch.do') > -1)) {
 
-   }
+
+        var currCssLink = $("link[href*='primo_library_css.css']").attr("href");
+        //alert(currCssLink);
+        var newCssLink = currCssLink.replace("../wro/primo_library_css.css?", "/primo_library/libweb/sites/kb/dev01/css/KGL.css");
+        $("link[href*='primo_library_css.css']").attr("href", newCssLink);
+
+    }
 }());
