@@ -1,0 +1,1 @@
+<strong>display source/native interface: <a href="http://digital.lib.uiowa.edu/cdm4/item_viewer.php?CISOROOT=/ictcs&CISOPTR=617" target="_blank">in a new window</a> | <a href="http://digital.lib.uiowa.edu/cdm4/item_viewer.php?CISOROOT=/ictcs&CISOPTR=617" target="_self">replace current window</a></strong>
