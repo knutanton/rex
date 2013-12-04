@@ -253,8 +253,8 @@
                                    id="exlidFacet${facetIndex.index}-${status.index}">${displayValue}
                                     <c:if test="${!fn:contains(form.scp.scps, 'EbscoLocal') and !fn:contains(form.scp.scps, 'WorldCatLocal')}">
 									<span class="EXLFacetCount badge pull-right">
-										(<fmt:formatNumber
-                                            value="${facetValue.VALUE}"/>${form.facetResult.accurate?'':' +'})
+										<fmt:formatNumber
+                                            value="${facetValue.VALUE}"/>${form.facetResult.accurate?'':' +'}
 									</span>
                                     </c:if>
                                 </a>
