@@ -3,60 +3,55 @@
 <c:set var="myShelfStarImage"><fmt:message key="default.ui.images.v3.iconstaroff"/></c:set>
 
 <c:url var="modifyShelfUrl" value="basket.do">
-	<c:param name="fn">addPage</c:param>
+    <c:param name="fn">addPage</c:param>
 </c:url>
 
 <c:set var="myShelfStarImage"><fmt:message key="default.ui.images.v3.iconstaron"/></c:set>
 
 <!--RSS, Save Search, Save to eShelf Links-->
 <!--<div class="EXLFacetList">
-	<div class="EXLFacetContainer">
-		<div class="EXLFacetActionsV2">
-				<div class="EXLFacetRSSAction btn-group ">-->
+<div class="EXLFacetContainer">
+<div class="EXLFacetActionsV2">
+<ul>
+<li class="EXLFacetRSSAction">-->
 <div class="pull-right">
     <div class="btn-group">
-				    <c:if test="${!form.remote}">
-						<form method="post" name="rssForm" class="pull-left" action="${form.rssLinks[0].actionUrl}" >
-               				 <c:set var="srVar" value="${form.rssLinks[0].searchVar}" />
-              				  <c:set var="ctxVar" value="${form.rssLinks[0].contextVar}" />
-             				   <c:set var="verVar" value="${form.rssLinks[0].versionVar}" />
-             				   <input type="hidden" name="sr" value="${fn:escapeXml(srVar)}" />
-            				   <input type="hidden" name="ctx" value="${fn:escapeXml(ctxVar)}" />
-           					   <input type="hidden" name="ver" value="${fn:escapeXml(verVar)}" />
-         					   <a href="#" class="btn btn-default btn-sm" onclick="document.rssForm.submit();">
-                               <fmt:message key='default.eshelf.basket.querypop.rss '/></a>
-         					   <noscript>
-									<input type="submit" value="Save"/>
-							    </noscript>
-         				</form>
-				    </c:if>
-
-				<!--</div>-->
-				<c:if test="${not empty sessionScope.loggedIn and sessionScope.loggedIn==true}">
-                    <!--<div class="EXLFacetSaveSearchAction">-->
-
-						<c:url value="query.do" var="saveUrl">
-							<c:param name="${action_func}" value="new" />
-							<c:param name="queryUrl" value="${form.reqEncUrl}" />
-						</c:url>
-
-						<a class="backTo btn btn-default btn-sm" onclick="openSaveQuery(this.href); return false;"
-								target="_blank" href="${fn:escapeXml(saveUrl)}"
-								title="<fmt:message key='results.saveCurrentQuery'/><fmt:message key='link.title.opens.in.a.popup'/>">
-                            <fmt:message key="results.savequery" />
-						</a>
-
-					<!--</div>-->
-				</c:if>
-
-				<span class="EXLFacetSaveToEShelfAction EXLFacetSaveToEShelfActionOff">
-					<a class="btn btn-default btn-sm" onclick="reportAddPageToEshelfClick();" href="${fn:escapeXml(modifyShelfUrl)}" title="<fmt:message key="results.eshelf" />">
-                    <img src="../images/icon_star_off.png" alt="Add to e-Shelf"> <fmt:message key="results.addpagetoeshelf"/>
-					</a>
-                </span>
-        </div>
+        <c:if test="${!form.remote}">
+            <form method="post" name="rssForm" class="pull-left" action="${form.rssLinks[0].actionUrl}">
+                <c:set var="srVar" value="${form.rssLinks[0].searchVar}"/>
+                <c:set var="ctxVar" value="${form.rssLinks[0].contextVar}"/>
+                <c:set var="verVar" value="${form.rssLinks[0].versionVar}"/>
+                <input type="hidden" name="sr" value="${fn:escapeXml(srVar)}"/>
+                <input type="hidden" name="ctx" value="${fn:escapeXml(ctxVar)}"/>
+                <input type="hidden" name="ver" value="${fn:escapeXml(verVar)}"/>
+                <a href="#" class="btn btn-default btn-sm" onclick="document.rssForm.submit();"><fmt:message
+                        key='default.eshelf.basket.querypop.rss '/></a>
+                <noscript>
+                    <input type="submit" value="Save"/>
+                </noscript>
+            </form>
+        </c:if>
+        <!--</li>-->
+        <c:if test="${not empty sessionScope.loggedIn and sessionScope.loggedIn==true}">
+            <!--<li class="EXLFacetSaveSearchAction">-->
+            <c:url value="query.do" var="saveUrl">
+                <c:param name="${action_func}" value="new"/>
+                <c:param name="queryUrl" value="${form.reqEncUrl}"/>
+            </c:url>
+            <a class="backTo btn btn-default btn-sm" onclick="openSaveQuery(this.href); return false;"
+               target="_blank" href="${fn:escapeXml(saveUrl)}"
+               title="<fmt:message key='results.saveCurrentQuery'/><fmt:message key='link.title.opens.in.a.popup'/>">
+                <fmt:message key="results.savequery"/>
+            </a>
+            <!--</li>-->
+        </c:if>
+        <!--<span class="EXLFacetSaveToEShelfAction EXLFacetSaveToEShelfActionOff">-->
+        <a class="btn btn-default btn-sm" onclick="reportAddPageToEshelfClick();" href="${fn:escapeXml(modifyShelfUrl)}"
+           title="<fmt:message key=" results.eshelf" />">
+        <fmt:message key="results.addpagetoeshelf"/>
+        </a>
+        <!--</span>-->
+        <!--</ul>-->
+        <!--</div>-->
+    </div>
 </div>
-
-		<!--</div>
-	</div>
-</div> -->
