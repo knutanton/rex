@@ -48,7 +48,7 @@
         <!--<span class="EXLFacetSaveToEShelfAction EXLFacetSaveToEShelfActionOff">-->
         <a class="btn btn-default btn-sm" onclick="reportAddPageToEshelfClick();" href="${fn:escapeXml(modifyShelfUrl)}"
            title="<fmt:message key=" results.eshelf" />">
-        <fmt:message key="results.addpagetoeshelf"/>
+        <img src="../images/icon_star_off.png" alt="Add to e-Shelf"> <fmt:message key="results.addpagetoeshelf"/>
         </a>
         <!--</span>-->
         <!--</ul>-->
