@@ -13,12 +13,13 @@
 <input id="fn" type="hidden" value="search" name="fn" />
 <input id="ct" type="hidden" value="search" name="ct" />
 <input id="initialSearch" type="hidden" value="true" name="initialSearch" />
-<div id="exlidAdvancedSearchTile" class="EXLAdvancedSearch">
-<div id="exlidAdvancedSearchRibbon">
-	<%@ include file="../views/search/search_hidden.jspf" %>
+
+<div id="exlidAdvancedSearchTile" class="EXLAdvancedSearch row">
+<div id="exlidAdvancedSearchRibbon"class="col-md-8 col-md-offset-2">
+	<%@ include file="/views/search/search_hidden.jspf" %>
 
     <fieldset>
-    <legend class="EXLHiddenCue">Primo Advanced Search</legend>
+    <legend class="EXLHiddenCue collapse">Primo Advanced Search</legend>
 
 <%-- begin tabs handling --%>
 <c:if test="${primoView.numberOfTabs > 1}">
@@ -59,15 +60,16 @@
 </c:url>
 
 <%-- render the tabs --%>
-<div class="EXLSearchTabsContainer">
-    <ul id="exlidSearchTabs" class="EXLTabs">
+<div class="EXLSearchTabsContainer form-group">
+    <ul id="exlidSearchTabs" class="EXLTabs nav nav-tabs">
 		<c:forEach items="${primoView.avilableTabs}" var="menu_item"  varStatus="status">
 		<c:set var="isRemote"  value="${sessionScope.defaultScope4Tab[menu_item]}"/>
 		<c:set var="menuItemLabel"><fmt:message key="tabbedmenu.${menu_item}.label" /></c:set>
-			<li id="exlidTab${status.index}" class="EXLSearchTab ${(searchForm.tab == status.current )?'EXLSearchTabSelected':''}">
+			<li id="exlidTab${status.index}" class="EXLSearchTab ${(searchForm.tab == status.current )?'EXLSearchTabSelected, active':''}">
 				<c:set var="defScopeId" value="${searchForm.defaultScp[menu_item]}"/>
 				<span id="defaultScope${menu_item}" style='display:none'><fmt:message key='scopes.option.${defScopeId}' /></span> <%-- where is this used? (-hj) --%>
-				<a href="${tab_url}&tab=${menu_item}" class="EXLSearchTabTitle EXLSearchTabLABEL${menuItemLabel}" onclick="getSearchField(this,'${searchForm.mode}'); delay4Remote('${isRemote}','${searchForm.tabsRemote} ','${menu_item}')"
+				<a href="${tab_url}&tab=${menu_item}" data-toggle="tab"
+                       class="EXLSearchTabTitle EXLSearchTabLABEL${menuItemLabel}" onclick="getSearchField(this,'${searchForm.mode}'); delay4Remote('${isRemote}','${searchForm.tabsRemote} ','${menu_item}')"
 				   title="<fmt:message key="tabbedmenu.${menu_item}.tooltip" />">
 					<span>${menuItemLabel}</span>
 				</a>
@@ -85,21 +87,21 @@
 		</div>
 		<c:set var="count" value="1"/>
 				<c:forEach var="queryTerm" items="${searchForm.queryTerms}" varStatus="queryTermStatus">
-			<div class="EXLAdvancedSearchFormRow">
-            <fieldset id="exlidAdvancedSearchFieldset${queryTermStatus.index}">
-				<legend class="EXLHiddenCue">Primo Advanced Search Query Term</legend>
+			<div class="EXLAdvancedSearchFormRow row">
+            <fieldset id="exlidAdvancedSearchFieldset${queryTermStatus.index}" class="form-group">
+				<legend class="EXLHiddenCue collapse">Primo Advanced Search Query Term</legend>
 					<c:forEach var="input" items="${queryTerm.inputs}" varStatus="status">
-	            <span class="EXLAdvancedSearchFormRowInlineInput">
+	            <span class="EXLAdvancedSearchFormRowInlineInput col-xs-4 col-md-4">
 					<c:if test="${searchForm.location[queryTermStatus.index]=='L'}">
 								<c:choose>
 									<c:when test="${input.componentType == c_ctype_freetext}">
-										<label class="EXLHide" for="input_${input.id}"><%-- accessibility instruction --%>
+										<label class="EXLHide collapse" for="input_${input.id}"><%-- accessibility instruction --%>
 											Input search text:
 										</label>
-										<input type="text" id="input_${input.id}" name="vl(${input.id})" value="${fn:escapeXml(searchForm.values[input.id])}"/>
+										<input type="text" class="form-control input-sm" id="input_${input.id}" name="vl(${input.id})" value="${fn:escapeXml(searchForm.values[input.id])}"/>
 									</c:when>
 									<c:otherwise>
-										<label class="EXLHide" for="exlidInput_${input.componentType}_${count}">
+										<label class="EXLHide collapse" for="exlidInput_${input.componentType}_${count}">
 										Show Results with:
 										</label>
 										<prm:select selectForm="${searchForm}" input="${input}" styleClass="fixed" valueOptionsPrefix='search-advanced' count="${count}" from="advance"/>
@@ -117,8 +119,8 @@
 			<!--prefilters row-->
 
 			<div class="EXLAdvancedSearchFormRow EXLAdvancedSearchFormRowPrefilters">
-			<fieldset id="exlidAdvancedSearchFieldsetPreFilters">
-			<legend class="EXLHiddenCue">Primo Advanced Search prefilters</legend>
+			<fieldset id="exlidAdvancedSearchFieldsetPreFilters" class="form-group">
+			<legend class="EXLHiddenCue collapse">Primo Advanced Search prefilters</legend>
 			<span class="EXLAdvancedSearchFormRowInlineInput">
 				<c:if test="${searchForm.showPeerReview}">
 					<html:checkbox styleId="exlidIncludePeerReviewed" property="includePeerReviewed"/>
@@ -135,70 +137,92 @@
 		</div>
 
 		<!-- start right column -->
-		<div class="EXLSearchFieldRibbonFormFieldsGroup2">
+		<div class="EXLSearchFieldRibbonFormFieldsGroup2 clearfix">
 			<c:forEach var="queryTerm" items="${searchForm.queryTerms}" varStatus="queryTermStatus">
 					<c:if test="${searchForm.location[queryTermStatus.index]=='R'}">
 						<c:choose>
 							<c:when test="${searchForm.termType[queryTermStatus.index]=='DateRange'}">
 							<div class="EXLAdvancedSearchFormRow">
-								<span class="EXLAdvancedSearchFormDateRangeRow">
+								<div class="EXLAdvancedSearchFormDateRangeRow form-group">
 									<label for="exlidInput_DateRange_Start"><fmt:message key="search-advanced.DateRange.label.DateRangeStart" /></label>
-									<c:forEach var="input" items="${queryTerm.inputs}" varStatus="status">
+									<div class="row">
+                                    <c:forEach var="input" items="${queryTerm.inputs}" varStatus="status">
 										<c:if test="${status.index < 3}">
 											<c:choose>
 												<c:when test="${input.componentType == 'drStartYear'}">
-													<label class="EXLHide" for="input_${input.id}">query input</label>
+													<label class="EXLHide hide" for="input_${input.id}">query input</label>
 													<c:choose>
 														<c:when test="${fn:escapeXml(searchForm.values[input.id]) == ''}">
-															<input type="text" id="input_${input.id}" name="vl(${input.id})" value="<fmt:message key="search-advanced.DateRange.label.Year" />" />
-														</c:when>
+                                                            <div class="col-xs-4 col-md-4">
+                                                                <input type="text" class="form-control input-sm" id="input_${input.id}" name="vl(${input.id})" value="<fmt:message key="search-advanced.DateRange.label.Year" />" />
+														    </div>
+                                                        </c:when>
 														<c:otherwise>
-															<input type="text" id="input_${input.id}" name="vl(${input.id})" value="${fn:escapeXml(searchForm.values[input.id])}" />
-														</c:otherwise>
+                                                            <div class="col-xs-4 col-md-4">
+															    <input type="text" class="form-control input-sm"  id="input_${input.id}" name="vl(${input.id})" value="${fn:escapeXml(searchForm.values[input.id])}" />
+														    </div>
+                                                        </c:otherwise>
 													</c:choose>
 												</c:when>
 												<c:otherwise>
-													<prm:select selectForm="${searchForm}" input="${input}" styleClass="fixed" valueOptionsPrefix='search-advanced'/>
-												</c:otherwise>
+                                                    <div class="col-xs-4 col-md-4">
+													    <prm:select selectForm="${searchForm}" input="${input}" styleClass="fixed" valueOptionsPrefix='search-advanced'/>
+												    </div>
+                                                </c:otherwise>
 											</c:choose>
 										</c:if>
 									</c:forEach>
-								</span>
 								</div>
+                            </div>
+                        </div>
+
 								<div class="EXLAdvancedSearchFormRow">
-								<span class="EXLAdvancedSearchFormDateRangeRow">
+								<div class="EXLAdvancedSearchFormDateRangeRow form-group">
 									<label for="exlidInput_DateRange_Start"><fmt:message key="search-advanced.DateRange.label.DateRangeEnd" /></label>
+
+                                <div class="row">
 									<c:forEach var="input" items="${queryTerm.inputs}" varStatus="status">
 										<c:if test="${status.index >= 3}">
 											<c:choose>
 												<c:when test="${input.componentType == 'drEndYear'}">
-													<label class="EXLHide" for="input_${input.id}">query input</label>
+													<label class="EXLHide hide" for="input_${input.id}">query input</label>
 													<c:choose>
 														<c:when test="${fn:escapeXml(searchForm.values[input.id]) == ''}">
-															<input type="text" id="input_${input.id}" name="vl(${input.id})" value="<fmt:message key="search-advanced.DateRange.label.Year" />" />
-														</c:when>
+                                                            <div class="col-xs-4 col-md-4">
+                                                                <input type="text" class="form-control input-sm"
+                                                                       id="input_${input.id}" name="vl(${input.id})" value="<fmt:message key="search-advanced.DateRange.label.Year" />" />
+														    </div>
+                                                        </c:when>
 														<c:otherwise>
-															<input type="text" id="input_${input.id}" name="vl(${input.id})" value="${fn:escapeXml(searchForm.values[input.id])}" />
-														</c:otherwise>
+                                                            <div class="col-xs-4 col-md-4">
+															    <input type="text" class="form-control input-sm"
+                                                                       id="input_${input.id}" name="vl(${input.id})" value="${fn:escapeXml(searchForm.values[input.id])}" />
+														    </div>
+                                                        </c:otherwise>
 													</c:choose>
 												</c:when>
 												<c:otherwise>
-													<prm:select selectForm="${searchForm}" input="${input}" styleClass="fixed" valueOptionsPrefix='search-advanced'/>
-												</c:otherwise>
+                                                    <div class="col-xs-4 col-md-4">
+													    <prm:select selectForm="${searchForm}" input="${input}" styleClass="fixed" valueOptionsPrefix='search-advanced'/>
+												    </div>
+                                                </c:otherwise>
 											</c:choose>
 										</c:if>
 									</c:forEach>
-								</span>
 								</div>
+                            </div>
+                        </div>
 							</c:when>
 							<c:otherwise>
 								<div class="EXLAdvancedSearchFormRow">
-									<span class="EXLAdvancedSearchFormRowInlineInput">
+									<div class="EXLAdvancedSearchFormRowInlineInput form-group">
 										<c:forEach var="input" items="${queryTerm.inputs}" varStatus="status">
 											<label for="exlidInput_${input.componentType}_"><fmt:message key="search-advanced.${input.componentType}.label.${status.index}" /></label>
-											<prm:select selectForm="${searchForm}" input="${input}" styleClass="fixed" valueOptionsPrefix='search-advanced'/>
-										</c:forEach>
-									</span>
+											<div>
+                                            <prm:select selectForm="${searchForm}" input="${input}" styleClass="fixed" valueOptionsPrefix='search-advanced'/>
+                                            </div>
+                                        </c:forEach>
+									</div>
 								</div>
 							</c:otherwise>
 						</c:choose>
@@ -218,31 +242,34 @@
 <%-- end render scope drop down --%>
 
 
-
-		</div><!-- end right column -->
-
+    </div>
+    <!-- end right column -->
 
 
 <%-- submit button and simple search link --%>
-        <div class="EXLSearchFieldRibbonFormSubmitSearch">
-            <input id="goButton" name="Submit" type="submit" value='<fmt:message key="link.title.search.search"/>' class="submit"/>
-        </div>
- 			<c:url value="search.do?${requestScope.switchModeURL_reqDecQryUTF8}" var="simple_search_url">
-						<c:param name="mode" value="${c_basic_search}"/>
-						<c:param name="ct" value="BasicSearch"/>
-			</c:url>
-			<c:set var="basic_search_title"><fmt:message key="link.title.advanced.search.basic.search"/></c:set>
+    <c:url value="search.do?${requestScope.switchModeURL_reqDecQryUTF8}" var="simple_search_url">
+        <c:param name="mode" value="${c_basic_search}"/>
+        <c:param name="ct" value="BasicSearch"/>
+    </c:url>
+    <c:set var="basic_search_title"><fmt:message key="link.title.advanced.search.basic.search"/></c:set>
+
+    <div class="EXLSearchFieldRibbonFormSubmitSearch pull-right">
+        <a href="${fn:escapeXml(simple_search_url)}" title="${basic_search_title}" class="btn btn-default btn-sm"><fmt:message key="label.simple_search" /></a>
+         <input id="goButton" name="Submit" type="submit" value='<fmt:message key="link.title.search.search"/>' class="btn btn-primary"/>
+      </div>
 
        <div class="EXLSearchFieldRibbonFormLinks">
-         <a href="${fn:escapeXml(simple_search_url)}" title="${basic_search_title}"><fmt:message key="label.simple_search" /></a>
+                        <span class="NEWSearchFieldRibbonNewSearchLink pull-left">
+                            <a href="<fmt:message key='new_search_url_advanced'/>" class="btn btn-default btn-sm" title="<fmt:message key='link.title.search.new_search'/>">
+                                <fmt:message key="label.new_search" />
+                            </a>
+        </span>
        </div>
         </fieldset>
 <%-- end submit button and simple search link --%>
 
 
-
 <%-- end advanced search render --%>
-
 
 
 </div>

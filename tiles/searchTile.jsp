@@ -13,7 +13,7 @@
 <%-- for embedded search --%>
 
 <c:if test="${empty formAction}">
-	<c:set var="formAction" value="/action/search.do?${action_func}=go&amp;ct=search"/>
+	<c:set var="formAction" value="/action/search.do?${action_func}=search&amp;ct=search"/>
 </c:if>
 
 <c:if test="${empty resloc}">
@@ -23,10 +23,20 @@
 <html:form styleId="searchForm" method="get" styleClass="EXLSearchForm" action="${formAction}"
 		   enctype="application/x-www-form-urlencoded; charset=utf-8"
 		   onsubmit="if(isRemoteSearch()){doPleaseWait();};if(window.manualFormSubmit){manualFormSubmit(this.id);return false;}" target="${resloc}">
+		   
+
+<input id="fn" type="hidden" value="search" name="fn" />
+<input id="ct" type="hidden" value="search" name="ct" />
+<input id="initialSearch" type="hidden" value="true" name="initialSearch" />
+
+<input id="autoCompleteEnabled"   type="hidden" value='${sessionScope.acOn}' />
+<input id="autoCompleteUrl"       type="hidden" value='${sessionScope.acUrl}' />
+<input id="autoCompleteScope"     type="hidden" value='${sessionScope.acScope}' />
+<input id="autoCompleteScopesMap" type="hidden" value='${sessionScope.acScopesMap}' />
 
 <c:if test="${sessionScope.showPyrPopup=='true'}">
 <script type="text/javascript">
-loadPyrPreferencesPage('pyrFromInitial');
+	loadPyrPreferencesPage('pyrFromInitial');
 </script>
 </c:if>
 
