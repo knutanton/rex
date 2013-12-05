@@ -1,13 +1,7 @@
 <!-- suggestedSearchTile.jsp begin -->
 <%@ include file="/views/taglibsIncludeAll.jspf" %>
 <c:if test="${form.searchResult.numberOfResults>0 and form.facetResult.displayRelatedFacets}" >
-
-
-<div id="exlidSuggestedList" class="EXLFacetList panel panel-info">
-    <div class="panel-heading">
-        <h3 class="EXLSuggestedSearchesTitle panel-title"><fmt:message key='related.label.title'/></h3>
-    </div>
-    <div class="panel-body ">
+<div id="exlidSuggestedList" class="EXLFacetList">
 	<a name="suggested"></a>
 
 	<%--defect #1934 --%>
@@ -21,23 +15,10 @@
 			<c:if test="${not empty facet && not empty facet.facetValues}">
 				<div class="EXLFacetContainer EXLRelatedSearchTopic EXLRelatedSearchTopicFIELD${facetField}">
 <c:if test="${facetIndex.index==0}">
-
-	<!--<span class="EXLSuggestedSearchesDescription"><fmt:message key='related.label.description'/></span>-->
-
-
-           <!--<div class="EXLFacetContainer">
-               <ol class="EXLFacetsList">
-				<li class="EXLFacet">
-					<html:checkbox name="searchForm"  property="pcAvailabiltyMode" styleClass="uncheckable" styleId="pcAvailabiltyMode" onclick="location.replace('${fn:escapeXml(pc_avail_url)}');" />
-								&nbsp;&nbsp;<label for="pcAvailabilityMode"><fmt:message key="expandresults"/></label>
-				</li>
-		    </ol>
-           </div>-->
-       
+	<h3 class="EXLSuggestedSearchesTitle"><fmt:message key='related.label.title'/> </h3>
+	<span class="EXLSuggestedSearchesDescription"><fmt:message key='related.label.description'/></span>
 </c:if>
 				<%--Facet Title e.g: On this subject --%>
-
-                    <div class="col-md-6">
 					<h4><fmt:message key="related.label.${facetField}"/>:</h4>
 					<ol class="EXLFacetsList EXLFacetsListPreview"><!-- id="first_${facetField}" -->
 						<%--We are limiting the number of facets to 5 --%>
@@ -86,17 +67,14 @@
 									<%--defect #1934 --%>
 								 </c:url>
 
-							<li class="EXLRelatedSearch EXLRelatedSearchKEY${facetValue.KEY}">
+							<li class="EXLRelatedSearch EXLRelatedSearchKEY${fn:escapeXml(facetValue.KEY)}">
 								<a href="${fn:escapeXml(new_search_url)}" onclick="if(isRemoteSearch()){suggestedPleaseWait('${fmt:safeHTMLEntitiesEncode(displayValue)}');}">${fmt:safeHTMLEntitiesEncode(displayValue)}</a>
 							</li>
 						</c:forEach>
 					</ol>
-                </div>
 				</div>
-
 			</c:if>
 	</c:forTokens>
-    </div>
 </div>
 </c:if>
 
