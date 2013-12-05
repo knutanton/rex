@@ -355,6 +355,7 @@ $(document).ready(function () {
     });
     // Tilret tabs - relevant ved fuld visning
     kBFixTabs();
+    kbBootstrapifyTabs();
     // Ret engelsk til dansk ved fotokopibestillinger
     $(".EXLMyAccountTable>tbody>tr>td:contains('Waiting in queue'),.EXLMyAccountTableDetails>tbody>tr>td:contains('Waiting in queue')").each(function () {
         $(this).html("Venter i k&oslash");

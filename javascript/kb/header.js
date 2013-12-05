@@ -208,6 +208,7 @@ $(document).ready(function () {
 
     // Tilret tabs - relevant ved fuld visning
     kBFixTabs();
+    kbBootstrapifyTabs();
 
     // HAFE start language specific faq and cookie policy
     // Change links in header for "faq" and "cookie policy" to the english version of those documents
