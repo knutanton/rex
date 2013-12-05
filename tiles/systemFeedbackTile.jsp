@@ -30,7 +30,7 @@
  			</c:forEach>
 	</c:url>
 	<c:set var="feedbackMessage">
-	<fmt:message key="results.didumean" />&nbsp;<a href="${fn:escapeXml(dum_search_url)}" class="alert-link" onclick="if(isRemoteSearch()){suggestedPleaseWait('${searchForm.searchResult.didUMean}');}">${searchForm.searchResult.didUMean}</a>?
+	<fmt:message key="results.didumean" />&nbsp;<a href="${fn:escapeXml(dum_search_url)}" onclick="if(isRemoteSearch()){suggestedPleaseWait('${searchForm.searchResult.didUMean}');}">${searchForm.searchResult.didUMean}</a>?
 	</c:set>
 </c:if>
 <c:if test="${not loggedIn and not searchForm.allFullAccess and (selectedScopeAccessibility==0 or selectedScopeAccessibility==1)}">
@@ -75,11 +75,8 @@
 
 
 <c:if test="${not empty feedbackMessage}">
-    <div>
-        <div id="exlidHeaderSystemFeedbackContent" class="alert alert-info alert-dismissable">
-            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-            <strong>${feedbackMessage}</strong>
-        </div>
-    </div>
+    <div id="exlidHeaderSystemFeedbackContent" class="EXLSystemFeedback">
+		<strong> ${feedbackMessage} </strong>
+	</div>
 </c:if>
 <!-- systemFeedbackTile.jsp end -->
