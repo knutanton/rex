@@ -1,4 +1,3 @@
-<%@ page contentType="text/xml;charset=UTF-8" language="java"%>
 <%@ include file="/views/taglibsIncludeAll.jspf" %>
 <%@ include file="/views/include/setSearchForm.jspf"%>
 <%-- Prepare functional content first, html at end of file --%>
@@ -10,12 +9,6 @@
 	<c:set var="loggedIn" value="${true}"/>
 </c:if>
 
-<%-- Copied from mainMenuTile.jsp used for prefBackUrl in language selection HAFE --%>
-<c:set var="lastUrl" value="${form.reqEncUrl}"/>
-<c:set var="url" value="${fn:replace(lastUrl, '&', '%26')}"/>
-<c:set var="url" value="${fn:replace(url, '/', '%2F')}"/>
-<%-- /HAFE --%>
-
 <%-- We don't use the response encoded url since this URL is used in the targetURL and there is no need to put session id on it  --%>
 <c:url var="searchUrl" value="${form.reqPwd}search.do">
 	<c:param name="vid" value="${primoView.id}"/>${form.fn}
@@ -26,7 +19,6 @@
   			${fn:escapeXml(sessionScope.userName)}
 	</c:if>
 </c:set>
-
 <c:if test="${!loggedIn}">
 	<c:set var="userName">
 		<fmt:message key="eshelf.user.anonymous"/>
@@ -76,12 +68,6 @@
 
 
 <%-- displayed content --%>
-<%-- dumping userName in window.EXLUserName if logged in - used to disable stuff in userMenu on document ready if not logged in - FIXME: this is not too pretty, but it will work for now HAFE --%>
-<c:if test="${loggedIn}">
-<script type="text/javascript">window.EXLUserName = '${userName}'</script>
-</c:if>
-<%-- userName dumping /HAFE --%>
-
 <!-- this feedback unnecesary
 <c:if test="${not empty errorString}">
 		<div class="EXLHighlightError">${errorString}</div>
@@ -94,128 +80,48 @@
 <prm:boomerang id="SignOutStat" boomForm="${searchForm}" pageId="sign-out"
 				opId="click" resultDoc="${searchForm.searchResult.results[0]}" type=""
 				delivery="${searchForm.delivery[0]}" noOther="true" index="${param.indx}"/>
+								
+<c:if test="${requestScope.isNewSession != null && requestScope.isNewSession eq 'true'}">
+	<c:set var="ssologinRequest" value="${requestScope.ssologinRequest}"/>
+	<c:if test="${ssologinRequest != null}">
+		<iframe id="exlIdssoLogin" src="" height="0px" width="0px"></iframe>
+	</c:if>
+</c:if>
+				
+<ul id="exlidUserAreaRibbon" class="${loggedInClass}">
+  <li id="exlidUserName" class="EXLUserName">
+  	<span class="EXLUserAreaStart"></span>
+  	<span class="EXLUserNameDisplay">
+  		<fmt:message key="eshelf.user.greeting">
+  			<fmt:param value="${userName}"></fmt:param>
+  		</fmt:message></span>
+  	<span class="EXLUserAreaStartRtl"></span>
+  </li>
+  <li id="exlidMyShelf" class="EXLMyShelf"><a href="${fn:escapeXml(eshelfURL)}"><span class="EXLMyShelfStarSelected"></span><fmt:message key="eshelf.basket.title"/></a></li>
+  <li id="exlidMyAccount" class="EXLMyAccount"><a href="${fn:escapeXml(myAccountUrl)}"><fmt:message key="menu.myaccount"/></a></li>
+  
+<c:if test="${requestScope.isNewSession != null && requestScope.isNewSession eq 'true'}">
+	<c:set var="ssologinRequest" value="${requestScope.ssologinRequest}"/>
+	<c:if test="${ssologinRequest != null}">					
+		<input type="hidden" value="${ssologinRequest}" id="exlIdssologinRequest"/>		
+	</c:if>  
+</c:if>
+<c:set var="hideSignOutClass" value=""/>
+<c:set var="hideSignInClass" value=""/>
+ 
+<c:choose>	
+	<c:when test="${loggedIn}">		  
+		<c:set var="hideSignInClass" value="EXLHidden"/>	
+	</c:when>
+	<c:otherwise>
+		<c:set var="hideSignOutClass" value="EXLHidden"/>	  			
+	</c:otherwise>
+</c:choose>
+	<li id="exlidSignOut" class="EXLSignOut EXLLastItem ${hideSignOutClass}"><a href="${fn:escapeXml(logoutUrl)}" onclick="boomCallToRum('SignOutStat',false);"><fmt:message key="eshelf.signout.title.link"/></a></li>
+	<li id="exlidSignIn" class="EXLSignOut EXLLastItem ${hideSignInClass}">
+	  			<a href="${fn:escapeXml(loginUrl)}" onclick="boomCallToRum('SignInStatUserArea',false);addResolutionParam(this);"><fmt:message key="eshelf.signin.title"/></a>
+  				&nbsp;<fmt:message key="eshelf.additional.text"/>
+  			</li>	  			  		
 
-
-
-        <div class="collapse navbar-collapse navbar-ex1-collapse">
-            <ul id="exlidUserAreaRibbon" class="${loggedInClass} nav navbar-nav navbar-right">
-                <%-- Ny Låner --%>
-                <c:set var="newBorrowerUrl" value="https://user.kb.dk/user/create" />
-                <li>
-                    <c:choose>
-                        <c:when test="${sessionScope.chosenInterfaceLanguage == 'da_DK'}">
-                            <a href="<c:out value="${newBorrowerUrl}"/>?pref_lang=da" target="_blank">Ny låner</a>
-                        </c:when>
-                        <c:otherwise>
-                            <a href="<c:out value="${newBorrowerUrl}"/>?pref_lang=en" target="_blank">New user</a>
-                        </c:otherwise>
-                    </c:choose>
-                </li>
-
-                <%-- log ind / log ud --%>
-                <li>
-                    <c:choose>
-                        <c:when test="${loggedIn}">
-                            <li id="exlidSignOut" class="EXLSignOut EXLLastItem">
-                                <a href="${fn:escapeXml(logoutUrl)}" onclick="boomCallToRum('SignOutStat',false);">
-                                    <fmt:message key="eshelf.signout.title.link"/>
-                                </a>
-                            </li>
-                        </c:when>
-                        <c:otherwise>
-                            <li id="exlidSignOut" class="EXLSignOut EXLLastItem">
-                                <a href="${fn:escapeXml(loginUrl)}" onclick="boomCallToRum('SignInStatUserArea',false);">
-                                    <fmt:message key="eshelf.signin.title"/>
-                                </a>
-                                <fmt:message key="eshelf.additional.text"/>
-                            </li>
-                        </c:otherwise>
-                    </c:choose>
-                </li>
-                <li id="exlidUserName" class="EXLUserName dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-
-                            <fmt:message key="eshelf.user.greeting">
-                                <fmt:param value="${userName}"></fmt:param>
-                            </fmt:message>
-                                <b class="caret"></b>
-                    </a>
-
-                    <ul class="dropdown-menu">
-                        <%-- Din konto --%>
-                        <c:choose>
-                            <c:when test="${loggedIn}">
-                                <li id="exlidMyAccount" class="EXLMyAccount">
-                            </c:when>
-                            <c:otherwise>
-                                <li id="exlidMyAccount" class="EXLMyAccount disabled">
-                            </c:otherwise>
-                        </c:choose>
-                            <a href="${fn:escapeXml(myAccountUrl)}">
-                                <fmt:message key="menu.myaccount"/>
-                            </a>
-                        </li>
-
-                        <%-- Se og forny dine lån --%>
-                        <c:set var="renewUrl" value="http://pds.primo-17.kb.dk/pds?func=load-login&institute=KGL&calling_system=primo&url=http://rex.kb.dk:80/primo_library/libweb/action/login.do?afterPDS=true&vid=KGL&dscnt=1&targetURL=http://rex.kb.dk/primo_library/libweb/action/myAccountMenu.do?dscnt=0&vid=" />
-
-                        <c:choose>
-                            <c:when test="${loggedIn}">
-                                <li>
-                            </c:when>
-                            <c:otherwise>
-                                <li id="exlidMyAccount" class="disabled">
-                            </c:otherwise>
-                        </c:choose>
-                        <a href="<c:out value="${renewUrl}${vid}"/>">
-                            <c:choose>
-                                <c:when test="${sessionScope.chosenInterfaceLanguage == 'da_DK'}">
-                                    Se og forny dine lån
-                                </c:when>
-                                <c:otherwise>
-                                    Renew loans
-                                </c:otherwise>
-                            </c:choose>
-                            </a>
-                        </li>
-
-                        <%-- Søgehistorie --%>
-                        <li id="exlidMyShelf" class="EXLMyShelf">
-                            <a href="${fn:escapeXml(eshelfURL)}">
-                                <fmt:message key="eshelf.basket.title"/>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
-
-                <li id="exlidLanguageMenu" class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                        <fmt:message key="mainmenu.label.language" />
-                        <b class="caret"></b>
-                    </a>
-                    <ul id="exlidLanguages" class="EXLLanguageMenuShow EXLLanguageMenuHide dropdown-menu">
-                    <c:forEach items="${form.interfacaLangs}" var="option" varStatus="status">
-                            <c:url var="preferencesURL" value="preferences.do?prefBackUrl=${url}%26vid=${fn:escapeXml(sessionScope.vid)}" >
-                                <c:param name="fn" value="change_lang"/>
-                                <c:param name="vid" value="${fn:escapeXml(sessionScope.vid)}"/>
-                                <c:param name="prefLang" value="${option}"/>
-                            </c:url>
-                        <c:choose>
-                            <c:when test="${not empty sessionScope.chosenInterfaceLanguage and sessionScope.chosenInterfaceLanguage == option}">
-                              <li id="exlidSelectedLanguage" class="EXLLanguageLink"><a href="#"><span class="glyphicon glyphicon-ok pull-right"></span><fmt:message key='mypref.language.option.${option}' /></a></li>
-                            </c:when>
-                            <c:otherwise>
-                              <li class="EXLLanguageLink EXLLanguageLinkHide"><a href="${fn:escapeXml(preferencesURL)}" class="EXLLanguageOptionLANG${option}" title="${lang_title} ${lang_name}"><fmt:message key='mypref.language.option.${option}' /></a></li>
-                            </c:otherwise>
-                        </c:choose>
-                    </c:forEach>
-                    </ul>
-                <li>
-            </ul>
-        </div>
-
-<script type="text/javascript">
-    var userInst = "${sessionScope.userInfo.pdsInstitute}";
-</script>
-
+</ul>
 
