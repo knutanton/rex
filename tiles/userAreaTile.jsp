@@ -95,7 +95,12 @@
 				opId="click" resultDoc="${searchForm.searchResult.results[0]}" type=""
 				delivery="${searchForm.delivery[0]}" noOther="true" index="${param.indx}"/>
 
-
+<c:if test="${requestScope.isNewSession != null && requestScope.isNewSession eq 'true'}">
+    <c:set var="ssologinRequest" value="${requestScope.ssologinRequest}"/>
+    <c:if test="${ssologinRequest != null}">
+        <iframe id="exlIdssoLogin" src="" height="0px" width="0px"></iframe>
+    </c:if>
+</c:if>
 
         <div class="collapse navbar-collapse navbar-ex1-collapse">
             <ul id="exlidUserAreaRibbon" class="${loggedInClass} nav navbar-nav navbar-right">
