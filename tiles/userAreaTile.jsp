@@ -118,25 +118,23 @@
                 </li>
 
                 <%-- log ind / log ud --%>
-                <li>
-                    <c:choose>
-                        <c:when test="${loggedIn}">
-                            <li id="exlidSignOut" class="EXLSignOut EXLLastItem">
-                                <a href="${fn:escapeXml(logoutUrl)}" onclick="boomCallToRum('SignOutStat',false);">
-                                    <fmt:message key="eshelf.signout.title.link"/>
-                                </a>
-                            </li>
-                        </c:when>
-                        <c:otherwise>
-                            <li id="exlidSignOut" class="EXLSignOut EXLLastItem">
-                                <a href="${fn:escapeXml(loginUrl)}" onclick="boomCallToRum('SignInStatUserArea',false);">
-                                    <fmt:message key="eshelf.signin.title"/>
-                                </a>
-                                <fmt:message key="eshelf.additional.text"/>
-                            </li>
-                        </c:otherwise>
-                    </c:choose>
-                </li>
+                <c:choose>
+                    <c:when test="${loggedIn}">
+                        <li id="exlidSignOut" class="EXLSignOut EXLLastItem">
+                            <a href="${fn:escapeXml(logoutUrl)}" onclick="boomCallToRum('SignOutStat',false);">
+                                <fmt:message key="eshelf.signout.title.link"/>
+                            </a>
+                        </li>
+                    </c:when>
+                    <c:otherwise>
+                        <li id="exlidSignOut" class="EXLSignOut EXLLastItem">
+                            <a href="${fn:escapeXml(loginUrl)}" onclick="boomCallToRum('SignInStatUserArea',false);">
+                                <fmt:message key="eshelf.signin.title"/>
+                            </a>
+                            <fmt:message key="eshelf.additional.text"/>
+                        </li>
+                    </c:otherwise>
+                </c:choose>
                 <li id="exlidUserName" class="EXLUserName dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
 
