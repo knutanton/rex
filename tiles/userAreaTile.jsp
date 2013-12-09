@@ -118,23 +118,29 @@
                 </li>
 
                 <%-- log ind / log ud --%>
-                <c:choose>
-                    <c:when test="${loggedIn}">
-                        <li id="exlidSignOut" class="EXLSignOut EXLLastItem">
-                            <a href="${fn:escapeXml(logoutUrl)}" onclick="boomCallToRum('SignOutStat',false);">
-                                <fmt:message key="eshelf.signout.title.link"/>
-                            </a>
-                        </li>
+                <c:if test="${requestScope.isNewSession != null && requestScope.isNewSession eq 'true'}">
+                    <c:set var="ssologinRequest" value="${requestScope.ssologinRequest}"/>
+                    <c:if test="${ssologinRequest != null}">                    
+                        <input type="hidden" value="${ssologinRequest}" id="exlIdssologinRequest"/>     
+                    </c:if>  
+                </c:if>
+                <c:set var="hideSignOutClass" value=""/>
+                <c:set var="hideSignInClass" value=""/>
+                 
+                <c:choose>  
+                    <c:when test="${loggedIn}">       
+                        <c:set var="hideSignInClass" value="EXLHidden hidden"/>
                     </c:when>
                     <c:otherwise>
-                        <li id="exlidSignOut" class="EXLSignOut EXLLastItem">
-                            <a href="${fn:escapeXml(loginUrl)}" onclick="boomCallToRum('SignInStatUserArea',false);">
-                                <fmt:message key="eshelf.signin.title"/>
-                            </a>
-                            <fmt:message key="eshelf.additional.text"/>
-                        </li>
+                        <c:set var="hideSignOutClass" value="EXLHidden hidden"/>               
                     </c:otherwise>
                 </c:choose>
+                <li id="exlidSignOut" class="EXLSignOut EXLLastItem ${hideSignOutClass}"><a href="${fn:escapeXml(logoutUrl)}" onclick="boomCallToRum('SignOutStat',false);"><fmt:message key="eshelf.signout.title.link"/></a></li>
+                <li id="exlidSignIn" class="EXLSignOut EXLLastItem ${hideSignInClass}">
+                    <a href="${fn:escapeXml(loginUrl)}" onclick="boomCallToRum('SignInStatUserArea',false);addResolutionParam(this);"><fmt:message key="eshelf.signin.title"/></a>
+                    &nbsp;<fmt:message key="eshelf.additional.text"/>
+                </li>
+
                 <li id="exlidUserName" class="EXLUserName dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
 
