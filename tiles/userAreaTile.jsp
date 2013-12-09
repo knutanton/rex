@@ -185,7 +185,7 @@
                         <%-- Søgehistorie --%>
                         <li id="exlidMyShelf" class="EXLMyShelf">
                             <a href="${fn:escapeXml(eshelfURL)}">
-                                <fmt:message key="eshelf.basket.title"/>
+                                <span class="EXLMyShelfStarSelected"></span><fmt:message key="eshelf.basket.title"/>
                             </a>
                         </li>
                     </ul>
