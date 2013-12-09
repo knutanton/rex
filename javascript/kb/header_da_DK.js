@@ -458,9 +458,8 @@ $(document).ready(function () {
     });
 */
 
-
-
-    });
+    // Copied from footer_da_DK stop /HAFE
+});
 
 
 function bestil() {

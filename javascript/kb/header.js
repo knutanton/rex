@@ -223,16 +223,6 @@ $(document).ready(function () {
     }(jQuery));
     // HAFE stop language specific faq and cookie policy
 
-    // copied from footer.html start /HAFE
-    // my e-ressources
-    //var linkString = "My e-resources (BETA)",
-    //    myResourceString = "<li" + (window.EXLUserName ? '' : ' class="disabled"') + "><a href='#' data-toggle='modal' data-target='#myModal' class='my_e_resources' id='e_resources_click'>" + linkString + "</a></li>";
-    //$('#exlidUserAreaRibbon .dropdown-menu:has(#exlidMyAccount)').append(myResourceString);
-    //$('#popupContact > h1').html(linkString);
-
-    // copied from footer.html stop /HAFE
-
-
     });
 
 function bestil() {
