@@ -410,7 +410,7 @@ $(document).ready(function () {
 /*jslint nomen: true */
 
   /*  $(function () {
-    /*
+    
     $(function () {
         function log(message) {
             $('<div>').text(message).prependTo('#log');
@@ -459,15 +459,7 @@ $(document).ready(function () {
 
 
 
-    // start mine ERessourcer
-    var linkString = "Mine e-ressourcer (BETA)",
-        myResourceString = "<li" + (window.EXLUserName ? '' : ' class="disabled"') + "><a href='#' data-toggle='modal' data-target='#myModal' class='my_e_resources'>" + linkString + "</a></li>";
-    $('#exlidUserAreaRibbon .dropdown-menu:has(#exlidMyAccount)').append(myResourceString);
-    $('#popupContact > h1').html(linkString);
-    // stop mine ERessourcer
-
-    // Copied from footer_da_DK stop /HAFE
-});
+    });
 
 
 function bestil() {
