@@ -131,7 +131,7 @@ $(document).ready(function () {
     if (startsWith(signoutText, Array('Log ud', 'Sign out'))) {
         // things to do when the user is logged ind
         // change edit link
-        $("div.EXLMyAccountEditLink").html('<span><a href="https://user.kb.dk/user/edit" target="_new">Edit</a></span>');
+        $("div.EXLMyAccountEditLink").html('<span><a href="https://user.kb.dk/user/edit" target="_blank">Edit</a></span>');
         $("#exlidMyAccountMainContainer1").filter(":contains('List of Fines')").append('<div id="KBPay"><iframe id=KBPayFrame" width="100%" src="https://rex.kb.dk/F/?func=file&con_lng=eng&file_name=bor-info-primo"></div>');
     } else {
         // things to do when the user is NOT logged in

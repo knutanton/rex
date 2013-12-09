@@ -267,7 +267,7 @@ $(document).ready(function () {
     if (startsWith(signoutText, Array('Log ud', 'Sign out'))) {
         // things to do when the user is logged ind
         // change edit link
-        $("div.EXLMyAccountEditLink").html('<span><a href="https://user.kb.dk/user/edit" target="_new">Rediger</a></span>');
+        $("div.EXLMyAccountEditLink").html('<span><a href="https://user.kb.dk/user/edit" target="_blank">Rediger</a></span>');
 //          .find("a")
 //          .attr("href","https://login.kb.dk/kbuser/useredit")
 //          .attr("onClick","return true;")
