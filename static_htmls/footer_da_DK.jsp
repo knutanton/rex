@@ -86,6 +86,4 @@
 <!-- link rel="stylesheet" href="http://code.jquery.com/ui/1.10.0/themes/base/jquery-ui.css" / -->
 <!-- script src="http://code.jquery.com/ui/1.10.0/jquery-ui.js"></script -->
 <!-- END autocomplete -->
-
-
 <!--end footer-->
