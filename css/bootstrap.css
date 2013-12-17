@@ -7513,8 +7513,7 @@ body {
   }
 }
 @media print {
-  .EXLMyShelfStar,
-  .EXLBriefResultsDisplayMultipleLink {
+  .EXLTabsRibbon {
     display: none !important;
   }
   .navbar-default {
