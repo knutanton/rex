@@ -147,7 +147,7 @@
     </c:if>
 
     <div class="EXLSearchFieldRibbonAdvancedSearchLink">
-        <a class="${browseAlign}" title="<fmt:message key='link.title.advanced_search'/>"
+        <a class="${browseAlign} btn btn-primary btn-sm" title="<fmt:message key='link.title.advanced_search'/>"
            href="${fn:escapeXml(advanced_search_url)}" id="advancedSearchBtn">
             <fmt:message key='label.advanced_search'/>
         </a>
