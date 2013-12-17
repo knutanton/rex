@@ -50,5 +50,4 @@ The existing link: "../images/imageName.gif" must be changed into: "../locale/sp
         <img src="../sites/kb/<%= view %>/images/kb/logo.png" alt="The Royal Library"/>
     </a>
 </header>
-<!--print only-->
 <img class="visible-print"  src="../sites/kb/<%= view %>/images/kb/en/logo.png" alt="The Royal Library"/>
