@@ -100,7 +100,7 @@
         <div class="collapse navbar-collapse navbar-ex1-collapse">
             <ul id="exlidUserAreaRibbon" class="${loggedInClass} nav navbar-nav navbar-right">
                 <%-- Ny Låner --%>
-                <c:set var="newBorrowerUrl" value="https://login.kb.dk/kbuser/regguide" />
+                <c:set var="newBorrowerUrl" value="https://user.kb.dk/user/create" />
                 <li>
                     <c:choose>
                         <c:when test="${sessionScope.chosenInterfaceLanguage == 'da_DK'}">
