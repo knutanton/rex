@@ -36,7 +36,7 @@ The existing link: "../images/imageName.gif" must be changed into: "../locale/sp
 -->
 
 <!-- header_KGL_en_EN -->
-<header class="navbar-header">
+<header class="navbar-header hidden-print">
     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
         <span class="sr-only">Toggle navigation</span>
         <span class="icon-bar"></span>
@@ -50,3 +50,5 @@ The existing link: "../images/imageName.gif" must be changed into: "../locale/sp
         <img src="../sites/kb/<%= view %>/images/kb/logo.png" alt="The Royal Library"/>
     </a>
 </header>
+<!--print only-->
+<img class="visible-print"  src="../sites/kb/<%= view %>/images/kb/en/logo.png" alt="The Royal Library"/>

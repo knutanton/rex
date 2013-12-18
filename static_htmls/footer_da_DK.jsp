@@ -11,7 +11,7 @@
 %>
 <footer>
 
-    <div class="row">
+    <div class="row hidden-print">
         <div class="col-xs-12 col-sm-4">
             <strong class="lead">REX</strong>
             <ul class="list-unstyled">
