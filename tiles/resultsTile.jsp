@@ -95,21 +95,21 @@
                         </span>
                       </div>
 
-		  			<h3 class="EXLResultTitle">
+		  			<h2 class="EXLResultTitle">
 						<a id="titleLink" target="_parent" href="${fn:escapeXml(frbrUrl)}" onclick="reportClick();${boomCall}reportBibTip('${result.id}');${azJournalPopUp}">
 		  					${title}
 		  				</a>
-		  			</h3>
+		  			</h2>
 					<c:set var="author"><prm:fields fields="creator,contributor" result="${result}" fieldDelims="${form.displayFieldsDelimiters[1]}"/></c:set>
 					<c:if test="${not empty author}">
-				    	<h4 class="EXLResultAuthor">${fmt:escapeLooseAmpersands(author)}</h4>
+				    	<h3 class="EXLResultAuthor">${fmt:escapeLooseAmpersands(author)}</h3>
 					</c:if>
                       <span class="EXLResultVersionFound">
                      <fmt:message key="frbrversion.found"/>
                  </span>
-                   <h4 class="EXLResultSeeFrbrLink">
+                   <h3 class="EXLResultSeeFrbrLink">
                           <fmt:message key="frbrversion.see.link"/>
-                      </h4>
+                      </h3>
 		  		</div>
                 <c:set var="resultStatusIndex" value="${resultStatus.index}"/>
 		    <div id="exlidResult${resultStatusIndex}-TabContainer-viewOnlineTab" class="EXLResultTabContainer EXLContainer-viewOnlineTab EXLResultTabContainerClosed collapse">
@@ -180,7 +180,7 @@
                     </c:choose>
                 </div>
 
-				<h3 class="EXLResultTitle">
+				<h2 class="EXLResultTitle">
 				<c:set var="strippedTitle">${fn:replace(fn:replace(title,'<span class="searchword">',''),'</span>','')}</c:set>
 				<c:choose>
 					<c:when test="${not empty resultTitleUrl
@@ -211,10 +211,10 @@
 						${title}
 					</c:otherwise>
 				</c:choose>
-				</h3>
+				</h2>
 				<c:set var="author"><prm:fields fields="${form.resultView[1]}" result="${result}" fieldDelims="${form.displayFieldsDelimiters[1]}"/></c:set>
 				<c:if test="${not empty author}">
-			    	<h4 class="EXLResultAuthor">${fmt:escapeLooseAmpersands(author)}</h4>
+			    	<h3 class="EXLResultAuthor">${fmt:escapeLooseAmpersands(author)}</h3>
 				</c:if>
 				<c:set var="resultDetailsThirdLine"><prm:fields fields="${c_value_is_part_of}" result="${result}" fieldDelims=" "/></c:set>
 				<span class="EXLResultDetails">${fmt:escapeLooseAmpersands(resultDetailsThirdLine)}</span>
@@ -224,16 +224,16 @@
 						<fmt:message key='default.fulldisplay.constants.peer_reviewed'/>
 					</c:if>
 				</c:if>
-				<h4 class="EXLResultFourthLine">
+				<h3 class="EXLResultFourthLine">
 					<c:if test="${empty result.values['availlibrary'][0] and not empty result.values[c_value_frbrgroupid] and result.values[c_value_frbrtype][0] eq 5}">
 						<c:out value="${result.values['source'][0]}" escapeXml="false"/>
 					</c:if>
-				</h4>
+				</h3>
 
 				<%-- check to make sure the content exists before rendering the fourth line unnecesarily --%>
 				<c:set var="fourthLineContent"><prm:fields fields="${form.resultView[2]}" result="${result}" fieldDelims="${form.displayFieldsDelimiters[2]}"/></c:set>
 				<c:if test="${not empty fourthLineContent}">
-					<h4 class="EXLResultFourthLine">${fmt:escapeLooseAmpersands(fourthLineContent)}</h4>
+					<h3 class="EXLResultFourthLine">${fmt:escapeLooseAmpersands(fourthLineContent)}</h3>
 				</c:if>
 				<c:choose>
 					<c:when test="${result.recordSource eq 'PRIMO_CENTRAL_SEARCH_ENGINE'}">
