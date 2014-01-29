@@ -38,6 +38,7 @@ The existing link: "../images/imageName.gif" must be changed into: "../locale/sp
 -->
 <!-- header_KGL_da_DK  -->
 <header class="navbar-header hidden-print">
+JACOB LARSEN
     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
         <span class="sr-only">Toggle navigation</span>
         <span class="icon-bar"></span>
