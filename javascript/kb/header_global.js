@@ -539,8 +539,34 @@ function EXLTA_general(recordId) {
     }
 }
 
-function EXLTA_addTab(tabName, tabType, url, tabHandler, firstTab, evaluator) {
-    $('.EXLResultTabs').each(function () {
+// tilfjet nyere version af EXL Tab API - knab
+
+function EXLTA_isFullDisplay() {
+    return $('.EXLFullView').size() > 0;
+}
+
+function EXLTA_addHeadlessTab(tabType, content, evaluator) {
+    $('.EXLResultTabs').each(function() {
+        if(!evaluator || (evaluator && evaluator(this))) {
+            var htmlcontent = '';
+            if (typeof(content) === 'function') {
+                log('trying function');
+                htmlcontent = content(this);
+            } else {
+                htmlcontent = content;
+            }
+            var customTabContainer = $('<div class="' + tabType + '-Container">' + htmlcontent + '</div>'),
+                result = $(this).parents('.EXLResult');
+            if (!EXLTA_isFullDisplay()) { //Solves 'full display' bug where container isn't added to page.
+                result = result.find('.EXLSummary');
+            }
+            result.append(customTabContainer);
+        }
+    });
+}
+
+function EXLTA_addTabBySelector(selector, tabName, tabType, url, tabHandler, firstTab, evaluator) {
+    $(selector).each(function() {
         var customTab = $('<li class="EXLResultTab ' + tabType + '"><a href="' + url + '">' + tabName + '</a></li>'),
             customTabContainer = $('<div class="EXLResultTabContainer ' + tabType + '-Container"></div>');
         if (!evaluator || (evaluator && evaluator(this))) {
@@ -548,33 +574,41 @@ function EXLTA_addTab(tabName, tabType, url, tabHandler, firstTab, evaluator) {
                 $(this).find('li').removeClass('EXLResultFirstTab');
                 $(customTab).addClass('EXLResultFirstTab');
                 $(this).prepend(customTab);
-            } else {
+            } else if (firstTab == undefined || firstTab == false) { // TODO: This sounds like if (!firstTab) ? /HAFE
                 $(this).find('li').removeClass('EXLResultLastTab');
                 $(customTab).addClass('EXLResultLastTab');
                 $(this).append(customTab);
+            } else {
+                $(this).find(firstTab).replaceWith(customTab);
             }
-            if ($("div[class=EXLSummary EXLResult]")) {
-                $(this).parents('.EXLSummary').append(customTabContainer);
+            if (EXLTA_isFullDisplay()) {
+                $(this).parents('.EXLResult').append(customTabContainer);
             } else {
                 $(this).parents('.EXLResult').find('.EXLSummary').append(customTabContainer);
             }
-            $('.' + tabType + ' a').click(function (e) {
+            $('#' + $(this).attr('id') + ' .' + tabType + ' a').click(function(e) {
                 tabHandler(e, this, tabType, url, $(this).parents('.EXLResultTab').hasClass('EXLResultSelectedTab'));
             });
         }
+        $(this).parents('.EXLSummary').find('.' + tabType + '-Container').hide();
     });
-    $('.EXLSummary .' + tabType + '-Container').hide();
 }
 
-function EXLTA_wrapResultsInNativeTab(element, content, url, headerContent) {
-    var popOut = '<div class="EXLTabHeaderContent">' + headerContent +
-            '</div><div class="EXLTabHeaderButtons"><ul><li class="EXLTabHeaderButtonPopout"><span></span><a href="' + url +
-            '" target="_blank"><img src="../images/icon_popout_tab.png" /></a></li><li></li><li class="EXLTabHeaderButtonCloseTabs">' +
-            '<a href="#" title="hide tabs"><img src="../images/icon_close_tabs.png" alt="hide tabs"></a></li></ul></div>',
+function EXLTA_addTab(tabName, tabType, url, tabHandler, firstTab, evaluator) {
+    EXLTA_addTabBySelector('.EXLResultTabs', tabName, tabType, url, tabHandler, firstTab, evaluator);
+}
+
+function EXLTA_addOpenTab(tabName, tabType, url, tabHandler, firstTab, evaluator) {
+    EXLTA_addTab(tabName, tabType, url, tabHandler, firstTab);
+    $('.' + tabType).click();
+}
+
+function EXLTA_wrapResultsInNativeTab(element, content,url, headerContent) {
+    var popOut = '<div class="EXLTabHeaderContent">' + headerContent + '</div><div class="EXLTabHeaderButtons"><ul><li class="EXLTabHeaderButtonPopout"><span></span><a href="' + url + '" target="_blank"><img src="../images/icon_popout_tab.png" /></a></li><li></li><li class="EXLTabHeaderButtonCloseTabs"><a href="#" title="hide tabs"><img src="../images/icon_close_tabs.png" alt="hide tabs"></a></li></ul></div>',
         header = '<div class="EXLTabHeader">' + popOut + '</div>',
         htmlcontent = '';
-    if (typeof content  === 'function') {
-        log('trying function');
+    if (typeof content === 'function') {
+        log('trying function'); // XXX Check den log function!
         htmlcontent = content(element);
     } else {
         htmlcontent = content;
@@ -583,34 +617,33 @@ function EXLTA_wrapResultsInNativeTab(element, content, url, headerContent) {
     return header + body;
 }
 
-function EXLTA_closeTab(element) {
-    if (!isFullDisplay()) {
+function EXLTA_closeTab(element){
+    if(!EXLTA_isFullDisplay()){
         $(element).parents('.EXLResultTab').removeClass('EXLResultSelectedTab');
         $(element).parents('.EXLTabsRibbon').addClass('EXLTabsRibbonClosed');
         $(element).parents('.EXLResult').find('.EXLResultTabContainer').hide();
     }
 }
 
-function EXLTA_openTab(element, tabType, content, reentrant) {
-    t = 0;
+function EXLTA_openTab(element,tabType, content, reentrant) {
     $(element).parents('.EXLTabsRibbon').removeClass('EXLTabsRibbonClosed');
     $(element).parents('.EXLResultTab').siblings().removeClass('EXLResultSelectedTab').end().addClass('EXLResultSelectedTab');
     var container = $(element).parents('.EXLResult').find('.EXLResultTabContainer').hide().end().find('.' + tabType + '-Container').show();
     if (content && !(reentrant && $(container).attr('loaded'))) {
         $(container).html(content);
-        if (reentrant) {
-            $(container).attr('loaded', 'true');
+        if(reentrant){
+            $(container).attr('loaded','true');
         }
     }
     return container;
 }
 
 function EXLTA_createWidgetTabHandler(content, reentrant) {
-    return function (e, element, tabType, url, isSelected) {
+    return function(e, element, tabType, url, isSelected) {
         e.preventDefault();
-        if (isSelected && t) {
+        if (isSelected && t){
             EXLTA_closeTab(element);
-        } else {
+        }else{
             EXLTA_openTab(element, tabType, EXLTA_wrapResultsInNativeTab(element, content, url, ''), reentrant);
         }
     };
@@ -620,9 +653,7 @@ function EXLTA_addLoadEvent(func) {
     addLoadEvent(func);
 }
 
-function EXLTA_isFullDisplay() {
-    return $('.EXLFullView').size() > 0;
-}
+// slut ny EXL TAB API - knab
 //NKH Slut (EOD functions)
 
 
