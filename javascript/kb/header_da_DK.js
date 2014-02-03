@@ -58,11 +58,6 @@ function addLoginLink() {
 }
 
 
-function hideLocationInfo() {
-    //DGJ
-    $("span.EXLLocationInfo>strong").hide();
-//	$("span.EXLLocationInfo>cite").hide();
-}
 
 function TextReplaceObject(originalText, newText) {
     this.originalText = originalText.trim();
@@ -473,7 +468,6 @@ function bestil() {
 $(document).ajaxComplete(function () {
     kBFixTabs();
     kbBootstrapifyTabs();
-    hideLocationInfo();
     bestil();
 });
 
