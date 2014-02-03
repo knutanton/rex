@@ -44,6 +44,25 @@ function addLoginLink() {
 }
 
 
+// Report problem tab  -knab hentet fra aub
+
+// The evaluator for the problem tab. Only show this tab if there is an View Online tab for the record
+var problemEvaluator = function(element){
+    var text = $(element).parents('.EXLResult').find('.EXLViewOnlineTab').length;
+    if (text == '0') {
+       return false;
+    } else {
+       return true;
+    }
+};
+
+var problemTabHandler = EXLTA_createWidgetTabHandler(function(element){return '<iframe src="http://sfx-test-01.kb.dk:8080/feedback?id='+EXLTA_recordId(element)+'&system=primo&umlaut.locale=en"></iframe>';},true);
+
+EXLTA_addLoadEvent(function(){
+    EXLTA_addTab('Need help?','ProblemTab','http://e-tidsskrifter.kb.dk/feedback?&system=primo&umlaut.locale=en',problemTabHandler,false,problemEvaluator);
+});
+
+//end Report problem tab - knab
 
 function TextReplaceObject(originalText, newText) {
     this.originalText = originalText.trim();
