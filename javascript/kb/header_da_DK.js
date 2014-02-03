@@ -487,6 +487,7 @@ $(document).ajaxComplete(function () {
     kBFixTabs();
     kbBootstrapifyTabs();
     bestil();
+    EXLTA_recordId(); // FIXME: This makes no sense at all. If the returned id isn't saved anywhere there is no need to call recordId?
 });
 
 $('.EXLLocationsIcon').live('click', function () {
