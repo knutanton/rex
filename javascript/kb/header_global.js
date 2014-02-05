@@ -584,7 +584,7 @@ function EXLTA_addTabBySelector(selector, tabName, tabType, url, tabHandler, fir
             if (EXLTA_isFullDisplay()) {
                 $(this).parents('.EXLResult').append(customTabContainer);
             } else {
-                $(this).parents('.EXLResult').find('.EXLSummary').append(customTabContainer);
+                $(this).parents('.EXLResult').find('.EXLSummaryContainer').append(customTabContainer);
             }
             $('#' + $(this).attr('id') + ' .' + tabType + ' a').click(function(e) {
                 tabHandler(e, this, tabType, url, $(this).parents('.EXLResultTab').hasClass('EXLResultSelectedTab'));
