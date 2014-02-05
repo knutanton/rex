@@ -574,11 +574,11 @@ function EXLTA_addTabBySelector(selector, tabName, tabType, url, tabHandler, fir
                 $(this).find('li').removeClass('EXLResultFirstTab');
                 $(customTab).addClass('EXLResultFirstTab');
                 $(this).prepend(customTab);
-            } else if (firstTab == undefined || firstTab == false) { // TODO: This sounds like if (!firstTab) ? /HAFE
+            } else if (firstTab == undefined || firstTab == false) { // FIXME: This sounds like if (!firstTab) - and that's already given? /HAFE
                 $(this).find('li').removeClass('EXLResultLastTab');
                 $(customTab).addClass('EXLResultLastTab');
                 $(this).append(customTab);
-            } else {
+            } else { // FIXME: This will never happen, since firstTab will always be either truthy or falsy /HAFE
                 $(this).find(firstTab).replaceWith(customTab);
             }
             if (EXLTA_isFullDisplay()) {
@@ -608,7 +608,7 @@ function EXLTA_wrapResultsInNativeTab(element, content,url, headerContent) {
         header = '<div class="EXLTabHeader">' + popOut + '</div>',
         htmlcontent = '';
     if (typeof content === 'function') {
-        log('trying function'); // XXX Check den log function!
+        log('trying function'); // FIXME: Where does this log function come from, and shouldn't it be erased in the final code? /HAFE
         htmlcontent = content(element);
     } else {
         htmlcontent = content;
