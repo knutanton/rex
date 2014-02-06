@@ -254,6 +254,17 @@ function gup(name) {
     return results[1];
 }
 
+function gup(name, url) {
+    name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+    var regexS = "[\\?&]" + name + "=([^&#]*)";
+    var regex = new RegExp(regexS);
+    var results = regex.exec(url);
+    if (results === null) {
+        return "";
+    }
+    return results[1];
+}
+
 
 $(document).ready(function () {
 
@@ -346,19 +357,14 @@ $(document).ready(function () {
 
 //NKH Slut (ADD EOD Tabs)
 
-    $(".EXLResultTabs:has(.EXLMoreTab):not(:has(.EXLLocationsTab))").each(function (index) {
-        // Tilret faneblade - indsaet skaf-links, hvis AndreTilbud-tab, men ingen bestillings-tab
-/*jslint regexp: false */
-        var html = $(this).find('li:first').html(),
-            regex = /doc=([^&]*)/;
-/*jslint regexp: true */
-        if (regex.test(html)) {
-            var doc = regex.exec(html)[1],
-                resultHtmlElement = $(this).parents().eq(3);
-            if (!($(resultHtmlElement).find('.EXLResultFourthLine').is(':contains("Adgang:")'))) {
-                $(this).append("<li class='requestForm EXLResultTab'><a title='Skaf materiale, som er udl&aring;nt eller ikke er bestilbart' href='http://rex.kb.dk/userServices/menu/Order?primoId=" + doc + "' target='_blank'>Skaf</a></li>");
+    // JAC: Tilføj SKAF hvis der ikke er locationstab, og der ikke står "Adgang: Alle har adgang"
+    $(".EXLResultTabs:not(:has(.EXLLocationsTab))").each(function (index) {
+            var doc = gup('doc', $(this).find(".EXLDetailsTab > a").attr('href')); //Henter docid
+            var resultHtmlElement = $(this).parents().eq(3); //
+            if (!($(resultHtmlElement).find('.EXLResultFourthLine').is(':contains("Adgang: Alle har adgang")'))) {
+                   $(this).append("<li class='requestForm EXLResultTab'><a title='Skaf materiale, som er udl&aring;nt eller ikke er bestilbart' href='http://rex.kb.dk/userServices/menu/Order?primoId=" + doc + "' target='_blank'>Skaf</a></li>");
             }
-        }
+
     });
 
     // Vis thumbnails for billeder i billedbasen
