@@ -633,6 +633,7 @@ function EXLTA_openTab(element,tabType, content, reentrant) {
         $(container).html(content);
         if(reentrant){
             $(container).attr('loaded','true');
+            kbBootstrapifyTabs();
         }
     }
     return container;
