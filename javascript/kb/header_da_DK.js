@@ -1,5 +1,5 @@
 /*global $, document, setTimeout, kbBootstrapifyTabs */
-function kBFixTabs() { // FIXME: All these functions lays in the global scope - they ought to be wrapped in a kb object!
+function kbFixTabs() { // FIXME: All these functions lays in the global scope - they ought to be wrapped in a kb object!
     // Tilret Bestil-fanebladet
     $(".EXLLocationTableActionsMenu>ul:not(:has(.requestForm))").each(function (index) {
         // Faa fat i en identifier paa dokumentet ved at sakse den fra et link
@@ -373,7 +373,7 @@ $(document).ready(function () {
         $(this).prepend("<img alt='thumbnail' src='" + link.replace("present", " thumbnail") + "'><br/>");
     });
     // Tilret tabs - relevant ved fuld visning
-    kBFixTabs();
+    kbFixTabs();
     kbBootstrapifyTabs();
     // Ret engelsk til dansk ved fotokopibestillinger
     $(".EXLMyAccountTable>tbody>tr>td:contains('Waiting in queue'),.EXLMyAccountTableDetails>tbody>tr>td:contains('Waiting in queue')").each(function () {
@@ -490,15 +490,15 @@ function bestil() {
 
 // Tilretninger af indholdet af faneblade - dynamisk
 $(document).ajaxComplete(function () {
-    kBFixTabs();
+    kbFixTabs();
     kbBootstrapifyTabs();
     bestil();
 });
 
 $('.EXLLocationsIcon').live('click', function () {
-    kBFixTabs();
+    kbFixTabs();
     setTimeout(function () { // FIXME: What is this? Why call KBFixTab again after 2 secs? Shouldn't be necessary! (and is this called at all?)
-        kBFixTabs();
+        kbFixTabs();
     }, 2000);
 });
 

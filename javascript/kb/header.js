@@ -1,5 +1,5 @@
 /*global jQuery, $, document, setTimeout, window, kbBootstrapifyTabs */
-function kBFixTabs() {
+function kbFixTabs() {
     // Tilret Bestil-fanebladet
     $(".EXLLocationTableActionsMenu>ul:not(:has(.requestForm))").each(function (index) {
         // Faa fat i en identifier paa dokumentet ved at sakse den fra et link
@@ -274,15 +274,15 @@ function bestil() {
 
 // Tilretninger af indholdet af faneblade - dynamisk
 $(document).ajaxComplete(function () {
-    kBFixTabs();
+    kbFixTabs();
     kbBootstrapifyTabs();
     bestil();
 });
 
 $('.EXLLocationsIcon').live('click', function () {
-    kBFixTabs();
+    kbFixTabs();
     setTimeout(function () {
-        kBFixTabs();
+        kbFixTabs();
     }, 2000);
 });
 
