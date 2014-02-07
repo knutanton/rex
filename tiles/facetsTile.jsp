@@ -18,34 +18,32 @@
     <c:set value="false" var="chagedPCAvailMode"/>
 </c:if>
 
-
 <%-- This loop is required for Date Facet Slider--%>
 <c:forEach items="${form.facetResult.facetOrder}" var="facetField"
-           varStatus="facetIndex">
-    <c:set value='${form.filteredFacetResult.facets[facetField]}'
-           var="facet"/>
-    <c:set var="fctN">${facetField eq c_facet_instsort? c_facet_library : facetField}</c:set>
-    <c:if test="${fctN=='facet_creationdate'}">
-        <c:set value='${facet.facetValues[0]}' var="facetValue"/>
-        <c:if test="${facetValue != null}">
-            <c:set value='true' var="isCreationFacetExist"/>
-
-            <c:forEach items="${facet.facetValues}" var="facetValue" varStatus="status">
-                <%@ include file="/tiles/facetsTextStartLabel.jspf" %>
-                <c:if test="${not empty displayValue}">
-                    <c:set value='${displayValue}' var="startDateDisplay"/>
+        varStatus="facetIndex">
+        <c:set value='${form.filteredFacetResult.facets[facetField]}'
+                var="facet" />
+        <c:set var="fctN">${facetField eq c_facet_instsort? c_facet_library : facetField}</c:set>
+        <c:if test="${fctN=='facet_creationdate'}">
+                <c:set value='${facet.facetValues[0]}' var="facetValue" />
+                <c:if test="${facetValue != null}">
+                        <c:set value='true' var="isCreationFacetExist" />
+                        <c:forEach items="${facet.facetValues}" var="facetValue" varStatus="status" >
+                                <%@ include file="/tiles/facetsTextStartLabel.jspf"%>
+                                <c:if test="${not empty displayValue}">
+                                        <c:set value='${displayValue}' var="startDateDisplay" />
+                                </c:if>
+                        </c:forEach>
+                        <input type="hidden" id="startDateDisplay" value="${startDateDisplay}" />
+                        <c:forEach items="${facet.facetValues}" var="facetValue" varStatus="status" >
+                                <%@ include file="/tiles/facetsTextEndLabel.jspf"%>
+                                <c:if test="${not empty displayValue}">
+                                        <c:set value='${displayValue}' var="endDateDisplay" />
+                                </c:if>
+                        </c:forEach>
+                        <input type="hidden" id="endDateDisplay" value="${endDateDisplay}" />
                 </c:if>
-            </c:forEach>
-            <input type="hidden" id="startDateDisplay" value="${startDateDisplay}"/>
-            <c:forEach items="${facet.facetValues}" var="facetValue" varStatus="status">
-                <%@ include file="/tiles/facetsTextEndLabel.jspf" %>
-                <c:if test="${not empty displayValue}">
-                    <c:set value='${displayValue}' var="endDateDisplay"/>
-                </c:if>
-            </c:forEach>
-            <input type="hidden" id="endDateDisplay" value="${endDateDisplay}"/>
         </c:if>
-    </c:if>
 </c:forEach>
 
 
@@ -214,8 +212,43 @@
                         </c:otherwise>
                     </c:choose>
 
+
                     <ul id="exlidFacetSublist${facetIndex.index}"
                         class="EXLFacetsList EXLFacetsListPreview nav nav-pills nav-stacked panel-collapse collapse">
+                         <%-- Adding Date Facet Slider --%>
+                        <c:if test="${facetField eq c_facet_creationdate}">
+                            <c:if test="${isCreationFacetExist == true}">
+                                <div class="EXLDateRangeText">
+                                    <div class="EXLDateRangeLine">
+                                        <c:url var="slider_url" value="${form.responseEncodeReqDecUrl}" >
+                                            <c:param name="ct" value="facet"/>
+                                            <c:param name="fctN" value="xxx"/>
+                                            <c:param name="fctV" value="xxx"/>
+                                            <c:param name="rfnGrp" value="${form.rfnGrpCounter + 1}"/>
+                                            <c:param name="rfnGrpCounter" value="${form.rfnGrpCounter + 1}"/>
+                                        </c:url>
+                                        <span class="EXLSliderFromText"><fmt:message key="facets.date.slider.from"/></span>
+                                        <input type="hidden" id="sliderURL" value="${slider_url}" />
+                                        <label class="EXLHide" for="startdate">
+                                            <fmt:message key="facets.date.slider.The start date used in the slider bar of creation date facet"/>
+                                        </label>
+                                        <input type="text" onchange="onTBChange('start');" onkeyup="afterClick(this);" maxlength="4" size="3" id="startdate"
+                                                class="datebox" value="${startDateDisplay}" />
+                                        <span class="EXLSliderToText"><fmt:message key="facets.date.slider.to"/></span>
+                                        <label class="EXLHide" for="enddate">
+                                            <fmt:message key="facets.date.slider.The end date used in the slider bar of creation date facet"/>
+                                        </label>
+                                        <input type="text" onchange="onTBChange('end');" onkeyup="afterClick(this);" maxlength="4" size="3" id="enddate"
+                                                class="datebox" value="${endDateDisplay}" />
+                                        <div class="EXLSliderRefine">
+                                            <a id="dateSubmit"><fmt:message key="facets.date.slider.refine" /></a>
+                                        </div>
+                                    </div>
+                                    <div id="slider-range" class="EXLSliderContainer"></div>
+                                </div>
+                            </c:if>
+                        </c:if>
+
 
                         <c:set var="maxDisplayCount" value="${facet.maxDisplayCount}"/>
                         <c:set var="rfnGrp">${form.rfnGrpCounter + 1}</c:set>
