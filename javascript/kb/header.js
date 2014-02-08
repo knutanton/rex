@@ -43,6 +43,19 @@ function addLoginLink() {
     });
 }
 
+/**
+* //JAC
+* Add "Show Source" (PNX) option to
+* "send to: " dropdown menu
+*/
+function addShowSource(){
+	$('.EXLTabHeaderButtonSendTo  a').on("click", function(){
+		// Grap the url from the "open this item in new window"
+		// Andappend &showPnx=true
+		var showPnxrUrl = $(this).parent().prev().find('a').attr('href') + "&showPnx=true";
+		$(this).next().append("<li><a target='_blank' href='"+showPnxrUrl+"'>Show Source</a><li>");
+	});
+}
 
 // Report problem tab  -knab hentet fra aub
 
@@ -277,6 +290,7 @@ $(document).ajaxComplete(function () {
     kbFixTabs();
     kbBootstrapifyTabs();
     bestil();
+    addShowSource();
 });
 
 $('.EXLLocationsIcon').live('click', function () {

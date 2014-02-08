@@ -57,6 +57,20 @@ function addLoginLink() {
     });
 }
 
+/**
+* //JAC
+* Add "Vis Kilde" (PNX) option to
+* "send to: " dropdown menu
+*/
+function addShowSource(){
+    $('.EXLTabHeaderButtonSendTo  a').on("click", function(){
+        // Grap the url from the "open this item in new window"
+        // Andappend &showPnx=true
+        var showPnxrUrl = $(this).parent().prev().find('a').attr('href') + "&showPnx=true";
+        $(this).next().append("<li><a target='_blank' href='"+showPnxrUrl+"'>Vis Kilde</a><li>");
+    });
+}
+
 // Report problem tab  -knab hentet fra aub
 
 // The evaluator for the problem tab. Only show this tab if there is an View Online tab for the record
@@ -493,6 +507,7 @@ $(document).ajaxComplete(function () {
     kbFixTabs();
     kbBootstrapifyTabs();
     bestil();
+    addShowSource();
 });
 
 $('.EXLLocationsIcon').live('click', function () {
