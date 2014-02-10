@@ -50,7 +50,7 @@ $('.EXLRecommendTab').live('click', function () {
 * This makes the <a href.. a nice fallback
 */
 function addLoginLink() {
-    var loginUrl = $('#exlidSignOut>a').attr('href');
+    var loginUrl = $('#exlidSignIn>a').attr('href');
     $(document).on("click", ".locationButtons:contains('Log ind for at reservere')", function () {
         window.location = loginUrl;
         return false;
