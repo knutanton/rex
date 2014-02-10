@@ -99,15 +99,6 @@
 
       </div>
       </fieldset>
-      <!--<input name="Submit" type="submit" value="Apply Search Limits"/>-->
-      <!--<input name="Reset" type="reset" value="Clear Limits"/>-->
-    <div class="col-md-12">
-        <prm:userText styleId="search-simple" type="endingText" inline="true"/>
-        <a href="/primo_library/libweb/action/search.do?menuitem=0" class="btn btn-primary btn-sm" title="ny søgning" target="_self"><fmt:message key='mainmenu.label.ny_søgning' /></a>
-    </div>
-
-
-
 
 
 </div>

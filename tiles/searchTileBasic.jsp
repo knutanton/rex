@@ -151,6 +151,8 @@
            href="${fn:escapeXml(advanced_search_url)}" id="advancedSearchBtn">
             <fmt:message key='label.advanced_search'/>
         </a>
+
+        <a href="/primo_library/libweb/action/search.do?menuitem=0" class="btn btn-primary btn-sm" title="mainmenu.label.ny_søgning" target="_self"><fmt:message key='mainmenu.label.ny_søgning' /></a>
     </div>
 
     <c:if test="${searchForm.showBrowseLink }">
