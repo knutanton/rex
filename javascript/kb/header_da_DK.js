@@ -387,8 +387,10 @@ $(document).ready(function () {
         $(this).prepend("<img alt='thumbnail' src='" + link.replace("present", " thumbnail") + "'><br/>");
     });
     // Tilret tabs - relevant ved fuld visning
-    kbFixTabs();
-    kbBootstrapifyTabs();
+    if ($('body').hasClass('EXLFullView')) {
+        kbFixTabs();
+        kbBootstrapifyTabs();
+    }
     // Ret engelsk til dansk ved fotokopibestillinger
     $(".EXLMyAccountTable>tbody>tr>td:contains('Waiting in queue'),.EXLMyAccountTableDetails>tbody>tr>td:contains('Waiting in queue')").each(function () {
         $(this).html("Venter i k&oslash");
