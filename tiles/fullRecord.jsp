@@ -511,9 +511,7 @@ I changed its name so we don't try to call its setter --%>
     //}
 
     if (exlPrefetchConfiguration.loadedTab == 'recommendTab') {
-        document.getElementById('exlidHref0').title = "<fmt:message key="
-        recommendationtab.recommendations_found
-        "/>";
+        document.getElementById('exlidHref0').title = '<fmt:message key="recommendationtab.recommendations_found"/>';
     }
 </script>
 <noscript>This feature requires javascript</noscript>
