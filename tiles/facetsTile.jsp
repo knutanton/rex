@@ -213,13 +213,22 @@
                     </c:choose>
 
 
-                    <ul id="exlidFacetSublist${facetIndex.index}"
-                        class="EXLFacetsList EXLFacetsListPreview nav nav-pills nav-stacked panel-collapse collapse">
+                    <ul id="exlidFacetSublist${facetIndex.index}" class="EXLFacetsList EXLFacetsListPreview nav nav-pills nav-stacked panel-collapse collapse">
+
                          <%-- Adding Date Facet Slider --%>
                         <c:if test="${facetField eq c_facet_creationdate}">
                             <c:if test="${isCreationFacetExist == true}">
+                                <li class="EXLFacet">
+
+
+
+
+
+
+
+
                                 <div class="EXLDateRangeText">
-                                    <div class="EXLDateRangeLine">
+                                    <div class="EXLDateRangeLine container">
                                         <c:url var="slider_url" value="${form.responseEncodeReqDecUrl}" >
                                             <c:param name="ct" value="facet"/>
                                             <c:param name="fctN" value="xxx"/>
@@ -227,25 +236,43 @@
                                             <c:param name="rfnGrp" value="${form.rfnGrpCounter + 1}"/>
                                             <c:param name="rfnGrpCounter" value="${form.rfnGrpCounter + 1}"/>
                                         </c:url>
-                                        <span class="EXLSliderFromText"><fmt:message key="facets.date.slider.from"/></span>
-                                        <input type="hidden" id="sliderURL" value="${slider_url}" />
-                                        <label class="EXLHide" for="startdate">
-                                            <fmt:message key="facets.date.slider.The start date used in the slider bar of creation date facet"/>
-                                        </label>
-                                        <input type="text" onchange="onTBChange('start');" onkeyup="afterClick(this);" maxlength="4" size="3" id="startdate"
-                                                class="datebox" value="${startDateDisplay}" />
-                                        <span class="EXLSliderToText"><fmt:message key="facets.date.slider.to"/></span>
-                                        <label class="EXLHide" for="enddate">
-                                            <fmt:message key="facets.date.slider.The end date used in the slider bar of creation date facet"/>
-                                        </label>
-                                        <input type="text" onchange="onTBChange('end');" onkeyup="afterClick(this);" maxlength="4" size="3" id="enddate"
-                                                class="datebox" value="${endDateDisplay}" />
-                                        <div class="EXLSliderRefine">
-                                            <a id="dateSubmit"><fmt:message key="facets.date.slider.refine" /></a>
+
+                                        <div class="row">
+
+                                            <div class="col-xs-4">
+                                                <label class="EXLSliderFromText" for="startdate">
+                                                    <fmt:message key="facets.date.slider.from"/>
+                                                </label>
+                                                <span class="help-block sr-only" for="startdate">
+                                                    <fmt:message key="facets.date.slider.The start date used in the slider bar of creation date facet"/>
+                                                </span>
+                                                <input type="hidden" id="sliderURL" value="${slider_url}" />
+                                                <input type="text" onchange="onTBChange('start');" onkeyup="afterClick(this);" id="startdate" class="form-control input-sm" value="${startDateDisplay}" />
+                                            </div>
+
+                                            <div class="col-xs-4">
+                                                <label class="EXLSliderToText" for="enddate">
+                                                    <fmt:message key="facets.date.slider.to"/>
+                                                </label>
+                                                <span class="help-block sr-only" for="enddate">
+                                                    <fmt:message key="facets.date.slider.The end date used in the slider bar of creation date facet"/>
+                                                </span>
+                                                <input type="text" onchange="onTBChange('end');" onkeyup="afterClick(this);" id="enddate" class="form-control input-sm" value="${endDateDisplay}" />
+                                            </div>
+
+                                            <div class="col-xs-4">
+                                                <br/>
+                                                <a id="dateSubmit" class="btn btn-primary btn-sm">
+                                                    <fmt:message key="facets.date.slider.refine" />
+                                                </a>
+                                            </div>
+
                                         </div>
+
                                     </div>
-                                    <div id="slider-range" class="EXLSliderContainer"></div>
+                                     <!--<div id="slider-range" class="EXLSliderContainer hidden-xs hidden-sm"></div>-->
                                 </div>
+                                </li>
                             </c:if>
                         </c:if>
 
