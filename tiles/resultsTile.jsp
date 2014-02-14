@@ -554,7 +554,7 @@
 				 <c:set var="noFirstTab" value="false"/>
 			  </c:if>
 			  <c:if test="${tab=='browseshelf' && not empty tabState.browseshelfTab}">
-		          <li id="exlidResult${resultStatus.index}-BrowseshelfTab" class="EXLBrowseshelfTab EXLResultTab ${specialTabClass}">
+		          <li id="exlidResult${resultStatus.index}-BrowseshelfTab" class="EXLBrowseshelfTab EXLResultTab ${specialTabClass} hide">
 	 	          <c:url var="taburl" value="${displayURL}">
 						<c:param name="tabs" value="browseshelfTab"/>
 						<c:param name="gathStatTab" value="true"/>
