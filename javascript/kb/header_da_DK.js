@@ -400,32 +400,6 @@ $(document).ready(function () {
     });
 
     // Copied from footer_da_DK start /HAFE
-    $('.EXLResult').each(function () {
-        var frbr = $(this).find('.EXLResultBgFRBR').length;
-        // if it's a PCI  FRBR record, hide stuff
-        if (frbr !== 0) {
-            // hide links for FRBR groups
-            $(this).find('.EXLTabsRibbon').hide();
-            // remove link from title for FRBR groups
-            $(this).find(".EXLResultTitle").find("a").removeAttr("href");
-            // hide publisher for FRBR groups
-            $(this).find(".EXLResultFourthLine").hide();
-            // hide availability for FRBR groups
-            $(this).find(".EXLResultAvailability").hide();
-            // place display multiple link below title,
-            // and change link of title and thumbnail
-            var link = $(this).find(".EXLBriefResultsDisplayMultipleLink");
-            $(this).find(".EXLSummaryFields").append(link);
-            var titlelink = $(this).find(".EXLResultTitle").find("a");
-            titlelink.attr("href", link.attr("href"));
-            titlelink.attr("target", "_parent");
-            var thumblink = $(this).find(".EXLThumbnail .EXLBriefResultsDisplayCoverImage A");
-            thumblink.attr("href", link.attr("href"));
-
-            // hide the my shelf star
-            $(this).find(".EXLMyShelfStar A").hide();
-        }
-    });
 
     // Highligt the typed in term
     // http://stackoverflow.com/questions/3695184/jquery-autocomplete-highlighting
