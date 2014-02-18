@@ -49,7 +49,7 @@ function addLoginLink() {
 * "send to: " dropdown menu
 */
 function addShowSource(){
-	$('.EXLTabHeaderButtonSendTo  a').on("click", function(){
+	$('.EXLTabHeaderButtonSendTo  a').one("click", function(){
 		// Grap the url from the "open this item in new window"
 		// Andappend &showPnx=true
 		var showPnxrUrl = $(this).parent().prev().find('a').attr('href') + "&showPnx=true";
