@@ -274,9 +274,10 @@ function kbBootstrapifyTabs() {
         $.each(locationLists, function (index, locationList) {
             locationList = $(locationList);
             var tmpUid = Unique.getUid(),
-                accordionHeaderElement = $('<div class="panel-heading"><h4 class="panel-title"><a class="accordion-toggle" data-toggle="collapse" href="#locationAccordion' + tmpUid + '"></a></h4></div>'),
+                accordionHeaderElement = $('<div class="panel-heading"><h4 class="panel-title locationSubLocationHeader"><a class="accordion-toggle" data-toggle="collapse" href="#locationAccordion' + tmpUid + '"></a><div class="locationSubLocationHeaderSpinner"></div></h4></div>'),
                 oldLink = $('.EXLLocationsTitle a', locationList),
                 accordionIcon = $('<span class="glyphicon glyphicon-chevron-' + (oldLink.length ? 'right' : 'down') + '"/>'),
+                accordionHeader = $('h4', accordionHeaderElement),
                 accordionHeaderLink = $('a', accordionHeaderElement),
                 accordionBodyContainer = $('<div id="locationAccordion' + tmpUid + '" class="panel-collapse collapse' + (oldLink.length ? '' : ' in') + '"></div>');
             if (oldLink.length) {
@@ -300,6 +301,9 @@ function kbBootstrapifyTabs() {
                     accordionIcon.removeClass('glyphicon-chevron-down').addClass('glyphicon-chevron-right');
                 } else {
                     accordionIcon.removeClass('glyphicon-chevron-right').addClass('glyphicon-chevron-down');
+                    if (!accordionBodyContainer.find('.locations').length) { // the locations are loading - start spinner
+                        accordionHeader.addClass('loading');
+                    }
                 }
             }); // FIXME: Is this invoked on keyboard input? :(
         });
@@ -418,6 +422,8 @@ function kbBootstrapifyTabs() {
         $('tbody', exlLocationTableToFix).empty();
         locations.insertBefore(exlLocationTableToFix);
         flagFixed(exlLocationTableToFix);
+
+        locations.closest('.EXLLocationList').find('.locationSubLocationHeader').removeClass('loading'); // Remove loading spinner from header
 
         // =====================================================================================================================================================
         // ================ the rest of the code here is about the parent accordion, and really belongs to the code that fixes the LocationsLists! =============
