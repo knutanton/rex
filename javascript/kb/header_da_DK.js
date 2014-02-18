@@ -64,10 +64,15 @@ function addLoginLink() {
 */
 function addShowSource(){
     var unfixedSendTo = getUnfixedElems('.EXLTabHeaderButtonSendTo > a');
-    // Grap the url from the "open this item in new window"
+    // Grab the url from the "open this item in new window"
     // Andappend &showPnx=true
-    var showPnxrUrl = unfixedSendTo.parent().prev().find('a').attr('href') + "&showPnx=true";
-    unfixedSendTo.next().append("<li><a target='_blank' href='"+showPnxrUrl+"'>Vis Kilde</a><li>");
+    var showPnxUrl;
+    if ($('body').hasClass('EXLFullView')) {
+        showPnxUrl = location.href + '&showPnx=true';
+    } else {
+        showPnxUrl = unfixedSendTo.parent().prev().find('a').attr('href') + '&showPnx=true';
+    }
+    unfixedSendTo.next().append("<li><a target='_blank' href='"+showPnxUrl+"'>Vis Kilde</a><li>");
     flagFixed(unfixedSendTo);
 }
 
