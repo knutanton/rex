@@ -63,13 +63,12 @@ function addLoginLink() {
 * "send to: " dropdown menu
 */
 function addShowSource(){
-    getUnfixedElems('.EXLTabHeaderButtonSendTo > a').one("click", function(){
-        // Grap the url from the "open this item in new window"
-        // Andappend &showPnx=true
-        var showPnxrUrl = $(this).parent().prev().find('a').attr('href') + "&showPnx=true";
-        $(this).next().append("<li><a target='_blank' href='"+showPnxrUrl+"'>Vis Kilde</a><li>");
-        flagFixed($(this));
-    });
+    var unfixedSendTo = getUnfixedElems('.EXLTabHeaderButtonSendTo > a');
+    // Grap the url from the "open this item in new window"
+    // Andappend &showPnx=true
+    var showPnxrUrl = unfixedSendTo.parent().prev().find('a').attr('href') + "&showPnx=true";
+    unfixedSendTo.next().append("<li><a target='_blank' href='"+showPnxrUrl+"'>Vis Kilde</a><li>");
+    flagFixed(unfixedSendTo);
 }
 
 // Report problem tab  -knab hentet fra aub
