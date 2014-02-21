@@ -679,6 +679,7 @@ function removeUnWantedContent() {
     $('#exlidPleaseWaitContainer').remove();
     $('script[src*="pleaseWait.js"]').remove();
     $('.EXLFooterUpdateContainer').remove();
+    $("#exlidMyAccountMainHeader").html("");
 }
 
 
