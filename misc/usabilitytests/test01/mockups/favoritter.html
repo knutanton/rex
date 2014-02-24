@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap 101 Template</title>
+
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+
+    
+    
+    <div class="container">
+
+      <header>
+        <div class="row">
+          <div class="col-xs-8">
+            <h1 class="sr-only">Det Kongelige Bibliotek</h1>
+            <img src="img/logo.png" class="img-responsive" alt="Det Kongelige Bibliotek">
+          </div>
+          <div class="col-xs-4">
+            <div class="btn-group pull-right">
+              <a href="" class="btn btn-default">Log ud</a>
+              <div class="btn-group">
+                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                  Language
+                  <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu">
+                  <li><a href="#">Dansk</a></li>
+                  <li><a href="#">English</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <nav class="navbar navbar-default" role="navigation">
+        <div class="container-fluid">
+          <!-- Brand and toggle get grouped for better mobile display -->
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <span class="navbar-brand visible-xs"><span class="glyphicon glyphicon-user"></span> Kasper Andersen</span>
+            
+
+          </div>
+          <!-- Collect the nav links, forms, and other content for toggling -->
+         
+
+          <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+
+            <ul class="nav navbar-nav">
+              <li class="dropdown hidden-xs">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-user"></span> Kasper Andersen <b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                  <li><a href="#">Instillinger</a></li>
+                  <li class="divider"></li>
+                  <li><a href="#">Gebyrer</a></li>
+                  <li><a href="#">Print konto</a></li>
+                </ul>
+              </li>
+              
+              <li class="divider"></li>
+              <li><a href="#">Hjemlån <span class="badge">2</span></a></li>
+              <li><a href="#">Bestillinger <span class="badge">1</span></a></li>
+              <li class="active"><a href="#">Favoritter <span class="badge">4</span></a></li>
+              <li><a href="#">Søgninger <span class="badge">2</span></a></li>
+              <li class="visible-xs"><a href="#">Gebyrer</a></li>
+              <li class="visible-xs"><a href="#">Print konto</a></li>
+              <li class="visible-xs"><a href="#">Instillinger</a></li>
+            </ul>
+
+          </div><!-- /.navbar-collapse -->
+        </div><!-- /.container-fluid -->
+      </nav>
+
+
+      <div class="page-header">
+        <h1><span class="glyphicon glyphicon-star"></span> Favoritter</h1>
+      </div>
+
+      <div class="row">
+        <div class="col-md-4">
+          <div class="panel panel-default">
+              <div class="panel-heading">
+                <h4 class="panel-title">
+                  <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" class=""><span class="glyphicon glyphicon-folder-close">
+                    </span>Content</a>
+                </h4>
+              </div>
+              <div id="collapseOne" class="panel-collapse collapse in" style="height: auto;">
+                <ul class="list-group">
+                  <li class="list-group-item"><span class="glyphicon glyphicon-pencil text-primary"></span><a href="http://fb.com/moinakbarali">Articles</a>
+                    <ul class="list-group">
+                      <li class="list-group-item"><span class="glyphicon glyphicon-pencil text-primary"></span><a href="http://fb.com/moinakbarali">Articles</a></li>
+
+                      <li class="list-group-item"><span class="glyphicon glyphicon-flash text-success"></span><a href="http://fb.com/moinakbarali">News</a></li>
+
+                      <li class="list-group-item"><span class="glyphicon glyphicon-file text-info"></span><a href="http://fb.com/moinakbarali">Newsletters</a></li>
+
+                      <li class="list-group-item"> <span class="glyphicon glyphicon-comment text-success"></span><a href="http://fb.com/moinakbarali">Comments</a><span class="badge">42</span></li>
+
+                    </ul>
+                  </li>
+
+                  <li class="list-group-item"><span class="glyphicon glyphicon-flash text-success"></span><a href="http://fb.com/moinakbarali">News</a></li>
+
+                  <li class="list-group-item"><span class="glyphicon glyphicon-file text-info"></span><a href="http://fb.com/moinakbarali">Newsletters</a></li>
+
+                  <li class="list-group-item"> <span class="glyphicon glyphicon-comment text-success"></span><a href="http://fb.com/moinakbarali">Comments</a><span class="badge">42</span></li>
+
+                </ul>
+              </div>
+            </div>
+
+          <div class="btn-group">
+            <button type="button" class="btn btn-default text-center">
+              <span class="glyphicon glyphicon-plus"></span><br>
+              <span>Ny</span>  
+            </button>
+            <button type="button" class="btn btn-default text-center">
+              <span class="glyphicon glyphicon-pencil"></span><br>
+              <span>Omdøb</span>  
+            </button>
+            <button type="button" class="btn btn-default text-center">
+              <span class="glyphicon glyphicon-folder-close"></span><br>
+              <span>Kopier</span>  
+            </button>
+            <button type="button" class="btn btn-default text-center">
+              <span class="glyphicon glyphicon-plus"></span><br>
+              <span>Sæt ind</span>  
+            </button>
+            <button type="button" class="btn btn-default text-center">
+              <span class="glyphicon glyphicon-remove"></span><br>
+              <span>Slet</span>  
+            </button>
+          </div>
+
+          <ul class="list-unstyled">
+            <li>
+              <a href="#" class="list-group-item"><span class="glyphicon glyphicon-folder-open"></span> Mine Favoritter</a>
+              <ul class="list-unstyled">
+                <li>
+                  <a href="#" class="list-group-item"><span class="glyphicon glyphicon-folder-open"></span> UX Arbejde</a>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <a href="#" class="list-group-item"><span class="glyphicon glyphicon-folder-open"></span> Ny Mappe</a>
+            </li>
+          </ul>
+
+        </div>
+        <div class="col-md-8">
+          <ul class="nav nav-tabs bg-info" >
+            <li>
+              <a href="" class="btn btn-default">
+                <span class="glyphicon glyphicon-plus"></span><br>
+                <span>Kopier</span>  
+              </a>
+            </li>
+            <li>
+              <a href="" class="btn btn-default">
+                <span class="glyphicon glyphicon-plus"></span><br>
+                <span>Sæt ind</span>  
+              </a>
+            </li>
+            <li>
+              <a href="" class="btn btn-default">
+                <span class="glyphicon glyphicon-plus"></span><br>
+                <span>Slet</span>  
+              </a>
+            </li>
+            <li>
+              <div class="btn-group">
+                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                  Send til <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu">
+                  <li><a href="#">EndNote</a></li>
+                  <li><a href="#">RefWorks</a></li>
+                  <li><a href="#">del.icio.us</a></li>
+                  <li><a href="#">RIS</a></li>
+                  <li><a href="#">Kilde kode</a></li>
+                  <li class="divider"></li>
+                  <li><a href="#"><span class="glyphicon glyphicon-envelope"></span> E-mail</a></li>
+                  <li><a href="#"><span class="glyphicon glyphicon-print"></span> Print</a></li>
+                </ul>
+              </div>
+              <a href="" class="btn btn-default">
+                <span class="glyphicon glyphicon-plus"></span><br>
+                <span>E-mail</span>  
+              </a>
+            </li>
+            <li>
+              <a href="" class="btn btn-default">
+                <span class="glyphicon glyphicon-plus"></span><br>
+                <span>Print</span>  
+              </a>
+            </li>
+          </ul>
+          
+
+          <div class="table-responsive">
+            <table class="table table table-striped table-hover">
+              <thead>
+                <tr>
+                  <th>Nr</th>
+                  <th>Type</th>
+                  <th>Titel</th>
+                  <th>Forfatter</th>
+                  <th>Status</th>
+                  <th>Afhentningssted</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>
+                    <span class="badge">1</span>
+                  </td>
+                  <td>
+                    ILL bestilling
+                  </td>
+                  <td>
+                    <a href="">[Rocket surgery made easy : the do-it-yourself guide to finding and fixing
+                    usability problems : Voice]</a>
+                  </td>
+                  <td>
+                    Krug, Steve
+                  </td>
+                  <td>
+                    Udlånt til låner
+                  </td>
+                  <td>
+                    Diamanten, Hjemlån
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+        </div>
+      </div>
+
+      
+
+    </div>
+
+    <footer class="container">
+      <hr>
+
+        <div class="row hidden-print">
+            <div class="col-xs-12 col-sm-4">
+                <strong class="lead">REX</strong>
+                <ul class="list-unstyled">
+                    <li><a href="http://www.kb.dk/da/REX/sider?codekitCB=401828938.835484">Hjælp / FAQ</a></li>
+                    <li><a href="https://rex.kb.dk/F/?func=file&amp;file_name=find-b&amp;local_base=kgl01_rexclassic&amp;con_lng=DAN">REX Classic</a></li>
+                    <li><a href="http://www.kb.dk/da/REX/sider/biblioteker.html">Biblioteker i REX-samarbejdet</a></li>
+                    <li><a href="http://www.kb.dk/da/kub/service/sporgbib/forslag.html">Bogforslag</a></li>
+                    <li><a title="Fandt du ikke hvad du søgte?" href="https://rex.kb.dk/userServices/menu/Order" target="_blank">Fandt du ikke hvad du søgte?</a></li>
+
+
+                </ul>
+            </div>
+
+            <hr class="visible-xs">
+
+            <div class="col-xs-12 col-sm-4">
+                <strong class="lead">DET KONGELIGE BIBLIOTEK</strong>
+                <ul class="list-unstyled">
+                    <li><a href="http://www.kb.dk/da/kb/aabningstider/index.html">Åbningstider &amp; Adresser</a></li>
+                    <li><a href="http://kontaktbiblioteket.kb.dk">Kontakt biblioteket</a></li>
+                    <li><a href="http://www.kb.dk/da/kb/handicap/index.html">Handikap-information</a></li>
+                    <li><a href="http://www.kb.dk/da/kb/webstedet/cookiepolitik.html">Cookie- og privatlivspolitik</a></li>
+                    <li><a href="http://www.kb.dk/da/kb/webstedet/index.html">Om webstedet</a></li>
+                </ul>
+            </div>
+
+        </div>
+
+        <hr>
+
+        <address>
+            <p>
+                <strong>
+                    Det Kongelige Bibliotek<br>
+                    Nationalbibliotek og Københavns Universitetsbibliotek
+                </strong>
+                <small>
+                    <br>
+                    Søren Kierkegaards Plads 1 - 1219 København K - EAN: 5798 000795297 - <abbr title="Telefon nr.">Tlf: </abbr>+45 33 47 47 47 - E-mail <a href="mailto:kb@kb.dk">kb@kb.dk</a>
+                    <br>
+                    <span class="glyphicon glyphicon-thumbs-up"></span> <a href="https://www.facebook.com/DetKongeligeBibliotek" target="_blank">Følg os på Facebook</a>
+                </small>
+            </p>
+        </address>
+       
+</footer>
+
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="js/bootstrap.min.js"></script>
+  </body>
+</html>
