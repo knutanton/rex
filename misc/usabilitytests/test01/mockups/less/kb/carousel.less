@@ -1,0 +1,101 @@
+
+.carousel-caption{
+    top:0px;
+    bottom: 0px;
+    padding:10px;
+    left:0% !important;
+    padding-left:8%;
+    text-align: left;
+    background: rgba(0, 0, 0, 0.9);
+    background: #000000\9;  /*IE 7-8 hack*/
+    width:50%;
+    z-index: 0;
+    font-family:@font-family-serif ;
+    a{
+        position: relative;
+    }
+    p{
+        font-size: 10px;
+        span{
+            text-decoration: underline;
+            left:0!important;
+        }
+    }
+}
+
+.carousel-control{
+   width:10%;
+}
+.left.carousel-control{
+    span{
+        left:5px !important;
+    }
+}
+.right.carousel-control{
+    span{
+        right:5px !important;
+        left:inherit !important;
+    }
+}
+
+
+.carousel-indicators{
+    bottom:-30px !important;
+    li {
+        border:none;
+        background: @gray-light;
+    }
+    li.active {
+        border:none;
+        background: @brand-primary;
+    }
+}
+
+
+@media (min-width: @screen-xs) {
+    .carousel-caption{
+        font-size: 14px;
+        p{
+            font-size: 14px;
+        }
+    }
+}
+@media (min-width: @screen-sm) {
+    .carousel-caption{
+        font-size: 20px;
+        p{
+            font-size: 20px;
+        }
+    }
+}
+
+@media (min-width: @screen-md) {
+    .carousel-inner{
+        max-height: 278px;
+    }
+    .carousel-caption{
+        font-size: 18px;
+        padding:20px;
+        padding-left:8%;
+        p{
+            font-size: 18px;
+        }
+    }
+
+
+}
+
+
+@media (min-width: @screen-lg) {
+    .carousel-inner{
+        max-height: 330px;
+    }
+    .carousel-caption{
+        font-size: 20px;
+        p{
+            font-size: 20px;
+        }
+    }
+
+
+}

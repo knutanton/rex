@@ -1,0 +1,308 @@
+//KB
+//Changes to tiles/resultsTile.jsp
+
+
+.EXLResult .EXLThumbnail {
+@media (max-width: @screen-sm-max ) {
+    .collapse;
+    }
+
+@media (min-width: @screen-sm-max) {
+    display:block;
+    }
+    }
+
+.EXLMyShelfStar a{
+    .btn;
+    .btn-default;
+    .btn-sm;
+}
+.EXLResultAvailability{
+    display: inline;
+}
+
+
+EXLResult .EXLThumbnail {
+@media (max-width: @screen-sm-max ) {
+    .collapse;
+    }
+    }
+
+
+html[lang="da_DK"] .EXLMyShelfStar a:after {
+@media (min-width: @screen-sm-max ){
+    content:" Tilføj til e-hylde";
+    }
+    }
+html[lang="en_US"] .EXLMyShelfStar a:after{
+@media (min-width: @screen-sm-max ){
+    content:" Add to e-shelf";
+    }
+    }
+
+.EXLThumbnail .label{
+    display: block;
+    .text-left;
+}
+.EXLResult{
+    padding:@padding-large-vertical 0;
+    border-bottom: 1px solid @gray-lighter;
+    .clearfix;
+}
+
+.EXLSummaryFields .EXLResultStatusNotAvailable{
+    .label;
+    .label-danger;
+}
+li.EXLResultSelectedTab > a{
+    color: @nav-pills-active-link-hover-color;
+    background-color: @nav-pills-active-link-hover-bg;
+}
+
+/*  Classic thumbnails */
+.EXLResultMediaTYPEarticle .multipleCoverImageContainer{background-image: url(/primo_library/libweb/images/icon_article.png);}
+.EXLResultMediaTYPEaudio .multipleCoverImageContainer {background-image: url(/primo_library/libweb/images/icon_audio.png);}
+.EXLResultMediaTYPEbook .multipleCoverImageContainer {background-image: url(/primo_library/libweb/images/icon_book.png);}
+.EXLResultMediaTYPEdatabase .multipleCoverImageContainer {background-image: url(/primo_library/libweb/images/icon_database.png);}
+.EXLResultMediaTYPEimage .multipleCoverImageContainer {background-image: url(/primo_library/libweb/images/icon_image.png);}
+.EXLResultMediaTYPEjournal .multipleCoverImageContainer {background-image: url(/primo_library/libweb/images/icon_journal.png);}
+.EXLResultMediaTYPEmap .multipleCoverImageContainer {background-image: url(/primo_library/libweb/images/icon_map.png);}
+.EXLResultMediaTYPEother .multipleCoverImageContainer {background-image: url(/primo_library/libweb/images/icon_other.png);}
+.EXLResultMediaTYPEreference_entry .multipleCoverImageContainer {background-image: url(/primo_library/libweb/images/icon_other.png);}
+.EXLResultMediaTYPEtext_resource .multipleCoverImageContainer {background-image: url(/primo_library/libweb/images/icon_article.png);}
+.EXLResultMediaTYPEmanuscript .multipleCoverImageContainer {background-image: url(/primo_library/libweb/images/icon_text_resource.png);}
+.EXLResultMediaTYPEvideo .multipleCoverImageContainer {background-image: url(/primo_library/libweb/images/icon_video.png);}
+.EXLResultMediaTYPEcomputer .multipleCoverImageContainer {background-image: url(/primo_library/libweb/images/icon_game.png);}
+.EXLResultMediaTYPEvwebsite .multipleCoverImageContainer {background-image: url(/primo_library/libweb/images/icon_website.png);}
+.EXLResultMediaTYPEnewspaper_article .multipleCoverImageContainer {background-image: url(/primo_library/libweb/images/icon_newspaper.png);}
+.EXLResultMediaTYPEreview .multipleCoverImageContainer {background-image: url(/primo_library/libweb/images/icon_article.png);}
+.coverImageDiv {}
+.popThumbnailToTop {}
+
+.coverImageDiv {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+}
+.multipleCoverImageContainer {
+    position: relative;
+    margin: auto;
+    width: 38px;
+    height: 56px;
+    font-size: 0px;
+    background-image: url(../images/icon_book.png);
+    background-repeat: none;
+    border: 1px solid #bdbcbd;
+}
+.EXLResultsList .EXLThumbnail img {
+    padding: 0em;
+    margin: 0px;
+    border: none;
+    vertical-align: bottom;
+    width: 38px;
+    height: 56px;
+}
+
+#content{
+    background:             @neutral;
+    padding-top:            @padding-large-vertical;
+
+    #resultContent{
+        h1{
+            .h5;
+            font-weight:    @btn-font-weight;
+            margin-top: (@line-height-computed / 2);
+            margin-bottom: (@line-height-computed / 2);
+        }
+        h2 {
+            .h4;
+            margin: @padding-base-vertical 0 0 0;
+        }
+        h3{
+            .h5;
+            margin: @padding-base-vertical 0 0 0;
+        }
+        p{
+            margin: @padding-base-vertical 0;
+        }
+    }
+
+}
+/* AJAX  Visning af poster (bestil)*/
+
+
+
+.EXLTabsRibbon {
+    .nav-pills > li > a {
+                     border-bottom-left-radius: 0;
+                     border-bottom-right-radius: 0;
+                 } }
+
+.nav > li > a:hover, .nav > li > a:focus {
+           color: #1c2a2f;
+       }
+li.EXLResultSelectedTab > a {
+    color: #FFF;
+    background-color: #38555f;
+}
+
+
+
+.EXLResultTabContainer{
+    background:             @gray-lighter;
+    padding:                @padding-large-vertical @padding-large-horizontal;
+    border-radius:          @border-radius-base;
+    border-top-left-radius: 0;
+
+    .EXLLocationViewAllLink{
+        padding-top:        @padding-large-horizontal;
+    }
+}
+
+.EXLLocationTitlesRow div, div.locationColumnTitle{
+    font-weight:            @badge-font-weight;
+}
+.EXLLocationTitlesRow {
+    padding:@padding-large-vertical @padding-large-horizontal;
+}
+.locationDiv:nth-child(even){
+    background: lighten(@gray-lighter, -5%);
+}
+
+.EXLLocationListContainer .panel-heading .panel-title a{
+    .show;
+    text-decoration: none;
+}
+.EXLLocationListContainer .panel-heading .panel-title .glyphicon{
+    font-size:12px;
+}
+.EXLLocationList .EXLLocationInfo{
+    cite{
+        .hide;
+    }
+    em{
+        .label;
+    }
+    .EXLResultStatusNotAvailable{
+        .label-danger;
+    }
+    .EXLResultStatusAvailable{
+        .label-success;
+    }
+    .EXLResultStatusMaybeAvailable{
+        .label-warning;
+    }
+}
+.EXLLocationList .panel-body{
+    padding:0px;
+}
+.locationDiv{
+    padding:@padding-large-vertical @padding-large-horizontal;
+    .locationHeader .EXLAdditionalFieldsLink .glyphicon{
+        font-size:8px; /* All this is added by Hafe - Tjan should approve this before it is shipped! */
+        top:0;
+        margin-right:5px;
+        margin-left:10px; /* FIXME: Reassess when the right icon has been found - it might not even need a margin, if we get icons in two sizes. */
+    }
+}
+.locationButtons{
+    a{
+        .btn;
+        .btn-default;
+        .btn-xs;
+        margin-right: 5px;
+    }
+}
+
+.EXLLocationViewAllLink{
+    padding:@padding-large-vertical @padding-large-horizontal;
+    a{
+        .btn;
+        .btn-primary;
+    }
+}
+
+.locationHeaderField{
+    padding-bottom:@padding-large-vertical;
+}
+
+
+/*Bestil */
+.EXLTabHeader{
+    .clearfix;
+}
+.EXLTabHeaderButtons{
+    .pull-right;
+}
+.EXLTabHeaderContent{
+    .collapse;
+}
+.EXLRequestTabContent {
+    caption{
+        .collapse;
+    }
+    .KBExtraSubmit, .EXLRequestTip{
+        .collapse;
+    }
+    input[type="text"], input.date-pick, select{
+        .form-control;
+    }
+    tr, td, th{
+        border:none!important;
+    }
+    input[type="submit"], a.reset{
+        .btn;
+        .btn-default;
+    }
+    a.reset{
+        .collapse;
+    }
+    input[type="submit"]{
+        .btn-primary;
+    }
+    table{
+        width:100%;
+    }
+    .EXLTabFormValidationFeedback{
+        .alert;
+        .alert-danger;
+    }
+
+}
+.EXLDetailsLinks{
+    em{
+        font-style:normal;
+        .h4;
+    }
+    ul{
+
+        .EXLFullDetailsOtherSpacer{
+            .collapse;
+        }
+    }
+}
+
+/*  Anbefalinger  */
+.EXLRecommendTabDisable{
+    .hide;
+}
+
+.EXLTabLoading {
+    width:100%;
+    text-align:center;
+    height:5em;
+    background-image:url(../images/kb/loader.gif);
+    background-repeat:no-repeat;
+    background-position:center;
+}
+
+
+.EXLHiddenCue {
+    position:absolute;
+    left:-10000px;
+    top:auto;
+    width:1px;
+    height:1px;
+    overflow:hidden;
+/*display:none*/
+}

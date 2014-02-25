@@ -1,0 +1,143 @@
+//KB
+//Changes to tiles/facetTile
+
+/* RESPONSIVE TOGGLE */
+.EXLFacetTile .EXLAdditionalFacet{
+    .collapse;
+}
+
+.facet-collapse {
+@media (max-width: @screen-sm-max ) {
+    .collapse;
+    }
+
+@media (min-width: @screen-sm-max) {
+    display:block;
+    }
+  }
+
+#refine {
+@media (min-width: @screen-sm-max) {
+    .collapse;
+    }
+@media (max-width: @screen-sm-max) {
+    display:block;
+    margin-bottom:@padding-base-vertical;
+    }
+  }
+
+html[lang="da_DK"] #refine:after{
+    content:" Facetter";
+}
+html[lang="en_US"] #refine:after{
+    content:" Facets";
+}
+
+
+/* SHOW MORE lightbox*/
+#exliGreyOverlay {
+    .modal-backdrop;
+    .fade;
+    .in;
+     iframe{
+         border: none;
+     }
+}
+#exliWhiteContent{
+    .modal;
+}
+#exliWhiteContent > div{
+    .modal-dialog;
+}
+@media screen and (min-width: 768px) {
+    #exliWhiteContent > div{
+        right: auto;
+        left: 50%;
+        width: 600px;
+        padding-top: 30px;
+        padding-bottom: 30px;
+    }
+}
+#exlidFacetsLightboxContainer{
+    .modal-content;
+}
+.EXLFacetsLightboxHeader{
+    .modal-header;
+    .clearfix;
+    h1{
+        .h4;
+        .modal-title;
+        .pull-left;
+    }
+    .EXLFacetsLightboxHeaderButtons{
+        .close;
+        ul{
+            .list-unstyled;
+            a{
+                text-decoration:none;
+                }
+            li a span:first-child{
+                display:none;
+                }
+            a span:after{
+                content:"×";
+                }
+        }
+    }
+}
+#exlidFacetsLightboxListWrapper{
+    .modal-body;
+    .clearfix;
+}
+.EXLFacetsLightboxTabsRibbon{
+    .clearfix;
+    span{
+        .make-xs-column(2);
+        font-weight: bold;
+        padding-left:0px;
+    }
+    span:last-child{
+        .make-xs-column(8);
+    }
+}
+.EXLFacetsLightboxListRow {
+    .clearfix;
+    padding:5px 0;
+    div{
+        .make-xs-column(2);
+    }
+    .legend{
+        .make-xs-column(8);
+        span{
+            margin-right:3px ;
+            .badge;
+            .pull-left;
+        }
+    }
+    label{
+        .collapse;
+    }
+}
+.EXLFacetsLightboxListRow:nth-child(odd) {
+    background: @gray-lighter;
+}
+.EXLFacetsLightboxListRow:last-child {
+    border-bottom: 1px solid @modal-footer-border-color;
+    margin-bottom:@modal-inner-padding;
+}
+.EXLFacetsLightboxFieldRibbonFormSubmitSelected, .EXLFacetsLightboxFieldRibbonFormResetSearch{
+    .pull-right;
+}
+.EXLReset, .EXLSubmit{
+   .btn;
+   .btn-default;
+}
+.EXLSubmit{
+    .btn-primary;
+    margin-left:5px;
+}
+
+.EXLRefinementsList .EXLExcludedElement{
+   .btn-danger;
+    text-decoration: line-through;
+}
