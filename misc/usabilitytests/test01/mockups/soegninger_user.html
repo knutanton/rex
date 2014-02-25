@@ -26,86 +26,111 @@
     </style>
 </head>
 <body>
-<header>
+    <header>
 
-    <nav class="navbar navbar-default navbar-kb" role="navigation">
+      <nav class="navbar navbar-default navbar-kb" role="navigation">
         <div class="container">
+        
+          <div class="navbar-header">   
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="glyphicon glyphicon-user"><span class="caret"></span></span>
+            </button>
+            <a class="navbgar-brand" href="#">
+              <img src="img/logo.png" class="hidden-xs" alt="Det Kongelige Bibliotek">
+              <img src="img/logoSmall.png" class="visible-xs" alt="Det Kongelige Bibliotek">
+            </a>
+          </div>
 
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="glyphicon glyphicon-user"><span class="caret"></span></span>
-                </button>
-                <a class="navbgar-brand" href="#">
-                    <img src="img/logo.png" class="hidden-xs" alt="Det Kongelige Bibliotek">
-                    <img src="img/logoSmall.png" class="visible-xs" alt="Det Kongelige Bibliotek">
+          <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+
+            <p class="navbar-text visible-xs">
+              <strong>Kasper Andersen</strong>
+            </p>
+
+            <ul class="nav navbar-nav navbar-right">
+              <li class="visible-xs"><a href="#"><span class="glyphicon glyphicon-cog"></span> Instillinger</a></li>
+              <li class="visible-xs"><a href="#"><span class="glyphicon glyphicon-credit-card"></span> Print konto</a></li>
+              <li  class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                  <span class="glyphicon glyphicon-flag"></span> 
+                  <span class="hidden-sm">Language</span>
+                  <span class="caret"></span>
                 </a>
-            </div>
-
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-
-
-
-                <ul class="nav navbar-nav navbar-right">
-                    <li class="visible-xs"><a href="indstillinger.html"><span class="glyphicon glyphicon-cog"></span> Indstillinger</a></li>
-                    <li  class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                            <span class="glyphicon glyphicon-flag"></span>
-                            <span class="hidden-sm">Language</span>
-                            <span class="caret"></span>
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><a href="#">Dansk</a></li>
-                            <li><a href="#">English</a></li>
-                        </ul>
-                    </li>
-
-                    <li>
-
-                        <button type="button" class="btn btn-primary navbar-btn hidden-xs"><span class="glyphicon glyphicon-user"></span> Ny bruger</button>
-                        <button type="button" class="btn btn-success navbar-btn hidden-xs" onclick="location.href='soegninger_user.html'; return true;"><span class="glyphicon glyphicon-lock"></span> Log ind</button>
-                    </li>
+                <ul class="dropdown-menu">
+                  <li><a href="#">Dansk</a></li>
+                  <li><a href="#">English</a></li>
                 </ul>
+              </li>
+             
+              <li>
+                <button type="button" class="btn btn-danger navbar-btn hidden-xs" onclick="location.href='soegninger.html'; return true;"><span class="glyphicon glyphicon-off"></span> Log ud</button>
+              </li>
+            </ul>
+            <button type="button" class="btn btn-danger navbar-btn visible-xs pull-right" onclick="location.href='soegninger.html'; return true;"><span class="glyphicon glyphicon-off"></span> Log ud</button>
 
-                <button type="button" class="btn btn-primary navbar-btn visible-xs pull-right"><span class="glyphicon glyphicon-user"></span> Ny bruger</button>
-                <button type="button" class="btn btn-success navbar-btn visible-xs pull-right" onclick="location.href='soegninger_user.html'; return true;"><span class="glyphicon glyphicon-lock"></span> Log ind</button>
-
-            </div>
+          </div>
 
         </div>
-    </nav>
+      </nav>
 
-</header>
+    </header>
 
-<nav class="bg-info">
-    <div class="container">
+    <nav class="bg-info">
+      <div class="container">
 
         <div class="btn-group btn-group-justified" role="toolbar">
 
-
-            <a href="indstillinger.html" class="btn btn-info text-center hidden-xs">
-                <span class="glyphicon glyphicon-cog hidden-xs hidden-sm"></span>
-                <span>Indstillinger</span>
-                <br class="visible-xs">
+          <div class="btn-group hidden-xs">
+            <a href="" class="btn btn-info text-center dropdown-toggle" data-toggle="dropdown">
+              <span class="glyphicon glyphicon-user"></span> 
+              <span class="hidden-sm">Kasper Andersen</span> <span class="caret"></span>
             </a>
+            <ul class="dropdown-menu" role="menu">
+              <li class="visible-sm btn-text"><p><strong>Kasper Andersen</strong></p></li>
+              <li class="divider visible-sm"></li>
+              <li><a href="#"><span class="glyphicon glyphicon-cog"></span> Instillinger</a></li>
+              <li><a href="#"><span class="glyphicon glyphicon-credit-card"></span> Print konto</a></li>
+            </ul>
+          </div>
 
-            <a href="#" class="btn btn-info text-center">
-                <span class="glyphicon glyphicon-star hidden-xs hidden-sm"></span>
-                <span>Favoritter</span>
-                <br class="visible-xs">
-                <span class="badge">5</span>
-            </a>
+          <a href="#" class="btn btn-info text-center">
+            <span class="glyphicon glyphicon-book hidden-xs hidden-sm"></span> 
+            <span>Hjemlån</span>
+            <br class="visible-xs">
+            <span class="badge">2</span>
+          </a>
 
-            <a href="#" class="btn btn-info active text-center">
-                <span class="glyphicon glyphicon-search hidden-xs hidden-sm"></span>
-                <span>Søgninger</span>
-                <br class="visible-xs">
-                <span class="badge">3</span>
-            </a>
+          <a href="#" class="btn btn-info text-center">
+            <span class="glyphicon glyphicon-time hidden-xs hidden-sm"></span> 
+            <span>Bestillinger</span>
+            <br class="visible-xs">
+            <span class="badge">3</span>
+          </a>
 
+          <a href="#" class="btn btn-info text-center">
+            <span class="glyphicon glyphicon-star hidden-xs hidden-sm"></span> 
+            <span>Favoritter</span>
+            <br class="visible-xs">
+            <span class="badge">5</span>
+          </a>
+
+          <a href="#" class="btn btn-info active text-center">
+            <span class="glyphicon glyphicon-search hidden-xs hidden-sm"></span> 
+            <span>Søgninger</span>
+            <br class="visible-xs">
+            <span class="badge">4</span>
+          </a>
+
+          <a href="#" class="btn btn-info text-center">
+            <span class="glyphicon glyphicon-warning-sign"></span>
+            <br class="visible-xs"> 
+            <span>Gebyrer</span>
+          </a>
+        
         </div>
-    </div>
-</nav>
+      </div>
+    </nav>
 
 <section id="content">
     <div class="container">
@@ -115,7 +140,7 @@
         </div>
         <ul class="nav nav-tabs">
             <li class="active"><a href="#">Søgehistorie <span class="badge">3</span></a></li>
-            <li class="hide"><a href="#">Gemte søgninger og agenter</a></li>
+            <li><a href="#">Gemte søgninger og agenter <span class="badge">4</span></a></li>
         </ul>
         <div class="table-responsive panel-body tab-body">
             <table class="table table table-striped table-hover">
