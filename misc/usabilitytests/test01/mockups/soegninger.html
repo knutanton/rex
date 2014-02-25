@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap 101 Template</title>
+    <!-- KB Bootstrap -->
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.css" rel="stylesheet">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <style type="text/css">
+        .navbar-kb{
+            padding-top:20px;
+            border-radius: 0px;
+            background: #FFF;
+            border:none;
+        }
+    </style>
+</head>
+<body>
+<header>
+
+    <nav class="navbar navbar-default navbar-kb" role="navigation">
+        <div class="container">
+
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="glyphicon glyphicon-user"><span class="caret"></span></span>
+                </button>
+                <a class="navbgar-brand" href="#">
+                    <img src="img/logo.png" class="hidden-xs" alt="Det Kongelige Bibliotek">
+                    <img src="img/logoSmall.png" class="visible-xs" alt="Det Kongelige Bibliotek">
+                </a>
+            </div>
+
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+
+
+
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="visible-xs"><a href="indstillinger.html"><span class="glyphicon glyphicon-cog"></span> Indstillinger</a></li>
+                    <li  class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <span class="glyphicon glyphicon-flag"></span>
+                            <span class="hidden-sm">Language</span>
+                            <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">Dansk</a></li>
+                            <li><a href="#">English</a></li>
+                        </ul>
+                    </li>
+
+                    <li>
+
+                        <button type="button" class="btn btn-primary navbar-btn hidden-xs"><span class="glyphicon glyphicon-user"></span> Ny bruger</button>
+                        <button type="button" class="btn btn-success navbar-btn hidden-xs"><span class="glyphicon glyphicon-lock"></span> Log ind</button>
+                    </li>
+                </ul>
+
+                <button type="button" class="btn btn-primary navbar-btn visible-xs pull-right"><span class="glyphicon glyphicon-user"></span> Ny bruger</button>
+                <button type="button" class="btn btn-success navbar-btn visible-xs pull-right"><span class="glyphicon glyphicon-lock"></span> Log ind</button>
+
+            </div>
+
+        </div>
+    </nav>
+
+</header>
+
+<nav class="bg-info">
+    <div class="container">
+
+        <div class="btn-group btn-group-justified" role="toolbar">
+
+
+            <a href="indstillinger.html" class="btn btn-info text-center hidden-xs">
+                <span class="glyphicon glyphicon-cog hidden-xs hidden-sm"></span>
+                <span>Indstillinger</span>
+                <br class="visible-xs">
+            </a>
+
+            <a href="#" class="btn btn-info text-center">
+                <span class="glyphicon glyphicon-star hidden-xs hidden-sm"></span>
+                <span>Favoritter</span>
+                <br class="visible-xs">
+                <span class="badge">5</span>
+            </a>
+
+            <a href="#" class="btn btn-info active text-center">
+                <span class="glyphicon glyphicon-search hidden-xs hidden-sm"></span>
+                <span>Søgninger</span>
+                <br class="visible-xs">
+                <span class="badge">3</span>
+            </a>
+
+        </div>
+    </div>
+</nav>
+
+<section id="content">
+    <div class="container">
+
+        <div class="page-header">
+            <h1><span class="glyphicon glyphicon-search"></span> Søgninger</h1>
+        </div>
+        <ul class="nav nav-tabs">
+            <li class="active"><a href="#">Søgehistorie <span class="badge">3</span></a></li>
+            <li class="hide"><a href="#">Gemte søgninger og agenter</a></li>
+        </ul>
+        <div class="table-responsive panel-body tab-body">
+            <table class="table table table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th>Nr</th>
+                        <th>Navn på søgning</th>
+                        <th class="hidden-xs">Dato</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><span class="badge">1</span></td>
+                        <td><a href="#" title="contains Steinar Kvale">Steinar Kvale</a></td>
+                        <td class="hidden-xs">ti 18:04:47</td>
+                    </tr>
+                    <tr>
+                        <td><span class="badge">2</span></td>
+                        <td><a href="#" title="contains Kafka">Kafka på stranden</a></td>
+                        <td class="hidden-xs">ti 18:09:11</td>
+                    </tr>
+                    <tr>
+                        <td><span class="badge">3</span></td>
+                        <td><a href="#" title="contains Murakami">Murakami</a></td>
+                        <td class="hidden-xs">ti 18:11:17</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+</section>
+
+<footer class="container">
+    <hr>
+
+    <div class="row hidden-print">
+        <div class="col-xs-12 col-sm-4">
+            <strong class="lead">REX</strong>
+            <ul class="list-unstyled">
+                <li><a href="http://www.kb.dk/da/REX/sider?codekitCB=401828938.835484">Hjælp / FAQ</a></li>
+                <li><a href="https://rex.kb.dk/F/?func=file&amp;file_name=find-b&amp;local_base=kgl01_rexclassic&amp;con_lng=DAN">REX Classic</a></li>
+                <li><a href="http://www.kb.dk/da/REX/sider/biblioteker.html">Biblioteker i REX-samarbejdet</a></li>
+                <li><a href="http://www.kb.dk/da/kub/service/sporgbib/forslag.html">Bogforslag</a></li>
+                <li><a title="Fandt du ikke hvad du søgte?" href="https://rex.kb.dk/userServices/menu/Order" target="_blank">Fandt du ikke hvad du søgte?</a></li>
+
+
+            </ul>
+        </div>
+
+        <hr class="visible-xs">
+
+        <div class="col-xs-12 col-sm-4">
+            <strong class="lead">DET KONGELIGE BIBLIOTEK</strong>
+            <ul class="list-unstyled">
+                <li><a href="http://www.kb.dk/da/kb/aabningstider/index.html">Åbningstider &amp; Adresser</a></li>
+                <li><a href="http://kontaktbiblioteket.kb.dk">Kontakt biblioteket</a></li>
+                <li><a href="http://www.kb.dk/da/kb/handicap/index.html">Handikap-information</a></li>
+                <li><a href="http://www.kb.dk/da/kb/webstedet/cookiepolitik.html">Cookie- og privatlivspolitik</a></li>
+                <li><a href="http://www.kb.dk/da/kb/webstedet/index.html">Om webstedet</a></li>
+            </ul>
+        </div>
+
+    </div>
+
+    <hr>
+
+    <address>
+        <p>
+            <strong>
+                Det Kongelige Bibliotek<br>
+                Nationalbibliotek og Københavns Universitetsbibliotek
+            </strong>
+            <small>
+                <br>
+                Søren Kierkegaards Plads 1 - 1219 København K - EAN: 5798 000795297 - <abbr title="Telefon nr.">Tlf: </abbr>+45 33 47 47 47 - E-mail <a href="mailto:kb@kb.dk">kb@kb.dk</a>
+                <br>
+                <span class="glyphicon glyphicon-thumbs-up"></span> <a href="https://www.facebook.com/DetKongeligeBibliotek" target="_blank">Følg os på Facebook</a>
+            </small>
+        </p>
+    </address>
+
+</footer>
+
+
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="js/bootstrap.min.js"></script>
+</body>
+</html>
