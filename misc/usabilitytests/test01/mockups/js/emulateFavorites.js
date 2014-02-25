@@ -1,19 +1,43 @@
 // Include this file to hook up stars with the number badge in the top bar (counting up and down on click).
 $(document).ready(function () {
     var stars = $('.EXLMyShelfStar a'),
-        favoritesBadge = $($('.topNavBar a .badge')[0]);
+        favoritesBadge = $($('.topNavBar a .badge')[0]),
+        allStar = $('.EXLFacetSaveToEShelfAction a');
 
     var favInc = function () { favoritesBadge.text(parseInt(favoritesBadge.text(),10) + 1); }
     var favDec = function () { favoritesBadge.text(parseInt(favoritesBadge.text(),10) - 1); }
-
-    stars.bind('click', function () {
-        var icon = $(this).find('.glyphicon');
+    var starToggle = function (star) {
+        var icon = $(star).find('.glyphicon');
         if (icon.hasClass('glyphicon-star-empty')) {
             icon.removeClass('glyphicon-star-empty').addClass('glyphicon-star');
             favInc();
         } else {
             icon.removeClass('glyphicon-star').addClass('glyphicon-star-empty');
             favDec();
+        }
+    }
+
+    stars.bind('click', function () {
+        starToggle(this);
+        return false;
+    });
+
+    allStar.bind('click', function () {
+        var icon = $(this).find('.glyphicon');
+        if (icon.hasClass('glyphicon-star-empty')) {
+            icon.removeClass('glyphicon-star-empty').addClass('glyphicon-star');
+            $.each(stars, function (index, star) {
+                if ($(star).find('.glyphicon').hasClass('glyphicon-star-empty')) {
+                    starToggle(star);
+                }
+            });
+        } else {
+            icon.removeClass('glyphicon-star').addClass('glyphicon-star-empty');
+            $.each(stars, function (index, star) {
+                if ($(star).find('.glyphicon').hasClass('glyphicon-star')) {
+                    starToggle(star);
+                }
+            });
         }
         return false;
     });
