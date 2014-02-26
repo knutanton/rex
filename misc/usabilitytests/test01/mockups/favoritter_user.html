@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap 101 Template</title>
+    <!-- KB Bootstrap -->
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.css" rel="stylesheet">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('label.tree-toggler').click(function () {
+                $(this).parent().children('ul.tree').toggle(300);
+            });
+        });
+    </script>
+
+    <style type="text/css">
+        .navbar-kb{
+            padding-top:20px;
+            border-radius: 0px;
+            background: #FFF;
+            border:none;
+        }
+            /* .bg-info{
+              background:#777;
+            }
+            .bg-info .btn-info{
+              background:#777;
+              border-color:#777;
+            }
+            .bg-info .badge{
+              color:#777;
+            }*/
+    </style>
+</head>
+<body>
+    <header>
+
+      <nav class="navbar navbar-default navbar-kb" role="navigation">
+        <div class="container">
+        
+          <div class="navbar-header">   
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="glyphicon glyphicon-user"><span class="caret"></span></span>
+            </button>
+            <a class="navbgar-brand" href="#">
+              <img src="img/logo.png" class="hidden-xs" alt="Det Kongelige Bibliotek">
+              <img src="img/logoSmall.png" class="visible-xs" alt="Det Kongelige Bibliotek">
+            </a>
+          </div>
+
+          <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+
+            <p class="navbar-text visible-xs">
+              <strong>Kasper Andersen</strong>
+            </p>
+
+            <ul class="nav navbar-nav navbar-right">
+              <li class="visible-xs"><a href="#"><span class="glyphicon glyphicon-cog"></span> Instillinger</a></li>
+              <li class="visible-xs"><a href="#"><span class="glyphicon glyphicon-credit-card"></span> Print konto</a></li>
+              <li  class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                  <span class="glyphicon glyphicon-flag"></span> 
+                  <span class="hidden-sm">Language</span>
+                  <span class="caret"></span>
+                </a>
+                <ul class="dropdown-menu">
+                  <li><a href="#">Dansk</a></li>
+                  <li><a href="#">English</a></li>
+                </ul>
+              </li>
+             
+              <li>
+                <button type="button" class="btn btn-danger navbar-btn hidden-xs" onclick="location.href='favoritter.html'; return true;"><span class="glyphicon glyphicon-off"></span> Log ud</button>
+              </li>
+            </ul>
+            <button type="button" class="btn btn-danger navbar-btn visible-xs pull-right" onclick="location.href='favoritter.html'; return true;"><span class="glyphicon glyphicon-off"></span> Log ud</button>
+
+          </div>
+
+        </div>
+      </nav>
+
+    </header>
+
+    <nav class="bg-info">
+      <div class="container">
+
+        <div class="btn-group btn-group-justified" role="toolbar">
+
+          <div class="btn-group hidden-xs">
+            <a href="" class="btn btn-info text-center dropdown-toggle" data-toggle="dropdown">
+              <span class="glyphicon glyphicon-user"></span> 
+              <span class="hidden-sm">Kasper Andersen</span> <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu" role="menu">
+              <li class="visible-sm btn-text"><p><strong>Kasper Andersen</strong></p></li>
+              <li class="divider visible-sm"></li>
+              <li><a href="indstillinger_user.html"><span class="glyphicon glyphicon-cog"></span> Instillinger</a></li>
+              <li><a href="#"><span class="glyphicon glyphicon-credit-card"></span> Print konto</a></li>
+            </ul>
+          </div>
+
+          <a href="hjemlaan_user.html" class="btn btn-info text-center">
+            <span class="glyphicon glyphicon-book hidden-xs hidden-sm"></span> 
+            <span>Hjemlån</span>
+            <br class="visible-xs">
+            <span class="badge">2</span>
+          </a>
+
+          <a href="bestillinger_user.html" class="btn btn-info text-center">
+            <span class="glyphicon glyphicon-time hidden-xs hidden-sm"></span> 
+            <span>Bestillinger</span>
+            <br class="visible-xs">
+            <span class="badge">3</span>
+          </a>
+
+          <a href="favoritter_user.html" class="btn btn-info active text-center">
+            <span class="glyphicon glyphicon-star hidden-xs hidden-sm"></span> 
+            <span>Favoritter</span>
+            <br class="visible-xs">
+            <span class="badge">6</span>
+          </a>
+
+          <a href="soegninger_user.html" class="btn btn-info text-center">
+            <span class="glyphicon glyphicon-search hidden-xs hidden-sm"></span> 
+            <span>Søgninger</span>
+            <br class="visible-xs">
+            <span class="badge">4</span>
+          </a>
+
+          <a href="gebyrer_user.html" class="btn btn-info text-center">
+            <span class="glyphicon glyphicon-warning-sign"></span>
+            <br class="visible-xs"> 
+            <span>Gebyrer</span>
+          </a>
+        
+        </div>
+      </div>
+    </nav>
+
+<section id="content">
+<div class="container">
+
+
+      <div class="page-header">
+        <h1><span class="glyphicon glyphicon-star"></span> Favoritter</h1>
+      </div>
+
+      <div class="row">
+        <div class="col-md-3">
+            <h3>
+                <span class="glyphicon glyphicon-folder-close"></span> Mapper
+            </h3>
+
+            <ul class="nav nav-pills nav-justified" style="background:#eeeeee;">
+                <li>
+                    <a href="" title="Ny">
+                        <img src="img/folders_new_but.gif">
+                        <span class="sr-only">Ny</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="" title="Omdøb">
+                        <img src="img/folders_rename_but_disabled.gif">
+                        <span class="sr-only">Omdøb</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="" title="Kopier">
+                        <img src="img/folders_move_but.gif">
+                        <span class="sr-only">Kopier</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="" title="Sæt ind">
+                        <img src="img/folders_copy_but.gif">
+                        <span class="sr-only">Sæt ind</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="" title="Slet">
+                        <img src="img/folders_delete_but_disabled.gif">
+                        <span class="sr-only">Slet</span>
+                    </a>
+                </li>
+
+            </ul>
+
+
+
+            <ul class="list-unstyled">
+                <li>
+                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" class="list-group-item active">
+                        <span class="glyphicon glyphicon-folder-close"></span>
+                        Mine Favoritter
+                        <span class="badge pull-right">6</span>
+                        <span class="glyphicon glyphicon-comment pull-right" style="padding-right: 5px"></span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="list-group-item">
+                        <span class="glyphicon glyphicon-folder-open"></span>
+                        Ny Mappe
+                        <span class="badge pull-right">0</span>
+                        <span class="glyphicon glyphicon-comment pull-right" style="padding-right: 5px"></span>
+                    </a>
+                </li>
+            </ul>
+
+        </div>
+
+        <div class="col-md-9">
+            <h3>
+                <span class="glyphicon glyphicon-folder-open"></span> Mine favoritter
+            </h3>
+
+              <ul class="nav nav-pills" style="background:#eeeeee;"  >
+                <li class="pull">
+                  <a href="" title="Kopier">
+                    <img src="img/item_copy_but.gif">
+                    <span class="sr-only">Kopier</span>
+                  </a>
+                </li>
+                <li>
+                  <a href="" title="Sæt ind">
+                    <img src="img/item_paste_but.gif">
+                    <span class="sr-only">Sæt ind</span>
+                  </a>
+                </li>
+                <li>
+                  <a href="" title="Slet">
+                    <img src="img/item_delete_but.gif">
+                    <span class="sr-only">Slet</span>
+                  </a>
+                </li>
+                <li class="dropdown pull-right">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                        Send til <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                      <li><a href="#">EndNote</a></li>
+                      <li><a href="#">RefWorks</a></li>
+                      <li><a href="#">del.icio.us</a></li>
+                      <li><a href="#">RIS</a></li>
+                      <li><a href="#">Kilde kode</a></li>
+                      <li class="divider"></li>
+                      <li><a href="#"><span class="glyphicon glyphicon-envelope"></span> E-mail</a></li>
+                      <li><a href="#"><span class="glyphicon glyphicon-print"></span> Print</a></li>
+                    </ul>
+                  </li>
+
+              </ul>
+
+          
+
+          <div class="table-responsive">
+            <table class="table table table-striped table-hover">
+              <thead>
+                <tr>
+                  <th><input type="checkbox"></th>
+                  <th>Type</th>
+                  <th>Titel</th>
+                  <th>Forfatter</th>
+                  <th>Noter</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>
+                      <input type="checkbox">
+                  </td>
+                  <td>
+                    Bog
+                  </td>
+                  <td>
+                    <a href="">The Japanization of modernity, Murakami Haruki between Japan and the United States</a>
+                  </td>
+                  <td>
+                      Suter, Rebecca
+                  </td>
+                  <td>
+                    <a href="" title="Note"><span class="glyphicon glyphicon-comment"></span></a>
+                  </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <input type="checkbox">
+                    </td>
+                    <td>
+                        Bog
+                    </td>
+                    <td>
+                        <a href="">Haruki Murakami</a>
+                    </td>
+                    <td>
+                        Høy Davidsen, Thomas
+                    </td>
+                    <td>
+                        <a href="" title="Note"><span class="glyphicon glyphicon-comment"></span></a>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <input type="checkbox">
+                    </td>
+                    <td>
+                        Bog
+                    </td>
+                    <td>
+                        <a href="">Hvad jeg taler om når jeg taler om at løbe</a>
+                    </td>
+                    <td>
+                        Murakami, Haruki
+                    </td>
+                    <td>
+                        <a href="" title="Note"><span class="glyphicon glyphicon-comment"></span></a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="checkbox">
+                    </td>
+                    <td>
+                        Bog
+                    </td>
+                    <td>
+                        <a href="">Murakami Haruki, sakuhin kenkyū jiten</a>
+                    </td>
+                    <td>
+                        Murakami Haruki Kenkyūkai
+                    </td>
+                    <td>
+                        <a href="" title="Note"><span class="glyphicon glyphicon-comment"></span></a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="checkbox">
+                    </td>
+                    <td>
+                        Bog
+                    </td>
+                    <td>
+                        <a href="">Rikucho shisōshi kenkyū, Murakami Yoshimi</a>
+                    </td>
+                    <td>
+                        Murakami, Yoshimi
+                    </td>
+                    <td>
+                        <a href="" title="Note"><span class="glyphicon glyphicon-comment"></span></a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="checkbox">
+                    </td>
+                    <td>
+                        Bog
+                    </td>
+                    <td>
+                        <a href="">村上春樹スタディーズ 2005-2007, Murakami Haruki studies</a>
+                    </td>
+                    <td>
+                        今井, 清人; Imai, Kiyoto
+                    </td>
+                    <td>
+                        <a href="" title="Note"><span class="glyphicon glyphicon-comment"></span></a>
+                    </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+
+
+        </div>
+      </div>
+
+      
+
+    </div>
+          </div>
+</section>
+
+    <footer class="container">
+      <hr>
+
+        <div class="row hidden-print">
+            <div class="col-xs-12 col-sm-4">
+                <strong class="lead">REX</strong>
+                <ul class="list-unstyled">
+                    <li><a href="http://www.kb.dk/da/REX/sider?codekitCB=401828938.835484">Hjælp / FAQ</a></li>
+                    <li><a href="https://rex.kb.dk/F/?func=file&amp;file_name=find-b&amp;local_base=kgl01_rexclassic&amp;con_lng=DAN">REX Classic</a></li>
+                    <li><a href="http://www.kb.dk/da/REX/sider/biblioteker.html">Biblioteker i REX-samarbejdet</a></li>
+                    <li><a href="http://www.kb.dk/da/kub/service/sporgbib/forslag.html">Bogforslag</a></li>
+                    <li><a title="Fandt du ikke hvad du søgte?" href="https://rex.kb.dk/userServices/menu/Order" target="_blank">Fandt du ikke hvad du søgte?</a></li>
+
+
+                </ul>
+            </div>
+
+            <hr class="visible-xs">
+
+            <div class="col-xs-12 col-sm-4">
+                <strong class="lead">DET KONGELIGE BIBLIOTEK</strong>
+                <ul class="list-unstyled">
+                    <li><a href="http://www.kb.dk/da/kb/aabningstider/index.html">Åbningstider &amp; Adresser</a></li>
+                    <li><a href="http://kontaktbiblioteket.kb.dk">Kontakt biblioteket</a></li>
+                    <li><a href="http://www.kb.dk/da/kb/handicap/index.html">Handikap-information</a></li>
+                    <li><a href="http://www.kb.dk/da/kb/webstedet/cookiepolitik.html">Cookie- og privatlivspolitik</a></li>
+                    <li><a href="http://www.kb.dk/da/kb/webstedet/index.html">Om webstedet</a></li>
+                </ul>
+            </div>
+
+        </div>
+
+        <hr>
+
+        <address>
+            <p>
+                <strong>
+                    Det Kongelige Bibliotek<br>
+                    Nationalbibliotek og Københavns Universitetsbibliotek
+                </strong>
+                <small>
+                    <br>
+                    Søren Kierkegaards Plads 1 - 1219 København K - EAN: 5798 000795297 - <abbr title="Telefon nr.">Tlf: </abbr>+45 33 47 47 47 - E-mail <a href="mailto:kb@kb.dk">kb@kb.dk</a>
+                    <br>
+                    <span class="glyphicon glyphicon-thumbs-up"></span> <a href="https://www.facebook.com/DetKongeligeBibliotek" target="_blank">Følg os på Facebook</a>
+                </small>
+            </p>
+        </address>
+       
+</footer>
+
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="js/bootstrap.min.js"></script>
+  </body>
+</html>
