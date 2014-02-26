@@ -15,6 +15,13 @@
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('label.tree-toggler').click(function () {
+                $(this).parent().children('ul.tree').toggle(300);
+            });
+        });
+    </script>
 
     <style type="text/css">
         .navbar-kb{
@@ -103,7 +110,7 @@
                 <span class="glyphicon glyphicon-star hidden-xs hidden-sm"></span>
                 <span>Favoritter</span>
                 <br class="visible-xs">
-                <span class="badge">5</span>
+                <span class="badge">6</span>
             </a>
 
             <a href="soegninger.html" class="btn btn-info text-center">
@@ -125,134 +132,233 @@
       </div>
 
       <div class="row">
-        <div class="col-md-4">
+        <div class="col-md-3">
+            <h3>
+                <span class="glyphicon glyphicon-folder-close"></span> Mapper
+            </h3>
 
-
-          <div class="btn-group">
-            <button type="button" class="btn btn-default text-center">
-              <span class="glyphicon glyphicon-plus"></span><br>
-              <span>Ny</span>  
-            </button>
-            <button type="button" class="btn btn-default text-center">
-              <span class="glyphicon glyphicon-pencil"></span><br>
-              <span>Omdøb</span>  
-            </button>
-            <button type="button" class="btn btn-default text-center">
-              <span class="glyphicon glyphicon-folder-close"></span><br>
-              <span>Kopier</span>  
-            </button>
-            <button type="button" class="btn btn-default text-center">
-              <span class="glyphicon glyphicon-plus"></span><br>
-              <span>Sæt ind</span>  
-            </button>
-            <button type="button" class="btn btn-default text-center">
-              <span class="glyphicon glyphicon-remove"></span><br>
-              <span>Slet</span>  
-            </button>
-          </div>
-
-          <ul class="list-unstyled">
-            <li>
-              <a href="#" class="list-group-item"><span class="glyphicon glyphicon-folder-open"></span> Mine Favoritter</a>
-              <ul class="list-unstyled">
+            <ul class="nav nav-pills nav-justified" style="background:#eeeeee;">
                 <li>
-                  <a href="#" class="list-group-item"><span class="glyphicon glyphicon-folder-open"></span> UX Arbejde</a>
+                    <a href="" title="Ny">
+                        <img src="img/folders_new_but.gif">
+                        <span class="sr-only">Ny</span>
+                    </a>
                 </li>
-              </ul>
-            </li>
-            <li>
-              <a href="#" class="list-group-item"><span class="glyphicon glyphicon-folder-open"></span> Ny Mappe</a>
-            </li>
-          </ul>
+                <li>
+                    <a href="" title="Omdøb">
+                        <img src="img/folders_rename_but_disabled.gif">
+                        <span class="sr-only">Omdøb</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="" title="Kopier">
+                        <img src="img/folders_move_but.gif">
+                        <span class="sr-only">Kopier</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="" title="Sæt ind">
+                        <img src="img/folders_copy_but.gif">
+                        <span class="sr-only">Sæt ind</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="" title="Slet">
+                        <img src="img/folders_delete_but_disabled.gif">
+                        <span class="sr-only">Slet</span>
+                    </a>
+                </li>
+
+            </ul>
+
+
+
+            <ul class="list-unstyled">
+                <li>
+                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" class="list-group-item active">
+                        <span class="glyphicon glyphicon-folder-close"></span>
+                        Mine Favoritter
+                        <span class="badge pull-right">6</span>
+                        <span class="glyphicon glyphicon-comment pull-right" style="padding-right: 5px"></span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="list-group-item">
+                        <span class="glyphicon glyphicon-folder-open"></span>
+                        Ny Mappe
+                        <span class="badge pull-right">0</span>
+                        <span class="glyphicon glyphicon-comment pull-right" style="padding-right: 5px"></span>
+                    </a>
+                </li>
+            </ul>
 
         </div>
-        <div class="col-md-8">
-          <ul class="nav nav-tabs bg-info" >
-            <li>
-              <a href="" class="btn btn-default">
-                <span class="glyphicon glyphicon-plus"></span><br>
-                <span>Kopier</span>  
-              </a>
-            </li>
-            <li>
-              <a href="" class="btn btn-default">
-                <span class="glyphicon glyphicon-plus"></span><br>
-                <span>Sæt ind</span>  
-              </a>
-            </li>
-            <li>
-              <a href="" class="btn btn-default">
-                <span class="glyphicon glyphicon-plus"></span><br>
-                <span>Slet</span>  
-              </a>
-            </li>
-            <li>
-              <div class="btn-group">
-                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                  Send til <span class="caret"></span>
-                </button>
-                <ul class="dropdown-menu">
-                  <li><a href="#">EndNote</a></li>
-                  <li><a href="#">RefWorks</a></li>
-                  <li><a href="#">del.icio.us</a></li>
-                  <li><a href="#">RIS</a></li>
-                  <li><a href="#">Kilde kode</a></li>
-                  <li class="divider"></li>
-                  <li><a href="#"><span class="glyphicon glyphicon-envelope"></span> E-mail</a></li>
-                  <li><a href="#"><span class="glyphicon glyphicon-print"></span> Print</a></li>
-                </ul>
-              </div>
-              <a href="" class="btn btn-default">
-                <span class="glyphicon glyphicon-plus"></span><br>
-                <span>E-mail</span>  
-              </a>
-            </li>
-            <li>
-              <a href="" class="btn btn-default">
-                <span class="glyphicon glyphicon-plus"></span><br>
-                <span>Print</span>  
-              </a>
-            </li>
-          </ul>
+
+        <div class="col-md-9">
+            <h3>
+                <span class="glyphicon glyphicon-folder-open"></span> Mine favoritter
+            </h3>
+
+              <ul class="nav nav-pills" style="background:#eeeeee;"  >
+                <li class="pull">
+                  <a href="" title="Kopier">
+                    <img src="img/item_copy_but.gif">
+                    <span class="sr-only">Kopier</span>
+                  </a>
+                </li>
+                <li>
+                  <a href="" title="Sæt ind">
+                    <img src="img/item_paste_but.gif">
+                    <span class="sr-only">Sæt ind</span>
+                  </a>
+                </li>
+                <li>
+                  <a href="" title="Slet">
+                    <img src="img/item_delete_but.gif">
+                    <span class="sr-only">Slet</span>
+                  </a>
+                </li>
+                <li class="dropdown pull-right">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                        Send til <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                      <li><a href="#">EndNote</a></li>
+                      <li><a href="#">RefWorks</a></li>
+                      <li><a href="#">del.icio.us</a></li>
+                      <li><a href="#">RIS</a></li>
+                      <li><a href="#">Kilde kode</a></li>
+                      <li class="divider"></li>
+                      <li><a href="#"><span class="glyphicon glyphicon-envelope"></span> E-mail</a></li>
+                      <li><a href="#"><span class="glyphicon glyphicon-print"></span> Print</a></li>
+                    </ul>
+                  </li>
+
+              </ul>
+
           
 
           <div class="table-responsive">
             <table class="table table table-striped table-hover">
               <thead>
                 <tr>
-                  <th>Nr</th>
+                  <th><input type="checkbox"></th>
                   <th>Type</th>
                   <th>Titel</th>
                   <th>Forfatter</th>
-                  <th>Status</th>
-                  <th>Afhentningssted</th>
+                  <th>Noter</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
                   <td>
-                    <span class="badge">1</span>
+                      <input type="checkbox">
                   </td>
                   <td>
-                    ILL bestilling
+                    Bog
                   </td>
                   <td>
-                    <a href="">[Rocket surgery made easy : the do-it-yourself guide to finding and fixing
-                    usability problems : Voice]</a>
+                    <a href="">The Japanization of modernity, Murakami Haruki between Japan and the United States</a>
                   </td>
                   <td>
-                    Krug, Steve
+                      Suter, Rebecca
                   </td>
                   <td>
-                    Udlånt til låner
+                    <a href="" title="Note"><span class="glyphicon glyphicon-comment"></span></a>
                   </td>
-                  <td>
-                    Diamanten, Hjemlån
-                  </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <input type="checkbox">
+                    </td>
+                    <td>
+                        Bog
+                    </td>
+                    <td>
+                        <a href="">Haruki Murakami</a>
+                    </td>
+                    <td>
+                        Høy Davidsen, Thomas
+                    </td>
+                    <td>
+                        <a href="" title="Note"><span class="glyphicon glyphicon-comment"></span></a>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <input type="checkbox">
+                    </td>
+                    <td>
+                        Bog
+                    </td>
+                    <td>
+                        <a href="">Hvad jeg taler om når jeg taler om at løbe</a>
+                    </td>
+                    <td>
+                        Murakami, Haruki
+                    </td>
+                    <td>
+                        <a href="" title="Note"><span class="glyphicon glyphicon-comment"></span></a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="checkbox">
+                    </td>
+                    <td>
+                        Bog
+                    </td>
+                    <td>
+                        <a href="">Murakami Haruki, sakuhin kenkyū jiten</a>
+                    </td>
+                    <td>
+                        Murakami Haruki Kenkyūkai
+                    </td>
+                    <td>
+                        <a href="" title="Note"><span class="glyphicon glyphicon-comment"></span></a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="checkbox">
+                    </td>
+                    <td>
+                        Bog
+                    </td>
+                    <td>
+                        <a href="">Rikucho shisōshi kenkyū, Murakami Yoshimi</a>
+                    </td>
+                    <td>
+                        Murakami, Yoshimi
+                    </td>
+                    <td>
+                        <a href="" title="Note"><span class="glyphicon glyphicon-comment"></span></a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="checkbox">
+                    </td>
+                    <td>
+                        Bog
+                    </td>
+                    <td>
+                        <a href="">村上春樹スタディーズ 2005-2007, Murakami Haruki studies</a>
+                    </td>
+                    <td>
+                        今井, 清人; Imai, Kiyoto
+                    </td>
+                    <td>
+                        <a href="" title="Note"><span class="glyphicon glyphicon-comment"></span></a>
+                    </td>
                 </tr>
               </tbody>
             </table>
           </div>
+
+
 
         </div>
       </div>
