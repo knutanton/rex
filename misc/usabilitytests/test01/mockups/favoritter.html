@@ -1,94 +1,123 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Bootstrap 101 Template</title>
-
+    <!-- KB Bootstrap -->
     <!-- Bootstrap -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/bootstrap.css" rel="stylesheet">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-  </head>
-  <body>
 
-    
-    
+    <style type="text/css">
+        .navbar-kb{
+            padding-top:20px;
+            border-radius: 0px;
+            background: #FFF;
+            border:none;
+        }
+            /* .bg-info{
+              background:#777;
+            }
+            .bg-info .btn-info{
+              background:#777;
+              border-color:#777;
+            }
+            .bg-info .badge{
+              color:#777;
+            }*/
+    </style>
+</head>
+<body>
+<header>
+
+    <nav class="navbar navbar-default navbar-kb" role="navigation">
+        <div class="container">
+
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="glyphicon glyphicon-user"><span class="caret"></span></span>
+                </button>
+                <a class="navbgar-brand" href="#">
+                    <img src="img/logo.png" class="hidden-xs" alt="Det Kongelige Bibliotek">
+                    <img src="img/logoSmall.png" class="visible-xs" alt="Det Kongelige Bibliotek">
+                </a>
+            </div>
+
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+
+
+
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="visible-xs"><a href="indstillinger.html"><span class="glyphicon glyphicon-cog"></span> Indstillinger</a></li>
+                    <li  class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <span class="glyphicon glyphicon-flag"></span>
+                            <span class="hidden-sm">Language</span>
+                            <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">Dansk</a></li>
+                            <li><a href="#">English</a></li>
+                        </ul>
+                    </li>
+
+                    <li>
+
+                        <button type="button" class="btn btn-primary navbar-btn hidden-xs"><span class="glyphicon glyphicon-user"></span> Ny bruger</button>
+                        <button type="button" class="btn btn-success navbar-btn hidden-xs"><span class="glyphicon glyphicon-lock"></span> Log ind</button>
+                    </li>
+                </ul>
+
+                <button type="button" class="btn btn-primary navbar-btn visible-xs pull-right"><span class="glyphicon glyphicon-user"></span> Ny bruger</button>
+                <button type="button" class="btn btn-success navbar-btn visible-xs pull-right"><span class="glyphicon glyphicon-lock"></span> Log ind</button>
+
+            </div>
+
+        </div>
+    </nav>
+
+</header>
+
+<nav class="bg-info">
     <div class="container">
 
-      <header>
-        <div class="row">
-          <div class="col-xs-8">
-            <h1 class="sr-only">Det Kongelige Bibliotek</h1>
-            <img src="img/logo.png" class="img-responsive" alt="Det Kongelige Bibliotek">
-          </div>
-          <div class="col-xs-4">
-            <div class="btn-group pull-right">
-              <a href="" class="btn btn-default">Log ud</a>
-              <div class="btn-group">
-                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                  Language
-                  <span class="caret"></span>
-                </button>
-                <ul class="dropdown-menu">
-                  <li><a href="#">Dansk</a></li>
-                  <li><a href="#">English</a></li>
-                </ul>
-              </div>
-            </div>
-          </div>
+        <div class="btn-group btn-group-justified" role="toolbar">
+
+
+            <a href="indstillinger.html" class="btn btn-info text-center hidden-xs">
+                <span class="glyphicon glyphicon-cog hidden-xs hidden-sm"></span>
+                <span>Indstillinger</span>
+                <br class="visible-xs">
+            </a>
+
+            <a href="#" class="btn btn-info text-center active">
+                <span class="glyphicon glyphicon-star hidden-xs hidden-sm"></span>
+                <span>Favoritter</span>
+                <br class="visible-xs">
+                <span class="badge">5</span>
+            </a>
+
+            <a href="soegninger.html" class="btn btn-info text-center">
+                <span class="glyphicon glyphicon-search hidden-xs hidden-sm"></span>
+                <span>Søgninger</span>
+                <br class="visible-xs">
+                <span class="badge">3</span>
+            </a>
+
         </div>
-      </header>
-
-      <nav class="navbar navbar-default" role="navigation">
-        <div class="container-fluid">
-          <!-- Brand and toggle get grouped for better mobile display -->
-          <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-              <span class="sr-only">Toggle navigation</span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-            </button>
-            <span class="navbar-brand visible-xs"><span class="glyphicon glyphicon-user"></span> Kasper Andersen</span>
-            
-
-          </div>
-          <!-- Collect the nav links, forms, and other content for toggling -->
-         
-
-          <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-
-            <ul class="nav navbar-nav">
-              <li class="dropdown hidden-xs">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-user"></span> Kasper Andersen <b class="caret"></b></a>
-                <ul class="dropdown-menu">
-                  <li><a href="#">Instillinger</a></li>
-                  <li class="divider"></li>
-                  <li><a href="#">Gebyrer</a></li>
-                  <li><a href="#">Print konto</a></li>
-                </ul>
-              </li>
-              
-              <li class="divider"></li>
-              <li><a href="#">Hjemlån <span class="badge">2</span></a></li>
-              <li><a href="#">Bestillinger <span class="badge">1</span></a></li>
-              <li class="active"><a href="#">Favoritter <span class="badge">4</span></a></li>
-              <li><a href="#">Søgninger <span class="badge">2</span></a></li>
-              <li class="visible-xs"><a href="#">Gebyrer</a></li>
-              <li class="visible-xs"><a href="#">Print konto</a></li>
-              <li class="visible-xs"><a href="#">Instillinger</a></li>
-            </ul>
-
-          </div><!-- /.navbar-collapse -->
-        </div><!-- /.container-fluid -->
-      </nav>
+    </div>
+</nav>
+<section id="content">
+<div class="container">
 
 
       <div class="page-header">
@@ -97,37 +126,7 @@
 
       <div class="row">
         <div class="col-md-4">
-          <div class="panel panel-default">
-              <div class="panel-heading">
-                <h4 class="panel-title">
-                  <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" class=""><span class="glyphicon glyphicon-folder-close">
-                    </span>Content</a>
-                </h4>
-              </div>
-              <div id="collapseOne" class="panel-collapse collapse in" style="height: auto;">
-                <ul class="list-group">
-                  <li class="list-group-item"><span class="glyphicon glyphicon-pencil text-primary"></span><a href="http://fb.com/moinakbarali">Articles</a>
-                    <ul class="list-group">
-                      <li class="list-group-item"><span class="glyphicon glyphicon-pencil text-primary"></span><a href="http://fb.com/moinakbarali">Articles</a></li>
 
-                      <li class="list-group-item"><span class="glyphicon glyphicon-flash text-success"></span><a href="http://fb.com/moinakbarali">News</a></li>
-
-                      <li class="list-group-item"><span class="glyphicon glyphicon-file text-info"></span><a href="http://fb.com/moinakbarali">Newsletters</a></li>
-
-                      <li class="list-group-item"> <span class="glyphicon glyphicon-comment text-success"></span><a href="http://fb.com/moinakbarali">Comments</a><span class="badge">42</span></li>
-
-                    </ul>
-                  </li>
-
-                  <li class="list-group-item"><span class="glyphicon glyphicon-flash text-success"></span><a href="http://fb.com/moinakbarali">News</a></li>
-
-                  <li class="list-group-item"><span class="glyphicon glyphicon-file text-info"></span><a href="http://fb.com/moinakbarali">Newsletters</a></li>
-
-                  <li class="list-group-item"> <span class="glyphicon glyphicon-comment text-success"></span><a href="http://fb.com/moinakbarali">Comments</a><span class="badge">42</span></li>
-
-                </ul>
-              </div>
-            </div>
 
           <div class="btn-group">
             <button type="button" class="btn btn-default text-center">
@@ -261,6 +260,8 @@
       
 
     </div>
+          </div>
+</section>
 
     <footer class="container">
       <hr>
