@@ -9,10 +9,10 @@ $(document).ready(function () {
     var starToggle = function (star) {
         var icon = $(star).find('.glyphicon');
         if (icon.hasClass('glyphicon-star-empty')) {
-            icon.removeClass('glyphicon-star-empty').addClass('glyphicon-star');
+            icon.removeClass('glyphicon-star-empty').addClass('glyphicon-star yellow');
             favInc();
         } else {
-            icon.removeClass('glyphicon-star').addClass('glyphicon-star-empty');
+            icon.removeClass('glyphicon-star yellow').addClass('glyphicon-star-empty');
             favDec();
         }
     }
@@ -25,14 +25,14 @@ $(document).ready(function () {
     allStar.bind('click', function () {
         var icon = $(this).find('.glyphicon');
         if (icon.hasClass('glyphicon-star-empty')) {
-            icon.removeClass('glyphicon-star-empty').addClass('glyphicon-star');
+            icon.removeClass('glyphicon-star-empty').addClass('glyphicon-star yellow');
             $.each(stars, function (index, star) {
                 if ($(star).find('.glyphicon').hasClass('glyphicon-star-empty')) {
                     starToggle(star);
                 }
             });
         } else {
-            icon.removeClass('glyphicon-star').addClass('glyphicon-star-empty');
+            icon.removeClass('glyphicon-star yellow').addClass('glyphicon-star-empty');
             $.each(stars, function (index, star) {
                 if ($(star).find('.glyphicon').hasClass('glyphicon-star')) {
                     starToggle(star);
