@@ -1,0 +1,8 @@
+[Det som står i dette dokument skal arbejdes sammen med det sæt spørgsmål Karen og Ditte har udarbejdet for test 1, så intervieweren kan have den med som huskeliste over ting som skal gennemgåes ved hvert spørgsmål før brugeren går videre til næste step]
+
+Inden log in:
+
+2) Når der skal markeres favoritter, kan brugeren både bruge [Tilføj side til favoritter] og scrolle ned ad siden for at markere hver enkel post som favorit.
+Lægger brugeren mærke til favorit badgen i top barren? Hvis de bruger [Tilføj side til favoritter], er de så i tvivl om det er siden eller alle de fundne poster der bliver markeret?
+
+
