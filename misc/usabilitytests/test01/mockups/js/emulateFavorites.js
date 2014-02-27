@@ -1,7 +1,8 @@
 // Include this file to hook up stars with the number badge in the top bar (counting up and down on click).
+// TopNavBar needs a class .topNavBar and favorites badge needs a class .favorites for this to function.
 $(document).ready(function () {
     var stars = $('.EXLMyShelfStar a'),
-        favoritesBadge = $($('.topNavBar a .badge')[0]),
+        favoritesBadge = $($('.topNavBar a .badge.favorites')[0]),
         allStar = $('.EXLFacetSaveToEShelfAction a');
 
     var favInc = function () { favoritesBadge.text(parseInt(favoritesBadge.text(),10) + 1); }
@@ -16,6 +17,9 @@ $(document).ready(function () {
             favDec();
         }
     }
+
+    allStar.attr('onclick',null);
+    stars.attr('onclick', null);
 
     stars.bind('click', function () {
         starToggle(this);
