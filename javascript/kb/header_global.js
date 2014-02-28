@@ -697,7 +697,7 @@ function removeUnWantedContent() {
 
         var currCssLink = $("link[href*='primo_library_css.css']").attr("href");
         //alert(currCssLink);
-        var newCssLink = currCssLink.replace("../wro/primo_library_css.css?", "/primo_library/libweb/sites/kb/dev01/css/KGL.css");
+        var newCssLink = currCssLink.replace("../wro/primo_library_css.css?", "/primo_library/libweb/sites/kb/KGL/css/KGL.css");
         $("link[href*='primo_library_css.css']").attr("href", newCssLink);
 
     }
