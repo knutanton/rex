@@ -154,12 +154,12 @@
 													<c:choose>
 														<c:when test="${fn:escapeXml(searchForm.values[input.id]) == ''}">
                                                             <div class="col-xs-4 col-md-4">
-                                                                <input type="text" class="form-control input-sm" id="input_${input.id}" name="vl(${input.id})" value="<fmt:message key="search-advanced.DateRange.label.Year" />" />
+                                                                <input type="text" class="form-control input-sm" id="input_${input.id}" name="vl(${input.id})" placeholder="<fmt:message key="search-advanced.DateRange.label.Year" />" />
 														    </div>
                                                         </c:when>
 														<c:otherwise>
                                                             <div class="col-xs-4 col-md-4">
-															    <input type="text" class="form-control input-sm"  id="input_${input.id}" name="vl(${input.id})" value="${fn:escapeXml(searchForm.values[input.id])}" />
+															    <input type="text" class="form-control input-sm"  id="input_${input.id}" name="vl(${input.id})" placeholder="${fn:escapeXml(searchForm.values[input.id])}" />
 														    </div>
                                                         </c:otherwise>
 													</c:choose>
@@ -190,13 +190,13 @@
 														<c:when test="${fn:escapeXml(searchForm.values[input.id]) == ''}">
                                                             <div class="col-xs-4 col-md-4">
                                                                 <input type="text" class="form-control input-sm"
-                                                                       id="input_${input.id}" name="vl(${input.id})" value="<fmt:message key="search-advanced.DateRange.label.Year" />" />
+                                                                       id="input_${input.id}" name="vl(${input.id})" placeholder="<fmt:message key="search-advanced.DateRange.label.Year" />" />
 														    </div>
                                                         </c:when>
 														<c:otherwise>
                                                             <div class="col-xs-4 col-md-4">
 															    <input type="text" class="form-control input-sm"
-                                                                       id="input_${input.id}" name="vl(${input.id})" value="${fn:escapeXml(searchForm.values[input.id])}" />
+                                                                       id="input_${input.id}" name="vl(${input.id})" placeholder="${fn:escapeXml(searchForm.values[input.id])}" />
 														    </div>
                                                         </c:otherwise>
 													</c:choose>
