@@ -105,7 +105,7 @@
                 <span class="glyphicon glyphicon-star hidden-xs hidden-sm"></span>
                 <span>Favoritter</span>
                 <br class="visible-xs">
-                <span class="badge">0</span>
+                <span class="badge favorites">0</span>
             </a>
 
             <a href="soegninger.html" class="btn btn-info text-center">
@@ -230,7 +230,7 @@
         <li id="exlidTab1" class="EXLSearchTab ">
                             <span id="defaultScopeartikler" style="display:none">
                                 Artikler</span>
-            <a href="search.do?mode=Basic&amp;vid=preview&amp;vl(freeText0)=murakami&amp;fn=search&amp;tab=artikler&amp;" class="EXLSearchTabTitle EXLSearchTabLABELArtikler" target="_self" onclick="getSearchField(this,'Basic'); delay4Remote('local','true ','artikler')" title="tooltip">
+            <a href="#" class="EXLSearchTabTitle EXLSearchTabLABELArtikler" target="_self" onclick="getSearchField(this,'Basic'); delay4Remote('local','true ','artikler')" title="tooltip">
                 <span>Artikler</span>
             </a>
         </li>
@@ -245,7 +245,7 @@
                 <input name="vl(freeText0)" class=" form-control" value="murakami" id="search_field" type="text" accesskey="s">
 
                 <div class="EXLSearchFieldRibbonFormSubmitSearch input-group-btn">
-                    <button id="goButton" type="submit" value="Søg" class="submit btn btn-primary" accesskey="g">
+                    <button id="goButton" type="submit" value="Søg" class="submit btn btn-primary" onclick="return false;" accesskey="g">
                         <span class="glyphicon glyphicon-search "></span>
                         <span class="collapse">
                             Søg</span>
@@ -620,10 +620,10 @@
     </div>
     <!-- searchLimitsTile.jsp end -->
     <div class="EXLSearchFieldRibbonAdvancedSearchLink">
-        <a class=" btn btn-primary btn-sm" title="Få flere søgemuligheder" href="search.do?mode=Advanced&amp;ct=AdvancedSearch&amp;dscnt=0&amp;scp.scps=scope%3A(KGL)%2Cscope%3A(SARPUR)&amp;frbg=&amp;vl(775288370UI1)=all_items&amp;tab=default_tab&amp;dstmp=1393322712511&amp;srt=rank&amp;ct=search&amp;&amp;dum=true&amp;tb=t&amp;indx=1&amp;vl(1UIStartWith0)=contains&amp;vl(freeText0)=murakami&amp;vl(764636375UI0)=any&amp;fn=search&amp;vid=preview" id="advancedSearchBtn">
+        <a class=" btn btn-primary btn-sm" title="Få flere søgemuligheder" href="#" id="advancedSearchBtn">
             Avanceret søgning</a>
 
-        <a href="/primo_library/libweb/action/search.do?menuitem=0" class="btn btn-primary btn-sm" title="mainmenu.label.ny_søgning" target="_self">Ny søgning</a>
+        <a href="#" class="btn btn-primary btn-sm" title="mainmenu.label.ny_søgning" target="_self">Ny søgning</a>
     </div>
     <br>
 
