@@ -2,7 +2,7 @@
 $(document).ready(function () {
     var stars = $('.EXLMyShelfStar a'),
         favoritesBadge = $($('.topNavBar a .badge')[0]),
-        allStar = $('.EXLFacetSaveToEShelfAction a');
+        allStar = $('.EXLFacetSaveToEShelfAction');
 
     var favInc = function () { favoritesBadge.text(parseInt(favoritesBadge.text(),10) + 1); }
     var favDec = function () { favoritesBadge.text(parseInt(favoritesBadge.text(),10) - 1); }
