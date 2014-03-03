@@ -1,0 +1,8 @@
+{
+  "name": "REX_pipeline_test",
+  "description": "Great project",
+  "version": "0.0.1",
+  "devDependencies": {
+    "dalekjs": "0.0.8"
+  }
+}

@@ -1,7 +1,7 @@
 // Include this file to hook up stars with the number badge in the top bar (counting up and down on click).
 $(document).ready(function () {
     var stars = $('.EXLMyShelfStar a'),
-        favoritesBadge = $($('.topNavBar a .badge')[0]),
+        favoritesBadge = $($('.topNavBar a .badge.favorites')[0]),
         allStar = $('.EXLFacetSaveToEShelfAction');
 
     var favInc = function () { favoritesBadge.text(parseInt(favoritesBadge.text(),10) + 1); }

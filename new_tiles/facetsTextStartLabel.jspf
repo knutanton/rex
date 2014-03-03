@@ -1,0 +1,14 @@
+
+		
+		
+		<%--Format date in the case we need to display them --%>
+		<%-- <c:set var="displayValue" value="${facetValue.KEY}"/>  changed by the next line for filtering --%>
+		<c:set var="displayValue" value='${facetValue.KEY}' />
+
+		<c:if test="${facetField == c_facet_creationdate}">
+			<c:set var="displayValue">
+				<%=com.exlibris.primo.srvinterface.FacetResultDTO.formatRangeDates(((com.exlibris.jaguar.xsd.search.FACETVALUESDocument.FACETVALUES)pageContext.getAttribute("facetValue")).getKEY(),request, "startDate")%>
+			</c:set>
+		</c:if>
+		<c:set var="displayValue" value='${fmt:clearLangSuffix(facetField, displayValue)}'/>
+

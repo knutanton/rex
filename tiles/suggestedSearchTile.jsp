@@ -3,12 +3,12 @@
 <c:if test="${form.searchResult.numberOfResults>0 and form.facetResult.displayRelatedFacets}" >
 
 
-<div id="exlidSuggestedList" class="EXLFacetList panel panel-info">
-    <div class="panel-heading">
-        <h3 class="EXLSuggestedSearchesTitle panel-title"><fmt:message key='related.label.title'/></h3>
-    </div>
-    <div class="panel-body ">
-	<a name="suggested"></a>
+    <div id="exlidSuggestedList" class="EXLFacetList panel panel-info">
+        <div class="panel-heading">
+            <h3 class="EXLSuggestedSearchesTitle panel-title"><fmt:message key='related.label.title'/> </h3>
+        </div>
+        <div class="panel-body">
+            <a name="suggested"></a>
 
 	<%--defect #1934 --%>
 	<c:set var="mediatypeComponetId" value="${form.componentType2ComponentIds[c_ctype_mediatype][0]}"/>
@@ -20,21 +20,10 @@
 			<c:set value='${form.facetResult.relatedFacets[facetField]}' var="facet" />
 			<c:if test="${not empty facet && not empty facet.facetValues}">
 				<div class="EXLFacetContainer EXLRelatedSearchTopic EXLRelatedSearchTopicFIELD${facetField}">
-<c:if test="${facetIndex.index==0}">
-
-	<!--<span class="EXLSuggestedSearchesDescription"><fmt:message key='related.label.description'/></span>-->
-
-
-           <!--<div class="EXLFacetContainer">
-               <ol class="EXLFacetsList">
-				<li class="EXLFacet">
-					<html:checkbox name="searchForm"  property="pcAvailabiltyMode" styleClass="uncheckable" styleId="pcAvailabiltyMode" onclick="location.replace('${fn:escapeXml(pc_avail_url)}');" />
-								&nbsp;&nbsp;<label for="pcAvailabilityMode"><fmt:message key="expandresults"/></label>
-				</li>
-		    </ol>
-           </div>-->
-       
-</c:if>
+<%--<c:if test="${facetIndex.index==0}">
+	<h3 class="EXLSuggestedSearchesTitle"><fmt:message key='related.label.title'/> </h3>
+	<span class="EXLSuggestedSearchesDescription"><fmt:message key='related.label.description'/></span>
+</c:if>--%>
 				<%--Facet Title e.g: On this subject --%>
 
                     <div class="col-md-6">
@@ -86,12 +75,12 @@
 									<%--defect #1934 --%>
 								 </c:url>
 
-							<li class="EXLRelatedSearch EXLRelatedSearchKEY${facetValue.KEY}">
+							<li class="EXLRelatedSearch EXLRelatedSearchKEY${fn:escapeXml(facetValue.KEY)}">
 								<a href="${fn:escapeXml(new_search_url)}" onclick="if(isRemoteSearch()){suggestedPleaseWait('${fmt:safeHTMLEntitiesEncode(displayValue)}');}">${fmt:safeHTMLEntitiesEncode(displayValue)}</a>
 							</li>
 						</c:forEach>
 					</ol>
-                </div>
+				</div>
 				</div>
 
 			</c:if>

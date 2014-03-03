@@ -15,6 +15,7 @@
         <div class="col-xs-12 col-sm-4">
             <strong class="lead">REX</strong>
             <ul class="list-unstyled">
+                <li><a href="http://e-tidsskrifter.kb.dk/?umlaut.locale=en">E-journals</a>
                 <li><a href="http://www.kb.dk/en/REX/sider">Help / FAQ</a></li>
                 <li><a href="https://rex.kb.dk/F/?func=file&file_name=find-b&local_base=kgl01_rexclassic&con_lng=eng">REX Classic</a></li>
                 <li><a href="http://www.kb.dk/da/REX/sider/biblioteker.html">Other libraries in REX</a></li>
@@ -84,18 +85,3 @@
 
   $('#facetList div ul:lt(2)').addClass('in');
 </script>
-
-
-<div id="myModal" class="modal" tabindex="-1" role="dialog" aria-hidden="true">
-  <div class="modal-dialog wide">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal">X</button>
-        <h3>My e-ressources (BETA)</h3>
-      </div>
-      <div class="modal-body">
-        <iframe name="eresFrame" id="eresFrame" src="http://mine-eres.kb.dk/favoritter/front.php?lang=en" frameborder="no" scrolling="no" style=" width:100%; height:510px;"></iframe>
-      </div>
-    </div>
-  </div>
-</div>

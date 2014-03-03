@@ -1,5 +1,5 @@
 /*global jQuery, $, document, setTimeout, window, kbBootstrapifyTabs */
-function kBFixTabs() {
+function kbFixTabs() {
     // Tilret Bestil-fanebladet
     $(".EXLLocationTableActionsMenu>ul:not(:has(.requestForm))").each(function (index) {
         // Faa fat i en identifier paa dokumentet ved at sakse den fra et link
@@ -43,12 +43,44 @@ function addLoginLink() {
     });
 }
 
-
-function hideLocationInfo() {
-    //DGJ
-    $("span.EXLLocationInfo>strong").hide();
-    $("span.EXLLocationInfo>cite").hide();
+/**
+* //JAC
+* Add "Show Source" (PNX) option to
+* "send to: " dropdown menu
+*/
+function addShowSource(){
+    var unfixedSendTo = getUnfixedElems('.EXLTabHeaderButtonSendTo > a');
+    // Grab the url from the "open this item in new window"
+    // Andappend &showPnx=true
+    var showPnxUrl;
+    if ($('body').hasClass('EXLFullView')) {
+        showPnxUrl = location.href + '&showPnx=true';
+    } else {
+        showPnxUrl = unfixedSendTo.parent().prev().find('a').attr('href') + '&showPnx=true';
+    }
+    unfixedSendTo.next().append("<li><a target='_blank' href='"+showPnxUrl+"'>Show Source</a><li>");
+    flagFixed(unfixedSendTo);
 }
+
+// Report problem tab  -knab hentet fra aub
+
+// The evaluator for the problem tab. Only show this tab if there is an View Online tab for the record
+var problemEvaluator = function(element){
+    var text = $(element).parents('.EXLResult').find('.EXLViewOnlineTab').length;
+    if (text == '0') {
+       return false;
+    } else {
+       return true;
+    }
+};
+
+var problemTabHandler = EXLTA_createWidgetTabHandler(function(element){return '<iframe src="http://sfx-test-01.kb.dk:8080/feedback?id='+EXLTA_recordId(element)+'&system=primo&umlaut.locale=en"></iframe>';},true);
+
+EXLTA_addLoadEvent(function(){
+    EXLTA_addTab('Need help?','ProblemTab','http://e-tidsskrifter.kb.dk/feedback?&system=primo&umlaut.locale=en',problemTabHandler,false,problemEvaluator);
+});
+
+//end Report problem tab - knab
 
 function TextReplaceObject(originalText, newText) {
     this.originalText = originalText.trim();
@@ -106,6 +138,34 @@ $(".EXLLocationsTab").ajaxComplete(function(event, xhr, settings) {
     }
 });
 }*/
+
+
+
+ /*  JAC
+ *  grabs URL parameters
+ *  source: http://www.netlobo.com/url_query_string_javascript.html
+ */
+function gup(name) {
+    name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+    var regexS = "[\\?&]" + name + "=([^&#]*)";
+    var regex = new RegExp(regexS);
+    var results = regex.exec(window.location.href);
+    if (results === null) {
+        return "";
+    }
+    return results[1];
+}
+
+function gup(name, url) {
+    name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+    var regexS = "[\\?&]" + name + "=([^&#]*)";
+    var regex = new RegExp(regexS);
+    var results = regex.exec(url);
+    if (results === null) {
+        return "";
+    }
+    return results[1];
+}
 
 $(document).ready(function () {
 
@@ -188,16 +248,14 @@ $(document).ready(function () {
 //	    });
     //NKH Slut (ADD EOD Tabs)
 
-    // Tilret faneblade - indsaet skaf-links, hvis ingen bestillings-tab
+    // JAC: Tilføj SKAF hvis der ikke er locationstab, og der ikke står "Adgang: Alle har adgang"
     $(".EXLResultTabs:not(:has(.EXLLocationsTab))").each(function (index) {
-/*jslint regexp: false */
-        var html = $(this).find('li:first').html(),
-            regex = /doc=([^&]*)/;
-/*jslint regexp: true */
-        if (regex.test(html)) {
-            var doc = regex.exec(html)[1];
-            $(this).append("<li class='requestForm EXLResultTab'><a title='Order items not otherwise available' href='http://rex.kb.dk/userServices/menu/Order?primoId=" + doc + "' target='_blank'>Order</a></li>");
-        }
+            var doc = gup('doc', $(this).find(".EXLDetailsTab > a").attr('href') ); //Henter docid
+            var resultHtmlElement = $(this).parents().eq(3); //
+            if (!($(resultHtmlElement).find('.EXLResultFourthLine').is(':contains("Adgang: Alle har adgang")'))) {
+                   $(this).append("<li class='requestForm EXLResultTab'><a title='Order items not otherwise available' href='http://rex.kb.dk/userServices/menu/Order?primoId=" + doc + "' target='_blank'>Order</a></li>");
+            }
+
     });
 
     // Vis thumbnails for billeder i billedbasen
@@ -208,6 +266,7 @@ $(document).ready(function () {
 
     // Tilret tabs - relevant ved fuld visning
     kBFixTabs();
+    kbBootstrapifyTabs();
 
     // HAFE start language specific faq and cookie policy
     // Change links in header for "faq" and "cookie policy" to the english version of those documents
@@ -222,16 +281,6 @@ $(document).ready(function () {
     }(jQuery));
     // HAFE stop language specific faq and cookie policy
 
-    // copied from footer.html start /HAFE
-    // my e-ressources
-    //var linkString = "My e-resources (BETA)",
-    //    myResourceString = "<li" + (window.EXLUserName ? '' : ' class="disabled"') + "><a href='#' data-toggle='modal' data-target='#myModal' class='my_e_resources' id='e_resources_click'>" + linkString + "</a></li>";
-    //$('#exlidUserAreaRibbon .dropdown-menu:has(#exlidMyAccount)').append(myResourceString);
-    //$('#popupContact > h1').html(linkString);
-
-    // copied from footer.html stop /HAFE
-
-
     });
 
 function bestil() {
@@ -243,16 +292,16 @@ function bestil() {
 
 // Tilretninger af indholdet af faneblade - dynamisk
 $(document).ajaxComplete(function () {
-    kBFixTabs();
+    kbFixTabs();
     kbBootstrapifyTabs();
-    hideLocationInfo();
     bestil();
+    addShowSource();
 });
 
 $('.EXLLocationsIcon').live('click', function () {
-    kBFixTabs();
+    kbFixTabs();
     setTimeout(function () {
-        kBFixTabs();
+        kbFixTabs();
     }, 2000);
 });
 

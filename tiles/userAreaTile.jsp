@@ -95,12 +95,17 @@
 				opId="click" resultDoc="${searchForm.searchResult.results[0]}" type=""
 				delivery="${searchForm.delivery[0]}" noOther="true" index="${param.indx}"/>
 
-
+<c:if test="${requestScope.isNewSession != null && requestScope.isNewSession eq 'true'}">
+    <c:set var="ssologinRequest" value="${requestScope.ssologinRequest}"/>
+    <c:if test="${ssologinRequest != null}">
+        <iframe id="exlIdssoLogin" src="" height="0px" width="0px"></iframe>
+    </c:if>
+</c:if>
 
         <div class="collapse navbar-collapse navbar-ex1-collapse">
             <ul id="exlidUserAreaRibbon" class="${loggedInClass} nav navbar-nav navbar-right">
                 <%-- Ny Låner --%>
-                <c:set var="newBorrowerUrl" value="https://user.kb.dk/user/create" />
+                <c:set var="newBorrowerUrl" value="https://login.kb.dk/kbuser/regguide" />
                 <li>
                     <c:choose>
                         <c:when test="${sessionScope.chosenInterfaceLanguage == 'da_DK'}">
@@ -113,25 +118,29 @@
                 </li>
 
                 <%-- log ind / log ud --%>
-                <li>
-                    <c:choose>
-                        <c:when test="${loggedIn}">
-                            <li id="exlidSignOut" class="EXLSignOut EXLLastItem">
-                                <a href="${fn:escapeXml(logoutUrl)}" onclick="boomCallToRum('SignOutStat',false);">
-                                    <fmt:message key="eshelf.signout.title.link"/>
-                                </a>
-                            </li>
-                        </c:when>
-                        <c:otherwise>
-                            <li id="exlidSignOut" class="EXLSignOut EXLLastItem">
-                                <a href="${fn:escapeXml(loginUrl)}" onclick="boomCallToRum('SignInStatUserArea',false);">
-                                    <fmt:message key="eshelf.signin.title"/>
-                                </a>
-                                <fmt:message key="eshelf.additional.text"/>
-                            </li>
-                        </c:otherwise>
-                    </c:choose>
+                <c:if test="${requestScope.isNewSession != null && requestScope.isNewSession eq 'true'}">
+                    <c:set var="ssologinRequest" value="${requestScope.ssologinRequest}"/>
+                    <c:if test="${ssologinRequest != null}">                    
+                        <input type="hidden" value="${ssologinRequest}" id="exlIdssologinRequest"/>     
+                    </c:if>  
+                </c:if>
+                <c:set var="hideSignOutClass" value=""/>
+                <c:set var="hideSignInClass" value=""/>
+                 
+                <c:choose>  
+                    <c:when test="${loggedIn}">       
+                        <c:set var="hideSignInClass" value="EXLHidden hidden"/>
+                    </c:when>
+                    <c:otherwise>
+                        <c:set var="hideSignOutClass" value="EXLHidden hidden"/>               
+                    </c:otherwise>
+                </c:choose>
+                <li id="exlidSignOut" class="EXLSignOut EXLLastItem ${hideSignOutClass}"><a href="${fn:escapeXml(logoutUrl)}" onclick="boomCallToRum('SignOutStat',false);"><fmt:message key="eshelf.signout.title.link"/></a></li>
+                <li id="exlidSignIn" class="EXLSignOut EXLLastItem ${hideSignInClass}">
+                    <a href="${fn:escapeXml(loginUrl)}" onclick="boomCallToRum('SignInStatUserArea',false);addResolutionParam(this);"><fmt:message key="eshelf.signin.title"/></a>
+                    &nbsp;<fmt:message key="eshelf.additional.text"/>
                 </li>
+
                 <li id="exlidUserName" class="EXLUserName dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
 
@@ -182,7 +191,7 @@
                         <%-- Søgehistorie --%>
                         <li id="exlidMyShelf" class="EXLMyShelf">
                             <a href="${fn:escapeXml(eshelfURL)}">
-                                <fmt:message key="eshelf.basket.title"/>
+                                <span class="EXLMyShelfStarSelected"></span><fmt:message key="eshelf.basket.title"/>
                             </a>
                         </li>
                     </ul>

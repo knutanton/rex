@@ -2,4 +2,5 @@
 *-ck.*
 node_modules/
 less3_1
-bootstrap.css
+css/bootstrap.css
+editable/

@@ -1,0 +1,76 @@
+
+		<%--Format date in the case we need to display them --%>
+		<%-- <c:set var="displayValue" value="${facetValue.KEY}"/>  changed by the next line for filtering --%>
+		<c:set var="displayValue" value='${facetValue.KEY}' />
+
+		<c:if test="${facetField == c_facet_creationdate}">
+			<c:set var="displayValue">
+				<%=com.exlibris.primo.srvinterface.FacetResultDTO.formatRangeDates(((com.exlibris.jaguar.xsd.search.FACETVALUESDocument.FACETVALUES)pageContext.getAttribute("facetValue")).getKEY(),request)%>
+			</c:set>
+		</c:if>
+		<c:if test="${facetField == c_facet_lang}">
+			<c:set var="displayValue">
+				<fmt:message key="lang.${facetValue.KEY}" prefix="lang"/>
+			</c:set>
+		</c:if>
+		<c:if test="${facetField == c_facet_domain || facetField == c_facet_instsort}">
+			<c:set var="displayValue">
+				<fmt:message key="facets.facet.facet_domain.${facetValue.KEY}" prefix="facets.facet.facet_domain"/>
+			</c:set>
+			<c:if test="${displayValue == facetValue.KEY}">
+				<c:set var="displayValue">
+					<fmt:message key="${facetValue.KEY}" prefix="dummy"/>
+				</c:set>
+			</c:if>
+		</c:if>
+		<c:if test="${facetField == c_facet_library}">
+			<c:set var="displayValue">
+				<fmt:message key="${facetValue.KEY}" prefix="dummy"/>
+			</c:set>
+		</c:if>
+
+<%--	Added to the condition of c_facet_domain above
+		<c:if test="${facetField == c_facet_instsort}">
+			<c:set var="displayValue">
+				<fmt:message key="facets.facet.facet_domain.${fmt:replaceLibCode(facetValue.KEY, view)}" prefix="facets.facet.facet_domain"/>
+			</c:set>
+		</c:if>
+--%>
+		<c:if test="${facetField == c_facet_rtype}">
+			<c:set var="displayValue">
+				<fmt:message key="facets.facet.facet_rtype.${facetValue.KEY}"/>
+			</c:set>
+		</c:if>
+		<c:if test="${facetField == c_facet_tlevel}">
+			<c:set var="displayValue">
+				<fmt:message key="facets.facet.tlevel.${facetValue.KEY}"/>
+			</c:set>
+		</c:if>
+		<c:if test="${facetField == c_facet_genre}">
+			<c:set var="displayValue">
+				<fmt:message key="facets.facet.facet_genre.${facetValue.KEY}"/>
+			</c:set>
+		</c:if>
+		<c:if test="${facetField == c_facet_pfilter}">
+			<c:set var="displayValue">
+				<fmt:message key="search-simple.mediaType.option.${facetValue.KEY}"/>
+			</c:set>
+		</c:if>
+		<c:if test="${facetField == c_facet_fsize}">
+			<c:set var="displayValue">
+				<fmt:message key="facets.facet.facet_fsize.${facetValue.KEY}"/>
+			</c:set>
+		</c:if>
+		<c:if test="${facetField == c_facet_fmt}">
+			<c:set var="displayValue">
+				<fmt:message key="facets.facet.facet_fmt.${facetValue.KEY}"/>
+			</c:set>
+		</c:if>
+
+		<c:if test="${fn:contains(facetField,c_facet_localX)}">
+			<c:set var="displayValue">
+				<fmt:message key="facets.facet.${facetField}.${facetValue.KEY}" prefix="facets.facet.${facetField}"/>
+			</c:set>
+		</c:if>
+		<c:set var="displayValue" value='${fmt:clearLangSuffix(facetField, displayValue)}'/>
+

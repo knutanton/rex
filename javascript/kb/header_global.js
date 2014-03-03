@@ -156,7 +156,7 @@ function transformLocationTrToBootstrap(rows, headerText) {
                     .attr('data-target', 'additionalLocationFields' + tmpAdditionalFieldsId)
                     .attr('data-toggle', 'collapse')
                     .removeAttr('href')
-                // TODO: since the above bootstrap attempts does not work properly, we also sets eventlisteners up manually - we might wanna examine why it does not work
+                    // TODO: since the above bootstrap attempts does not work properly, we also sets eventlisteners up manually - we might wanna examine why it does not work
                     .on('click', clickHandler)
                     .prepend('<span class="glyphicon glyphicon-chevron-right"></span>');
                 tmpLocation.append(tmpHeader);
@@ -274,9 +274,10 @@ function kbBootstrapifyTabs() {
         $.each(locationLists, function (index, locationList) {
             locationList = $(locationList);
             var tmpUid = Unique.getUid(),
-                accordionHeaderElement = $('<div class="panel-heading"><h4 class="panel-title"><a class="accordion-toggle" data-toggle="collapse" href="#locationAccordion' + tmpUid + '"></a></h4></div>'),
+                accordionHeaderElement = $('<div class="panel-heading"><h4 class="panel-title locationSubLocationHeader"><a class="accordion-toggle" data-toggle="collapse" href="#locationAccordion' + tmpUid + '"></a><div class="locationSubLocationHeaderSpinner"></div></h4></div>'),
                 oldLink = $('.EXLLocationsTitle a', locationList),
                 accordionIcon = $('<span class="glyphicon glyphicon-chevron-' + (oldLink.length ? 'right' : 'down') + '"/>'),
+                accordionHeader = $('h4', accordionHeaderElement),
                 accordionHeaderLink = $('a', accordionHeaderElement),
                 accordionBodyContainer = $('<div id="locationAccordion' + tmpUid + '" class="panel-collapse collapse' + (oldLink.length ? '' : ' in') + '"></div>');
             if (oldLink.length) {
@@ -300,6 +301,9 @@ function kbBootstrapifyTabs() {
                     accordionIcon.removeClass('glyphicon-chevron-down').addClass('glyphicon-chevron-right');
                 } else {
                     accordionIcon.removeClass('glyphicon-chevron-right').addClass('glyphicon-chevron-down');
+                    if (!accordionBodyContainer.find('.locations').length) { // the locations are loading - start spinner
+                        accordionHeader.addClass('loading');
+                    }
                 }
             }); // FIXME: Is this invoked on keyboard input? :(
         });
@@ -419,6 +423,8 @@ function kbBootstrapifyTabs() {
         locations.insertBefore(exlLocationTableToFix);
         flagFixed(exlLocationTableToFix);
 
+        locations.closest('.EXLLocationList').find('.locationSubLocationHeader').removeClass('loading'); // Remove loading spinner from header
+
         // =====================================================================================================================================================
         // ================ the rest of the code here is about the parent accordion, and really belongs to the code that fixes the LocationsLists! =============
         // =====================================================================================================================================================
@@ -528,9 +534,9 @@ function EXLTA_creationdate(recordId) {
 
 function EXLTA_general(recordId) {
     var pnx = EXLTA_getPNX(recordId),
-/*jslint regexp: false */
+    /*jslint regexp: false */
         re = /(.*)(wbkkbd|wbkkba|wbkub1|wbkdnl|wbhdoe|wbheod)(.*)/i,
-/*jslint regexp: true */
+    /*jslint regexp: true */
         delbib = re.exec($(pnx).find('general').text());
     if (delbib) {
         return 1;
@@ -539,8 +545,34 @@ function EXLTA_general(recordId) {
     }
 }
 
-function EXLTA_addTab(tabName, tabType, url, tabHandler, firstTab, evaluator) {
-    $('.EXLResultTabs').each(function () {
+// tilfjet nyere version af EXL Tab API - knab
+
+function EXLTA_isFullDisplay() {
+    return $('.EXLFullView').size() > 0;
+}
+
+function EXLTA_addHeadlessTab(tabType, content, evaluator) {
+    $('.EXLResultTabs').each(function() {
+        if(!evaluator || (evaluator && evaluator(this))) {
+            var htmlcontent = '';
+            if (typeof(content) === 'function') {
+                log('trying function');
+                htmlcontent = content(this);
+            } else {
+                htmlcontent = content;
+            }
+            var customTabContainer = $('<div class="' + tabType + '-Container">' + htmlcontent + '</div>'),
+                result = $(this).parents('.EXLResult');
+            if (!EXLTA_isFullDisplay()) { //Solves 'full display' bug where container isn't added to page.
+                result = result.find('.EXLSummary');
+            }
+            result.append(customTabContainer);
+        }
+    });
+}
+
+function EXLTA_addTabBySelector(selector, tabName, tabType, url, tabHandler, firstTab, evaluator) {
+    $(selector).each(function() {
         var customTab = $('<li class="EXLResultTab ' + tabType + '"><a href="' + url + '">' + tabName + '</a></li>'),
             customTabContainer = $('<div class="EXLResultTabContainer ' + tabType + '-Container"></div>');
         if (!evaluator || (evaluator && evaluator(this))) {
@@ -548,33 +580,41 @@ function EXLTA_addTab(tabName, tabType, url, tabHandler, firstTab, evaluator) {
                 $(this).find('li').removeClass('EXLResultFirstTab');
                 $(customTab).addClass('EXLResultFirstTab');
                 $(this).prepend(customTab);
-            } else {
+            } else if (firstTab == undefined || firstTab == false) { // FIXME: This sounds like if (!firstTab) - and that's already given? /HAFE
                 $(this).find('li').removeClass('EXLResultLastTab');
                 $(customTab).addClass('EXLResultLastTab');
                 $(this).append(customTab);
+            } else { // FIXME: This will never happen, since firstTab will always be either truthy or falsy /HAFE
+                $(this).find(firstTab).replaceWith(customTab);
             }
-            if ($("div[class=EXLSummary EXLResult]")) {
-                $(this).parents('.EXLSummary').append(customTabContainer);
+            if (EXLTA_isFullDisplay()) {
+                $(this).parents('.EXLResult').append(customTabContainer);
             } else {
-                $(this).parents('.EXLResult').find('.EXLSummary').append(customTabContainer);
+                $(this).parents('.EXLResult').find('.EXLSummaryContainer').append(customTabContainer);
             }
-            $('.' + tabType + ' a').click(function (e) {
+            $('#' + $(this).attr('id') + ' .' + tabType + ' a').click(function(e) {
                 tabHandler(e, this, tabType, url, $(this).parents('.EXLResultTab').hasClass('EXLResultSelectedTab'));
             });
         }
+        $(this).parents('.EXLSummary').find('.' + tabType + '-Container').hide();
     });
-    $('.EXLSummary .' + tabType + '-Container').hide();
 }
 
-function EXLTA_wrapResultsInNativeTab(element, content, url, headerContent) {
-    var popOut = '<div class="EXLTabHeaderContent">' + headerContent +
-            '</div><div class="EXLTabHeaderButtons"><ul><li class="EXLTabHeaderButtonPopout"><span></span><a href="' + url +
-            '" target="_blank"><img src="../images/icon_popout_tab.png" /></a></li><li></li><li class="EXLTabHeaderButtonCloseTabs">' +
-            '<a href="#" title="hide tabs"><img src="../images/icon_close_tabs.png" alt="hide tabs"></a></li></ul></div>',
+function EXLTA_addTab(tabName, tabType, url, tabHandler, firstTab, evaluator) {
+    EXLTA_addTabBySelector('.EXLResultTabs', tabName, tabType, url, tabHandler, firstTab, evaluator);
+}
+
+function EXLTA_addOpenTab(tabName, tabType, url, tabHandler, firstTab, evaluator) {
+    EXLTA_addTab(tabName, tabType, url, tabHandler, firstTab);
+    $('.' + tabType).click();
+}
+
+function EXLTA_wrapResultsInNativeTab(element, content,url, headerContent) {
+    var popOut = '<div class="EXLTabHeaderContent">' + headerContent + '</div><div class="EXLTabHeaderButtons"><ul><li class="EXLTabHeaderButtonPopout"><span></span><a href="' + url + '" target="_blank"><img src="../images/icon_popout_tab.png" /></a></li><li></li><li class="EXLTabHeaderButtonCloseTabs"><a href="#" title="hide tabs"><img src="../images/icon_close_tabs.png" alt="hide tabs"></a></li></ul></div>',
         header = '<div class="EXLTabHeader">' + popOut + '</div>',
         htmlcontent = '';
-    if (typeof content  === 'function') {
-        log('trying function');
+    if (typeof content === 'function') {
+        log('trying function'); // FIXME: Where does this log function come from, and shouldn't it be erased in the final code? /HAFE
         htmlcontent = content(element);
     } else {
         htmlcontent = content;
@@ -583,34 +623,34 @@ function EXLTA_wrapResultsInNativeTab(element, content, url, headerContent) {
     return header + body;
 }
 
-function EXLTA_closeTab(element) {
-    if (!isFullDisplay()) {
+function EXLTA_closeTab(element){
+    if(!EXLTA_isFullDisplay()){
         $(element).parents('.EXLResultTab').removeClass('EXLResultSelectedTab');
         $(element).parents('.EXLTabsRibbon').addClass('EXLTabsRibbonClosed');
         $(element).parents('.EXLResult').find('.EXLResultTabContainer').hide();
     }
 }
 
-function EXLTA_openTab(element, tabType, content, reentrant) {
-    t = 0;
+function EXLTA_openTab(element,tabType, content, reentrant) {
     $(element).parents('.EXLTabsRibbon').removeClass('EXLTabsRibbonClosed');
     $(element).parents('.EXLResultTab').siblings().removeClass('EXLResultSelectedTab').end().addClass('EXLResultSelectedTab');
     var container = $(element).parents('.EXLResult').find('.EXLResultTabContainer').hide().end().find('.' + tabType + '-Container').show();
     if (content && !(reentrant && $(container).attr('loaded'))) {
         $(container).html(content);
-        if (reentrant) {
-            $(container).attr('loaded', 'true');
+        if(reentrant){
+            $(container).attr('loaded','true');
+            kbBootstrapifyTabs();
         }
     }
     return container;
 }
 
 function EXLTA_createWidgetTabHandler(content, reentrant) {
-    return function (e, element, tabType, url, isSelected) {
+    return function(e, element, tabType, url, isSelected) {
         e.preventDefault();
-        if (isSelected && t) {
+        if (isSelected && t){
             EXLTA_closeTab(element);
-        } else {
+        }else{
             EXLTA_openTab(element, tabType, EXLTA_wrapResultsInNativeTab(element, content, url, ''), reentrant);
         }
     };
@@ -620,43 +660,45 @@ function EXLTA_addLoadEvent(func) {
     addLoadEvent(func);
 }
 
-function EXLTA_isFullDisplay() {
-    return $('.EXLFullView').size() > 0;
-}
+// slut ny EXL TAB API - knab
 //NKH Slut (EOD functions)
 
 
 
 /*
-*JAC
-* Remove unwanted content from the page:
-*   - removes the exlidPleaseWaitContainer div
-*   - removes the javascript that is right after the div.
-*   - removes "opdater automatisk" container
-*
-* The code comes from the views folder
-* so this is the way we decidede to fix it
-*/
+ *JAC
+ * Remove unwanted content from the page:
+ *   - removes the exlidPleaseWaitContainer div
+ *   - removes the javascript that is right after the div.
+ *   - removes "opdater automatisk" container
+ *
+ * The code comes from the views folder
+ * so this is the way we decidede to fix it
+ */
 function removeUnWantedContent() {
     $('#exlidPleaseWaitContainer').remove();
     $('script[src*="pleaseWait.js"]').remove();
     $('.EXLFooterUpdateContainer').remove();
+    $("#exlidMyAccountMainHeader").html("");
 }
 
 
 /**
-* When on "Min konto" we dont have
-* a bootstrap structure, so we switch back to
-* the good alo css
-*/
+ * When on "Min konto" we dont have
+ * a bootstrap structure, so we switch back to
+ * the good alo css
+ */
 (function removeBootsrapCss() {
-   if (!(document.URL.indexOf('search.do') > -1 ||
-            document.URL.indexOf('display.do') > -1 ||
-            document.URL.indexOf('dlDisplay.do') > -1 ||
-            document.URL.indexOf('dlSearch.do') > -1)) {
-    var currCssLink = $("link[href*='bootstrap.css']").attr("href");
-    var newCssLink = currCssLink.replace("bootstrap.css", "KGL.css");
-    $("link[href*='bootstrap.css']").attr("href", newCssLink);
+    if (!(document.URL.indexOf('search.do') > -1 ||
+        document.URL.indexOf('display.do') > -1 ||
+        document.URL.indexOf('dlDisplay.do') > -1 ||
+        document.URL.indexOf('dlSearch.do') > -1)) {
 
-   }
+
+        var currCssLink = $("link[href*='primo_library_css.css']").attr("href");
+        //alert(currCssLink);
+        var newCssLink = currCssLink.replace("../wro/primo_library_css.css?", "/primo_library/libweb/sites/kb/KGL/css/KGL.css");
+        $("link[href*='primo_library_css.css']").attr("href", newCssLink);
+
+    }
 }());

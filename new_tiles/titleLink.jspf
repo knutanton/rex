@@ -1,0 +1,99 @@
+<!-- titleLink.jspf begin -->
+
+<c:set var="displayURLRemoved" value="${requestScope.resultTileDisplayURL_reqQryUTF8}" />
+	<c:set var="tabState" value="${searchForm.recordTabs[resultId]}"/>
+	<!-- defect 7768 -->
+	<c:if test="${not empty result.values[c_value_frbrgroupid] and  result.values[c_value_frbrtype][0] eq 7}">
+		<c:set var="frbrHits" value="${sessionScope[resultId]}"/>
+	</c:if>
+	<c:url var="displayURL" value="display.do?${displayURLRemoved}" >
+		<c:param name="ct" value="display"/>
+		<c:param name="fn" value="search"/>
+		<c:param name="doc" value="${resultId}"/>
+		<c:param name="indx" value="${resultNumber}"/>
+		<c:param name="recIds" value="${resultId}"/>
+		<c:param name="recIdxs" value="${resultStatusIndex}"/>
+		<c:param name="elementId" value="${resultStatusIndex}"/>
+		<c:param name="renderMode" value="poppedOut"/>
+		<c:param name="displayMode" value="full"/>
+		<c:param name="frbrVersion" value="${frbrHits}"/>
+	</c:url>
+
+
+	<c:url var="resultTitleUrl" value="${displayURL}">
+		<c:param name="tabs" value="detailsTab"/>
+	</c:url>
+
+
+	<%-- generate correct url based on configuration --%>
+	<c:if test="${not empty searchForm.resultTitleLinkType}">
+		<c:choose>
+			<c:when test="${searchForm.resultTitleLinkType=='0' and
+				searchForm.delivery[resultStatusIndex].displayTitle}">
+				<c:choose>
+				<c:when test="${not empty searchForm.delivery[resultStatusIndex].titleLink}">
+					<c:set var="resultTitleUrl" value="${searchForm.delivery[resultStatusIndex].titleLink}"/>
+				</c:when>
+				<c:when test="${not empty tabState.viewOnlineTab}">
+					<%-- defect 7101 begin --%>
+					<%--<c:url var="resultTitleUrl" value="${tabState.viewOnlineTab.link}"/>--%>
+					<c:choose>
+						<c:when test="${tabState.viewOnlineTab.link == 'viewOnlineTab.do'}">
+							<c:url var="resultTitleUrl" value="${displayURL}">
+								<c:param name="tabs" value="viewOnlineTab"/>
+							</c:url>
+						</c:when>
+						<c:otherwise>
+							<c:url var="resultTitleUrl" value="${tabState.viewOnlineTab.link}"/>
+						</c:otherwise>
+					</c:choose>
+					<%-- defect 7101 ends --%>
+				</c:when>
+				<c:otherwise>
+						<c:set var="resultTitleUrl" value=""/>
+				</c:otherwise>
+				</c:choose>
+			</c:when>
+			<c:when test="${searchForm.resultTitleLinkType=='1' && not empty tabState.viewOnlineTab}">
+				<c:url var="resultTitleUrl" value="${displayURL}">
+					<c:param name="tabs" value="viewOnlineTab"/>
+				</c:url>
+			</c:when>
+			<c:when test="${searchForm.resultTitleLinkType=='1'}">
+				<c:if test="${not empty tabState.requestTab}">
+					<c:url var="resultTitleUrl" value="${displayURL}">
+						<c:param name="tabs" value="requestTab"/>
+					</c:url>
+				</c:if>
+			</c:when>
+			<c:when test="${searchForm.resultTitleLinkType=='2'}">
+				<c:url var="resultTitleUrl" value="${displayURL}">
+					<c:param name="tabs" value="detailsTab"/>
+				</c:url>
+			</c:when>
+			<c:when test="${searchForm.resultTitleLinkType=='3'}">
+				<c:url var="resultTitleUrl" value="${displayURL}">
+					<c:param name="tabs" value="locationsTab"/>
+				</c:url>
+			</c:when>
+			<c:when test="${searchForm.resultTitleLinkType=='4'}">
+				<c:url var="resultTitleUrl" value="${displayURL}">
+					<c:param name="tabs" value="tagreviewsTab"/>
+				</c:url>
+			</c:when>
+			<c:when test="${searchForm.resultTitleLinkType=='5'}">
+				<c:url var="resultTitleUrl" value="${displayURL}">
+					<c:param name="tabs" value="moreTab"/>
+				</c:url>
+			</c:when>
+			<c:otherwise>
+				<c:url var="resultTitleUrl" value="${displayURL}">
+					<c:param name="tabs" value="detailsTab"/>
+				</c:url>
+			</c:otherwise>
+		</c:choose>
+	</c:if>
+
+
+
+<!-- titleLink.jspf end -->

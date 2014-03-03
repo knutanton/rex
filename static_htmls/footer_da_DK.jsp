@@ -15,6 +15,7 @@
         <div class="col-xs-12 col-sm-4">
             <strong class="lead">REX</strong>
             <ul class="list-unstyled">
+                <li><a href="http://e-tidsskrifter.kb.dk/?umlaut.locale=da">E-tidsskrifter</a>
                 <li><a href="http://www.kb.dk/da/REX/sider?codekitCB=401828938.835484">Hjælp / FAQ</a></li>
                 <li><a href="https://rex.kb.dk/F/?func=file&amp;file_name=find-b&amp;local_base=kgl01_rexclassic&amp;con_lng=DAN">REX Classic</a></li>
                 <li><a href="http://www.kb.dk/da/REX/sider/biblioteker.html">Biblioteker i REX-samarbejdet</a></li>
@@ -86,6 +87,4 @@
 <!-- link rel="stylesheet" href="http://code.jquery.com/ui/1.10.0/themes/base/jquery-ui.css" / -->
 <!-- script src="http://code.jquery.com/ui/1.10.0/jquery-ui.js"></script -->
 <!-- END autocomplete -->
-
-
 <!--end footer-->

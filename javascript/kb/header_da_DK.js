@@ -1,5 +1,5 @@
 /*global $, document, setTimeout, kbBootstrapifyTabs */
-function kBFixTabs() { // FIXME: All these functions lays in the global scope - they ought to be wrapped in a kb object!
+function kbFixTabs() { // FIXME: All these functions lays in the global scope - they ought to be wrapped in a kb object!
     // Tilret Bestil-fanebladet
     $(".EXLLocationTableActionsMenu>ul:not(:has(.requestForm))").each(function (index) {
         // Faa fat i en identifier paa dokumentet ved at sakse den fra et link
@@ -50,19 +50,51 @@ $('.EXLRecommendTab').live('click', function () {
 * This makes the <a href.. a nice fallback
 */
 function addLoginLink() {
-    var loginUrl = $('#exlidSignOut>a').attr('href');
+    var loginUrl = $('#exlidSignIn>a').attr('href');
     $(document).on("click", ".locationButtons:contains('Log ind for at reservere')", function () {
         window.location = loginUrl;
         return false;
     });
 }
 
-
-function hideLocationInfo() {
-    //DGJ
-    $("span.EXLLocationInfo>strong").hide();
-//	$("span.EXLLocationInfo>cite").hide();
+/**
+* //JAC
+* Add "Vis Kilde" (PNX) option to
+* "send to: " dropdown menu
+*/
+function addShowSource(){
+    var unfixedSendTo = getUnfixedElems('.EXLTabHeaderButtonSendTo > a');
+    // Grab the url from the "open this item in new window"
+    // Andappend &showPnx=true
+    var showPnxUrl;
+    if ($('body').hasClass('EXLFullView')) {
+        showPnxUrl = location.href + '&showPnx=true';
+    } else {
+        showPnxUrl = unfixedSendTo.parent().prev().find('a').attr('href') + '&showPnx=true';
+    }
+    unfixedSendTo.next().append("<li><a target='_blank' href='"+showPnxUrl+"'>Vis Kilde</a><li>");
+    flagFixed(unfixedSendTo);
 }
+
+// Report problem tab  -knab hentet fra aub
+
+// The evaluator for the problem tab. Only show this tab if there is an View Online tab for the record
+var problemEvaluator = function(element){
+    var text = $(element).parents('.EXLResult').find('.EXLViewOnlineTab').length;
+    if (text == '0') {
+       return false;
+    } else {
+       return true;
+    }
+};
+
+var problemTabHandler = EXLTA_createWidgetTabHandler(function(element){return '<iframe src="http://sfx-test-01.kb.dk:8080/feedback?id='+EXLTA_recordId(element)+'&system=primo&umlaut.locale=da"></iframe>';},true);
+
+EXLTA_addLoadEvent(function(){
+    EXLTA_addTab('Hj&#230;lp','ProblemTab','http://e-tidsskrifter.kb.dk/feedback?&system=primo&umlaut.locale=da',problemTabHandler,false,problemEvaluator);
+});
+
+//end Report problem tab - knab
 
 function TextReplaceObject(originalText, newText) {
     this.originalText = originalText.trim();
@@ -241,6 +273,17 @@ function gup(name) {
     return results[1];
 }
 
+function gup(name, url) {
+    name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+    var regexS = "[\\?&]" + name + "=([^&#]*)";
+    var regex = new RegExp(regexS);
+    var results = regex.exec(url);
+    if (results === null) {
+        return "";
+    }
+    return results[1];
+}
+
 
 $(document).ready(function () {
 
@@ -333,19 +376,14 @@ $(document).ready(function () {
 
 //NKH Slut (ADD EOD Tabs)
 
-    $(".EXLResultTabs:has(.EXLMoreTab):not(:has(.EXLLocationsTab))").each(function (index) {
-        // Tilret faneblade - indsaet skaf-links, hvis AndreTilbud-tab, men ingen bestillings-tab
-/*jslint regexp: false */
-        var html = $(this).find('li:first').html(),
-            regex = /doc=([^&]*)/;
-/*jslint regexp: true */
-        if (regex.test(html)) {
-            var doc = regex.exec(html)[1],
-                resultHtmlElement = $(this).parents().eq(3);
-            if (!($(resultHtmlElement).find('.EXLResultFourthLine').is(':contains("Adgang:")'))) {
-                $(this).append("<li class='requestForm EXLResultTab'><a title='Skaf materiale, som er udl&aring;nt eller ikke er bestilbart' href='http://rex.kb.dk/userServices/menu/Order?primoId=" + doc + "' target='_blank'>Skaf</a></li>");
+    // JAC: Tilføj SKAF hvis der ikke er locationstab, og der ikke står "Adgang: Alle har adgang"
+    $(".EXLResultTabs:not(:has(.EXLLocationsTab))").each(function (index) {
+            var doc = gup('doc', $(this).find(".EXLDetailsTab > a").attr('href')); //Henter docid
+            var resultHtmlElement = $(this).parents().eq(3); //
+            if (!($(resultHtmlElement).find('.EXLResultFourthLine').is(':contains("Adgang: Alle har adgang")'))) {
+                   $(this).append("<li class='requestForm EXLResultTab'><a title='Skaf materiale, som er udl&aring;nt eller ikke er bestilbart' href='http://rex.kb.dk/userServices/menu/Order?primoId=" + doc + "' target='_blank'>Skaf</a></li>");
             }
-        }
+
     });
 
     // Vis thumbnails for billeder i billedbasen
@@ -354,7 +392,10 @@ $(document).ready(function () {
         $(this).prepend("<img alt='thumbnail' src='" + link.replace("present", " thumbnail") + "'><br/>");
     });
     // Tilret tabs - relevant ved fuld visning
-    kBFixTabs();
+    if ($('body').hasClass('EXLFullView')) {
+        kbFixTabs();
+        kbBootstrapifyTabs();
+    }
     // Ret engelsk til dansk ved fotokopibestillinger
     $(".EXLMyAccountTable>tbody>tr>td:contains('Waiting in queue'),.EXLMyAccountTableDetails>tbody>tr>td:contains('Waiting in queue')").each(function () {
         $(this).html("Venter i k&oslash");
@@ -364,32 +405,6 @@ $(document).ready(function () {
     });
 
     // Copied from footer_da_DK start /HAFE
-    $('.EXLResult').each(function () {
-        var frbr = $(this).find('.EXLResultBgFRBR').length;
-        // if it's a PCI  FRBR record, hide stuff
-        if (frbr !== 0) {
-            // hide links for FRBR groups
-            $(this).find('.EXLTabsRibbon').hide();
-            // remove link from title for FRBR groups
-            $(this).find(".EXLResultTitle").find("a").removeAttr("href");
-            // hide publisher for FRBR groups
-            $(this).find(".EXLResultFourthLine").hide();
-            // hide availability for FRBR groups
-            $(this).find(".EXLResultAvailability").hide();
-            // place display multiple link below title,
-            // and change link of title and thumbnail
-            var link = $(this).find(".EXLBriefResultsDisplayMultipleLink");
-            $(this).find(".EXLSummaryFields").append(link);
-            var titlelink = $(this).find(".EXLResultTitle").find("a");
-            titlelink.attr("href", link.attr("href"));
-            titlelink.attr("target", "_parent");
-            var thumblink = $(this).find(".EXLThumbnail .EXLBriefResultsDisplayCoverImage A");
-            thumblink.attr("href", link.attr("href"));
-
-            // hide the my shelf star
-            $(this).find(".EXLMyShelfStar A").hide();
-        }
-    });
 
     // Highligt the typed in term
     // http://stackoverflow.com/questions/3695184/jquery-autocomplete-highlighting
@@ -457,9 +472,8 @@ $(document).ready(function () {
     });
 */
 
-
-
-    });
+    // Copied from footer_da_DK stop /HAFE
+});
 
 
 function bestil() {
@@ -471,16 +485,16 @@ function bestil() {
 
 // Tilretninger af indholdet af faneblade - dynamisk
 $(document).ajaxComplete(function () {
-    kBFixTabs();
+    kbFixTabs();
     kbBootstrapifyTabs();
-    hideLocationInfo();
     bestil();
+    addShowSource();
 });
 
 $('.EXLLocationsIcon').live('click', function () {
-    kBFixTabs();
+    kbFixTabs();
     setTimeout(function () { // FIXME: What is this? Why call KBFixTab again after 2 secs? Shouldn't be necessary! (and is this called at all?)
-        kBFixTabs();
+        kbFixTabs();
     }, 2000);
 });
 
