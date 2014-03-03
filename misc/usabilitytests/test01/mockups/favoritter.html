@@ -126,51 +126,22 @@
 <div class="container">
 
 
-      <div class="page-header">
+    <div class="page-header">
         <h1><span class="glyphicon glyphicon-star"></span> Favoritter</h1>
-      </div>
+    </div>
+    <div class="alert alert-warning lead">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        Når du ikke er logget ind gemmes kun midlertidigt; for at gemme permanent <br>
+        <button type="button" class="btn btn-success navbar-btn hidden-xs" onclick="location.href='favoritter_user.html'; return true;"><span class="glyphicon glyphicon-lock"></span> Log ind</button>
+    </div>
+
+
 
       <div class="row">
-        <div class="col-md-3">
+        <div class="col-md-4">
             <h3>
                 <span class="glyphicon glyphicon-folder-close"></span> Mapper
             </h3>
-
-            <ul class="nav nav-pills nav-justified" style="background:#eeeeee;">
-                <li>
-                    <a href="" title="Ny">
-                        <img src="img/folders_new_but.gif">
-                        <span class="sr-only">Ny</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="" title="Omdøb">
-                        <img src="img/folders_rename_but_disabled.gif">
-                        <span class="sr-only">Omdøb</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="" title="Kopier">
-                        <img src="img/folders_move_but.gif">
-                        <span class="sr-only">Kopier</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="" title="Sæt ind">
-                        <img src="img/folders_copy_but.gif">
-                        <span class="sr-only">Sæt ind</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="" title="Slet">
-                        <img src="img/folders_delete_but_disabled.gif">
-                        <span class="sr-only">Slet</span>
-                    </a>
-                </li>
-
-            </ul>
-
-
 
             <ul class="list-unstyled">
                 <li>
@@ -181,41 +152,21 @@
                         <span class="glyphicon glyphicon-comment pull-right" style="padding-right: 5px"></span>
                     </a>
                 </li>
-                <li>
-                    <a href="#" class="list-group-item">
-                        <span class="glyphicon glyphicon-folder-open"></span>
-                        Ny Mappe
-                        <span class="badge pull-right">0</span>
-                        <span class="glyphicon glyphicon-comment pull-right" style="padding-right: 5px"></span>
-                    </a>
-                </li>
             </ul>
 
         </div>
 
-        <div class="col-md-9">
+        <div class="col-md-8">
             <h3>
                 <span class="glyphicon glyphicon-folder-open"></span> Mine favoritter
             </h3>
 
-              <ul class="nav nav-pills" style="background:#eeeeee;"  >
-                <li class="pull">
-                  <a href="" title="Kopier">
-                    <img src="img/item_copy_but.gif">
-                    <span class="sr-only">Kopier</span>
-                  </a>
-                </li>
+            <ul class="nav nav-pills" style="background:#eeeeee;"  >
                 <li>
-                  <a href="" title="Sæt ind">
-                    <img src="img/item_paste_but.gif">
-                    <span class="sr-only">Sæt ind</span>
-                  </a>
-                </li>
-                <li>
-                  <a href="" title="Slet">
-                    <img src="img/item_delete_but.gif">
-                    <span class="sr-only">Slet</span>
-                  </a>
+                    <a href="" title="Slet">
+                        <img class="hide" src="img/item_delete_but.gif">
+                        <span>Slet</span>
+                    </a>
                 </li>
                 <li class="dropdown pull-right">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">
@@ -235,7 +186,7 @@
 
               </ul>
 
-          
+
 
           <div class="table-responsive">
             <table class="table table table-striped table-hover">
