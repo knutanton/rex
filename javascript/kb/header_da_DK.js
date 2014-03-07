@@ -88,7 +88,7 @@ var problemEvaluator = function(element){
     }
 };
 
-var problemTabHandler = EXLTA_createWidgetTabHandler(function(element){return '<iframe src="http://sfx-test-01.kb.dk:8080/feedback?id='+EXLTA_recordId(element)+'&system=primo&umlaut.locale=da"></iframe>';},true);
+var problemTabHandler = EXLTA_createWidgetTabHandler(function(element){return '<iframe src="http://e-tidsskrifter.kb.dk/feedback?id='+EXLTA_recordId(element)+'&system=primo&umlaut.locale=da"></iframe>';},true);
 
 EXLTA_addLoadEvent(function(){
     EXLTA_addTab('Hj&#230;lp','ProblemTab','http://e-tidsskrifter.kb.dk/feedback?&system=primo&umlaut.locale=da',problemTabHandler,false,problemEvaluator);
@@ -315,7 +315,7 @@ $(document).ready(function () {
 //          .attr("href","https://login.kb.dk/kbuser/useredit")
 //          .attr("onClick","return true;")
 //          .attr("target","_new");
-        $("#exlidMyAccountMainContainer1").filter(":contains('gebyrer')").append('<div id="KBPay"><iframe id="KBPayFrame" width="100%" src="https://rex.kb.dk/F/?func=file&file_name=bor-info-primo"></div>');
+        $("#exlidMyAccountMainContainer1").filter(":contains('Gebyr dato')").append('<div id="KBPay"><iframe id="KBPayFrame" width="100%" src="https://aleph-00.kb.dk/F/?func=file&file_name=bor-info-primo"></div>');
     } else {
         // things to do when the user is NOT logged in
         // remove edit link

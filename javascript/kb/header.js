@@ -74,7 +74,7 @@ var problemEvaluator = function(element){
     }
 };
 
-var problemTabHandler = EXLTA_createWidgetTabHandler(function(element){return '<iframe src="http://sfx-test-01.kb.dk:8080/feedback?id='+EXLTA_recordId(element)+'&system=primo&umlaut.locale=en"></iframe>';},true);
+var problemTabHandler = EXLTA_createWidgetTabHandler(function(element){return '<iframe src="http://e-tidsskrifter.kb.dk/feedback?id='+EXLTA_recordId(element)+'&system=primo&umlaut.locale=en"></iframe>';},true);
 
 EXLTA_addLoadEvent(function(){
     EXLTA_addTab('Need help?','ProblemTab','http://e-tidsskrifter.kb.dk/feedback?&system=primo&umlaut.locale=en',problemTabHandler,false,problemEvaluator);
@@ -192,7 +192,7 @@ $(document).ready(function () {
         // things to do when the user is logged ind
         // change edit link
         $("div.EXLMyAccountEditLink").html('<span><a href="https://user.kb.dk/user/edit" target="_blank">Edit</a></span>');
-        $("#exlidMyAccountMainContainer1").filter(":contains('List of Fines')").append('<div id="KBPay"><iframe id=KBPayFrame" width="100%" src="https://rex.kb.dk/F/?func=file&con_lng=eng&file_name=bor-info-primo"></div>');
+        $("#exlidMyAccountMainContainer1").filter(":contains('Fine Date')").append('<div id="KBPay"><iframe id=KBPayFrame" width="100%" src="https://aleph-00.kb.dk/F/?func=file&file_name=bor-info-primo"></div>');
     } else {
         // things to do when the user is NOT logged in
         // remove edit link
