@@ -1,0 +1,45 @@
+# Script that fetches the DatePicker we use for bestilling.
+# It fetches it from https://github.com/eternicode/bootstrap-datepicker.git, compiles it and move a bundle into /3rdpartyBundles
+# dependencies: npm and Grunt (grunt-cli) need to be installed for this script to work
+
+GITROOT=$(git rev-parse --show-cdup)
+THIRDPARTY=$GITROOT\3rdpartyBundles
+
+if [ ! -d $THIRDPARTY ]; then
+    mkdir $THIRDPARTY
+fi &&
+cd $THIRDPARTY &&
+if [ -d "bootstrap-datepicker" ]; then
+    mv bootstrap-datepicker bootstrap-datepicker_BAK
+fi &&
+
+echo 'Cloning bootstrap-datepicker' &&
+git clone https://github.com/eternicode/bootstrap-datepicker.git &&
+cd bootstrap-datepicker &&
+
+echo 'Installing npm modules...' &&
+npm install &&
+
+echo 'Deleting excessive locales...' &&
+cd js/locales &&
+ls -l | grep -v 'bootstrap-datepicker.da.js' | awk '{if (NR!=1) {print $9}}' | xargs rm &&
+cd ../.. &&
+
+echo 'Building distribution files...' &&
+grunt dist &&
+
+echo 'Copying files...' &&
+cp _build/datepicker3.min.css ../ &&
+# cp _build/bootstrap-datepicker.min.js ../ &&
+# cp _build/bootstrap-datepicker.locales.min.js ../ &&
+# Bundle js + locale (only 500 b anyway) - and glue in a newline, so the last line of comment does not annihilate the first line in second file.
+echo "" >> _build/bootstrap-datepicker.min.js &&
+cat _build/bootstrap-datepicker.min.js _build/bootstrap-datepicker.locales.min.js > ../bootstrap-datepicker.da.min.js &&
+
+echo 'Cleaning up' &&
+cd .. &&
+rm -fr bootstrap-datepicker
+if [ -d "bootstrap-datepicker_BAK" ]; then
+    mv bootstrap-datepicker_BAK bootstrap-datepicker
+fi
+

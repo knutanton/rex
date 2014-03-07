@@ -239,7 +239,7 @@
 
                                         <div class="row">
 
-                                            <div class="col-xs-4">
+                                            <div class="col-xs-4 kbDateRangeFacetContainer"><%-- kbDateRangeFacetContainer added to control width on tablets (MOBIL-88) --%>
                                                 <label class="EXLSliderFromText" for="startdate">
                                                     <fmt:message key="facets.date.slider.from"/>
                                                 </label>
@@ -250,7 +250,7 @@
                                                 <input type="text" onchange="onTBChange('start');" onkeyup="afterClick(this);" id="startdate" class="form-control input-sm" value="${startDateDisplay}" />
                                             </div>
 
-                                            <div class="col-xs-4">
+                                            <div class="col-xs-4 kbDateRangeFacetContainer">
                                                 <label class="EXLSliderToText" for="enddate">
                                                     <fmt:message key="facets.date.slider.to"/>
                                                 </label>
