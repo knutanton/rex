@@ -24,6 +24,25 @@
             border:none;
         }
     </style>
+    <script src="js/jquery.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('a[title="Slet"]').on('click', function(e) {
+                var name = $(this).closest('tr').find('td:eq(1) a').text();
+                if (confirm('Er du sikker på at du ønsker at slette linket til bogen "'+name+'"?')) {
+                    $(this).closest('tr').remove();
+                    return false;
+                } else {
+                    return false;
+                }
+            });
+            $('a[title="Rediger"]').on('click', function (e) {
+                var name = $(this).closest('tr').find('td:eq(1) a').text();
+                window.open('opretAgent_user.html?' + window.encodeURI(name), '-', 'width=350,height=200');
+                return false;
+            });
+        });
+    </script>
 </head>
 <body>
     <header>
