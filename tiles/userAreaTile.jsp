@@ -109,10 +109,10 @@
                 <li>
                     <c:choose>
                         <c:when test="${sessionScope.chosenInterfaceLanguage == 'da_DK'}">
-                            <a href="<c:out value="${newBorrowerUrl}"/>?pref_lang=da" target="_blank">Ny låner</a>
+                            <a href="<c:out value="${newBorrowerUrl}"/>?locale=da_DK" target="_blank">Ny låner</a>
                         </c:when>
                         <c:otherwise>
-                            <a href="<c:out value="${newBorrowerUrl}"/>?pref_lang=en" target="_blank">New user</a>
+                            <a href="<c:out value="${newBorrowerUrl}"/>?locale=en_US" target="_blank">New user</a>
                         </c:otherwise>
                     </c:choose>
                 </li>
