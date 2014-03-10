@@ -52,12 +52,12 @@
                 <label class="col-sm-2 control-label">Abonnér</label>
                 <div class="col-sm-10">
                     <label class="radio-inline">
-                        <input type="radio" name="optionsRadios" id="1" value="1" checked data-toggle="collapse('show')" data-target="#collapseOne" >
+                        <input type="radio" name="optionsRadios" id="1" value="1" checked onclick="$('.collapse').collapse('hide')" data-target="#collapseOne" >
                         Nej
                     </label>
 
                     <label class="radio-inline">
-                        <input type="radio" name="optionsRadios" id="2" value="2" data-toggle="collapse" data-target="#collapseOne" >
+                        <input type="radio" name="optionsRadios" id="2" value="2" onclick="$('.collapse').collapse('show')" data-target="#collapseOne" >
                         Ja
                     </label>
                 </div>
