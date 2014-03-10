@@ -38,7 +38,7 @@
             });
             $('a[title="Rediger"]').on('click', function (e) {
                 var name = $(this).closest('tr').find('td:eq(1) a').text();
-                window.open('opretAgent_user.html?' + window.encodeURI(name), '-', 'width=350,height=200');
+                window.open('opretAgent_user.html?' + window.encodeURI(name), '-', 'width=350,height=350');
                 return false;
             });
         });
