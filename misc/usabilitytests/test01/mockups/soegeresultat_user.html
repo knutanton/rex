@@ -36,6 +36,14 @@
     </style>
     <script src="js/jquery.min.js"></script>
     <script src="js/emulateFavorites.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#saveSearch').on('click', function (e) {
+                window.open('opretAgent_user.html?' + window.encodeURI(name), '-', 'width=350,height=350');
+                return false;
+            });
+        });
+    </script>
 </head>
 <body>
 <header>
@@ -1559,10 +1567,12 @@ function unselectAdvanceTitle(id){
    </h3>
 
     <div class="btn-group btn-toolbar  pull-right">
-        <button type="button" class="btn btn-default">Gem søgning</button>
         <button type="button" class="btn btn-default">RSS</button>
+        <button type="button" id="saveSearch" class="btn btn-default">
+            <span class="glyphicon glyphicon-search"></span> Gem søgning
+        </button>
         <a class="EXLFacetSaveToEShelfAction EXLFacetSaveToEShelfActionOff btn btn-default" onclick="reportAddPageToEshelfClick();" href="basket.do?fn=addPage" title="eshelf">
-            Tilføj side til favoritter &nbsp;<span class="glyphicon glyphicon-star-empty"></span>
+            <span class="glyphicon glyphicon-star-empty"></span> Tilføj side til favoritter
         </a>
     </div>
 
@@ -1808,7 +1818,7 @@ function unselectAdvanceTitle(id){
 
                 <div class="EXLMyShelfStar pull-right">
                     <!-- miniAddToEshelf.tag begin -->
-                    <a href="basket.do?fn=create&amp;docs=KGL01008429034&amp;remote=false&amp;scopes=&amp;index=2" onclick="boomCallToRum('eShelf_1',false);" title="Tilføj til favoritter">Tilføj til favoritter <span class="glyphicon glyphicon-star-empty"></span></a>
+                    <a href="basket.do?fn=create&amp;docs=KGL01008429034&amp;remote=false&amp;scopes=&amp;index=2" onclick="boomCallToRum('eShelf_1',false);" title="Tilføj til favoritter"><span class="glyphicon glyphicon-star-empty"></span> Tilføj til favoritter</a>
 
                     <input type="hidden" class="gatherpagestat" value="true">
 
@@ -2025,7 +2035,7 @@ function unselectAdvanceTitle(id){
 
                 <div class="EXLMyShelfStar pull-right">
                     <!-- miniAddToEshelf.tag begin -->
-                    <a href="basket.do?fn=create&amp;docs=dedupmrg1337206288&amp;remote=false&amp;scopes=&amp;index=3" onclick="boomCallToRum('eShelf_2',false);" title="Tilføj til favoritter">Tilføj til favoritter <span class="glyphicon glyphicon-star-empty"></span></a>
+                    <a href="basket.do?fn=create&amp;docs=dedupmrg1337206288&amp;remote=false&amp;scopes=&amp;index=3" onclick="boomCallToRum('eShelf_2',false);" title="Tilføj til favoritter"><span class="glyphicon glyphicon-star-empty"></span> Tilføj til favoritter</a>
 
                     <input type="hidden" class="gatherpagestat" value="true">
 
@@ -2231,7 +2241,7 @@ function unselectAdvanceTitle(id){
 
                 <div class="EXLMyShelfStar pull-right">
                     <!-- miniAddToEshelf.tag begin -->
-                    <a href="basket.do?fn=create&amp;docs=KGL01002314387&amp;remote=false&amp;scopes=&amp;index=4" onclick="boomCallToRum('eShelf_3',false);" title="Tilføj til favoritter">Tilføj til favoritter <span class="glyphicon glyphicon-star-empty"></span></a>
+                    <a href="basket.do?fn=create&amp;docs=KGL01002314387&amp;remote=false&amp;scopes=&amp;index=4" onclick="boomCallToRum('eShelf_3',false);" title="Tilføj til favoritter"><span class="glyphicon glyphicon-star-empty"></span> Tilføj til favoritter</a>
 
                     <input type="hidden" class="gatherpagestat" value="true">
 
@@ -2448,7 +2458,7 @@ function unselectAdvanceTitle(id){
 
                 <div class="EXLMyShelfStar pull-right">
                     <!-- miniAddToEshelf.tag begin -->
-                    <a href="basket.do?fn=create&amp;docs=KGL01007913171&amp;remote=false&amp;scopes=&amp;index=5" onclick="boomCallToRum('eShelf_4',false);" title="Tilføj til favoritter">Tilføj til favoritter <span class="glyphicon glyphicon-star-empty"></span></a>
+                    <a href="basket.do?fn=create&amp;docs=KGL01007913171&amp;remote=false&amp;scopes=&amp;index=5" onclick="boomCallToRum('eShelf_4',false);" title="Tilføj til favoritter"><span class="glyphicon glyphicon-star-empty"></span> Tilføj til favoritter</a>
 
                     <input type="hidden" class="gatherpagestat" value="true">
 
@@ -2654,7 +2664,7 @@ function unselectAdvanceTitle(id){
 
                 <div class="EXLMyShelfStar pull-right">
                     <!-- miniAddToEshelf.tag begin -->
-                    <a href="basket.do?fn=create&amp;docs=KGL03001352918&amp;remote=false&amp;scopes=&amp;index=6" onclick="boomCallToRum('eShelf_5',false);" title="Tilføj til favoritter">Tilføj til favoritter <span class="glyphicon glyphicon-star-empty"></span></a>
+                    <a href="basket.do?fn=create&amp;docs=KGL03001352918&amp;remote=false&amp;scopes=&amp;index=6" onclick="boomCallToRum('eShelf_5',false);" title="Tilføj til favoritter"><span class="glyphicon glyphicon-star-empty"></span> Tilføj til favoritter</a>
 
                     <input type="hidden" class="gatherpagestat" value="true">
 
@@ -2860,7 +2870,7 @@ function unselectAdvanceTitle(id){
 
                 <div class="EXLMyShelfStar pull-right">
                     <!-- miniAddToEshelf.tag begin -->
-                    <a href="basket.do?fn=create&amp;docs=KGL01008418685&amp;remote=false&amp;scopes=&amp;index=7" onclick="boomCallToRum('eShelf_6',false);" title="Tilføj til favoritter">Tilføj til favoritter <span class="glyphicon glyphicon-star-empty"></span></a>
+                    <a href="basket.do?fn=create&amp;docs=KGL01008418685&amp;remote=false&amp;scopes=&amp;index=7" onclick="boomCallToRum('eShelf_6',false);" title="Tilføj til favoritter"><span class="glyphicon glyphicon-star-empty"></span> Tilføj til favoritter</a>
 
                     <input type="hidden" class="gatherpagestat" value="true">
 
