@@ -410,7 +410,7 @@ $(document).ready(function () {
     // http://stackoverflow.com/questions/3695184/jquery-autocomplete-highlighting
 /*jslint nomen: false */
 
-/*
+
     $.ui.autocomplete.prototype._renderItem = function (ul, item) {
         var term = this.term.split(' ').join('|'),
             re = new RegExp('(' + term + ')', 'gi'),
@@ -420,12 +420,10 @@ $(document).ready(function () {
             .append('<a>' + t + '</a>')
             .appendTo(ul);
     };
-    */
+
     // Highlight slut
 /*jslint nomen: true */
 
-  /*  $(function () {
-    
     $(function () {
         function log(message) {
             $('<div>').text(message).prependTo('#log');
@@ -434,9 +432,10 @@ $(document).ready(function () {
 
         $('#search_field').autocomplete({
             source: function (request, response) {
-                var url = 'http://distest.kb.dk:8983/solr/primo/select';
+                var url = 'http://rex-solr-prod-01.kb.dk:8080/solr/primo/select';
+                var queryField = 'primo_keyword';
                 if (request.term.trim().indexOf(' ') >= 0) {
-                    url = 'http://distest.kb.dk:8983/solr/collection1/select';
+                	queryField = 'content';    
                 }
                 $.ajax({
                     url : url,
@@ -446,7 +445,7 @@ $(document).ready(function () {
                         wt : 'json',
                         rows : '10',
                         //q : 'name:' + request.term.trim() + '*'
-                        q : 'primo_keyword:' + request.term.trim() + '*' // FIXME: primo_keyword inserted by HAFE
+                        q : queryField + ':' + request.term.trim() + '*' // FIXME: primo_keyword inserted by HAFE
                     },
                     success: function (data) {
                         response($.map(data.response.docs, function (item) {
@@ -470,7 +469,7 @@ $(document).ready(function () {
             }
         });
     });
-*/
+
 
     // Copied from footer_da_DK stop /HAFE
 });
