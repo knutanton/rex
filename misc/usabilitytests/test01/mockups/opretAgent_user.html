@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Bootstrap 101 Template</title>
+    <title>REX - Rediger søgning</title>
     <!-- KB Bootstrap -->
     <!-- Bootstrap -->
     <link href="css/bootstrap.css" rel="stylesheet">
@@ -31,8 +31,75 @@
         });
     </script>
 </head>
-<body>
-    Blablabla<br>
-    title: <input id="title">
+<body class="alert-info">
+
+    <div class="container">
+        <button type="button" class="close"  onclick="self.close();">&times;</button>
+
+        <h3>
+            <span class="glyphicon glyphicon-pencil"></span> Rediger søgning
+        </h3>
+
+
+        <form class="form-horizontal" role="form">
+            <div class="form-group">
+                <label for="Title" class="col-sm-2 control-label">Titel på søgning</label>
+                <div class="col-sm-10">
+                    <input type="email" class="form-control" id="Title" placeholder="Nattevogtere">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">Abonnér</label>
+                <div class="col-sm-10">
+                    <label class="radio-inline">
+                        <input type="radio" name="optionsRadios" id="1" value="1" checked data-toggle="collapse('show')" data-target="#collapseOne" >
+                        Nej
+                    </label>
+
+                    <label class="radio-inline">
+                        <input type="radio" name="optionsRadios" id="2" value="2" data-toggle="collapse" data-target="#collapseOne" >
+                        Ja
+                    </label>
+                </div>
+
+            </div>
+            <div id="collapseOne" class="collapse">
+                <div class="form-group">
+                    <label for="Title" class="col-sm-2 control-label">Email</label>
+                    <div class="col-sm-10">
+                        <input type="email" class="form-control" id="Email" placeholder="KasperAndersen@uni.dk">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="Abonnér" class="col-sm-2 control-label">Hvis ingen nye resultater</label>
+                    <div class="col-sm-10">
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox"> Send alligevel
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+
+
+
+
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                    <button type="submit" class="btn btn-primary pull-right text-right">Gem</button>
+                </div>
+            </div>
+        </form>
+
+    </div>
+
+<script src="js/bootstrap.min.js"></script>
 </body>
 </html>
+
+
+
