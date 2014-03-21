@@ -265,7 +265,7 @@ $(document).ready(function () {
     });
 
     // Tilret tabs - relevant ved fuld visning
-    kBFixTabs();
+    kbFixTabs();
     kbBootstrapifyTabs();
 
     // HAFE start language specific faq and cookie policy
