@@ -1,7 +1,7 @@
 <%@ page import="java.net.URLEncoder" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ include file="/views/taglibsIncludeAll.jspf" %>
-<script type="text/javascript" src="/javascript/primo_boomerang.js"></script>
+<script type="text/javascript" src="../javascript/primo_boomerang.js"></script>
 <noscript>This feature requires javascript</noscript>
 <%@ taglib uri="/WEB-INF/tlds/exlibris-ajax.tld" prefix="eas" %>
 
