@@ -54,7 +54,8 @@ function setUpDatepicker(elems) {
         weekStart: 1,
         language: 'en',
         autoclose: true,
-        todayHighlight: true
+        todayHighlight: true,
+        keyboardNavigation: false
     });
 }
 

@@ -68,7 +68,8 @@ function setUpDatepicker(elems) {
         weekStart: 1,
         language: 'da',
         autoclose: true,
-        todayHighlight: true
+        todayHighlight: true,
+        keyboardNavigation: false
     });
 }
 
