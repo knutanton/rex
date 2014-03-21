@@ -9,6 +9,8 @@
         }
 %>
 
+<script type="text/javascript">var kbViewPath = '<%= view %>';</script>
+
 <!-- BOOTSTRAP JS -->
 <!-- Include all compiled plugins (below), or include individual files as needed -->
 <script type="text/javascript" src="../sites/kb/<%= view %>/javascript/bootstrap/alert.js"></script>

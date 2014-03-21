@@ -9,6 +9,7 @@
         }
 %>
 
+<script type="text/javascript">var kbViewPath = '<%= view %>';</script>
 
 <!-- BOOTSTRAP JS -->
 <!-- Include all compiled plugins (below), or include individual files as needed -->
@@ -24,8 +25,6 @@
 <script type="text/javascript" src="../sites/kb/<%= view %>/javascript/kb/cookieInformerBooklet_da_DK.js"></script>
 <script type="text/javascript" src="../sites/kb/<%= view %>/javascript/kb/header_global.js"></script>
 <script type="text/javascript" src="../sites/kb/<%= view %>/javascript/kb/header_da_DK.js"></script>
-
-
 
 <!-- Respond.js IE8 support of HTML5 elements and media queries -->
 <!--[if lt IE 9]>
