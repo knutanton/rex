@@ -58,6 +58,21 @@ function addLoginLink() {
 }
 
 /**
+* //HAFE
+* Sets up a datepicker for a $ set of elements
+* Needs 3rdpartyBundles/bootstrap-datepicker.da.min.js to be loaded first // TODO: The load step could be made transparent!
+*/
+function setUpDatepicker(elems) {
+    $('.date-pick', elems).datepicker({
+        format: 'dd/mm/yyyy',
+        weekStart: 1,
+        language: 'da',
+        autoclose: true,
+        todayHighlight: true
+    });
+}
+
+/**
 * //JAC
 * Add "Vis Kilde" (PNX) option to
 * "send to: " dropdown menu
