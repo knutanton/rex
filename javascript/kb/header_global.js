@@ -220,6 +220,26 @@ function kbBootstrapifyTabs() {
         flagFixed(exlDetailsContentToFix);
     }
 
+    var exlRequestTabContentToFix = getUnfixedElems('.EXLResultTabContainer .EXLRequestTabContent');
+    if (exlRequestTabContentToFix.length) {
+        /* HAFE
+         * Add Datepicker to bestillings form Sidste interessedato
+         */
+        $('.dp-choose-date', exlRequestTabContentToFix).remove(); // remove the "vælg dato" link
+        if (!$.fn.datepicker) { // datepicker script has not yet been loaded
+            var datepickerScript = $('<script data-flag="myScript" type="text/javascript" src="../sites/kb/' + kbViewPath + '/3rdpartyBundles/bootstrap-datepicker.da.min.js"></script>').ready(function () {
+                setTimeout(function () {
+                    setUpDatepicker(exlRequestTabContentToFix);
+                    flagFixed(exlRequestTabContentToFix);
+                }, 0);
+            });
+            $('script', document.head).last().after(datepickerScript);
+        } else { // datepicker script has been loaded - just wire it up
+            setUpDatepicker(exlRequestTabContentToFix);
+            flagFixed(exlRequestTabContentToFix);
+        }
+    }
+
     var exlLocationListToFix = getUnfixedElems('.EXLResultTabContainer .EXLLocationsTabContent .EXLLocationListContainer');
     if (exlLocationListToFix.length) { // transform Location groups into bootstrap accordion-panels
         /* HAFE
