@@ -1,0 +1,75 @@
+// This file contains the styling of:
+// searchTile.jsp
+// searchLimitsTile.jsp
+// advancedSearchTile.jsp
+
+// Search (searchTile.jsp)
+// ------------------------------------------------------------------------------
+
+#search{
+    background:darken(@btn-primary-bg, -10%);
+    color:@neutral;
+
+    .EXLSearchWrapper{
+        padding:@padding-base-horizontal;
+        padding-bottom: none;
+    }
+    .btn-primary{
+        border:0;
+    }
+    #search_field{
+        border:0;
+    }
+    .nav-tabs{
+        border-bottom:      none;
+        > li > a{
+            background:     @brand-primary;
+            color:          @neutral;
+            border:         none;
+
+        }
+        .active > a {
+              &,
+              &:hover,
+              &:focus {
+                  color: @btn-default-color;
+                  background-color: @neutral;
+                  border: none;
+
+              }
+        }
+    }
+}
+
+// searchLimitsTile (searchLimitsTile.jsp)
+// ------------------------------------------------------------------------------
+
+#exlidHeaderSearchLimits .EXLHide{
+    .collapse;
+}
+
+// advancedSearchTile (advancedSearchTile.jsp)
+// ------------------------------------------------------------------------------
+
+#exlidAdvancedSearchTile .EXLHide{
+    .sr-only;
+}
+#exlidAdvancedSearchTile .EXLSelectTag{
+    .form-control;
+    .input-sm;
+    .make-md-column(3);
+}
+
+
+// Toggle seachTile
+// ------------------------------------------------------------------------------
+button.toggleSearch {
+   .btn;
+   .btn-primary;
+   .btn-block;
+    background:darken(@btn-primary-bg, -20%);
+    color:@neutral;
+    border-radius: 0px;
+    border:none;
+}
+
