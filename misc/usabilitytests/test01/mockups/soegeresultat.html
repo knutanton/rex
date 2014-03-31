@@ -44,43 +44,63 @@
         <div class="container">
 
             <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="glyphicon glyphicon-user"><span class="caret"></span></span>
-                </button>
+
+                <div class="navbar-toggle">
+
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-link dropdown-toggle" data-toggle="dropdown">
+                            <span class="glyphicon glyphicon-flag"></span>
+                            <span class="">Language</span>
+                            <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a href="#">Dansk</a></li>
+                            <li><a href="#">English</a></li>
+                        </ul>
+                    </div>
+
+
+                    <button type="button" class="btn btn-primary">
+                        <span class="glyphicon glyphicon-user"></span>
+                        <span class="glyphicon glyphicon-plus"></span>
+                    </button>
+
+                    <button type="button" class="btn btn-success navbar-btn" onclick="location.href='soegeresultat_user.html'; return true;">
+                        <span class="glyphicon glyphicon-off"></span>
+                        <span class="sr-only">Log ind</span>
+                    </button>
+                </div>
+
                 <a class="navbgar-brand" href="#">
-                    <img src="img/logo.png" class="hidden-xs" alt="Det Kongelige Bibliotek">
-                    <img src="img/logoSmall.png" class="visible-xs" alt="Det Kongelige Bibliotek">
+                    <img src="img/logo.png" class="hidden-xs hidden-sm" alt="Det Kongelige Bibliotek">
+                    <img src="img/logoSmall.png" class="visible-xs visible-sm" alt="Det Kongelige Bibliotek">
                 </a>
             </div>
 
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 
-
-
-                <ul class="nav navbar-nav navbar-right">
-                    <li class="visible-xs"><a href="indstillinger.html"><span class="glyphicon glyphicon-cog"></span> Indstillinger</a></li>
-                    <li  class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+            <div class="nav navbar-nav navbar-right hidden-xs">
+                    <div class="btn-group">
+                        <button class="btn btn-link navbar-btn" data-toggle="dropdown">
                             <span class="glyphicon glyphicon-flag"></span>
-                            <span class="hidden-sm">Language</span>
+                            <span>Language</span>
                             <span class="caret"></span>
-                        </a>
+                        </button>
                         <ul class="dropdown-menu">
                             <li><a href="#">Dansk</a></li>
                             <li><a href="#">English</a></li>
                         </ul>
-                    </li>
+                    </div>
 
-                    <li>
+                        <button type="button" class="btn btn-primary navbar-btn" onclick="">
+                            <span class="glyphicon glyphicon-user"></span>
+                            <span>Ny bruger</span>
+                        </button>
 
-                        <button type="button" class="btn btn-primary navbar-btn hidden-xs"><span class="glyphicon glyphicon-user"></span> Ny bruger</button>
-                        <button href="soegeresultat_user.html" onclick="location.href=$(this).attr('href');" type="button" class="btn btn-success navbar-btn hidden-xs"><span class="glyphicon glyphicon-lock"></span> Log ind</button>
-                    </li>
-                </ul>
 
-                <button type="button" class="btn btn-primary navbar-btn visible-xs pull-right"><span class="glyphicon glyphicon-user"></span> Ny bruger</button>
-                <button onclick="location.href='soegeresultat_user.html'" type="button" class="btn btn-success navbar-btn visible-xs pull-right"><span class="glyphicon glyphicon-lock"></span> Log ind</button>
+                        <button type="button" class="btn btn-success navbar-btn" onclick="location.href='soegeresultat_user.html'; return true;">
+                            <span class="glyphicon glyphicon-lock"></span>
+                            <span>Log ind</span>
+                        </button>
 
             </div>
 
@@ -89,40 +109,12 @@
 
 </header>
 
-<nav class="bg-primary">
-    <div class="container topNavBar">
-
-        <div class="btn-group btn-group-justified" role="toolbar">
-
-            <a href="indstillinger.html" class="btn btn-primary text-center hidden-xs">
-                <span class="glyphicon glyphicon-cog hidden-xs hidden-sm"></span>
-                <span>Indstillinger</span>
-                <br class="visible-xs">
-            </a>
-
-            <a href="favoritter.html" class="btn btn-primary text-center">
-                <span class="glyphicon glyphicon-star hidden-xs hidden-sm"></span>
-                <span>Favoritter</span>
-                <br class="visible-xs">
-                <span class="badge favorites">0</span>
-            </a>
-
-            <a href="soegninger.html" class="btn btn-primary text-center">
-                <span class="glyphicon glyphicon-search hidden-xs hidden-sm"></span>
-                <span>Søgninger</span>
-                <br class="visible-xs">
-            </a>
-
-        </div>
-    </div>
-</nav>
-<br>
 
 <section>
 
 
-<div class="">
-<div id="search" class="EXLCustomLayoutContainer">
+
+<div id="search" class="EXLCustomLayoutContainer in">
     <!-- dynamic_recursion.jsp begin -->
     <!-- taglibsIncludeAll.jspf begin -->
     <!-- taglibsIncludeAll.jspf end --><div id="exlidSearchTileWrapper" class="EXLCustomLayoutTile EXLSearchWrapper container">
@@ -623,7 +615,7 @@
 
         <a href="/primo_library/libweb/action/search.do?menuitem=0" class="btn btn-primary btn-sm" title="mainmenu.label.ny_søgning" target="_self">Ny søgning</a>
     </div>
-    <br>
+
 
     </div>
     </div>
@@ -635,12 +627,17 @@
     <!-- l_search_input.jsp end -->
 
     <!-- end ../views/search/dev_l_search_input.jsp -->
-    </div>
-    <!-- dynamic_recursion.jsp end -->
-    </div>
-    <br>
 
     </div>
+    <!-- dynamic_recursion.jsp end -->
+
+
+    </div>
+
+<button type="button" href="" class="toggleSearch" data-toggle="collapse" data-target="#search">
+    <span class="glyphicon glyphicon-chevron-up"></span>
+    <span>Søg</span>
+</button>
 
     <div id="content" class="EXLCustomLayoutContainer ">
     <!-- dynamic_recursion.jsp begin -->
@@ -1501,41 +1498,92 @@
     <!-- taglibsIncludeAll.jspf end --><div id="resultContent" class="EXLCustomLayoutContainer col-md-9">
     <!-- dynamic_recursion.jsp begin -->
     <!-- taglibsIncludeAll.jspf begin -->
+
     <div class="page-header clearfix">
-        <h3 class="pull-left">Resultat 1 - 10 af 227 <small> <button type="button" class="btn btn-link btn-sm dropdown-toggle" data-toggle="dropdown">
-            <span class="EXLResultsSortByLabel">Sorteret efter:</span> Relevans&nbsp;<span class="caret"></span>
-        </button>
+        <div class="row">
+            <div class="col-xs-12 col-md-6">
+                <div class="row">
+                    <div class="col-xs-4">
+                        <h3>1 - 10 af 227</h3>
+                    </div>
+                    <div class="col-xs-8">
+                        <div class="pull-right">
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown">
+                                    <span class="glyphicon glyphicon-th-list"></span> <span class="EXLResultsSortByLabel">10</span> <span class="caret"></span>
+                                </button>
+                                <ul class="EXLResultsSortByMenuShow EXLResultsSortByMenuHide dropdown-menu" role="menu">
+                                    <li class="EXLSortByLink ">
+                                        <p class="dropdown-header">Visninger pr side.</p>
+                                    </li>
+                                    <li class="EXLSortByLink EXLSortByLinkSelected hide">
+                                        10</li>
+                                    <li class="EXLSortByLink ">
+                                        <a href="search.do?srt=author&amp;srtChange=true&amp;dscnt=0&amp;scp.scps=scope%3A(KGL)%2Cscope%3A(SARPUR)&amp;frbg=&amp;tab=default_tab&amp;vl(775288370UI1)=all_items&amp;codekitCB=415016292.215010&amp;dstmp=1393323492698&amp;srt=rank&amp;ct=search&amp;mode=Basic&amp;&amp;dum=true&amp;indx=1&amp;tb=t&amp;vl(1UIStartWith0)=contains&amp;vl(freeText0)=murakami&amp;vl(764636375UI0)=any&amp;fn=search&amp;vid=preview" title="">
+                                            20</a>
+                                    </li>
+                                    <li class="EXLSortByLink ">
+                                        <a href="search.do?srt=title&amp;srtChange=true&amp;dscnt=0&amp;scp.scps=scope%3A(KGL)%2Cscope%3A(SARPUR)&amp;frbg=&amp;tab=default_tab&amp;vl(775288370UI1)=all_items&amp;codekitCB=415016292.215010&amp;dstmp=1393323492698&amp;srt=rank&amp;ct=search&amp;mode=Basic&amp;&amp;dum=true&amp;indx=1&amp;tb=t&amp;vl(1UIStartWith0)=contains&amp;vl(freeText0)=murakami&amp;vl(764636375UI0)=any&amp;fn=search&amp;vid=preview" title="">
+                                            30</a>
+                                    </li>
+                                    <li class="EXLSortByLink ">
+                                        <a href="search.do?srt=lso01&amp;srtChange=true&amp;dscnt=0&amp;scp.scps=scope%3A(KGL)%2Cscope%3A(SARPUR)&amp;frbg=&amp;tab=default_tab&amp;vl(775288370UI1)=all_items&amp;codekitCB=415016292.215010&amp;dstmp=1393323492698&amp;srt=rank&amp;ct=search&amp;mode=Basic&amp;&amp;dum=true&amp;indx=1&amp;tb=t&amp;vl(1UIStartWith0)=contains&amp;vl(freeText0)=murakami&amp;vl(764636375UI0)=any&amp;fn=search&amp;vid=preview" title="">
+                                            50</a>
+                                    </li>
+                                </ul>
+                            </div>
 
-            <ul class="EXLResultsSortByMenuShow EXLResultsSortByMenuHide dropdown-menu" role="menu">
-                <!--remove EXLResultsSortByMenuHide to show menu items-->
-                <li class="EXLSortByLink EXLSortByLinkSelected hide">
-                    Relevans</li>
-                <li class="EXLSortByLink ">
-                    <a href="search.do?srt=author&amp;srtChange=true&amp;dscnt=0&amp;scp.scps=scope%3A(KGL)%2Cscope%3A(SARPUR)&amp;frbg=&amp;tab=default_tab&amp;vl(775288370UI1)=all_items&amp;codekitCB=415016292.215010&amp;dstmp=1393323492698&amp;srt=rank&amp;ct=search&amp;mode=Basic&amp;&amp;dum=true&amp;indx=1&amp;tb=t&amp;vl(1UIStartWith0)=contains&amp;vl(freeText0)=murakami&amp;vl(764636375UI0)=any&amp;fn=search&amp;vid=preview" title="">
-                        Forfatter</a>
-                </li>
-                <li class="EXLSortByLink ">
-                    <a href="search.do?srt=title&amp;srtChange=true&amp;dscnt=0&amp;scp.scps=scope%3A(KGL)%2Cscope%3A(SARPUR)&amp;frbg=&amp;tab=default_tab&amp;vl(775288370UI1)=all_items&amp;codekitCB=415016292.215010&amp;dstmp=1393323492698&amp;srt=rank&amp;ct=search&amp;mode=Basic&amp;&amp;dum=true&amp;indx=1&amp;tb=t&amp;vl(1UIStartWith0)=contains&amp;vl(freeText0)=murakami&amp;vl(764636375UI0)=any&amp;fn=search&amp;vid=preview" title="">
-                        Titel</a>
-                </li>
-                <li class="EXLSortByLink ">
-                    <a href="search.do?srt=date&amp;srtChange=true&amp;dscnt=0&amp;scp.scps=scope%3A(KGL)%2Cscope%3A(SARPUR)&amp;frbg=&amp;tab=default_tab&amp;vl(775288370UI1)=all_items&amp;codekitCB=415016292.215010&amp;dstmp=1393323492698&amp;srt=rank&amp;ct=search&amp;mode=Basic&amp;&amp;dum=true&amp;indx=1&amp;tb=t&amp;vl(1UIStartWith0)=contains&amp;vl(freeText0)=murakami&amp;vl(764636375UI0)=any&amp;fn=search&amp;vid=preview" title="">
-                        År - nyeste</a>
-                </li>
-                <li class="EXLSortByLink ">
-                    <a href="search.do?srt=lso01&amp;srtChange=true&amp;dscnt=0&amp;scp.scps=scope%3A(KGL)%2Cscope%3A(SARPUR)&amp;frbg=&amp;tab=default_tab&amp;vl(775288370UI1)=all_items&amp;codekitCB=415016292.215010&amp;dstmp=1393323492698&amp;srt=rank&amp;ct=search&amp;mode=Basic&amp;&amp;dum=true&amp;indx=1&amp;tb=t&amp;vl(1UIStartWith0)=contains&amp;vl(freeText0)=murakami&amp;vl(764636375UI0)=any&amp;fn=search&amp;vid=preview" title="">
-                        År - ældste</a>
-                </li>
-            </ul></small></h3>
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown">
+                                    <span class="glyphicon glyphicon-sort-by-attributes"></span> <span class="EXLResultsSortByLabel">Relevans</span> <span class="caret"></span>
+                                </button>
+                                <ul class="EXLResultsSortByMenuShow EXLResultsSortByMenuHide dropdown-menu" role="menu">
+                                    <li class="EXLSortByLink ">
+                                        <p class="dropdown-header">Sorter efter:</p>
+                                    </li>
+                                    <li class="EXLSortByLink EXLSortByLinkSelected hide">
+                                        Relevans</li>
+                                    <li class="EXLSortByLink ">
+                                        <a href="search.do?srt=author&amp;srtChange=true&amp;dscnt=0&amp;scp.scps=scope%3A(KGL)%2Cscope%3A(SARPUR)&amp;frbg=&amp;tab=default_tab&amp;vl(775288370UI1)=all_items&amp;codekitCB=415016292.215010&amp;dstmp=1393323492698&amp;srt=rank&amp;ct=search&amp;mode=Basic&amp;&amp;dum=true&amp;indx=1&amp;tb=t&amp;vl(1UIStartWith0)=contains&amp;vl(freeText0)=murakami&amp;vl(764636375UI0)=any&amp;fn=search&amp;vid=preview" title="">
+                                            Forfatter</a>
+                                    </li>
+                                    <li class="EXLSortByLink ">
+                                        <a href="search.do?srt=title&amp;srtChange=true&amp;dscnt=0&amp;scp.scps=scope%3A(KGL)%2Cscope%3A(SARPUR)&amp;frbg=&amp;tab=default_tab&amp;vl(775288370UI1)=all_items&amp;codekitCB=415016292.215010&amp;dstmp=1393323492698&amp;srt=rank&amp;ct=search&amp;mode=Basic&amp;&amp;dum=true&amp;indx=1&amp;tb=t&amp;vl(1UIStartWith0)=contains&amp;vl(freeText0)=murakami&amp;vl(764636375UI0)=any&amp;fn=search&amp;vid=preview" title="">
+                                            Titel</a>
+                                    </li>
+                                    <li class="EXLSortByLink ">
+                                        <a href="search.do?srt=date&amp;srtChange=true&amp;dscnt=0&amp;scp.scps=scope%3A(KGL)%2Cscope%3A(SARPUR)&amp;frbg=&amp;tab=default_tab&amp;vl(775288370UI1)=all_items&amp;codekitCB=415016292.215010&amp;dstmp=1393323492698&amp;srt=rank&amp;ct=search&amp;mode=Basic&amp;&amp;dum=true&amp;indx=1&amp;tb=t&amp;vl(1UIStartWith0)=contains&amp;vl(freeText0)=murakami&amp;vl(764636375UI0)=any&amp;fn=search&amp;vid=preview" title="">
+                                            År - nyeste</a>
+                                    </li>
+                                    <li class="EXLSortByLink ">
+                                        <a href="search.do?srt=lso01&amp;srtChange=true&amp;dscnt=0&amp;scp.scps=scope%3A(KGL)%2Cscope%3A(SARPUR)&amp;frbg=&amp;tab=default_tab&amp;vl(775288370UI1)=all_items&amp;codekitCB=415016292.215010&amp;dstmp=1393323492698&amp;srt=rank&amp;ct=search&amp;mode=Basic&amp;&amp;dum=true&amp;indx=1&amp;tb=t&amp;vl(1UIStartWith0)=contains&amp;vl(freeText0)=murakami&amp;vl(764636375UI0)=any&amp;fn=search&amp;vid=preview" title="">
+                                            År - ældste</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
-        <div class="btn-group btn-toolbar  pull-right">
-            <button type="button" class="btn btn-default">RSS</button>
-            <a class="EXLFacetSaveToEShelfAction EXLFacetSaveToEShelfActionOff btn btn-default favoriteLink" onclick="reportAddPageToEshelfClick();" href="basket.do?fn=addPage" title="eshelf">
-                <span class="glyphicon glyphicon-star-empty"></span> Tilføj side til favoritter
-            </a>
+            </div>
+
+            <div class="col-xs-12 col-md-6">
+                <br class="visible-xs">
+                <div class="pull-right">
+                    <div class="btn-group btn-group-sm">
+                        <button type="button" class="btn btn-default">RSS</button>
+                        <button type="button" id="saveSearch" class="btn btn-default">
+                            <span class="glyphicon glyphicon-search"></span> Gem søgning
+                        </button>
+                        <a class="EXLFacetSaveToEShelfAction EXLFacetSaveToEShelfActionOff btn btn-default favoriteLink" onclick="reportAddPageToEshelfClick();" href="basket.do?fn=addPage" title="eshelf">
+                            <span class="glyphicon glyphicon-star-empty"></span> Tilføj side til favoritter
+                        </a>
+                    </div>
+                </div>
+            </div>
         </div>
-
     </div>
+
     <!-- dynamic_recursion.jsp end -->
     <!-- dynamic_recursion.jsp begin -->
     <!-- taglibsIncludeAll.jspf begin -->
@@ -3446,56 +3494,118 @@
     </div>
 </section>
 
-<footer class="container">
-    <hr>
+<div id="footer" class="EXLCustomLayoutContainer ">
+    <!-- dynamic_recursion.jsp begin -->
+    <!-- taglibsIncludeAll.jspf begin -->
+    <!-- taglibsIncludeAll.jspf end --><div id="footerWrapper" class="EXLCustomLayoutContainer container">
+    <!-- dynamic_recursion.jsp begin -->
+    <!-- taglibsIncludeAll.jspf begin -->
+    <!-- taglibsIncludeAll.jspf end --><div id="footerEXL" class="EXLCustomLayoutTile ">
+    <!-- begin ../headings/footers/l_footer.jsp -->
+    <!-- l_footer.jsp begin -->
+    <!-- taglibsIncludeAll.jspf begin -->
+    <!-- taglibsIncludeAll.jspf end --><!-- jsp_mapping_retriever.jsp begin -->
+    <!-- jsp_mapping_retriever.jsp end -->
+    <!-- footer.jsp begin -->
+    <!-- taglibsIncludeAll.jspf begin -->
+    <!-- taglibsIncludeAll.jspf end --><!-- includeStaticHTML.jspf begin (/sites/kb/KGL/static_htmls/footer_da_DK.jsp) -->
+    <!-- taglibsIncludeAll.jspf begin -->
+    <!-- taglibsIncludeAll.jspf end --><!-- dynamic inclusion of js files -->
+    <footer>
 
-    <div class="row hidden-print">
-        <div class="col-xs-12 col-sm-4">
-            <strong class="lead">REX</strong>
-            <ul class="list-unstyled">
-                <li><a href="http://www.kb.dk/da/REX/sider?codekitCB=401828938.835484">Hjælp / FAQ</a></li>
-                <li><a href="https://rex.kb.dk/F/?func=file&amp;file_name=find-b&amp;local_base=kgl01_rexclassic&amp;con_lng=DAN">REX Classic</a></li>
-                <li><a href="http://www.kb.dk/da/REX/sider/biblioteker.html">Biblioteker i REX-samarbejdet</a></li>
-                <li><a href="http://www.kb.dk/da/kub/service/sporgbib/forslag.html">Bogforslag</a></li>
-                <li><a title="Fandt du ikke hvad du søgte?" href="https://rex.kb.dk/userServices/menu/Order" target="_blank">Fandt du ikke hvad du søgte?</a></li>
+        <div class="row hidden-print">
+            <div class="col-xs-12 col-sm-4">
+                <strong class="lead">REX</strong>
+                <ul class="list-unstyled">
+                    <li><a href="http://e-tidsskrifter.kb.dk/?umlaut.locale=da">E-tidsskrifter</a>
+                    </li><li><a href="http://www.kb.dk/da/REX/sider?codekitCB=401828938.835484">Hjælp / FAQ</a></li>
+                    <li><a href="https://rex.kb.dk/F/?func=file&amp;file_name=find-b&amp;local_base=kgl01_rexclassic&amp;con_lng=DAN">REX Classic</a></li>
+                    <li><a href="http://www.kb.dk/da/REX/sider/biblioteker.html">Biblioteker i REX-samarbejdet</a></li>
+                    <li><a href="http://www.kb.dk/da/kub/service/sporgbib/forslag.html">Bogforslag</a></li>
+                    <li><a title="Fandt du ikke hvad du søgte?" href="https://rex.kb.dk/userServices/menu/Order" target="_blank">Fandt du ikke hvad du søgte?</a></li>
 
 
-            </ul>
+                </ul>
+            </div>
+
+            <hr class="visible-xs">
+
+            <div class="col-xs-12 col-sm-4">
+                <strong class="lead">DET KONGELIGE BIBLIOTEK</strong>
+                <ul class="list-unstyled">
+                    <li><a href="http://www.kb.dk/da/kb/aabningstider/index.html">Åbningstider &amp; Adresser</a></li>
+                    <li><a href="http://kontaktbiblioteket.kb.dk">Kontakt biblioteket</a></li>
+                    <li><a href="http://www.kb.dk/da/kb/handicap/index.html">Handikap-information</a></li>
+                    <li><a href="http://www.kb.dk/da/kb/webstedet/cookiepolitik.html">Cookie- og privatlivspolitik</a></li>
+                    <li><a href="http://www.kb.dk/da/kb/webstedet/index.html">Om webstedet</a></li>
+                </ul>
+            </div>
+
         </div>
 
-        <hr class="visible-xs">
+        <hr>
 
-        <div class="col-xs-12 col-sm-4">
-            <strong class="lead">DET KONGELIGE BIBLIOTEK</strong>
-            <ul class="list-unstyled">
-                <li><a href="http://www.kb.dk/da/kb/aabningstider/index.html">Åbningstider &amp; Adresser</a></li>
-                <li><a href="http://kontaktbiblioteket.kb.dk">Kontakt biblioteket</a></li>
-                <li><a href="http://www.kb.dk/da/kb/handicap/index.html">Handikap-information</a></li>
-                <li><a href="http://www.kb.dk/da/kb/webstedet/cookiepolitik.html">Cookie- og privatlivspolitik</a></li>
-                <li><a href="http://www.kb.dk/da/kb/webstedet/index.html">Om webstedet</a></li>
-            </ul>
+        <div class="row">
+
+            <a href="http://www.kb.dk" class="col-xs-2 col-sm-1">
+                <img src="../sites/kb/KGL/images/kb/footerLogo.png" class="img-responsive" alt="Det Kongelige Bibliotek">
+            </a>
+            <div class="col-xs-10 col-sm-11">
+                <address>
+                    <p>
+                        <strong>
+                            Det Kongelige Bibliotek<br>
+                            Nationalbibliotek og Københavns Universitetsbibliotek
+                        </strong>
+                        <small>
+                            <br>
+                            Søren Kierkegaards Plads 1 - 1219 København K - EAN: 5798 000795297 - <abbr title="Telefon nr.">Tlf: </abbr>+45 33 47 47 47 - E-mail <a href="mailto:kb@kb.dk">kb@kb.dk</a>
+                            <br>
+                            <span class="glyphicon glyphicon-thumbs-up"></span> <a href="https://www.facebook.com/DetKongeligeBibliotek" target="_blank">Følg os på Facebook</a>
+                        </small>
+                    </p>
+                </address>
+            </div>
         </div>
+    </footer>
+    <!--begin footer-->
+    <!--footer_KGL_da_DK.html-->
+    <script type="text/javascript">
 
-    </div>
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-1269676-9']);
+        _gaq.push(['_trackPageview']);
 
-    <hr>
+        (function() {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
 
-    <address>
-        <p>
-            <strong>
-                Det Kongelige Bibliotek<br>
-                Nationalbibliotek og Københavns Universitetsbibliotek
-            </strong>
-            <small>
-                <br>
-                Søren Kierkegaards Plads 1 - 1219 København K - EAN: 5798 000795297 - <abbr title="Telefon nr.">Tlf: </abbr>+45 33 47 47 47 - E-mail <a href="mailto:kb@kb.dk">kb@kb.dk</a>
-                <br>
-                <span class="glyphicon glyphicon-thumbs-up"></span> <a href="https://www.facebook.com/DetKongeligeBibliotek" target="_blank">Følg os på Facebook</a>
-            </small>
-        </p>
-    </address>
+        $('#facetList div ul:lt(2)').addClass('in');
 
-</footer>
+    </script>
+    <!-- autocomplete imports -->
+    <!-- link rel="stylesheet" href="http://code.jquery.com/ui/1.10.0/themes/base/jquery-ui.css" / -->
+    <!-- script src="http://code.jquery.com/ui/1.10.0/jquery-ui.js"></script -->
+    <!-- END autocomplete -->
+    <!--end footer-->
+    <!-- includeStaticHTML.jspf end (/sites/kb/KGL/static_htmls/footer_da_DK.jsp) --><!-- autoRefresh.jspf begin -->
+    <!-- deferScript.tag begin -->
+    <!-- deferScript.tag end -->
+
+    <!-- autoRefresh.jspf end --><!-- footer.jsp end -->
+
+
+
+
+    <!-- l_footer.jsp end -->
+    <!-- end ../headings/footers/l_footer.jsp -->
+</div>
+    <!-- dynamic_recursion.jsp end -->
+</div>
+    <!-- dynamic_recursion.jsp end -->
+</div>
 
 
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->

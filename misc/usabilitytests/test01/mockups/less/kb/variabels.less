@@ -1,6 +1,7 @@
 // VAR
-// *************************
-
+// *************************//
+// TODO. Ryd op efter dig selv, din mor arbejder her ikke ;)
+// Koden skal breakes op i flere less filer.
 
 .list-group-item{
     border:none;
@@ -9,7 +10,8 @@
     margin:10px 0;
 }
 .navbar-kb{
-    margin-bottom: 0px !important;
+    margin: 0px !important;
+    padding:0px;
 }
 
 // Brand colors
@@ -29,7 +31,7 @@
 // *************************
 
 body{
-    background:             @gray-lighter;
+    background: @gray-lighter;
 }
 
 // Header
@@ -41,44 +43,7 @@ body{
 }
 
 
-// Search
-// -------------------------
 
-#search{
-    background:             darken(@btn-primary-bg, -10%);
-    color:                  @neutral;
-
-    .EXLSearchWrapper{
-       padding:             @jumbotron-padding;
-    }
-    .btn-primary{
-        border:             0;
-    }
-    #search_field{
-        border:0;
-    }
-
-    .nav-tabs{
-        border-bottom:      none;
-        > li > a{
-            background:     @brand-primary;
-            color:          @neutral;
-            border:         none;
-
-        }
-        .active > a {
-            &,
-            &:hover,
-            &:focus {
-                color: @btn-default-color;
-                background-color: @neutral;
-                border: none;
-
-            }
-        }
-    }
-
-}
 
 // Content
 // ------------------------------------
@@ -90,18 +55,5 @@ body{
     }
     .col-md-9, col-lg-9, .col-lg-12{
         margin-bottom: 20px
-    }
-}
-
-
-
-// Footer
-// -------------------------
-
-#footer{
-    padding:                @jumbotron-padding;
-    border-top:             20px solid @brand-primary;
-    hr {
-        border-top:1px solid darken(@brand-primary, -50%);
     }
 }

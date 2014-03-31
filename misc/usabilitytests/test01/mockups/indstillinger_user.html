@@ -34,6 +34,16 @@
               color:#777;
             }*/
     </style>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/emulateFavorites.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#saveSearch').on('click', function (e) {
+                window.open('opretAgent_user.html?' + window.encodeURI(name), '-', 'width=350,height=350');
+                return false;
+            });
+        });
+    </script>
 </head>
 <body>
 <header>
@@ -42,42 +52,109 @@
         <div class="container">
 
             <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="glyphicon glyphicon-user"><span class="caret"></span></span>
-                </button>
+
+                <div class="navbar-toggle">
+
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-link dropdown-toggle" data-toggle="dropdown">
+                            <span class="glyphicon glyphicon-flag"></span>
+                            <span class="">Language</span>
+                            <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a href="#">Dansk</a></li>
+                            <li><a href="#">English</a></li>
+                        </ul>
+                    </div>
+
+                    <button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#userMenu">
+                        <span class="sr-only">Kasper Andersen</span>
+                        <span class="glyphicon glyphicon-user"><span class="caret"></span></span>
+                    </button>
+
+                    <button type="button" class="btn btn-danger navbar-btn" onclick="location.href='soegeresultat.html'; return true;">
+                        <span class="glyphicon glyphicon-off"></span>
+                        <span class="sr-only">Log ud</span>
+                    </button>
+                </div>
+
                 <a class="navbgar-brand" href="#">
-                    <img src="img/logo.png" class="hidden-xs" alt="Det Kongelige Bibliotek">
-                    <img src="img/logoSmall.png" class="visible-xs" alt="Det Kongelige Bibliotek">
+                    <img src="img/logo.png" class="hidden-xs hidden-sm" alt="Det Kongelige Bibliotek">
+                    <img src="img/logoSmall.png" class="visible-xs visible-sm" alt="Det Kongelige Bibliotek">
                 </a>
             </div>
 
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <p class="navbar-text visible-xs">
-                    <strong>Kasper Andersen</strong>
-                </p>
-                <ul class="nav navbar-nav navbar-right">
-                    <li class="visible-xs active"><a href="indstillinger.html"><span class="glyphicon glyphicon-cog"></span> Indstillinger</a></li>
-                    <li class="visible-xs"><a href="#"><span class="glyphicon glyphicon-credit-card"></span> Print konto</a></li>
-                    <li  class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+            <div class="collapse navbar-collapse" id="userMenu">
+                <div class="nav navbar-nav navbar-right hidden-xs">
+
+                    <div class="btn-group">
+                        <button class="btn btn-link navbar-btn" data-toggle="dropdown">
                             <span class="glyphicon glyphicon-flag"></span>
-                            <span class="hidden-sm">Language</span>
+                            <span>Language</span>
                             <span class="caret"></span>
-                        </a>
+                        </button>
                         <ul class="dropdown-menu">
                             <li><a href="#">Dansk</a></li>
                             <li><a href="#">English</a></li>
                         </ul>
-                    </li>
+                    </div>
 
-                    <li>
+                    <button type="button" class="btn btn-danger navbar-btn" onclick="location.href='soegeresultat.html'; return true;">
+                        <span class="glyphicon glyphicon-off"></span>
+                        <span>Log ud</span>
+                    </button>
 
-                    <li>
-                        <button type="button" class="btn btn-danger navbar-btn hidden-xs" onclick="location.href='indstillinger.html'; return true;"><span class="glyphicon glyphicon-off"></span> Log ud</button>
-                    </li>
-                </ul>
-                <button type="button" class="btn btn-danger navbar-btn visible-xs pull-right" onclick="location.href='indstillinger.html'; return true;"><span class="glyphicon glyphicon-off"></span> Log ud</button>
+                </div>
+
+                <div class="visible-xs">
+                    <p class="navbar-text visible-xs">
+                        <strong>Kasper Andersen</strong>
+                    </p>
+                    <ul class="nav navbar-nav">
+                        <li>
+                            <a href="hjemlaan_user.html">
+                                <span class="glyphicon glyphicon-cog"></span>
+                                <span>Instillinger</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="hjemlaan_user.html">
+                                <span class="glyphicon glyphicon-book"></span>
+                                <span>Hjemlån</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="bestillinger_user.html">
+                                <span class="glyphicon glyphicon-time"></span>
+                                <span>Bestillinger</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="favoritter_user.html">
+                                <span class="glyphicon glyphicon-star"></span>
+                                <span>Favoritter</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="soegninger_user.html">
+                                <span class="glyphicon glyphicon-search"></span>
+                                <span>Søgninger</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="gebyrer_user.html">
+                                <span class="glyphicon glyphicon-credit-card"></span>
+                                <span>Gebyrer</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="hjemlaan_user.html">
+                                <span class="glyphicon glyphicon-print"></span>
+                                <span>Print</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
 
             </div>
 
@@ -86,7 +163,7 @@
 
 </header>
 
-<nav class="bg-primary">
+<nav class="bg-primary myAccountNavBar hidden-xs">
     <div class="container topNavBar">
 
         <div class="btn-group btn-group-justified" role="toolbar">
@@ -99,41 +176,33 @@
                 <ul class="dropdown-menu" role="menu">
                     <li class="visible-sm btn-text"><p><strong>Kasper Andersen</strong></p></li>
                     <li class="divider visible-sm"></li>
-                    <li class="active"><a href="indstillinger_user.html"><span class="glyphicon glyphicon-cog"></span> Indstillinger</a></li>
+                    <li><a href="indstillinger_user.html"><span class="glyphicon glyphicon-cog"></span> Indstillinger</a></li>
                     <li><a href="#"><span class="glyphicon glyphicon-credit-card"></span> Print konto</a></li>
                 </ul>
             </div>
 
             <a href="hjemlaan_user.html" class="btn btn-primary text-center">
-                <span class="glyphicon glyphicon-book hidden-xs hidden-sm"></span>
+                <span class="glyphicon glyphicon-book"></span>
                 <span>Hjemlån</span>
-                <br class="visible-xs">
-                <span class="badge">2</span>
             </a>
 
             <a href="bestillinger_user.html" class="btn btn-primary text-center">
-                <span class="glyphicon glyphicon-time hidden-xs hidden-sm"></span>
+                <span class="glyphicon glyphicon-time "></span>
                 <span>Bestillinger</span>
-                <br class="visible-xs">
-                <span class="badge">3</span>
             </a>
 
             <a href="favoritter_user.html" class="btn btn-primary text-center">
-                <span class="glyphicon glyphicon-star hidden-xs hidden-sm"></span>
+                <span class="glyphicon glyphicon-star"></span>
                 <span>Favoritter</span>
-                <br class="visible-xs">
-                <span class="badge">6</span>
             </a>
 
             <a href="soegninger_user.html" class="btn btn-primary text-center">
-                <span class="glyphicon glyphicon-search hidden-xs hidden-sm"></span>
+                <span class="glyphicon glyphicon-search"></span>
                 <span>Søgninger</span>
-                <br class="visible-xs">
-                <span class="badge">4</span>
             </a>
 
             <a href="gebyrer_user.html" class="btn btn-primary text-center">
-                <span class="glyphicon glyphicon-warning-sign"></span>
+                <span class="glyphicon glyphicon-credit-card"></span>
                 <br class="visible-xs">
                 <span>Gebyrer</span>
             </a>
@@ -141,6 +210,540 @@
         </div>
     </div>
 </nav>
+
+<section>
+<br class="hidden-xs">
+
+
+<div id="search" class="EXLCustomLayoutContainer collapsing">
+
+<!-- dynamic_recursion.jsp begin -->
+<!-- taglibsIncludeAll.jspf begin -->
+<!-- taglibsIncludeAll.jspf end --><div id="exlidSearchTileWrapper" class="EXLCustomLayoutTile EXLSearchWrapper container">
+<!-- begin ../views/search/dev_l_search_input.jsp -->
+<!-- l_search_input.jsp begin -->
+<!-- taglibsIncludeAll.jspf begin -->
+<!-- taglibsIncludeAll.jspf end --><!-- jsp_mapping_retriever.jsp begin -->
+<!-- jsp_mapping_retriever.jsp end -->
+<!-- resolved jsp page for search tile: /sites/kb/preview/a/b/../../tiles/searchTile.jsp -->
+<!-- taglibsIncludeAll.jspf begin -->
+<!-- taglibsIncludeAll.jspf end --><script type="text/javascript">
+    //<![CDATA[
+    function loadSearchDbPage(){
+        var fn;
+        addLightBoxDivs();
+        fn='loadSearchDbPage';
+        var timestamp = new Date().getTime();
+        var url = "searchDB.do"+"?fn="+fn+"&ts="+timestamp;
+        var data;
+        $.ajax({
+            url:url,
+            data:data,
+            global:false,
+            beforeSend: function(request){
+                setAjaxRequestHeader(request);
+            },
+            error: function(request,errorType,exceptionOcurred){
+                if (errorType=='timeout'){
+                    notifyAjaxTimeout();
+                }else{
+                    generalAjaxError();
+                }
+                document.getElementById('exliLoadingFdb').style.display='none';
+                document.getElementById('exliGreyOverlay').style.display='none';
+                document.getElementById('exliWhiteContent').style.display='none';
+                return false;
+            },
+            success: function(data){
+                if (isAjaxXmlRedirect(data)){
+                    handleAjaxXmlRedirect(data);
+                }
+                var elm = $(data).find('searchDbXml');
+                var cdata = $(elm).text();
+                $('span[id=exliLoadingFdbSpan]').remove();
+                var n;
+                n = document.getElementById("exliWhiteContent");
+                var xmlText = cdata.replace(/\n\n/g, "\n").replace(/&lt;/g,"<").replace(/&gt;/g,">");
+                var newdiv = document.createElement("div");
+                newdiv.innerHTML = xmlText;
+                n.innerHTML='';
+                $(n).append(newdiv);
+            }
+        });
+    }
+
+
+
+
+
+
+    // ]]>
+</script>
+<noscript>This feature requires javascript</noscript><!-- searchTile.jsp begin -->
+<form name="searchForm" method="get" action="/primo_library/libweb/action/search.do?fn=search&amp;ct=search" class="EXLSearchForm" enctype="application/x-www-form-urlencoded; charset=utf-8" onsubmit="if(isRemoteSearch()){doPleaseWait();};if(window.manualFormSubmit){manualFormSubmit(this.id);return false;}" id="searchForm" target="_self"><input id="fn" type="hidden" value="search" name="fn">
+<input id="ct" type="hidden" value="search" name="ct">
+<input id="initialSearch" type="hidden" value="true" name="initialSearch">
+
+<input id="autoCompleteEnabled" type="hidden" value="false">
+<input id="autoCompleteUrl" type="hidden" value="null/solr/ac">
+<input id="autoCompleteScope" type="hidden" value="">
+<input id="autoCompleteScopesMap" type="hidden" value="{&quot;KGL&quot;:&quot;L&quot;,&quot;TEST2&quot;:&quot;L&quot;,&quot;NATIFI&quot;:&quot;L&quot;,&quot;NATZM&quot;:&quot;L&quot;,&quot;KORT&quot;:&quot;L&quot;,&quot;NATBIBSAML&quot;:&quot;L&quot;,&quot;SAMFSOE&quot;:&quot;L&quot;,&quot;HUMSAX&quot;:&quot;L&quot;,&quot;HUMINS&quot;:&quot;L&quot;,&quot;HUMENG&quot;:&quot;L&quot;,&quot;ITBPRIMO&quot;:&quot;L&quot;,&quot;NATNBI&quot;:&quot;L&quot;,&quot;NAIFIANA&quot;:&quot;L&quot;,&quot;NATBIO&quot;:&quot;L&quot;,&quot;HUMUS&quot;:&quot;L&quot;,&quot;SUNDSUIFS&quot;:&quot;L&quot;,&quot;LIFEPRIMO&quot;:&quot;L&quot;,&quot;NIAS&quot;:&quot;L&quot;,&quot;POLAR&quot;:&quot;L&quot;,&quot;NATMAT&quot;:&quot;L&quot;,&quot;DRA01_PRIMONY&quot;:&quot;L&quot;,&quot;NAGEO&quot;:&quot;L&quot;,&quot;TEST1&quot;:&quot;L&quot;,&quot;SAMFSANSOC&quot;:&quot;L&quot;,&quot;ORIENTALSK&quot;:&quot;L&quot;,&quot;TEOPRIMO&quot;:&quot;L&quot;,&quot;HUIVA&quot;:&quot;L&quot;,&quot;NATSUNDPRIMO&quot;:&quot;L&quot;,&quot;NATBOT&quot;:&quot;L&quot;,&quot;SUNDSUMM&quot;:&quot;L&quot;,&quot;DANSKE&quot;:&quot;L&quot;,&quot;JURPRIMO&quot;:&quot;L&quot;,&quot;CASPRIMO&quot;:&quot;L&quot;,&quot;HUMNFI&quot;:&quot;L&quot;,&quot;KGL_BILLEDER&quot;:&quot;L&quot;,&quot;SAMFCITYPRIMO&quot;:&quot;L&quot;,&quot;FARMA&quot;:&quot;L&quot;,&quot;HAANDBOG&quot;:&quot;L&quot;,&quot;Primo_Central&quot;:&quot;C&quot;,&quot;HUMPRIMO&quot;:&quot;L&quot;,&quot;SAMFHPS&quot;:&quot;L&quot;,&quot;DFS01_PRIMO&quot;:&quot;L&quot;,&quot;MUS01_PRIMONY&quot;:&quot;L&quot;,&quot;NATDAT&quot;:&quot;L&quot;,&quot;HUMIKK&quot;:&quot;L&quot;,&quot;KBB01_PRIMONY&quot;:&quot;L&quot;,&quot;TEST&quot;:&quot;L&quot;,&quot;JUDAISTISK&quot;:&quot;L&quot;,&quot;HUMTOR&quot;:&quot;L&quot;,&quot;HUMEF&quot;:&quot;L&quot;,&quot;SAMFSST&quot;:&quot;L&quot;,&quot;KBH01_PRIMONY&quot;:&quot;L&quot;,&quot;SUNDPANUM&quot;:&quot;L&quot;}">
+
+<!-- taglibsIncludeAll.jspf begin -->
+<!-- taglibsIncludeAll.jspf end --><!-- searchTileBasic.jsp begin -->
+<div id="exlidSearchTile" class="EXLSearch row">
+<div id="exlidSearchRibbon" class="col-md-8 col-md-offset-2">
+
+<!-- search_hidden.jspf begin -->
+<!-- taglibsIncludeAll.jspf begin -->
+<!-- taglibsIncludeAll.jspf end --><!--
+		institution = Det Kongelige Bibliotek
+		institution code = KGL
+	 -->
+<input type="hidden" id="mode" name="mode" value="Basic">
+<input type="hidden" id="tab" name="tab" value="default_tab">
+<input type="hidden" id="indx" name="indx" value="1">
+<input type="hidden" id="dum" name="dum" value="true">
+<input type="hidden" name="srt" value="rank" id="str">
+
+<input type="hidden" id="vid" name="vid" value="preview">
+<input type="hidden" id="frbg" name="frbg" value="">
+<!-- search_hidden.jspf end --><!--<legend class="EXLHiddenCue collapse">Primo Search</legend>-->
+<div class="EXLSearchTabsContainer">
+
+    <input type="hidden" name="tb" value="t" id="tb"><ul id="exlidSearchTabs" class="EXLTabs nav nav-tabs">
+    <li id="exlidTab0" class="EXLSearchTab EXLSearchTabSelected, active">
+                            <span id="defaultScopedefault_tab" style="display:none">
+                                Det Kongelige Bibliotek, Nationalbibliotek og Københavns Universitetsbibliotek</span>
+        <a href="search.do?mode=Basic&amp;vid=preview&amp;vl(freeText0)=murakami&amp;fn=search&amp;tab=default_tab&amp;" class="EXLSearchTabTitle EXLSearchTabLABELBøger, tidsskrifter, artikler m.m." target="_self" onclick="getSearchField(this,'Basic'); delay4Remote('local','true ','default_tab')" title="tooltip">
+            <span>Bøger, tidsskrifter m.m.</span>
+        </a>
+    </li>
+    <li id="exlidTab1" class="EXLSearchTab ">
+                            <span id="defaultScopeartikler" style="display:none">
+                                Artikler</span>
+        <a href="#" class="EXLSearchTabTitle EXLSearchTabLABELArtikler" target="_self" onclick="getSearchField(this,'Basic'); delay4Remote('local','true ','artikler')" title="tooltip">
+            <span>Artikler</span>
+        </a>
+    </li>
+</ul>
+
+</div>
+
+<div class="EXLSearchFieldRibbon ">
+    <div class="EXLSearchFieldRibbonFormFields form-group">
+        <div class="EXLSearchFieldRibbonFormSearchFor input-group input-group-lg">
+            <label for="search_field" class="EXLHide sr-only">Search For:</label>
+            <input name="vl(freeText0)" class=" form-control" value="murakami" id="search_field" type="text" accesskey="s">
+
+            <div class="EXLSearchFieldRibbonFormSubmitSearch input-group-btn">
+                <button id="goButton" type="submit" value="Søg" class="submit btn btn-primary" onclick="return false;" accesskey="g">
+                    <span class="glyphicon glyphicon-search "></span>
+                        <span class="collapse">
+                            Søg</span>
+                </button>
+            </div>
+        </div>
+    </div>
+    <!-- end  search field ribbon -->
+</div>
+
+
+<!-- systemFeedbackTile.jsp end --><!-- taglibsIncludeAll.jspf begin -->
+<!-- taglibsIncludeAll.jspf end --><script type="text/javascript"> // <![CDATA[
+
+function removeChildren(elm){
+    if ( elm.hasChildNodes() )
+    {
+        while ( elm.childNodes.length >= 1 )
+        {
+            elm.removeChild( elm.firstChild );
+        }
+    }
+}
+
+
+function loopSelected(selObj, newObj, selectedElm)
+{
+
+    for (i=0; i<selObj.options.length; i++) {
+        var op = document.createElement('option');
+        op.text = selObj.options[i].text;
+        op.value = selObj.options[i].value;
+        op.id = selObj.options[i].id;
+        if (selectedElm == selObj.options[i].value ){
+            op.selected = 'selected';
+        }
+        try {
+            newObj.add(op, newObj.options[i]); // firefox
+        } catch (ex) {
+            newObj.add(op, i); // ie
+        }
+    }
+}
+
+
+function showSelected(selectedOption, id  ) {
+
+    var selOperatorObj = document.getElementById('exlidInput_precisionOperator_' +id);
+    var selOperatorIndex = selOperatorObj.selectedIndex;
+    var titleObj=document.getElementById('exlidInput_scope_title' +id);
+
+    var allObj =document.getElementById('exlidInput_scope_all' +id);
+    var orgObj = document.getElementById('exlidInput_scope_' +id);
+    var selectedElm =orgObj.options[orgObj.selectedIndex];
+
+    if ( selOperatorObj.options[selOperatorIndex].value =='begins_with'){
+        if (titleObj == null || titleObj == undefined ){
+            selectedOption.options[0].selected = 'selected';
+            alert('Start med virker kun ved titel');
+            return false;
+        }
+        removeChildren(orgObj);
+        loopSelected(titleObj, orgObj, selectedElm.value);
+        var searchForm = document.getElementsByName('searchForm')[0];
+        var hiddenSrt = document.getElementById("str");
+        hiddenSrt.value = 'title';
+    } else{
+        removeChildren(orgObj);
+        loopSelected(allObj, orgObj, selectedElm.value);
+        var searchForm = document.getElementsByName('searchForm')[0];
+        var hiddenSrt = document.getElementById("str");
+        hiddenSrt.value = 'rank';
+    }
+
+}
+
+function unselect(id  ) {
+
+    if (document.getElementById('begins_with'+id)) {
+        var orgObj = document.getElementById('exlidInput_scope_' +id);
+        removeChildren(orgObj);
+        var op = document.createElement('option');
+        op.text = 'titel';
+        op.value = 'title';
+        op.id = 'scope_titleOnly'+id;
+        op.selected = 'selected';
+        try {
+            orgObj.add(op, orgObj.options[0]); // firefox
+        } catch (ex) {
+            orgObj.add(op, 0); // ie
+        }
+        var searchForm = document.getElementsByName('searchForm')[0];
+        var hiddenSrt = document.getElementById("str");
+        hiddenSrt.value = 'title';
+    }
+}
+
+function unselectAdvanceTitle(id){
+
+    if (document.getElementById('title'+id)) {
+        var orgObj = document.getElementById('exlidInput_scope_' +id);
+        removeChildren(orgObj);
+        var op = document.createElement('option');
+        op.text = 'Titel';
+        op.value = 'title';
+        op.id = 'scope_titleOnly'+id;
+        op.selected = 'selected';
+        try {
+            orgObj.add(op, orgObj.options[0]); // firefox
+        } catch (ex) {
+            orgObj.add(op, 0); // ie
+        }
+        var searchForm = document.getElementsByName('searchForm')[0];
+        var hiddenSrt = document.getElementById("str");
+        hiddenSrt.value = 'title';
+    }
+}
+
+
+//]]>
+</script>
+<noscript>This feature requires javascript</noscript><!-- searchLimitsTile.jsp begin -->
+<div id="exlidHeaderSearchLimits" class="row">
+<fieldset>
+<legend class="EXLHiddenCue sr-only"><!-- userText.tag begin -->
+    <!-- userText.tag end --></legend>
+<div class="EXLHeaderSearchLimitsFields">
+<span class="EXLHeaderSearchLimitsFieldsTitle">
+		<!-- userText.tag begin -->
+<!-- userText.tag end --></span>
+
+		<span class="EXLHiddenCue sr-only"><!-- userText.tag begin -->
+<!-- userText.tag end --></span>
+<div class="col-xs-6 col-md-3">
+    <div class="form-group">
+        <!-- select.tag begin -->
+        <!-- taglibsIncludeAll.jspf begin -->
+        <select class="EXLSelectTag blue EXLSimpleSearchSelect form-control input-sm" id="exlidInput_mediaType_1" name="vl(775288739UI1)">
+
+
+            <option style="display:block" value="manuscripts" id="mediaType_manuscripts1" class="EXLSelectOption">
+                Håndskrifter</option>
+            <option style="display:block" value="scores" id="mediaType_scores1" class="EXLSelectOption">
+                Noder</option>
+            <option style="display:block" value="maps" id="mediaType_maps1" class="EXLSelectOption">
+                Kort</option>
+            <option style="display:block" value="theses" id="mediaType_theses1" class="EXLSelectOption">
+                Specialer</option>
+            <option style="display:block" value="books" id="mediaType_books1" class="EXLSelectOption">
+                Bøger</option>
+            <option style="display:block" value="journals" id="mediaType_journals1" class="EXLSelectOption">
+                Tidsskrifter</option>
+            <option style="display:block" value="images" id="mediaType_images1" class="EXLSelectOption">
+                Billeder</option>
+            <option style="display:block" value="audio_video" id="mediaType_audio_video1" class="EXLSelectOption">
+                Musik/film</option>
+            <option style="display:block" value="databases" id="mediaType_databases1" class="EXLSelectOption">
+                Databaser</option>
+            <option style="display:block" value="media" id="mediaType_media1" class="EXLSelectOption">
+                Aviser</option>
+            <option style="display:block" value="drama" id="mediaType_drama1" class="EXLSelectOption">
+                Skuespil</option>
+            <option style="display:block" value="computer" id="mediaType_computer1" class="EXLSelectOption">
+                Computerspil</option>
+            <option style="display:block" value="all_items" id="mediaType_all_items1" selected="selected" class="EXLSelectedOption">
+                Alle materialer</option>
+        </select>
+        <!-- select.tag end --></div>
+</div>
+            <span class="EXLHide sr-only">
+				<span class="EXLHide sr-only">Vis resultater med:</span>
+				</span>
+<div class="col-xs-6 col-md-3">
+    <div class="form-group">
+        <!-- select.tag begin -->
+        <!-- taglibsIncludeAll.jspf begin -->
+
+        <select class="EXLSelectTag EXLSimpleSearchSelect form-control input-sm" id="exlidInput_precisionOperator_1" onchange="showSelected(this, '1' ); return false;" name="vl(1UIStartWith0)">
+
+
+            <option value="contains" selected="selected" class="EXLSelectedOption">
+                som indeholder mit søgeord</option>
+            <option value="exact" class="EXLSelectOption">
+                med ordene i rækkefølge</option>
+            <option value="begins_with" class="EXLSelectOption">
+                starter med</option>
+        </select>
+        <!-- select.tag end --></div>
+</div>
+			<span class="EXLHide sr-only">
+				<span class="EXLHide sr-only">Vis resultater med:</span>
+				<!-- userText.tag begin -->
+<!-- userText.tag end --></span>
+<div class="col-xs-6 col-md-3">
+    <div class="form-group">
+        <!-- select.tag begin -->
+        <!-- taglibsIncludeAll.jspf begin -->
+
+        <select class="EXLSelectTag EXLSimpleSearchSelect form-control input-sm" id="exlidInput_scope_1" name="vl(764637515UI0)">
+            <option value="any" id="scope_any1" selected="selected" class="EXLSelectedOption">
+                alle felter</option>
+            <option value="creator" id="scope_creator1" class="EXLSelectOption">
+                forfatter/ophav</option>
+            <option value="title" id="scope_title1" class="EXLSelectOption">
+                titel</option>
+            <option value="sub" id="scope_sub1" class="EXLSelectOption">
+                emne</option>
+            <option value="lsr02" id="scope_lsr021" class="EXLSelectOption">
+                Dewey</option>
+            <option value="lsr03" id="scope_lsr031" class="EXLSelectOption">
+                DK5</option>
+            <option value="lsr04" id="scope_lsr041" class="EXLSelectOption">
+                Opstilling</option>
+            <option value="lsr01" id="scope_lsr011" class="EXLSelectOption">
+                Klassifikation/opstilling</option>
+            <option value="cdate" id="scope_cdate1" class="EXLSelectOption">
+                Udgivelsesår</option>
+            <option value="isbn" id="scope_isbn1" class="EXLSelectOption">
+                ISBN</option>
+            <option value="issn" id="scope_issn1" class="EXLSelectOption">
+                ISSN</option>
+        </select>
+
+
+
+        <select class="EXLSelectTag EXLSimpleSearchSelect form-control input-sm" id="exlidInput_scope_title1" name="vl(764637515UI0)" style="display:none">
+            <option value="title" id="scope_titleOnly1" selected="selected" class="EXLSelectOption">
+                titel</option>
+        </select>
+
+        <select class="EXLSelectTag EXLSimpleSearchSelect form-control input-sm" id="exlidInput_scope_all1" name="vl(764637515UI0)" style="display:none">
+            <option style="display:block" value="any" id="scope_anyall1" selected="selected" class="EXLSelectedOption">
+                alle felter</option>
+            <option style="display:block" value="creator" id="scope_creatorall1" class="EXLSelectOption">
+                forfatter/ophav</option>
+            <option style="display:block" value="title" id="scope_titleall1" class="EXLSelectOption">
+                titel</option>
+            <option style="display:block" value="sub" id="scope_suball1" class="EXLSelectOption">
+                emne</option>
+            <option style="display:block" value="lsr02" id="scope_lsr02all1" class="EXLSelectOption">
+                Dewey</option>
+            <option style="display:block" value="lsr03" id="scope_lsr03all1" class="EXLSelectOption">
+                DK5</option>
+            <option style="display:block" value="lsr04" id="scope_lsr04all1" class="EXLSelectOption">
+                Opstilling</option>
+            <option style="display:block" value="lsr01" id="scope_lsr01all1" class="EXLSelectOption">
+                Klassifikation/opstilling</option>
+            <option style="display:block" value="cdate" id="scope_cdateall1" class="EXLSelectOption">
+                Udgivelsesår</option>
+            <option style="display:block" value="isbn" id="scope_isbnall1" class="EXLSelectOption">
+                ISBN</option>
+            <option style="display:block" value="issn" id="scope_issnall1" class="EXLSelectOption">
+                ISSN</option>
+        </select>
+        <!-- select.tag end --></div>
+</div>
+<div class="col-xs-6 col-md-3">
+    <div class="form-group">
+        <select id="exlidSearchIn" class="EXLSearchInputScopesSelect form-control input-sm" name="scp.scps">
+            <option id="KGL" value="scope:(KGL),scope:(SARPUR)" class="EXLSelectedOption EXLSearchInputScopesOptionKGL" selected="selected">
+                Det Kongelige Bibliotek, Nationalbibliotek og Københavns Universitetsbibliotek</option>
+            <option id="NATBIBSAML" value="scope:(DFS01),scope:(ORIENTALSK),scope:(KGL_KISTE),scope:(KGL_BILLEDER),scope:(KGL_ORIENTALIA),scope:(JUDAISTISK),scope:(KORT),scope:(DANSKE),scope:(HAANDBOG),scope:(KGL_DAELLS),scope:(KGL_PARTI),scope:(KGL_SIMONSEN),scope:(KBB01),scope:(KBH01),scope:(billed_skan),scope:(MUS01),scope:(DRA01),scope:(KGL_SMAATRYK)" class="EXLSelectOption EXLSearchInputScopesOptionNATBIBSAML">
+                Nationalbibliotekssamlinger</option>
+            <option id="KBB01_PRIMONY" value="scope:(KGL_BILLEDER),scope:(KBB01)" class="EXLSelectOption EXLSearchInputScopesOptionKBB01_PRIMONY">
+                &nbsp;&nbsp;&nbsp;- Billedbasen</option>
+            <option id="KGL_BILLEDER" value="scope:(KGL_BILLEDER),scope:(billed_skan)" class="EXLSelectOption EXLSearchInputScopesOptionKGL_BILLEDER">
+                &nbsp;&nbsp;&nbsp;- Billeder online</option>
+            <option id="DANSKE" value="scope:(DANSKE)" class="EXLSelectOption EXLSearchInputScopesOptionDANSKE">
+                &nbsp;&nbsp;&nbsp;- Danske Samlinger (kun læsesal)</option>
+            <option id="DRA01_PRIMONY" value="scope:(DRA01)" class="EXLSelectOption EXLSearchInputScopesOptionDRA01_PRIMONY">
+                &nbsp;&nbsp;&nbsp;- Dramatisk Bibliotek</option>
+            <option id="HAANDBOG" value="scope:(HAANDBOG)" class="EXLSelectOption EXLSearchInputScopesOptionHAANDBOG">
+                &nbsp;&nbsp;&nbsp;- Håndbogssamling, Diamanten</option>
+            <option id="KBH01_PRIMONY" value="scope:(KBH01)" class="EXLSelectOption EXLSearchInputScopesOptionKBH01_PRIMONY">
+                &nbsp;&nbsp;&nbsp;- Håndskriftbasen</option>
+            <option id="JUDAISTISK" value="scope:(JUDAISTISK)" class="EXLSelectOption EXLSearchInputScopesOptionJUDAISTISK">
+                &nbsp;&nbsp;&nbsp;- Judaistisk Samling</option>
+            <option id="KORT" value="scope:(KORT)" class="EXLSelectOption EXLSearchInputScopesOptionKORT">
+                &nbsp;&nbsp;&nbsp;- Kortsamlingen</option>
+            <option id="MUS01_PRIMONY" value="scope:(MUS01)" class="EXLSelectOption EXLSearchInputScopesOptionMUS01_PRIMONY">
+                &nbsp;&nbsp;&nbsp;- Musiksamlingen</option>
+            <option id="ORIENTALSK" value="scope:(ORIENTALSK)" class="EXLSelectOption EXLSearchInputScopesOptionORIENTALSK">
+                &nbsp;&nbsp;&nbsp;- Orientalsk Samling</option>
+            <option id="LIFEPRIMO" value="scope:(KGL01_TEST_PRIMO),scope:(DFIOAI),scope:(DFI02),scope:(KGL_DAW),scope:(DFS01),scope:(KGL03_TEST_HOL),scope:(DFI01),scope:(NAIFIANA),scope:(ORIENTALSK),scope:(VEJPR),scope:(DMIPR),scope:(KGL_GBOOKS),scope:(KGL_DSH),scope:(DABPR_SFX),scope:(NATDAT),scope:(NATMAT),scope:(NATNBI),scope:(NATIFI),scope:(NATBOT),scope:(NATBIO),scope:(NATZM),scope:(NATSUNDPRIMO),scope:(HUMPRIMO),scope:(ITBPRIMO),scope:(ERSFULL),scope:(SAMFCITYPRIMO),scope:(KGL_KISTE),scope:(ERS),scope:(EEBO),scope:(AUB_PROJEKT_DC),scope:(SAMFSOE),scope:(SAMFHPS),scope:(SAMFSST),scope:(DABPR_METALIB),scope:(KGL_BILLEDER),scope:(SAMFSANSOC),scope:(KGL),scope:(DABPR),scope:(KGL_ORIENTALIA),scope:(ISMPR_SFX),scope:(KAB01_PRIMO),scope:(TEOPRIMO),scope:(&quot;PRIMO&quot;),scope:(FOGE),scope:(FARMA),scope:(NAGEO),scope:(JURPRIMO),scope:(LIFEPRIMO),scope:(CASPRIMO),scope:(SUNDPANUM),scope:(SUNDSUMM),scope:(SUNDSUIFS),scope:(SUNDSUODO),scope:(HUMENG),scope:(HUMTOR),scope:(HUMIKK),scope:(HUMINS),scope:(HUMEF),scope:(HUMUS),scope:(HUMNFI),scope:(HUMSAX),scope:(JUDAISTISK),scope:(KORT),scope:(CURIS),scope:(AUB01_ALEPH),scope:(AUB_AAL_PHYS),scope:(AUB_ESB_PHYS),scope:(AUB_KBH_PHYS),scope:(AUB_VBNNOFULL),scope:(KUCPR),scope:(ANKPR),scope:(FSVPR),scope:(BDKPR),scope:(CBS_STUD),scope:(CBS01),scope:(KGL01),scope:(DANSKE),scope:(CBS01_ARTIKLER),scope:(SSTPR),scope:(FOBPR),scope:(AUB_SFX),scope:(HAANDBOG),scope:(KGL_DAELLS),scope:(KGL_PARTI),scope:(KGL_SIMONSEN),scope:(SPRPRM),scope:(KGL03_PRIMONY),scope:(KBB01),scope:(KBH01),scope:(AUB_AAL),scope:(AUB_ESB),scope:(AUB_KBH),scope:(NIAS),scope:(POLAR),scope:(AUB_VBN),scope:(ENSPR),scope:(ISMPR),scope:(FBOPR),scope:(MIN_SNB),scope:(ANKPR_SOEK),scope:(ARK01_ARTIKLER),scope:(AUB_ARTICLE),scope:(ARK01),scope:(CBS_FORS),scope:(CBS_SFX),scope:(CBS1),scope:(billed_skan),scope:(MIN_NFAbib),scope:(MIN_ATbib),scope:(MUS01),scope:(DRA01),scope:(KGL_Libguides),scope:(SARPUR),scope:(KGL_SMAATRYK)" class="EXLSelectOption EXLSearchInputScopesOptionLIFEPRIMO">
+                Det Biovidenskabelige Fakultetsbibliotek (LIFE)</option>
+            <option id="FARMA" value="scope:(FARMA)" class="EXLSelectOption EXLSearchInputScopesOptionFARMA">
+                Det Farmaceutiske Fakultetsbibliotek (FARMA)</option>
+            <option id="HUMPRIMO" value="scope:(HUMPRIMO)" class="EXLSelectOption EXLSearchInputScopesOptionHUMPRIMO">
+                Det Humanistiske Fakultetsbibliotek (HUM)</option>
+            <option id="HUIVA" value="scope:(HUIVA)" class="EXLSelectOption EXLSearchInputScopesOptionHUIVA">
+                &nbsp;&nbsp;&nbsp;- Det Informationsvidenskabelige Akademi</option>
+            <option id="HUMUS" value="scope:(HUMUS)" class="EXLSelectOption EXLSearchInputScopesOptionHUMUS">
+                &nbsp;&nbsp;&nbsp;- IKK, Musikvidenskab</option>
+            <option id="HUMENG" value="scope:(HUMENG)" class="EXLSelectOption EXLSearchInputScopesOptionHUMENG">
+                &nbsp;&nbsp;&nbsp;- Institut for Engelsk, Germansk og Romansk</option>
+            <option id="HUMIKK" value="scope:(HUMIKK)" class="EXLSelectOption EXLSearchInputScopesOptionHUMIKK">
+                &nbsp;&nbsp;&nbsp;- Institut for Kunst- og Kulturvidenskab</option>
+            <option id="HUMEF" value="scope:(HUMEF)" class="EXLSelectOption EXLSearchInputScopesOptionHUMEF">
+                &nbsp;&nbsp;&nbsp;- Institut for Medier, Erkendelse og Formidling</option>
+            <option id="HUMINS" value="scope:(HUMINS)" class="EXLSelectOption EXLSearchInputScopesOptionHUMINS">
+                &nbsp;&nbsp;&nbsp;- Institut for Nordiske Studier og Sprogvidenskab</option>
+            <option id="HUMTOR" value="scope:(HUMTOR)" class="EXLSelectOption EXLSearchInputScopesOptionHUMTOR">
+                &nbsp;&nbsp;&nbsp;- Institut for Tværkulturelle og Regionale Studier</option>
+            <option id="HUMNFI" value="scope:(HUMNFI)" class="EXLSelectOption EXLSearchInputScopesOptionHUMNFI">
+                &nbsp;&nbsp;&nbsp;- Nordisk Forskningsinstitut</option>
+            <option id="POLAR" value="scope:(POLAR)" class="EXLSelectOption EXLSearchInputScopesOptionPOLAR">
+                &nbsp;&nbsp;&nbsp;- Polarbiblioteket</option>
+            <option id="HUMSAX" value="scope:(HUMSAX)" class="EXLSelectOption EXLSearchInputScopesOptionHUMSAX">
+                &nbsp;&nbsp;&nbsp;- Saxo Instituttet</option>
+            <option id="JURPRIMO" value="scope:(JURPRIMO)" class="EXLSelectOption EXLSearchInputScopesOptionJURPRIMO">
+                Det Juridiske Fakultetsbibliotek (JUR)</option>
+            <option id="NATSUNDPRIMO" value="scope:(NATSUNDPRIMO)" class="EXLSelectOption EXLSearchInputScopesOptionNATSUNDPRIMO">
+                Det Natur- og Sundhedsvidenskabelige&nbsp; Fakultetsbibliotek (NATSUND)</option>
+            <option id="NATBIO" value="scope:(NATBIO)" class="EXLSelectOption EXLSearchInputScopesOptionNATBIO">
+                &nbsp;&nbsp;&nbsp;- Biologisk Institut</option>
+            <option id="NATBOT" value="scope:(NATBOT)" class="EXLSelectOption EXLSearchInputScopesOptionNATBOT">
+                &nbsp;&nbsp;&nbsp;- Botanisk Centralbibliotek</option>
+            <option id="NATDAT" value="scope:(NATDAT)" class="EXLSelectOption EXLSearchInputScopesOptionNATDAT">
+                &nbsp;&nbsp;&nbsp;- Datalogisk Institut</option>
+            <option id="NAGEO" value="scope:(NAGEO)" class="EXLSelectOption EXLSearchInputScopesOptionNAGEO">
+                &nbsp;&nbsp;&nbsp;- GeoBiblioteket</option>
+            <option id="SUNDSUIFS" value="scope:(SUNDSUIFS)" class="EXLSelectOption EXLSearchInputScopesOptionSUNDSUIFS">
+                &nbsp;&nbsp;&nbsp;- Institut for Folkesundhedsvidenskab</option>
+            <option id="NATIFI" value="scope:(NATIFI)" class="EXLSelectOption EXLSearchInputScopesOptionNATIFI">
+                &nbsp;&nbsp;&nbsp;- Institut for Idræt</option>
+            <option id="NAIFIANA" value="scope:(NAIFIANA)" class="EXLSelectOption EXLSearchInputScopesOptionNAIFIANA">
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- Sportline (Artiklereferencer - Idræt)</option>
+            <option id="NATMAT" value="scope:(NATMAT)" class="EXLSelectOption EXLSearchInputScopesOptionNATMAT">
+                &nbsp;&nbsp;&nbsp;- Matematisk Bibliotek</option>
+            <option id="SUNDSUMM" value="scope:(SUNDSUMM)" class="EXLSelectOption EXLSearchInputScopesOptionSUNDSUMM">
+                &nbsp;&nbsp;&nbsp;- Medicinsk Museion</option>
+            <option id="NATNBI" value="scope:(NATNBI)" class="EXLSelectOption EXLSearchInputScopesOptionNATNBI">
+                &nbsp;&nbsp;&nbsp;- Niels Bohr Instituttet</option>
+            <option id="SUNDPANUM" value="scope:(SUNDPANUM)" class="EXLSelectOption EXLSearchInputScopesOptionSUNDPANUM">
+                &nbsp;&nbsp;&nbsp;- Panum Biblioteket</option>
+            <option id="NATZM" value="scope:(NATZM)" class="EXLSelectOption EXLSearchInputScopesOptionNATZM">
+                &nbsp;&nbsp;&nbsp;- Zoologisk Museum</option>
+            <option id="SAMFCITYPRIMO" value="scope:(SAMFCITYPRIMO)" class="EXLSelectOption EXLSearchInputScopesOptionSAMFCITYPRIMO">
+                Det Samfundsvidenskabelige Fakultetsbibliotek (SAMF)</option>
+            <option id="SAMFSST" value="scope:(SAMFSST)" class="EXLSelectOption EXLSearchInputScopesOptionSAMFSST">
+                &nbsp;&nbsp;&nbsp;- Institut for Statskundskab</option>
+            <option id="SAMFSANSOC" value="scope:(SAMFSANSOC)" class="EXLSelectOption EXLSearchInputScopesOptionSAMFSANSOC">
+                &nbsp;&nbsp;&nbsp;- Institutterne ved Antropologi og Sociologi</option>
+            <option id="NIAS" value="scope:(NIAS)" class="EXLSelectOption EXLSearchInputScopesOptionNIAS">
+                &nbsp;&nbsp;&nbsp;- NIAS</option>
+            <option id="SAMFHPS" value="scope:(SAMFHPS)" class="EXLSelectOption EXLSearchInputScopesOptionSAMFHPS">
+                &nbsp;&nbsp;&nbsp;- Psykologisk Bibliotek</option>
+            <option id="SAMFSOE" value="scope:(SAMFSOE)" class="EXLSelectOption EXLSearchInputScopesOptionSAMFSOE">
+                &nbsp;&nbsp;&nbsp;- Økonomisk Institut</option>
+            <option id="TEST" value="scope:(KGL01),scope:(billed_skan)" class="EXLSelectOption EXLSearchInputScopesOptionTEST">
+                TEST</option>
+            <option id="TEST1" value="scope:(KGL01)" class="EXLSelectOption EXLSearchInputScopesOptionTEST1">
+                TEST1</option>
+            <option id="TEST2" value="scope:(KGL01),scope:(billed_skan)" class="EXLSelectOption EXLSearchInputScopesOptionTEST2">
+                TEST2</option>
+            <option id="TEOPRIMO" value="scope:(TEOPRIMO)" class="EXLSelectOption EXLSearchInputScopesOptionTEOPRIMO">
+                Det Teologiske Fakultetsbibliotek (TEOL)</option>
+            <option id="CASPRIMO" value="scope:(CASPRIMO)" class="EXLSelectOption EXLSearchInputScopesOptionCASPRIMO">
+                &nbsp;&nbsp;&nbsp;- Center for Afrikastudier</option>
+            <option id="ITBPRIMO" value="scope:(ITBPRIMO)" class="EXLSelectOption EXLSearchInputScopesOptionITBPRIMO">
+                IT-Biblioteket</option>
+            <option id="DFS01_PRIMO" value="scope:(DFS01)" class="EXLSelectOption EXLSearchInputScopesOptionDFS01_PRIMO">
+                Dansk Folkemindesamling</option>
+        </select>
+    </div>
+</div>
+
+</div>
+</fieldset>
+
+
+</div>
+<!-- searchLimitsTile.jsp end -->
+<div class="EXLSearchFieldRibbonAdvancedSearchLink">
+    <a class=" btn btn-primary btn-sm" title="Få flere søgemuligheder" href="#" id="advancedSearchBtn">
+        Avanceret søgning</a>
+
+    <a href="#" class="btn btn-primary btn-sm" title="mainmenu.label.ny_søgning" target="_self">Ny søgning</a>
+</div>
+<br>
+
+</div>
+</div>
+<!--<div id="exlidSearchBanner">-->
+<!--end exlidSearchBanner
+</div>-->
+<!-- searchTileBasic.jsp end --></form><!-- searchTile.jsp end -->
+
+<!-- l_search_input.jsp end -->
+
+<!-- end ../views/search/dev_l_search_input.jsp -->
+</div>
+<!-- dynamic_recursion.jsp end -->
+</div>
+
+
+
+
+
+<button type="button" href="" class="toggleSearch" data-toggle="collapse" data-target="#search">
+    <span class="glyphicon glyphicon-chevron-down"></span>
+    <span>Søg</span>
+</button>
+
+
+
 
 <section id="content">
     <div class="container">
