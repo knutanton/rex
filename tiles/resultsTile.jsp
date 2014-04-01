@@ -13,7 +13,6 @@
           <span class="EXLMyShelfStar">Add to My Shelf Action</span>
           <span class="EXLSummary">Record Details and Options</span>
         </div>
-
 <c:set var="showRecommendTab" value="false"/>
 
 <c:set var="extensionsService" value="${searchForm.callExtService}"/>
@@ -21,13 +20,12 @@
 <c:set var="errorsInPage"><html:errors/></c:set>
 
 <c:if test="${empty form.searchResult.results and empty errorsInPage}">
-	<jsp:include page="/general/resolveLocale.jsp"/>
+	<jsp:include page="../general/resolveLocale.jsp"/>
 	<c:set var="uri" value="${sessionScope.staticHTMLs.noResults}" />	
 	<%@ include file="/views/include/includeStaticHTML.jspf"%>
 
 </c:if>
 <c:forEach items="${form.searchResult.results}" var="result" varStatus="resultStatus">
-
 	<c:set var="resultId" value="${result.id}"/>
 	<c:set var="resultNumber" value="${result.resultNumber}"/>
 	<c:set var="resultStatusIndex" value="${resultStatus.index}"/>
@@ -36,7 +34,11 @@
 	<c:set var="useGenericRecord" value="${searchForm.frbrDisplay == 1}"/>
 	<c:set var="isFrbrNewDisplay" value="${isFrbr and useGenericRecord and !result.remote and (form.alma!=null && !form.alma)}"/>
 
-	<%@ include file="titleLink.jspf" %>
+	<%@ include file="/tiles/titleLink.jspf" %>
+ <div id="exlidResult${resultStatus.index}" class="EXLResult EXLResultMediaTYPE${result.values[c_value_fmticon]}">
+
+    <div class="EXLResultNumber collapse">${result.resultNumber}
+
 
   <!-- boomeang -->
  <prm:boomerang id="icon_${resultStatus.index}"  boomForm="${searchForm}" pageId="brief"
@@ -50,11 +52,7 @@
 		<c:set var="isOnline">true</c:set>
 </c:if>
 <!-- boomerang -->
-
-    <div id="exlidResult${resultStatus.index}" class="EXLResult EXLResultMediaTYPE${result.values[c_value_fmticon]}">
-
-    <div class="EXLResultNumber collapse">${result.resultNumber}</div>
-
+</div>
 	<c:set var="baseFrbrUrl" value="${form.responseEncodeReqDecUrl}"/>
 	<c:if test="${!result.remote}">
 		<!-- c:set var="baseFrbrUrl" value="${fn:replace(form.responseEncodeReqDecUrl,'srt','srt1')}"/ -->
@@ -69,6 +67,7 @@
 	 	<c:param name="doc" value="${result.id}"/>
 	 	<c:param name="lastPag" value="${form.pag}"/>
 	 	<c:param name="lastPagIndx" value="${param.indx}"/>
+
 	 	<c:param name="rfnGrp" value="frbr"/>
 	 	<c:if test="${!result.remote}">
 	 		<c:param name="frbrSrt" value="${sortBy}"/>
@@ -80,7 +79,6 @@
 
   	<!-- Use new display of frbr (generic record) -->
   	<c:if test="${isFrbrNewDisplay}">
-
         <div class="row">
             <!--<div class="EXLMyShelfStar"/> -->
 		    <div class="EXLThumbnail col-md-1">
@@ -163,7 +161,7 @@
 	  	<c:if test="${form.alma != null && !form.alma}">
 			<!--begin thumbnails-->
                   <div>
-				<prm:thumbnails thumbLocation="display" thumbnailLinks="${form.delivery[resultStatus.index].thumbnailLinks}" index="${resultStatus.index}" resultTitleUrl="${resultTitleUrl}" displayURL="${displayURL}" isOnline="${isOnline}"/>
+				<prm:thumbnails thumbLocation="display" thumbnailLinks="${form.delivery[resultStatus.index].thumbnailLinks}" index="${resultStatus.index}" resultTitleUrl="${resultTitleUrl}" displayURL="${displayURL}" isOnline="${isOnline}" displayTitle="${searchForm.delivery[resultStatus.index].displayTitle}"/>
                   </div>
 		    <!--end thumbnails-->
 	  	</c:if>
@@ -192,11 +190,7 @@
 
 				<h2 class="EXLResultTitle">
 				<c:set var="strippedTitle">${fn:replace(fn:replace(title,'<span class="searchword">',''),'</span>','')}</c:set>
-				<c:set var="linkTitleSuffix">
-					<fmt:message key="brief.tabs.links.title.suffix">
-					  	<fmt:param>${resultStatus.index}</fmt:param>
-					</fmt:message>
-				</c:set>
+                                <c:set var="linkTitleSuffix">-&nbsp;${resultStatus.index}</c:set>
 				
 				<!-- strippedTitle=${strippedTitle} -->
 				<c:choose>
@@ -215,7 +209,7 @@
 						<c:if test="${(searchForm.mode != null) &&(searchForm.mode eq 'BrowseSearch')}">
 							<c:set var="BROWSE_SEARCH_TEXT" value="BROWSE_SEARCH_TEXT"/>
 							<c:url var="resultTitleUrl" value="${resultTitleUrl}">
-								<c:param name="searchTxt" value='${fn:escapeXml(searchForm.values[BROWSE_SEARCH_TEXT])}'/>
+								<c:param name="searchTxt" value='${searchForm.values[BROWSE_SEARCH_TEXT]}'/>
 							</c:url>
 						</c:if>
 
