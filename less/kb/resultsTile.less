@@ -279,6 +279,12 @@ li.EXLResultSelectedTab > a {
 .EXLTabHeaderContent{
     .collapse;
 }
+.EXLTabHeaderButtons{
+    /* Removing the two troublesome send to options (primo 4.6 patch) */
+    .EXLButtonSendToPermalink, .EXLButtonSendToCitation{
+        .hide;
+    }
+}
 .EXLRequestTabContent {
     caption{
         .collapse;
