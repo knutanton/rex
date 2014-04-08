@@ -20,7 +20,7 @@
 <c:set var="errorsInPage"><html:errors/></c:set>
 
 <c:if test="${empty form.searchResult.results and empty errorsInPage}">
-	<jsp:include page="../general/resolveLocale.jsp"/>
+	<jsp:include page="/general/resolveLocale.jsp"/>
 	<c:set var="uri" value="${sessionScope.staticHTMLs.noResults}" />	
 	<%@ include file="/views/include/includeStaticHTML.jspf"%>
 
