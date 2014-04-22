@@ -40,6 +40,29 @@ window.Unique = (function ($, window) {
 }(jQuery));
 
 /**
+  * Set number of posts per page, via ajax /HAFE
+  * Please note that this method is merely mimicking the call from Exlibris, and has no error handling whatsoever.
+  * @param postsPerPage {Number} The desired number of posts per page.
+  */
+function setPostsPerPage(postsPerPage) {
+    $.ajax({
+        url : '/primo_library/libweb/action/personalSettings.do',
+        type : 'POST',
+        beforeSend : function(request){
+            setAjaxRequestHeader(request);
+        },  
+        data : {
+            'command' : 'displaySettingSave',
+            'prefes(interfaceLanguage)' : 'da_DK', // FIXME: This shall be fetched from what ever is the present language selection (da_DK||en_US)
+            'prefes(bulkSize)' : postsPerPage
+        },  
+        complete : function () {
+            location.reload(); 
+        }   
+    }); 
+}
+
+/**
  * Flag one or more elements as fixed (have gotten whatever DOM manipulations are needed to them done)
  * @param elem {jQuery|HTMLElement|string} jQuery object, HTMLElement or Qualified jQuery selector string.
  */
