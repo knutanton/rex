@@ -415,61 +415,68 @@ function kbBootstrapifyTabs() {
          * </div>
          */
         exlLocationTableToFix.hide();
-        var rows = $('tr', exlLocationTableToFix), // FIXME: This will break badly if there is more than one exlLocationTableToFix at a time!
-            headerRow = $(rows[0]),
-            headerText = $.makeArray(headerRow.children().map(function (index, elem) { return $(elem).text().trim(); })),
-            colsPerColumn;
-        locations = $('<div class="locations" />');
-        headerText.pop(); // The very last column is the action buttons, and they are appended in their own row
-        exlLocationTableToFix.data('headerText', headerText); // Saving the header texts for when recieving more results
-        headerRow.children().last().remove();
-        colsPerColumn = Math.floor(12 / headerText.length); // Magic number 12 = bootstrap cols
-        headerRow = headerRow.changeElementType('div').addClass('row visible-md visible-lg');
-        headerRow.children().changeElementType('div').addClass('col-md-' + colsPerColumn);
-        locations.append(headerRow);
 
-        $.each(transformLocationTrToBootstrap(rows, headerText), function (index, location) { // TODO: Duplicate code - look beneath here
-            if (!location.find('.EXLLocationsButton').length) {
-                locations.append(location);
-            } else {
-                location.find('.EXLLocationsButton').on('click', function () {
-                    $(this).removeAttr('id'); // When new rows arrive, they are bundled with a new button with this id! :-/
-                });
-                locations.append(location);
-            }
-        });
+        $.each(exlLocationTableToFix, function (index, locationTableToFix) {
+            locationTableToFix = $(locationTableToFix);
+            var rows = $('tr', locationTableToFix),
+                headerRow = $(rows[0]),
+                headerText = $.makeArray(headerRow.children().map(function (index, elem) { return $(elem).text().trim(); })),
+                colsPerColumn,
+                locations = $('<div class="locations" />');
+            headerText.pop(); // The very last column is the action buttons, and they are appended in their own row
+            locationTableToFix.data('headerText', headerText); // Saving the header texts for when recieving more results
+            headerRow.children().last().remove();
+            colsPerColumn = Math.floor(12 / headerText.length); // Magic number 12 = bootstrap cols
+            headerRow = headerRow.changeElementType('div').addClass('row visible-md visible-lg');
+            headerRow.children().changeElementType('div').addClass('col-md-' + colsPerColumn);
+            locations.append(headerRow);
 
-        $('tbody', exlLocationTableToFix).empty();
-        locations.insertBefore(exlLocationTableToFix);
-        flagFixed(exlLocationTableToFix);
-
-        locations.closest('.EXLLocationList').find('.locationSubLocationHeader').removeClass('loading'); // Remove loading spinner from header
-
-        // =====================================================================================================================================================
-        // ================ the rest of the code here is about the parent accordion, and really belongs to the code that fixes the LocationsLists! =============
-        // =====================================================================================================================================================
-        // Unfortunately, due to our accordion-hack above, we do need to expand the accordion this table reside on, and swap the a href to bootstraps data-target after it has been fetched the first time. :( FIXME: This is freaking ugly, and I pitty you who have to debug this after 3 month (HAFE) :-(
-        locations.closest('.panel-collapse').slideDown(400, function () {
-            $(this).addClass('in');
-            // FIXME: it OUGHT to be enough to change the href of the a tag to change the link, but for some strange reason my chrome browser linger on to the old link
-            //$('a', this.previousElementSibling).attr('href', '#' + $(this).attr('id'));
-            var accordionAnchor = $('a', this.previousElementSibling);
-            if (accordionAnchor.attr('href').charAt(0) !== '#') {
-                // This is an ExLibris ajax call - remove the href and install our own accordion handlers, since bootstraps does not work here.
-                accordionAnchor
-                    .removeAttr('href')
-                    .on('click', function () {
-                        var accordionBody = $('#' + $(this).attr('data-target'));
-                        accordionBody.slideToggle().toggleClass('in'); // FIXME: - shitty code, but the bootstrap accordion/link change did not work out! :(
-                        if (accordionBody.hasClass('in')) {
-                            accordionAnchor.find('.glyphicon').removeClass('glyphicon-chevron-right').addClass('glyphicon-chevron-down');
-                        } else {
-                            accordionAnchor.find('.glyphicon').removeClass('glyphicon-chevron-down').addClass('glyphicon-chevron-right');
-                        }
+            $.each(transformLocationTrToBootstrap(rows, headerText), function (index, location) { // TODO: Duplicate code - look beneath here
+                if (!location.find('.EXLLocationsButton').length) {
+                    locations.append(location);
+                } else {
+                    location.find('.EXLLocationsButton').on('click', function () {
+                        $(this).removeAttr('id'); // When new rows arrive, they are bundled with a new button with this id! :-/
                     });
-            }
+                    locations.append(location);
+                }
+            });
+
+            $('tbody', locationTableToFix).empty();
+            locations.insertBefore(locationTableToFix);
+            flagFixed(locationTableToFix);
+
+            locations.closest('.EXLLocationList').find('.locationSubLocationHeader').removeClass('loading'); // Remove loading spinner from header
+
+            // =====================================================================================================================================================
+            // ================ the rest of the code here is about the parent accordion, and really belongs to the code that fixes the LocationsLists! =============
+            // =====================================================================================================================================================
+            // Unfortunately, due to our accordion-hack above, we do need to expand the accordion this table reside on, and swap the a href to bootstraps data-target after it     has been fetched the first time. :( FIXME: This is freaking ugly, and I pitty you who have to debug this after 3 month (HAFE) :-(
+            locations.closest('.panel-collapse').slideDown(400, function () {
+                $(this).addClass('in');
+                // FIXME: it OUGHT to be enough to change the href of the a tag to change the link, but for some strange reason my chrome browser linger on to the old link
+                //$('a', this.previousElementSibling).attr('href', '#' + $(this).attr('id'));
+                var accordionAnchor = $('a', this.previousElementSibling);
+                if (accordionAnchor.attr('href').charAt(0) !== '#') {
+                    // This is an ExLibris ajax call - remove the href and install our own accordion handlers, since bootstraps does not work here.
+                    accordionAnchor
+                        .removeAttr('href')
+                        .on('click', function () {
+                            var accordionBody = $('#' + $(this).attr('data-target'));
+                            accordionBody.slideToggle().toggleClass('in'); // FIXME: - shitty code, but the bootstrap accordion/link change did not work out! :(
+                            if (accordionBody.hasClass('in')) {
+                                accordionAnchor.find('.glyphicon').removeClass('glyphicon-chevron-right').addClass('glyphicon-chevron-down');
+                            } else {
+                                accordionAnchor.find('.glyphicon').removeClass('glyphicon-chevron-down').addClass('glyphicon-chevron-right');
+                            }
+                        });
+                }
+            });
+
         });
+
     }
+
 
     // When a locationList is dynamically extended by user pressing "more" - create new location elements from the new rows in the dummy table, and append them to the list
     // FIXME: shall the more button also be changed, or is that already done by ExLibris?
