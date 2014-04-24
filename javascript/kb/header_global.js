@@ -334,39 +334,48 @@ function kbBootstrapifyTabs() {
         var locationLists = $('.EXLLocationList', exlLocationListToFix).addClass('panel panel-default');
         $.each(locationLists, function (index, locationList) {
             locationList = $(locationList);
-            var tmpUid = Unique.getUid(),
-                accordionHeaderElement = $('<div class="panel-heading"><h4 class="panel-title locationSubLocationHeader"><a class="accordion-toggle" data-toggle="collapse" href="#locationAccordion' + tmpUid + '"></a><div class="locationSubLocationHeaderSpinner"></div></h4></div>'),
-                oldLink = $('.EXLLocationsTitle a', locationList),
-                accordionIcon = $('<span class="glyphicon glyphicon-chevron-' + (oldLink.length ? 'right' : 'down') + '"/>'),
-                accordionHeader = $('h4', accordionHeaderElement),
-                accordionHeaderLink = $('a', accordionHeaderElement),
-                accordionBodyContainer = $('<div id="locationAccordion' + tmpUid + '" class="panel-collapse collapse' + (oldLink.length ? '' : ' in') + '"></div>');
-            if (oldLink.length) {
-                oldLink.children().hide();
-                accordionHeaderLink.replaceWith(oldLink.addClass('accordion-toggle').attr({
-                    'data-toggle' : 'collapse',
-                    'data-target' : 'locationAccordion' + tmpUid
-                }));
-                accordionHeaderLink = oldLink;
-            }
-            accordionIcon.prependTo(accordionHeaderLink);
-            $('.EXLLocationsTitle', locationList).appendTo(accordionHeaderLink);
-            $('.EXLLocationInfo', locationList).appendTo(accordionHeaderLink);
+            var tmpUid = Unique.getUid();
+            var accordionHeaderElement = $('<div class="panel-heading"><h4 class="panel-title locationSubLocationHeader"><a class="accordion-toggle" data-toggle="collapse" href="#locationAccordion' + tmpUid + '"></a><div class="locationSubLocationHeaderSpinner"></div></h4></div>');
+            var accordionHeader = $('h4', accordionHeaderElement);
+            var oldLink = $('.EXLLocationsTitle a', locationList);
+            var accordionImg = oldLink.find('img');
             $('br', locationList).remove();
-            accordionBodyContainer.appendTo(locationList);
-            accordionHeaderElement.prependTo(locationList);
-            $('.EXLSublocation', locationList).addClass('panel-body').appendTo(accordionBodyContainer);
-            // eventhandler for toggling the accordion icon
-            accordionHeaderLink.on('click', function () {
-                if (accordionBodyContainer.hasClass('in')) {
-                    accordionIcon.removeClass('glyphicon-chevron-down').addClass('glyphicon-chevron-right');
-                } else {
-                    accordionIcon.removeClass('glyphicon-chevron-right').addClass('glyphicon-chevron-down');
-                    if (!accordionBodyContainer.find('.locations').length) { // the locations are loading - start spinner
-                        accordionHeader.addClass('loading');
-                    }
+            if (accordionImg.length) { // There is an icon to either expand or collapse this location
+                var accordionIconDirection = accordionImg.attr('src').indexOf('minus') >= 0 ? 'down': 'right';
+                var accordionIcon = $('<span class="glyphicon glyphicon-chevron-' + accordionIconDirection + '"/>');
+                var accordionHeaderLink = $('a', accordionHeaderElement);
+                var accordionBodyContainer = $('<div id="locationAccordion' + tmpUid + '" class="panel-collapse collapse' + (oldLink.length ? '' : ' in') + '"></div>');
+                if (oldLink.length) {
+                    oldLink.children().hide();
+                    accordionHeaderLink.replaceWith(oldLink.addClass('accordion-toggle').attr({
+                        'data-toggle' : 'collapse',
+                        'data-target' : 'locationAccordion' + tmpUid
+                    }));
+                    accordionHeaderLink = oldLink;
                 }
-            }); // FIXME: Is this invoked on keyboard input? :(
+                accordionIcon.prependTo(accordionHeaderLink);
+                $('.EXLLocationsTitle', locationList).appendTo(accordionHeaderLink);
+                $('.EXLLocationInfo', locationList).appendTo(accordionHeaderLink);
+                accordionBodyContainer.appendTo(locationList);
+                accordionHeaderElement.prependTo(locationList);
+                $('.EXLSublocation', locationList).addClass('panel-body').appendTo(accordionBodyContainer);
+                // eventhandler for toggling the accordion icon
+                accordionHeaderLink.on('click', function () {
+                    if (accordionBodyContainer.hasClass('in')) {
+                        accordionIcon.removeClass('glyphicon-chevron-down').addClass('glyphicon-chevron-right');
+                    } else {
+                        accordionIcon.removeClass('glyphicon-chevron-right').addClass('glyphicon-chevron-down');
+                        if (!accordionBodyContainer.find('.locations').length) { // the locations are loading - start spinner
+                            accordionHeader.addClass('loading');
+                        }
+                    }
+                }); // FIXME: Is this invoked on keyboard input? :(
+            } else { // There is no collapse/expand icon - this is just a header: remove link and badges
+                accordionHeader.empty();
+                $('.EXLLocationsTitle', locationList).appendTo(accordionHeader);
+                $('.EXLLocationInfo', locationList).remove(); // remove badge - since there is no posts on this location, we do not want to hear about their status!
+                accordionHeaderElement.prependTo(locationList);
+            }
         });
         flagFixed(exlLocationListToFix);
     }
