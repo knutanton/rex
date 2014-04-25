@@ -1,47 +1,23 @@
-@import "../bootstrap/variables.less";
-@import "../bootstrap/mixins.less";
 
-@import "../bootstrap/modals.less";
-
-
-header .navbar-toggle,
-header a.visible-xs,
-footer hr, footer .col-xs-2.col-sm-1{
-    display:none;
-}
-footer strong{
-    display:block;
+.MyAccount .EXLSkipToContent, .EXLMyAccountTabsRibbon{
+   .hide;
 }
 
-footer ul, footer li{
-    float:none!important;
-    border:none!important;
-}
-footer .col-sm-4{
-    float:left;
-    width:33%;
-}
-footer{
-    padding-top:20px;
+.EXLMyAccountTable{
+    .table;
+    .table-striped;
+    .table-hover;
 }
 
-footer:after {
-    content: ".";
-    display: block;
-    clear: both;
-    visibility: hidden;
-    line-height: 0;
-    height: 0;
+.EXLLoansRenewButton, #renew_selecte_loans_button {
+    .btn;
+    .btn-primary;
+    b{
+        font-weight: normal;
+    }
 }
 
-footer {
-    display: inline-block;
-}
-
-html[xmlns] footer {
-    display: block;
-}
-
-* html footer {
-    height: 1%;
+.EXLMyPersonalSettings{
+    .panel;
+    .panel-default;
 }
