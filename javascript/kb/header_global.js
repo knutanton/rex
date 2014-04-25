@@ -39,6 +39,47 @@ window.Unique = (function ($, window) {
     };
 }(jQuery));
 
+var kb = (function ($, document) {
+    var Kb = function (lang, postsPerPage) {
+        this.lang = lang || 'da_DK';
+        this.postsPerPage = postsPerPage || 10;
+    }
+
+    /**
+     * Set number of posts per page, via ajax /HAFE
+     * Please note that this method is merely mimicking the call from Exlibris, and has no error handling whatsoever.
+     * @param postsPerPage {Number} The desired number of posts per page.
+     */
+    Kb.prototype.setPostsPerPage = function (postsPerPage) {
+        $.ajax({
+            url : '/primo_library/libweb/action/personalSettings.do',
+            type : 'POST',
+            beforeSend : function(request){
+                setAjaxRequestHeader(request);
+            },
+            data : {
+                'command' : 'displaySettingSave',
+                'prefes(interfaceLanguage)' : 'da_DK', // FIXME: This shall be fetched from what ever is the present language selection (da_DK||en_US)
+                'prefes(bulkSize)' : postsPerPage
+            },
+            error : function (xhr, status, err) {
+                location.reload(); // FIXME: When things succeed (after first load of settings page) a parser error from the server (failed to parse some XML we do not send)
+            },
+            success : function (data, status, xhr) { // When thing fails (before we have loaded the personal settings page first time), we get a 200/204 from the server
+                if (!data) {
+                    var shittyIframe = $('<div id="shittyIframe" style="width:100px;height:100px;position:fixed;top:100px;left:100px"><iframe src="/primo_library/libweb/action/myAccountMenu.do?activity=personalSettings"></iframe></div>');
+                    shittyIframe.find('iframe').load(function () {
+                        kb.setPostsPerPage(postsPerPage);
+                    });
+                    $('body').append(shittyIframe);
+                }
+            }
+        });
+    }
+
+    return new Kb();
+}(jQuery, document));
+
 /**
  * Flag one or more elements as fixed (have gotten whatever DOM manipulations are needed to them done)
  * @param elem {jQuery|HTMLElement|string} jQuery object, HTMLElement or Qualified jQuery selector string.
