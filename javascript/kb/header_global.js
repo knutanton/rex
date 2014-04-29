@@ -110,6 +110,27 @@ var kb = (function ($, document) {
         });
     }
 
+    Kb.prototype.MYACCOUNTPAGEICONS = new Array();
+    Kb.prototype.MYACCOUNTPAGEICONS['loans'] = 'book';
+    Kb.prototype.MYACCOUNTPAGEICONS['requests'] = 'book';
+    Kb.prototype.MYACCOUNTPAGEICONS['basket'] = 'book';
+    Kb.prototype.MYACCOUNTPAGEICONS['query'] = 'search';
+    Kb.prototype.MYACCOUNTPAGEICONS['requests'] = 'book';
+    Kb.prototype.MYACCOUNTPAGEICONS['fees'] = 'credit-card';
+    Kb.prototype.MYACCOUNTPAGEICONS['personalSettings'] = 'user';
+
+    /**
+     * Translate a myAccountPageName into an icon name (without "glyphicon-")
+     * @param pageName {String} Name of the page (eg. 'fees', 'basket' or 'personalSettings')
+     *        If pageName is unknown, an empty string is returned
+     */
+    Kb.prototype.getMyAccountPageIcon = function (pageName) {
+        if (typeof this.MYACCOUNTPAGEICONS[pageName] !== 'undefined') {
+            return this.MYACCOUNTPAGEICONS[pageName];
+        }
+        return '';
+    }
+
     return new Kb();
 }(jQuery, document));
 
