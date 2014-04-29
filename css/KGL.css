@@ -1904,10 +1904,10 @@ width:5em !important;
 .folders_new .folderActions li a.copyFolder_but {background:transparent url(/primo_library/libweb/css/folders_copy_but.gif) repeat-y scroll left top !important;}
 .folders_new .folderActions li a.deleteFolder_but {background:transparent url(/primo_library/libweb/css/folders_delete_but.gif) repeat-y scroll left top !important;}
 
-.folder_details a.eShelf_cut_but {background:transparent url(/primo_library/libweb/css/item_cut_but.gif) repeat-y scroll left top !important;}
-.folder_details a.eShelf_copy_but {background:transparent url(/primo_library/libweb/css/item_copy_but.gif) repeat-y scroll left top !important;}
-.folder_details a.eShelf_paste_but {background:transparent url(/primo_library/libweb/css/item_paste_but.gif) repeat-y scroll left top !important;}
-.folder_details a.eShelf_delete_but {background:transparent url(/primo_library/libweb/css/item_delete_but.gif) repeat-y scroll left top !important;}
+.folder_details a.eShelf_cut_but {background:transparent url(/primo_library/libweb/images/item_cut_but.gif) repeat-y scroll left top !important;}
+.folder_details a.eShelf_copy_but {background:transparent url(/primo_library/libweb/images/item_copy_but.gif) repeat-y scroll left top !important;}
+.folder_details a.eShelf_paste_but {background:transparent url(/primo_library/libweb/images/item_paste_but.gif) repeat-y scroll left top !important;}
+.folder_details a.eShelf_delete_but {background:transparent url(/primo_library/libweb/images/item_delete_but.gif) repeat-y scroll left top !important;}
 
 .foldersOverflow ul li a{color:#046344;}
 .foldersOverflow ul li a:hover{color:#4D9900;}
