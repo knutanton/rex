@@ -283,6 +283,11 @@ $(document).ready(function () {
     kbFixTabs();
     kbBootstrapifyTabs();
 
+    // Changes for all pages under MyAccount
+    if ($('body').hasClass('MyAccount')) {
+        kbFixMyAccountPages();
+    }
+
     // HAFE start language specific faq and cookie policy
     // Change links in header for "faq" and "cookie policy" to the english version of those documents
     (function ($) {

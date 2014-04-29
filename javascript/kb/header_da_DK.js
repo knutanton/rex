@@ -410,6 +410,12 @@ $(document).ready(function () {
         kbFixTabs();
         kbBootstrapifyTabs();
     }
+
+    // Changes for all pages under MyAccount
+    if ($('body').hasClass('MyAccount')) {
+        kbFixMyAccountPages();
+    }
+
     // Ret engelsk til dansk ved fotokopibestillinger
     $(".EXLMyAccountTable>tbody>tr>td:contains('Waiting in queue'),.EXLMyAccountTableDetails>tbody>tr>td:contains('Waiting in queue')").each(function () {
         $(this).html("Venter i k&oslash");
