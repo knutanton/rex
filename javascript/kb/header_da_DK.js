@@ -300,7 +300,6 @@ function gup(name, url) {
     return results[1];
 }
 
-
 $(document).ready(function () {
 
     addLoginLink();
