@@ -605,6 +605,26 @@ function kbBootstrapifyTabs() {
     }
 }
 
+function kbFixMyAccountPages() {
+    // sniff page name from url, and set class on body NOTE: pageName is either = .do filename or in case of myAccountMenu.do = activity get parameter
+    var pageName = location.pathname.substr(location.pathname.lastIndexOf('/'));
+    pageName =  pageName.substr(1,pageName.lastIndexOf('.') - 1);
+    if (pageName === 'myAccountMenu') {
+        var activity = kb.gup('activity');
+        if (activity.length) {
+            pageName = activity;
+        }
+    }
+    $('body').addClass(pageName); // TODO: Perhaps we ought to prefix these classnames with something to prevent name clashing?
+    // inject content header
+    var title = $('li:has(.EXLMyAccountMainMenuBulletSelected) .EXLMyAccountMainMenuTitle', '#exlidMyAccountMainMenuContainer').text().trim();
+    if (!title.length) {
+        var selectedTab = $('.EXLMyAccountSelectedTab');
+        title =  selectedTab ? selectedTab.text().trim() : ''; // NOTE: If there was neither EXLMyAccountMainMenuTitle nor EXLMyAccountSelectedTab, set header to empty string (don't think this will ever happen?)
+    }
+    $('#contentWrapper').prepend('<div class="kbPageHeader"><h1><span class="glyphicon glyphicon-' + kb.getMyAccountPageIcon(pageName) + '"></span> ' + title + '</h1></div>');
+}
+
 //NKH Start (EOD functions)
 var t = 0;
 
