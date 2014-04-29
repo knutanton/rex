@@ -320,8 +320,7 @@ $(document).ready(function () {
     replaceTextInLocationsTab(textReplaceObjectArray);
 
 //		fixImageTitleUri();
-    var lang = $("#exlidSelectedLanguage").text().substring(0, 2),
-        signoutText = $("#exlidSignOut").find("a").html();
+    var signoutText = $("#exlidSignOut").find("a").html();
     if (startsWith(signoutText, Array('Log ud', 'Sign out'))) {
         // things to do when the user is logged ind
         // change edit link
