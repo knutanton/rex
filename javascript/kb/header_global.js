@@ -771,7 +771,6 @@ function removeUnWantedContent() {
         document.URL.indexOf('dlDisplay.do') > -1 ||
         document.URL.indexOf('dlSearch.do') > -1)) {
 
-
         var currCssLink = $("link[href*='primo_library_css.css']").attr("href");
         //alert(currCssLink);
         var newCssLink = currCssLink.replace("../wro/primo_library_css.css?", "/primo_library/libweb/sites/kb/KGL/css/KGL.css");
