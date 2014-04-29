@@ -43,7 +43,40 @@ var kb = (function ($, document) {
     var Kb = function (lang, postsPerPage) {
         this.lang = lang || 'da_DK';
         this.postsPerPage = postsPerPage || 10;
-    }
+        this.getParamCache = {};
+        var that = this;
+        // once per page put all get parameters into this.getParamCache
+        location.search.substr(1).split("&").forEach(function(item) {
+            that.getParamCache[item.split("=")[0]] = item.split("=")[1];
+        });
+    };
+
+    /**
+     * Get URL Parameter. Fetches the value of a getParameter from an url.
+     * There is a cached object this.getParamCache with all get parameters from location.href, so we do not need to parse it every time it is probed.
+     * @param name {String} Name of the parameter to get the content from.
+     * @param url  {String} Optional The url to search in. If not given, location.href is used instead.
+     * @return {String} The value of the parameter. If no success, an empty string is returned.
+     */
+    Kb.prototype.gup = function (name, url) {
+        if (!url) {
+            // TODO: Maybe we ought to let it return null if the parameter does not exist, and '' if it exists but is empty?
+            return this.getParamCache[name] || ''; // if no url is given, fetch the cached value from this.getParamCache, or return ''
+        } else {
+            /*  JAC
+             *  grabs URL parameters
+             *  source: http://www.netlobo.com/url_query_string_javascript.html
+             */
+            name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
+            var regexS = '[\\?&]' + name + '=([^&#]*)';
+            var regex = new RegExp(regexS);
+            var results = regex.exec(url);
+            if (results === null) {
+                return '';
+            }
+            return results[1];
+        }
+    };
 
     /**
      * Set number of posts per page, via ajax /HAFE
