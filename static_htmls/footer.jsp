@@ -66,11 +66,6 @@
     </div>
 </footer>
 <!--begin footer-->
-
- <!-- script type="text/javascript" src="../javascript/kb_frb_hack_en.js"></script -->
-
-
-
 <script type="text/javascript">
 
   var _gaq = _gaq || [];
