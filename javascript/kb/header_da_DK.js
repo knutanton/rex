@@ -272,34 +272,6 @@ function startsWith(s, a) { // FIXME: These helper methods shouldn't be dumped i
     return false;
 }
 
-
-/*  
- *  JAC
- *  grabs URL parameters
- *  source: http://www.netlobo.com/url_query_string_javascript.html 
- */
-function gup(name) {
-    name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
-    var regexS = "[\\?&]" + name + "=([^&#]*)";
-    var regex = new RegExp(regexS);
-    var results = regex.exec(window.location.href);
-    if (results === null) {
-        return "";
-    }
-    return results[1];
-}
-
-function gup(name, url) {
-    name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
-    var regexS = "[\\?&]" + name + "=([^&#]*)";
-    var regex = new RegExp(regexS);
-    var results = regex.exec(url);
-    if (results === null) {
-        return "";
-    }
-    return results[1];
-}
-
 $(document).ready(function () {
 
     addLoginLink();
@@ -336,7 +308,7 @@ $(document).ready(function () {
         $("div.EXLMyAccountEditLink").hide();
         $("li.EXLMyAccountTab").filter(":contains('Din konto')").hide();
         //$("#exlidMyAccount").hide();
-        $("#exlidMyAccount>a").attr("href", "login.do?loginFn=signin&targetURL=myAccountMenu.do%3fvid%3d" + gup('vid')); 
+        $("#exlidMyAccount>a").attr("href", "login.do?loginFn=signin&targetURL=myAccountMenu.do%3fvid%3d" + kb.gup('vid')); 
 
     }
     $(".EXLMyAccountTable>tbody>tr>td:eq(6)").hide();
@@ -392,7 +364,7 @@ $(document).ready(function () {
 
     // JAC: Tilføj SKAF hvis der ikke er locationstab, og der ikke står "Adgang: Alle har adgang"
     $(".EXLResultTabs:not(:has(.EXLLocationsTab))").each(function (index) {
-            var doc = gup('doc', $(this).find(".EXLDetailsTab > a").attr('href')); //Henter docid
+            var doc = kb.gup('doc', $(this).find(".EXLDetailsTab > a").attr('href')); //Henter docid
             var resultHtmlElement = $(this).parents().eq(3); //
             if (!($(resultHtmlElement).find('.EXLResultFourthLine').is(':contains("Adgang: Alle har adgang")'))) {
                    $(this).append("<li class='requestForm EXLResultTab'><a title='Skaf materiale, som er udl&aring;nt eller ikke er bestilbart' href='http://rex.kb.dk/userServices/menu/Order?primoId=" + doc + "' target='_blank'>Skaf</a></li>");
