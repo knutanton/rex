@@ -136,25 +136,6 @@ function startsWith(s, a) {
     return false;
 }
 
-/* function changeRequestOptions() {
-$(".EXLLocationsTab").ajaxComplete(function(event, xhr, settings) {
-    var htmlResult,
-        html,
-        link,
-        linkMatch = "USE DIGITAL VERSION",
-        newLink = '<a href="http://www.kb.dk/en/nb/samling/js/DODbestilling.html" target="_blank">By special request</a>';
-   if($(event.target).hasClass("EXLResultSelectedTab")) {
-        htmlResult = $(event.target).parents().eq(3),
-        html = htmlResult.find(".EXLSublocation"),
-        link = html.find(".EXLShowInfo");
-         
-        if(link.is(":contains("+ linkMatch +")")) {
-            html.find(".EXLLocationTableActionsMenu").html(newLink);            
-        } 
-    }
-});
-}*/
-
 $(document).ready(function () {
 
     addLoginLink();
@@ -165,7 +146,6 @@ $(document).ready(function () {
     // Closing all closed result tab containers (they expand upon tab header clicks)
     //$('.EXLResultTabContainerClosed').addClass('collapse');
 
-    /*changeRequestOptions();*/
     var dod = new TextReplaceObject("USE DIGITAL VERSION", '<a href="http://www.kb.dk/en/nb/samling/dod/DODbestilling.html" target="_blank">By special request</a>'),
         kob = new TextReplaceObject("Mail to kob", '<a href="http://www.kb.dk/en/nb/samling/ks/kobbestilling.html" target="_blank">Mail to kob</a>'),
         mailToDfs = new TextReplaceObject("DFS In-house", '<a href="mailto:dfs-mail@kb.dk">Mail to dfs-mail@kb.dk</a>'),
