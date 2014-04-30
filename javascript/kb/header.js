@@ -215,7 +215,7 @@ $(document).ready(function () {
         $("li.EXLMyAccountTab").filter(":contains('My Account')").hide();
 
         //$("#exlidMyAccount").hide();
-        $("#exlidMyAccount>a").attr("href", "login.do?loginFn=signin&targetURL=myAccountMenu.do%3fvid%3dKGL");
+        $("#exlidMyAccount>a").attr("href", "login.do?loginFn=signin&targetURL=myAccountMenu.do%3fvid%3d" + gup('vid'));
     }
     $(".EXLMyAccountTable>tbody>tr>td:eq(6)").hide();
 //    $(".EXLMyAccountTable>tbody>tr>td:contains('Fad to be Sent')").html("Cancelled");
