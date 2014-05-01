@@ -38,13 +38,8 @@ The existing link: "../images/imageName.gif" must be changed into: "../locale/sp
 -->
 
 <!-- header_KGL_en_EN -->
-<header class="navbar-header hidden-print">
-    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-    </button>
+<header class="hidden-print">
+
     <a class="navbar-brand hidden-xs hidden-sm" href="http://www.kb.dk/en/index.html" title="The Royal Library">
         <img src="../sites/kb/<%= view %>/images/kb/en/logo.png" alt="The Royal Library"/>
     </a>
