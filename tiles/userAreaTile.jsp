@@ -141,86 +141,88 @@
     <%-- Language end --%>
 
     <%-- New User --%>
-    <%-- NOTE: Skal IKKE vises når man er logget ind --%>
-    <div class="btn-group">
-        <c:set var="newBorrowerUrl" value="https://user.kb.dk/user/create" />
-        <c:choose>
-            <c:when test="${sessionScope.chosenInterfaceLanguage == 'da_DK'}">
-                <button onclick="window.location.href='<c:out value="${newBorrowerUrl}"/>?locale=da_DK'" class="btn btn-primary navbar-btn" target="_blank">
-                    <span class="glyphicon glyphicon-user"></span>
-                    <span class="hidden-sm">Ny låner</span>
-                </button>
-            </c:when>
-            <c:otherwise>
-                <button onclick="window.location.href='<c:out value="${newBorrowerUrl}"/>?locale=en_US'" class="btn btn-primary navbar-btn" target="_blank">
-                    <span class="glyphicon glyphicon-user"></span>
-                    <span class="hidden-sm">New user</span>
-                </button>
-            </c:otherwise>
-        </c:choose>
-    </div>
-    <%-- New User end --%>
-
-    <%-- Login User --%>
-    <%-- NOTE: Skal KUN vises når man ER logget ind --%>
-    <div class="btn-group">
-        <button class="dropdown-toggle btn btn-primary navbar-btn" data-toggle="dropdown">
-            <fmt:message key="eshelf.user.greeting">
-                <span class="glyphicon glyphicon-user"></span>
-                <span class="hidden-sm"><fmt:param value="${userName}"></fmt:param></span>
-            </fmt:message>
-            <span class="caret"></span>
-        </button>
-
-        <ul class="dropdown-menu">
-
-            <%-- Din konto --%>
-            <c:choose>
-                <c:when test="${loggedIn}">
-                    <li id="exlidMyAccount" class="EXLMyAccount">
-                </c:when>
-                <c:otherwise>
-                    <li id="exlidMyAccount" class="EXLMyAccount disabled">
-                </c:otherwise>
-            </c:choose>
-            <a href="${fn:escapeXml(myAccountUrl)}">
-                <fmt:message key="menu.myaccount"/>
-            </a>
-            </li>
-            <%-- Din konto End --%>
-
-            <%-- Se og forny dine lån --%>
-            <c:set var="renewUrl" value="http://pds.primo-17.kb.dk/pds?func=load-login&institute=KGL&calling_system=primo&url=http://rex.kb.dk:80/primo_library/libweb/action/login.do?afterPDS=true&vid=KGL&dscnt=1&targetURL=http://rex.kb.dk/primo_library/libweb/action/myAccountMenu.do?dscnt=0&vid=" />
-            <c:choose>
-                <c:when test="${loggedIn}">
-                    <li>
-                </c:when>
-                <c:otherwise>
-                    <li id="exlidMyAccount" class="disabled">
-                </c:otherwise>
-            </c:choose>
-            <a href="<c:out value="${renewUrl}${vid}"/>">
+    <c:if test="${not loggedIn}">
+        <div class="btn-group">
+            <c:set var="newBorrowerUrl" value="https://user.kb.dk/user/create" />
             <c:choose>
                 <c:when test="${sessionScope.chosenInterfaceLanguage == 'da_DK'}">
-                    Se og forny dine lån
+                    <button onclick="window.location.href='<c:out value="${newBorrowerUrl}"/>?locale=da_DK'" class="btn btn-primary navbar-btn" target="_blank">
+                        <span class="glyphicon glyphicon-user"></span>
+                        <span class="hidden-sm">Ny låner</span>
+                    </button>
                 </c:when>
                 <c:otherwise>
-                    Renew loans
+                    <button onclick="window.location.href='<c:out value="${newBorrowerUrl}"/>?locale=en_US'" class="btn btn-primary navbar-btn" target="_blank">
+                        <span class="glyphicon glyphicon-user"></span>
+                        <span class="hidden-sm">New user</span>
+                    </button>
                 </c:otherwise>
             </c:choose>
-            </a>
-            </li>
-            <%-- Se og forny dine lån End --%>
+        </div>
+    </c:if>
+    <%-- New User end --%>
 
-            <%-- Søgehistorie --%>
-            <li id="exlidMyShelf" class="EXLMyShelf">
-                <a href="${fn:escapeXml(eshelfURL)}">
-                    <span class="EXLMyShelfStarSelected"></span><fmt:message key="eshelf.basket.title"/>
+    <%-- User --%>
+    <c:if test="${loggedIn}">
+        <div class="btn-group">
+            <button class="dropdown-toggle btn btn-primary navbar-btn" data-toggle="dropdown">
+                <fmt:message key="eshelf.user.greeting">
+                    <span class="glyphicon glyphicon-user"></span>
+                    <span class="hidden-sm"><fmt:param value="${userName}"></fmt:param></span>
+                </fmt:message>
+                <span class="caret"></span>
+            </button>
+
+            <ul class="dropdown-menu">
+
+                <%-- Din konto --%>
+                <c:choose>
+                    <c:when test="${loggedIn}">
+                        <li id="exlidMyAccount" class="EXLMyAccount">
+                    </c:when>
+                    <c:otherwise>
+                        <li id="exlidMyAccount" class="EXLMyAccount disabled">
+                    </c:otherwise>
+                </c:choose>
+                <a href="${fn:escapeXml(myAccountUrl)}">
+                    <fmt:message key="menu.myaccount"/>
                 </a>
-            </li>
-        </ul>
-    </div>
-    <%-- Login User End --%>
+                </li>
+                <%-- Din konto End --%>
+
+                <%-- Se og forny dine lån --%>
+                <c:set var="renewUrl" value="http://pds.primo-17.kb.dk/pds?func=load-login&institute=KGL&calling_system=primo&url=http://rex.kb.dk:80/primo_library/libweb/action/login.do?afterPDS=true&vid=KGL&dscnt=1&targetURL=http://rex.kb.dk/primo_library/libweb/action/myAccountMenu.do?dscnt=0&vid=" />
+                <c:choose>
+                    <c:when test="${loggedIn}">
+                        <li>
+                    </c:when>
+                    <c:otherwise>
+                        <li id="exlidMyAccount" class="disabled">
+                    </c:otherwise>
+                </c:choose>
+                <a href="<c:out value="${renewUrl}${vid}"/>">
+                <c:choose>
+                    <c:when test="${sessionScope.chosenInterfaceLanguage == 'da_DK'}">
+                        Se og forny dine lån
+                    </c:when>
+                    <c:otherwise>
+                        Renew loans
+                    </c:otherwise>
+                </c:choose>
+                </a>
+                </li>
+                <%-- Se og forny dine lån End --%>
+
+                <%-- Søgehistorie --%>
+                <li id="exlidMyShelf" class="EXLMyShelf">
+                    <a href="${fn:escapeXml(eshelfURL)}">
+                        <span class="EXLMyShelfStarSelected"></span><fmt:message key="eshelf.basket.title"/>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </c:if>
+    <%-- User End --%>
 
     <%-- Log ind / Log ud --%>
     <c:if test="${requestScope.isNewSession != null && requestScope.isNewSession eq 'true'}">
