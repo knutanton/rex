@@ -143,21 +143,11 @@
     <%-- New User --%>
     <c:if test="${not loggedIn}">
         <div class="btn-group">
-            <c:set var="newBorrowerUrl" value="https://user.kb.dk/user/create" />
-            <c:choose>
-                <c:when test="${sessionScope.chosenInterfaceLanguage == 'da_DK'}">
-                    <button onclick="window.location.href='<c:out value="${newBorrowerUrl}"/>?locale=da_DK'" class="btn btn-primary" target="_blank">
-                        <span class="glyphicon glyphicon-user"></span>
-                        <span class="hidden-xs hidden-sm">Ny låner</span>
-                    </button>
-                </c:when>
-                <c:otherwise>
-                    <button onclick="window.location.href='<c:out value="${newBorrowerUrl}"/>?locale=en_US'" class="btn btn-primary" target="_blank">
-                        <span class="glyphicon glyphicon-user"></span>
-                        <span class="hidden-xs hidden-sm">New user</span>
-                    </button>
-                </c:otherwise>
-            </c:choose>
+            <c:set var="newBorrowerUrl" value="https://user.kb.dk/user/create" /><%-- FIXME: What's the point in setting a variable and injecting below? /HAFE --%>
+            <button onclick="window.location.href='<c:out value="${newBorrowerUrl}"/>?locale=${sessionScope.chosenInterfaceLanguage}'" class="btn btn-primary navbar-btn" target="_blank">
+                <span class="glyphicon glyphicon-user"></span>
+                <span class="hidden-xs hidden-sm"><fmt:message key="default.eshelf.newUser.title"/></span>
+            </button>
         </div>
     </c:if>
     <%-- New User end --%>
