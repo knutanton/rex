@@ -7,7 +7,6 @@
         if(view.startsWith("kb")){
             view = view.substring(2);
         }
-
 %>
 <footer>
 
