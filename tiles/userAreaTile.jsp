@@ -106,7 +106,7 @@
 
     <%-- Language --%>
     <div class="btn-group">
-        <button href="#" class="btn btn-link" data-toggle="dropdown">
+        <button href="#" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
             <span class="glyphicon glyphicon-flag"></span>
             <span class="hidden-xs hidden-sm"><fmt:message key="mainmenu.label.language" /></span>
             <span class="caret"></span>
@@ -167,9 +167,9 @@
         <div class="btn-group">
             <button class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
                 <span class="glyphicon glyphicon-user"></span>
-                <fmt:message key="eshelf.user.greeting">
-                    <span class="hidden-xs hidden-sm"><fmt:param value="${userName}"></fmt:param></span>
-                </fmt:message>
+                <span class="hidden-xs hidden-sm">
+                    <fmt:message key="eshelf.user.greeting"><fmt:param value="${userName}"></fmt:param></fmt:message>
+                </span>
                 <span class="caret"></span>
             </button>
 
