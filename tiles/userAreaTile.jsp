@@ -106,7 +106,7 @@
 
     <%-- Language --%>
     <div class="btn-group">
-        <button href="#" class="btn btn-link navbar-btn" data-toggle="dropdown">
+        <button href="#" class="btn btn-link" data-toggle="dropdown">
             <span class="glyphicon glyphicon-flag"></span>
             <span class="hidden-xs hidden-sm"><fmt:message key="mainmenu.label.language" /></span>
             <span class="caret"></span>
@@ -146,13 +146,13 @@
             <c:set var="newBorrowerUrl" value="https://user.kb.dk/user/create" />
             <c:choose>
                 <c:when test="${sessionScope.chosenInterfaceLanguage == 'da_DK'}">
-                    <button onclick="window.location.href='<c:out value="${newBorrowerUrl}"/>?locale=da_DK'" class="btn btn-primary navbar-btn" target="_blank">
+                    <button onclick="window.location.href='<c:out value="${newBorrowerUrl}"/>?locale=da_DK'" class="btn btn-primary" target="_blank">
                         <span class="glyphicon glyphicon-user"></span>
                         <span class="hidden-xs hidden-sm">Ny låner</span>
                     </button>
                 </c:when>
                 <c:otherwise>
-                    <button onclick="window.location.href='<c:out value="${newBorrowerUrl}"/>?locale=en_US'" class="btn btn-primary navbar-btn" target="_blank">
+                    <button onclick="window.location.href='<c:out value="${newBorrowerUrl}"/>?locale=en_US'" class="btn btn-primary" target="_blank">
                         <span class="glyphicon glyphicon-user"></span>
                         <span class="hidden-xs hidden-sm">New user</span>
                     </button>
@@ -165,9 +165,9 @@
     <%-- User --%>
     <c:if test="${loggedIn}">
         <div class="btn-group">
-            <button class="dropdown-toggle btn btn-primary navbar-btn" data-toggle="dropdown">
+            <button class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+                <span class="glyphicon glyphicon-user"></span>
                 <fmt:message key="eshelf.user.greeting">
-                    <span class="glyphicon glyphicon-user"></span>
                     <span class="hidden-xs hidden-sm"><fmt:param value="${userName}"></fmt:param></span>
                 </fmt:message>
                 <span class="caret"></span>
@@ -244,14 +244,14 @@
     </c:choose>
 
     <div id="exlidSignOut" class="EXLSignOut EXLLastItem ${hideSignOutClass} btn-group">
-        <button onclick="window.location.href='${fn:escapeXml(logoutUrl)}'" <%--TJAN onclick="boomCallToRum('SignOutStat',false);"--%> class="btn btn-danger navbar-btn">
+        <button onclick="window.location.href='${fn:escapeXml(logoutUrl)}'" <%--TJAN onclick="boomCallToRum('SignOutStat',false);"--%> class="btn btn-danger">
             <span class="glyphicon glyphicon-off"></span>
             <span class="hidden-xs hidden-sm"><fmt:message key="eshelf.signout.title.link"/></span>
         </button>
     </div>
 
     <div id="exlidSignIn" class="EXLSignOut EXLLastItem ${hideSignInClass} btn-group">
-        <button onclick="window.location.href='${fn:escapeXml(loginUrl)}'" <%--TJAN onclick="boomCallToRum('SignInStatUserArea',false);addResolutionParam(this);"--%> class="btn btn-success navbar-btn">
+        <button onclick="window.location.href='${fn:escapeXml(loginUrl)}'" <%--TJAN onclick="boomCallToRum('SignInStatUserArea',false);addResolutionParam(this);"--%> class="btn btn-success">
             <span class="glyphicon glyphicon-lock"></span>
             <span class="hidden-xs hidden-sm"><fmt:message key="eshelf.signin.title"/></span>
         </button>
