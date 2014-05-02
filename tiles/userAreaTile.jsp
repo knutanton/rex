@@ -108,7 +108,7 @@
     <div class="btn-group">
         <button href="#" class="btn btn-link navbar-btn" data-toggle="dropdown">
             <span class="glyphicon glyphicon-flag"></span>
-            <span class="hidden-sm"><fmt:message key="mainmenu.label.language" /></span>
+            <span class="hidden-xs hidden-sm"><fmt:message key="mainmenu.label.language" /></span>
             <span class="caret"></span>
         </button>
         <ul id="exlidLanguages" class="EXLLanguageMenuShow EXLLanguageMenuHide dropdown-menu">
@@ -148,13 +148,13 @@
                 <c:when test="${sessionScope.chosenInterfaceLanguage == 'da_DK'}">
                     <button onclick="window.location.href='<c:out value="${newBorrowerUrl}"/>?locale=da_DK'" class="btn btn-primary navbar-btn" target="_blank">
                         <span class="glyphicon glyphicon-user"></span>
-                        <span class="hidden-sm">Ny låner</span>
+                        <span class="hidden-xs hidden-sm">Ny låner</span>
                     </button>
                 </c:when>
                 <c:otherwise>
                     <button onclick="window.location.href='<c:out value="${newBorrowerUrl}"/>?locale=en_US'" class="btn btn-primary navbar-btn" target="_blank">
                         <span class="glyphicon glyphicon-user"></span>
-                        <span class="hidden-sm">New user</span>
+                        <span class="hidden-xs hidden-sm">New user</span>
                     </button>
                 </c:otherwise>
             </c:choose>
@@ -168,7 +168,7 @@
             <button class="dropdown-toggle btn btn-primary navbar-btn" data-toggle="dropdown">
                 <fmt:message key="eshelf.user.greeting">
                     <span class="glyphicon glyphicon-user"></span>
-                    <span class="hidden-sm"><fmt:param value="${userName}"></fmt:param></span>
+                    <span class="hidden-xs hidden-sm"><fmt:param value="${userName}"></fmt:param></span>
                 </fmt:message>
                 <span class="caret"></span>
             </button>
@@ -246,14 +246,14 @@
     <div id="exlidSignOut" class="EXLSignOut EXLLastItem ${hideSignOutClass} btn-group">
         <button onclick="window.location.href='${fn:escapeXml(logoutUrl)}'" <%--TJAN onclick="boomCallToRum('SignOutStat',false);"--%> class="btn btn-danger navbar-btn">
             <span class="glyphicon glyphicon-off"></span>
-            <span class="hidden-sm"><fmt:message key="eshelf.signout.title.link"/></span>
+            <span class="hidden-xs hidden-sm"><fmt:message key="eshelf.signout.title.link"/></span>
         </button>
     </div>
 
     <div id="exlidSignIn" class="EXLSignOut EXLLastItem ${hideSignInClass} btn-group">
         <button onclick="window.location.href='${fn:escapeXml(loginUrl)}'" <%--TJAN onclick="boomCallToRum('SignInStatUserArea',false);addResolutionParam(this);"--%> class="btn btn-success navbar-btn">
             <span class="glyphicon glyphicon-lock"></span>
-            <span class="hidden-sm"><fmt:message key="eshelf.signin.title"/></span>
+            <span class="hidden-xs hidden-sm"><fmt:message key="eshelf.signin.title"/></span>
         </button>
         &nbsp; <fmt:message key="eshelf.additional.text"/>
     </div>
