@@ -167,6 +167,7 @@
                 <%-- Personal settings --%>
                 <li id="exlidMyAccount" class="EXLMyAccount">
                     <a href="${fn:escapeXml(myAccountUrl)}&amp;activity=personalSettings">
+                        <span class="glyphicon glyphicon-cog"></span>
                         <fmt:message key="default.menu.myaccount.personal_settings"/>
                     </a>
                 </li>
@@ -175,6 +176,7 @@
                 <%-- Fees --%>
                 <li>
                     <a href="${fn:escapeXml(myAccountUrl)}&amp;activity=fees">
+                        <span class="glyphicon glyphicon-credit-card"></span>
                         <fmt:message key="default.menu.myaccount.fines"/>
                     </a>
                 </li>
@@ -183,6 +185,7 @@
                 <%-- Printer account --%>
                 <li id="exlidMyShelf" class="EXLMyShelf">
                     <a href="http://www.kb.dk/da/kub/campusbib/it/kopikortet.html">
+                        <span class="glyphicon glyphicon-print"></span>
                         <span class="EXLMyShelfStarSelected"></span><fmt:message key="default.menu.myaccount.printaccount"/>
                     </a>
                 </li>
