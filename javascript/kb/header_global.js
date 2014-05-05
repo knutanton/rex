@@ -622,6 +622,12 @@ function kbFixMyAccountPages() {
         title =  selectedTab ? selectedTab.text().trim() : ''; // NOTE: If there was neither EXLMyAccountMainMenuTitle nor EXLMyAccountSelectedTab, set header to empty string (don't think this will ever happen?)
     }
     $('#contentWrapper').prepend('<div class="page-header"><h1><span class="glyphicon glyphicon-' + kb.getMyAccountPageIcon(pageName) + '"></span> ' + title + '</h1></div>');
+
+    // DOM manipulate specific pages under myAccount
+    if (pageName === 'basket') {
+        $('td.folders_new').addClass('col-md-4');
+        $('td.folder_details').addClass('col-md-8'); /* FIXME: It appears that there are two cells with this class (one of wich should never be used!) */
+    }
 }
 
 //NKH Start (EOD functions)
