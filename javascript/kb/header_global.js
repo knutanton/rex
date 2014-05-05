@@ -112,12 +112,11 @@ var kb = (function ($, document) {
 
     Kb.prototype.MYACCOUNTPAGEICONS = new Array();
     Kb.prototype.MYACCOUNTPAGEICONS['loans'] = 'book';
-    Kb.prototype.MYACCOUNTPAGEICONS['requests'] = 'book';
-    Kb.prototype.MYACCOUNTPAGEICONS['basket'] = 'book';
+    Kb.prototype.MYACCOUNTPAGEICONS['requests'] = 'time';
+    Kb.prototype.MYACCOUNTPAGEICONS['basket'] = 'star';
     Kb.prototype.MYACCOUNTPAGEICONS['query'] = 'search';
-    Kb.prototype.MYACCOUNTPAGEICONS['requests'] = 'book';
     Kb.prototype.MYACCOUNTPAGEICONS['fees'] = 'credit-card';
-    Kb.prototype.MYACCOUNTPAGEICONS['personalSettings'] = 'user';
+    Kb.prototype.MYACCOUNTPAGEICONS['personalSettings'] = 'cog';
 
     /**
      * Translate a myAccountPageName into an icon name (without "glyphicon-")
@@ -622,7 +621,7 @@ function kbFixMyAccountPages() {
         var selectedTab = $('.EXLMyAccountSelectedTab');
         title =  selectedTab ? selectedTab.text().trim() : ''; // NOTE: If there was neither EXLMyAccountMainMenuTitle nor EXLMyAccountSelectedTab, set header to empty string (don't think this will ever happen?)
     }
-    $('#contentWrapper').prepend('<div class="kbPageHeader"><h1><span class="glyphicon glyphicon-' + kb.getMyAccountPageIcon(pageName) + '"></span> ' + title + '</h1></div>');
+    $('#contentWrapper').prepend('<div class="page-header"><h1><span class="glyphicon glyphicon-' + kb.getMyAccountPageIcon(pageName) + '"></span> ' + title + '</h1></div>');
 }
 
 //NKH Start (EOD functions)
