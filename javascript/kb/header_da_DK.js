@@ -292,7 +292,7 @@ $(document).ready(function () {
     replaceTextInLocationsTab(textReplaceObjectArray);
 
 //		fixImageTitleUri();
-    var signoutText = $("#exlidSignOut").find("a").html();
+    var signoutText = $("#exlidSignOut").find("button").text().trim();
     if (startsWith(signoutText, Array('Log ud', 'Sign out'))) {
         // things to do when the user is logged ind
         // change edit link
