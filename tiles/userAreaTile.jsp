@@ -164,51 +164,29 @@
             </button>
 
             <ul class="dropdown-menu">
-
-                <%-- Din konto --%>
-                <c:choose>
-                    <c:when test="${loggedIn}">
-                        <li id="exlidMyAccount" class="EXLMyAccount">
-                    </c:when>
-                    <c:otherwise>
-                        <li id="exlidMyAccount" class="EXLMyAccount disabled">
-                    </c:otherwise>
-                </c:choose>
-                <a href="${fn:escapeXml(myAccountUrl)}">
-                    <fmt:message key="menu.myaccount"/>
-                </a>
-                </li>
-                <%-- Din konto End --%>
-
-                <%-- Se og forny dine lån --%>
-                <c:set var="renewUrl" value="http://pds.primo-17.kb.dk/pds?func=load-login&institute=KGL&calling_system=primo&url=http://rex.kb.dk:80/primo_library/libweb/action/login.do?afterPDS=true&vid=KGL&dscnt=1&targetURL=http://rex.kb.dk/primo_library/libweb/action/myAccountMenu.do?dscnt=0&vid=" />
-                <c:choose>
-                    <c:when test="${loggedIn}">
-                        <li>
-                    </c:when>
-                    <c:otherwise>
-                        <li id="exlidMyAccount" class="disabled">
-                    </c:otherwise>
-                </c:choose>
-                <a href="<c:out value="${renewUrl}${vid}"/>">
-                <c:choose>
-                    <c:when test="${sessionScope.chosenInterfaceLanguage == 'da_DK'}">
-                        Se og forny dine lån
-                    </c:when>
-                    <c:otherwise>
-                        Renew loans
-                    </c:otherwise>
-                </c:choose>
-                </a>
-                </li>
-                <%-- Se og forny dine lån End --%>
-
-                <%-- Søgehistorie --%>
-                <li id="exlidMyShelf" class="EXLMyShelf">
-                    <a href="${fn:escapeXml(eshelfURL)}">
-                        <span class="EXLMyShelfStarSelected"></span><fmt:message key="eshelf.basket.title"/>
+                <%-- Personal settings --%>
+                <li id="exlidMyAccount" class="EXLMyAccount">
+                    <a href="${fn:escapeXml(myAccountUrl)}&amp;activity=personalSettings">
+                        <fmt:message key="default.menu.myaccount.personal_settings"/>
                     </a>
                 </li>
+                <%-- Personal settings end --%>
+
+                <%-- Fees --%>
+                <li>
+                    <a href="${fn:escapeXml(myAccountUrl)}&amp;activity=fees">
+                        <fmt:message key="default.menu.myaccount.fines"/>
+                    </a>
+                </li>
+                <%-- Fees end --%>
+
+                <%-- Printer account --%>
+                <li id="exlidMyShelf" class="EXLMyShelf">
+                    <a href="http://www.kb.dk/da/kub/campusbib/it/kopikortet.html">
+                        <span class="EXLMyShelfStarSelected"></span><fmt:message key="default.menu.myaccount.printaccount"/>
+                    </a>
+                </li>
+                <%-- Printer account --%>
             </ul>
         </div>
     </c:if>
