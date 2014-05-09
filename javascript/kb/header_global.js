@@ -629,6 +629,9 @@ function kbFixMyAccountPages() {
         $('td.folders_new').addClass('col-md-4');
         $('td.folder_details').addClass('col-md-8'); /* FIXME: It appears that there are two cells with this class (one of wich should never be used!) */
     }
+    else if (pageName === 'personalSettings') {
+        $('.EXLMyPersonalSettings, .EXLMyAccountTips, .EXLMyAccountRanking').addClass('col-md-8');
+    }
 }
 
 //NKH Start (EOD functions)
