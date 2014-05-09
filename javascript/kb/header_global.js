@@ -614,8 +614,9 @@ function kbFixMyAccountPages() {
             pageName = activity;
         }
     }
+    // set body flag class
     $('body').addClass(pageName); // TODO: Perhaps we ought to prefix these classnames with something to prevent name clashing?
-    // inject content header
+    // inject content header on page
     var title = $('li:has(.EXLMyAccountMainMenuBulletSelected) .EXLMyAccountMainMenuTitle', '#exlidMyAccountMainMenuContainer').text().trim();
     if (!title.length) {
         var selectedTab = $('.EXLMyAccountSelectedTab');
