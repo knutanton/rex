@@ -853,6 +853,7 @@ function removeUnWantedContent() {
  * a bootstrap structure, so we switch back to
  * the good alo css
  */
+/*
 (function removeBootsrapCss() {
     if (!(document.URL.indexOf('search.do') > -1 ||
         document.URL.indexOf('display.do') > -1 ||
@@ -865,4 +866,4 @@ function removeUnWantedContent() {
         $("link[href*='primo_library_css.css']").attr("href", newCssLink);
 
     }
-}());
+}());*/
