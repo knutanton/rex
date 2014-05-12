@@ -12,24 +12,29 @@
 </c:if>
 
 <c:if test="${loggedIn == true}">
+    <div id="KBMyAccountTile" class="bg-primary">
+        <div class="container">
 
-    <div class="btn-group btn-group-justified" role="toolbar">
-        <a href="myAccountMenu.do?activity=loans&command=list" class="btn btn-primary">
-            <span class="glyphicon glyphicon-book"></span><br class="visible-xs">
-            <span>Hjemlån</span>
-        </a>
-        <a href="myAccountMenu.do?activity=requests" class="btn btn-primary">
-            <span class="glyphicon glyphicon-time "></span><br class="visible-xs">
-            <span>Bestillinger</span>
-        </a>
-        <a href="basket.do?fn=display&fromUserArea=true&vid=${sessionScope.vid}&fromPreferences=false" class="btn btn-primary">
-            <span class="glyphicon glyphicon-star"></span><br class="visible-xs">
-            <span>Favoritter</span>
-        </a>
-        <a href="query.do?fn=display&vid=${sessionScope.vid}" class="btn btn-primary">
-            <span class="glyphicon glyphicon-search"></span><br class="visible-xs">
-            <span>Søgninger</span>
-        </a>
+            <div class="btn-group btn-group-justified" role="toolbar">
+                <a href="myAccountMenu.do?activity=loans&command=list" class="btn btn-primary">
+                    <span class="glyphicon glyphicon-book"></span><br class="visible-xs">
+                    <span>Hjemlån</span>
+                </a>
+                <a href="myAccountMenu.do?activity=requests" class="btn btn-primary">
+                    <span class="glyphicon glyphicon-time "></span><br class="visible-xs">
+                    <span>Bestillinger</span>
+                </a>
+                <a href="basket.do?fn=display&fromUserArea=true&vid=${sessionScope.vid}&fromPreferences=false" class="btn btn-primary">
+                    <span class="glyphicon glyphicon-star"></span><br class="visible-xs">
+                    <span>Favoritter</span>
+                </a>
+                <a href="query.do?fn=display&vid=${sessionScope.vid}" class="btn btn-primary">
+                    <span class="glyphicon glyphicon-search"></span><br class="visible-xs">
+                    <span>Søgninger</span>
+                </a>
+            </div>
+
+        </div>
     </div>
 
 </c:if>
