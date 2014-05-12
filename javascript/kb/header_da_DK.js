@@ -305,7 +305,7 @@ $(document).ready(function () {
     } else {
         // things to do when the user is NOT logged in
         // remove edit link
-        $("div.EXLMyAccountEditLink").hide();
+        //$("div.EXLMyAccountEditLink").hide();
         $("li.EXLMyAccountTab").filter(":contains('Din konto')").hide();
         //$("#exlidMyAccount").hide();
         $("#exlidMyAccount>a").attr("href", "login.do?loginFn=signin&targetURL=myAccountMenu.do%3fvid%3d" + kb.gup('vid')); 

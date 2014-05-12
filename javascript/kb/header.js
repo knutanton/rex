@@ -163,7 +163,7 @@ $(document).ready(function () {
     } else {
         // things to do when the user is NOT logged in
         // remove edit link
-        $("div.EXLMyAccountEditLink").hide();
+        //$("div.EXLMyAccountEditLink").hide();
         $("li.EXLMyAccountTab").filter(":contains('My Account')").hide();
 
         //$("#exlidMyAccount").hide();
