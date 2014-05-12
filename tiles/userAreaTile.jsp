@@ -1,4 +1,3 @@
-<%@ page contentType="text/xml;charset=UTF-8" language="java"%>
 <%@ include file="/views/taglibsIncludeAll.jspf" %>
 <%@ include file="/views/include/setSearchForm.jspf"%>
 <%-- Prepare functional content first, html at end of file --%>
