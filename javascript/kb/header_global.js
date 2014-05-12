@@ -630,7 +630,12 @@ function kbFixMyAccountPages() {
         $('td.folder_details').addClass('col-md-8'); /* FIXME: It appears that there are two cells with this class (one of wich should never be used!) */
     }
     else if (pageName === 'personalSettings') {
-        $('.EXLMyPersonalSettings, .EXLMyAccountTips, .EXLMyAccountRanking').addClass('col-md-4');
+        var tmpElements = $('.EXLMyPersonalSettings, .EXLMyAccountTips, .EXLMyAccountRanking').addClass('col-md-4');
+        $.each(tmpElements, function (index, elem) {
+            var children = $(elem.children);
+            $(elem).prepend('<div class="panel panel-default"><div class="panel-body"></div></div>');
+            children.appendTo(elem.childNodes[0].childNodes[0]);
+        });
     }
 }
 
