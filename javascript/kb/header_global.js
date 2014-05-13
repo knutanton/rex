@@ -115,6 +115,7 @@ var kb = (function ($, document) {
     Kb.prototype.MYACCOUNTPAGEICONS['requests'] = 'time';
     Kb.prototype.MYACCOUNTPAGEICONS['basket'] = 'star';
     Kb.prototype.MYACCOUNTPAGEICONS['query'] = 'search';
+    Kb.prototype.MYACCOUNTPAGEICONS['sessionQuery'] = 'search';
     Kb.prototype.MYACCOUNTPAGEICONS['fees'] = 'credit-card';
     Kb.prototype.MYACCOUNTPAGEICONS['personalSettings'] = 'cog';
 
@@ -630,7 +631,7 @@ function kbFixMyAccountPages() {
         $('td.folder_details').addClass('col-md-8'); /* FIXME: It appears that there are two cells with this class (one of wich should never be used!) */
     }
     else if (pageName === 'personalSettings') {
-        var tmpElements = $('.EXLMyPersonalSettings, .EXLMyAccountTips, .EXLMyAccountRanking').addClass('col-md-4');
+        var tmpElements = $('.EXLMyPersonalSettings, .EXLMyAccountTips, .EXLMyAccountRanking').addClass('col-sm-6 col-md-4');
         $.each(tmpElements, function (index, elem) {
             var children = $(elem.children);
             $(elem).prepend('<div class="panel panel-default"><div class="panel-body"></div></div>');
