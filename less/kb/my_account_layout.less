@@ -195,8 +195,6 @@ table.EXLMyAccountTable{
         .hide;
     }
     #LoansTable{
-
-        .EXLMyAccountTableCounter, .MyAccount_Loans_0,
         .EXLMyAccountTableDueHour, .MyAccount_Loans_5,
         .EXLMyAccountTableFine, .MyAccount_Loans_6,
         .EXLMyAccountTableSub, .MyAccount_Loans_7{
@@ -207,7 +205,15 @@ table.EXLMyAccountTable{
         .alert;
         .alert-success;
     }
+    @media (max-width: @screen-sm-min) {
+        #LoansTable{
+            .EXLMyAccountTableAuthor, .MyAccount_Loans_3{
+                .hide;
+            }
+        }
+    }
 }
+
 /* myAccountLoan (Hjemlån detailjer) */
 .myAccountLoan{
     .EXLMyAccountMainMenuTile{
@@ -231,12 +237,42 @@ table.EXLMyAccountTable{
     .EXLMyAccountMainMenuTile{
         .hide;
     }
-    #cancel a{
-        .glyphicon;
-        .glyphicon-trash;
-        .btn;
-        .btn-default;
+    .EXLMyAccountTable{
+        .EXLMyAccountTableType, .MyAccount_Requests_1,
+        .Location, .MyAccount_Requests_6{
+            .hide;
+        }
+
     }
+    @media (max-width: @screen-sm-min) {
+        .EXLMyAccountTable{
+            .EXLMyAccountTableType, .MyAccount_Requests_1,
+            .EXLMyAccountTableAuthor, .MyAccount_Requests_3,
+            .EXLMyAccountTableDueHour, .MyAccount_Requests_4,
+            .EXLMyAccountTableActions, .MyAccount_Requests_7{
+                .hide;
+            }
+        }
+    }
+}
+
+/* requests (Bestillinger detailjer) */
+.myAccountRequest{
+    .EXLMyAccountMainMenuTile{
+        .hide;
+    }
+    .EXLMyAccountTableDetails{
+        .table;
+        .table-striped;
+    }
+    .EXLMyAccountMainTableLinks{
+        margin:10px 0;
+        a{
+            .btn;
+            .btn-default;
+        }
+    }
+
 }
 
 
@@ -338,6 +374,20 @@ table.EXLMyAccountTable{
 
 }
 /* query / sessionQuery (Gemte søgninger & søgeagenter) */
+.query{
+    .EXLMyAccountTable{
+        .EXLMyAccountTableAlertType, td:nth-child(3){
+            .hide;
+        }
+    }
+    @media (max-width: @screen-sm-min) {
+        .EXLMyAccountTable{
+            .EXLMyAccountTableRSS, .EXLMyAccountTableRSSLink{
+                .hide;
+            }
+        }
+    }
+}
 
 /* global style */
 .query, .sessionQuery {
@@ -401,6 +451,33 @@ table.EXLMyAccountTable{
         display: block;
         padding: 10px 15px;
     }
+}
+
+/* fees (Gebyrer) */
+.fees{
+    .EXLMyAccountMainMenuTile{
+        .hide;
+    }
+    .EXLMyAccountTable{
+        .EXLMyAccountTableDueHour, .MyAccount_FineAndFees_4,
+        .EXLMyAccountTableFine.headerSortOptions, .MyAccount_FineAndFees_6,
+        .EXLMyAccountFinesBalanceRow.EXLMyAccountFinesBalanceLink{
+            .hide;
+        }
+        tfoot{
+            font-weight: bold;
+        }
+    }
+    @media (max-width: @screen-sm-min) {
+        .EXLMyAccountTable{
+            .EXLMyAccountTableAuthor, .MyAccount_FineAndFees_2{
+                .hide;
+            }
+        }
+    }
+  #KBPayFrame{
+    border:none;
+}
 }
 
 
