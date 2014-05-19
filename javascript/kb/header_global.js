@@ -849,6 +849,28 @@ function removeUnWantedContent() {
     $("#exlidMyAccountMainHeader").html("");
 }
 
+/*
+ *HAFE
+ * Set global event listeners
+ */
+function setUpSearchCollapseBar() {
+    var searchCollapseButton = $('#kbSearchCollapseButton'),
+        searchTileWrapper = $('#exlidSearchTileWrapper');
+    // set initial chevron
+    if (!searchTileWrapper.hasClass('in')) {
+        $('.glyphicon', searchCollapseButton).removeClass('glyphicon-chevron-up').addClass('glyphicon-chevron-down');
+    }
+    // setup event listener to searchCollapseButton to invert chevron on click
+    searchCollapseButton.click(function () {
+        if (searchTileWrapper.hasClass('in')) {
+            // collapsing => v
+            $('.glyphicon', this).removeClass('glyphicon-chevron-up').addClass('glyphicon-chevron-down');
+        } else {
+            // expanding => ^
+            $('.glyphicon', this).removeClass('glyphicon-chevron-down').addClass('glyphicon-chevron-up');
+        }
+    });
+}
 
 /**
  * When on "Min konto" we dont have
