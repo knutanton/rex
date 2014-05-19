@@ -633,11 +633,19 @@ function kbFixMyAccountPages() {
         $('td.folder_details').addClass('col-md-8'); /* FIXME: It appears that there are two cells with this class (one of wich should never be used!) */
     }
     else if (pageName === 'personalSettings') {
+        var headers = kb.getPersonalSettingsCategories(); // Note: language specific functions defined in header.js and header_da_DK.js
         var tmpElements = $('.EXLMyPersonalSettings, .EXLMyAccountTips, .EXLMyAccountRanking').addClass('col-sm-6 col-md-4');
         $.each(tmpElements, function (index, elem) {
             var children = $(elem.children);
-            $(elem).prepend('<div class="panel panel-default"><div class="panel-body"></div></div>');
-            children.appendTo(elem.childNodes[0].childNodes[0]);
+            $(elem).prepend('<div class="panel panel-default"><div class="panel-heading"><h3 class="panel-title"><span class="glyphicon glyphicon-' + headers[index].icon + '"></span> ' + headers[index].name + '</h3></div><div class="panel-body"></div></div>');
+            if (index === 0) { // This is personal settings - inject password and pincode lines
+                var tbody = $('tbody', children);
+                tbody.children().last().remove(); // remove the expiration date
+                $.each(headers[index].extraRows, function (index, title) {
+                    tbody.append('<tr><th scope="row">' + title + '</th><td>****</td></tr>');
+                });
+            }
+            children.appendTo($('.panel-body', elem));
         });
     }
 }

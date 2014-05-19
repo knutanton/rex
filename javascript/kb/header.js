@@ -138,6 +138,21 @@ function startsWith(s, a) {
 
 $(document).ready(function () {
 
+    // Adding language specific hardcoded headlines to the three boxes under personalSettings
+    kb.getPersonalSettingsCategories = function () {
+        return [{
+            name: 'Personal Settings', // TODO: These names are hardcoded - it would be great if they could be fetched from exlibris instead!
+            icon: 'user',
+            extraRows: ['Password', 'Pincode']
+        }, {
+            name: 'System Settings',
+            icon: 'cog'
+        }, {
+            name: 'Article Search',
+            icon: 'search'
+        }];
+    };
+
     addLoginLink();
 
     // Remove unwanted content (Function defined in header_global.js)
