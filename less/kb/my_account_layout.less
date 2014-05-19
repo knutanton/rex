@@ -3,15 +3,13 @@
    .hide;
 }
 
-.EXLMyAccountTable{
+table.EXLMyAccountTable{
     .table;
     .table-striped;
     .table-hover;
     width:100%;
-    border:1px solid red;
-    tr th{
-        border: 1px solid blue;
-
+    td{
+      display: table-cell!important;
     }
 }
 
@@ -28,6 +26,28 @@
     left:-9999px;
 }
 
+/*LIGHTBOX GENERAL Remember to move t lightebox less */
+@media (min-width: @screen-sm-min){
+    #exliWhiteContent>div {
+        right: auto;
+        left: auto;
+        width: 600px;
+        padding: 30px;
+        margin: 0px auto;
+        outline: 0;
+    }
+}
+#exliWhiteContent {
+    z-index:1002;
+    display:block;
+}
+
+.exlidFacetsLightboxContainer {
+    outline: 0!important;
+}
+
+
+
 /*  basket.do (Favoritter)
 ***************************************************************/
 
@@ -35,9 +55,10 @@
     .hide;
 }
 .basket{
-        table{
-
+        .folder_details{
+            background: red;
         }
+
         .itemsListTH, .itemsListTable{
             .table;
             .table-striped;
@@ -96,8 +117,8 @@
         }
 
         .EXLEShelfFolderContentsTable{
-            td{
-                display:block;
+            td[class*="col-"]{
+               float:left !important;
             }
             h5{
                 :before{
@@ -168,9 +189,102 @@
 
 /*  myAccountMenu.do
 ***************************************************************/
+/* loans (Hjemlån) */
+.loans{
+    .EXLMyAccountMainMenuTile{
+        .hide;
+    }
+    #LoansTable{
 
-/* personalSettings */
+        .EXLMyAccountTableCounter, .MyAccount_Loans_0,
+        .EXLMyAccountTableDueHour, .MyAccount_Loans_5,
+        .EXLMyAccountTableFine, .MyAccount_Loans_6,
+        .EXLMyAccountTableSub, .MyAccount_Loans_7{
+            .hide;
+        }
+    }
+    .EXLCaptionSystemFeedback{
+        .alert;
+        .alert-success;
+    }
+}
+/* myAccountLoan (Hjemlån detailjer) */
+.myAccountLoan{
+    .EXLMyAccountMainMenuTile{
+        .hide;
+    }
+    .EXLMyAccountTableDetails{
+        .table;
+        .table-striped;
+    }
+    .EXLMyAccountMainTableLinks{
+        margin:10px 0;
+        a{
+            .btn;
+            .btn-default;
+        }
+    }
+
+}
+/* requests (Bestillinger) */
+.requests{
+    .EXLMyAccountMainMenuTile{
+        .hide;
+    }
+    #cancel a{
+        .glyphicon;
+        .glyphicon-trash;
+        .btn;
+        .btn-default;
+    }
+}
+
+
+/* personalSettings (personlige indstillinger) */
 .personalSettings{
+
+ /*LIGHTBOX*/
+    #exliWhiteContent {
+        #EXLPersonalRankingLightBox{
+          #exlidFacetsLightboxContainer;
+        }
+        select{
+            .form-control;
+            margin-bottom: 8px;
+        }
+        .EXLLightboxHeaderTitle{
+            .h4;
+            .pull-left;
+            width:90%;
+         }
+        ul{
+           .list-unstyled;
+        }
+        #exliGreyOverlay{
+            display:none;
+        }
+        .EXLLightboxHeaderClose{
+            .pull-right;
+        }
+        .EXLLightboxHeader{
+            .EXLFacetsLightboxHeader;
+        }
+        .EXLLightboxFormContainer{
+            #exlidFacetsLightboxListWrapper;
+        }
+        .EXLLighboxSubmitButton{
+            .pull-right;
+        }
+        .EXLLighboxCancelButton{
+            .pull-right;
+            input{
+                .btn;
+                .btn-default;
+            }
+
+        }
+    }
+
     .EXLMyAccountMainMenuTile{
         .hide;
     }
@@ -178,55 +292,118 @@
         .btn;
         .btn-primary;
     }
-    .EXLPersonalizedRanking{
-        background: #FFF;
-        position: absolute;
-        z-index: 1041;
-        .modal-dialog;
 
-    }
     .EXLMyAccountForm{
         .table;
         tr, th, td{
             border:none !important;
-            padding:0 !important;
         }
     }
-
+    th{
+        vertical-align: middle !important;
+    }
     .EXLMyPersonalSettings{
-
+        tr, th, td{
+            padding:0px !important;
+        }
         tr:last-child{
             display:none;
         }
     }
-    .EXLMyAccountEditLink{
-        .pull-right;
-    }
-
     .EXLMyAccountTips{
         legend{
             .hide;
         }
-        td, .submit{
-            .pull-right;
+        td{
+            text-align: right;
+            .submit{
+                display: inline-block;
+            }
+        }
+        select{
+            .form-control;
+        }
+    }
+    .EXLMyAccountRanking{
+       strong{
+           display:block;
+           .alert;
+           .alert-info;
+       }
+        th, td{
+            word-wrap:break-word;
+            white-space: normal;
         }
     }
 
-
 }
-/* query */
-.query{
-    .EXLMyAccountMainMenuContainer ol{
-        li{
-            a{
-                .btn;
-                .btn-default;
-                background: red;
+/* query / sessionQuery (Gemte søgninger & søgeagenter) */
+
+/* global style */
+.query, .sessionQuery {
+    .EXLMyAccountMainMenuContainer{
+        ol{
+            .nav;
+            .nav-tabs;
+            border-bottom:none;
+            li{
+                a{
+                    margin-right: 2px;
+                    line-height: 1.42857143;
+                    border: 1px solid transparent;
+                    border-radius: 4px 4px 0 0;
+                    position: relative;
+                    display: block;
+                    padding: 10px 15px;
+                    color: #428bca;
+                    text-decoration: none;
+                    background: 0 0;
+                }
+                a:hover{
+                    border-color: #eee #eee #ddd;
+                    text-decoration: none;
+                    background-color: #eee;
+                }
+
+                .EXLMyAccountMainMenuBullet, .EXLMyAccountMainMenuCounter{
+                    .hide;
+                }
             }
         }
     }
-
 }
+.query .EXLMyAccountMainMenuContainer{
+    #savedFolder .EXLMyAccountMainMenuTitle{
+        color: #555;
+        background-color: #fff;
+        border: 1px solid #ddd;
+        border-bottom-color: transparent;
+        cursor: default;
+        margin-right: 2px;
+        line-height: 1.42857143;
+        border-radius: 4px 4px 0 0;
+        position: relative;
+        display: block;
+        padding: 10px 15px;
+    }
+}
+.sessionQuery .EXLMyAccountMainMenuContainer{
+    #sessionFolder .EXLMyAccountMainMenuTitle{
+        color: #555;
+        background-color: #fff;
+        border: 1px solid #ddd;
+        border-bottom-color: transparent;
+        cursor: default;
+        margin-right: 2px;
+        line-height: 1.42857143;
+        border-radius: 4px 4px 0 0;
+        position: relative;
+        display: block;
+        padding: 10px 15px;
+    }
+}
+
+
 
 
 
