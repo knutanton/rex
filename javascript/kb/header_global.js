@@ -112,6 +112,7 @@ var kb = (function ($, document) {
 
     Kb.prototype.MYACCOUNTPAGEICONS = new Array();
     Kb.prototype.MYACCOUNTPAGEICONS['loans'] = 'book';
+    Kb.prototype.MYACCOUNTPAGEICONS['myAccountLoan'] = 'book';
     Kb.prototype.MYACCOUNTPAGEICONS['requests'] = 'time';
     Kb.prototype.MYACCOUNTPAGEICONS['basket'] = 'star';
     Kb.prototype.MYACCOUNTPAGEICONS['query'] = 'search';
