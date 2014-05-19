@@ -158,7 +158,7 @@ $(document).ready(function () {
     if (startsWith(signoutText, Array('Log ud', 'Sign out'))) {
         // things to do when the user is logged ind
         // change edit link
-        $("div.EXLMyAccountEditLink").html('<span><a href="https://user.kb.dk/user/edit" target="_blank">Edit</a></span>');
+        $("div.EXLMyAccountEditLink").html('<span><a href="https://user-stage.kb.dk/user/edit" target="_blank">Edit</a></span>');
         $("#exlidMyAccountMainContainer1").filter(":contains('Fine Date')").append('<div id="KBPay"><iframe id=KBPayFrame" width="100%" src="https://aleph-00.kb.dk/F/?func=file&file_name=bor-info-primo"></div>');
     } else {
         // things to do when the user is NOT logged in
