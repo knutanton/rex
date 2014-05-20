@@ -158,6 +158,9 @@ $(document).ready(function () {
     // Remove unwanted content (Function defined in header_global.js)
     removeUnWantedContent();
 
+    // set up the searchCollapseButton (initial chevron + event listener (Function defined in header_global.js))
+    setUpSearchCollapseBar();
+
     // Closing all closed result tab containers (they expand upon tab header clicks)
     //$('.EXLResultTabContainerClosed').addClass('collapse');
 
