@@ -884,6 +884,16 @@ function setUpSearchCollapseBar() {
     });
 }
 
+/*
+ * HAFE
+ * Set up listeners for the ResultsPerPage dropdown
+ */
+function setUpResultsPerPage() {
+    $('.kbResultsPerPageDropDownMenu').on('click', function (e) {
+        kb.setPostsPerPage(parseInt($(e.target).text(), 10));
+    });
+}
+
 /**
  * When on "Min konto" we dont have
  * a bootstrap structure, so we switch back to

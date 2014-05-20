@@ -139,14 +139,36 @@
     <input type="hidden" name="searchForm.frbrSrt" value=""/>
 
     <div class="EXLResultsSortByMenu col-xs-12 col-sm-6 col-md-4">
-        <div class="btn-group pull-right">
+        <div class="pull-right">
+        <div id="kbResultsPerPageButton" class="btn-group">
+            <button class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown">
+                <script type="text/javascript">kb.postsPerPage = ${sessionScope.bulk};</script> <%-- FIXME: I'm not sure this will work if personalSettingsIframe has not been loaded yet? HAFE --%>
+                <span class="glyphicon glyphicon-th-list"></span> <span class="kbResultsPerPage"><script type="text/javascript">document.write(kb.postsPerPage);</script><span>
+                &nbsp;<span class="caret"></span>
+            </button>
+            
+            <ul class="kbResultsPerPageDropDownMenu EXLResultsPerPageMenuHide dropdown-menu" role="menu">
+                <li class="kbResultsPerPageLink">
+                    <p class="dropdown-header">Visninger pr side.</p>
+                </li>
+                <li class="kbResultsPerPageLink<c:if test='${sessionScope.bulk == 10}'> kbResultsPerPageSelected hide</c:if>"><a>10</a></li>
+                <li class="kbResultsPerPageLink<c:if test='${sessionScope.bulk == 20}'> kbResultsPerPageSelected hide</c:if>"><a>20</a></li>
+                <li class="kbResultsPerPageLink<c:if test='${sessionScope.bulk == 30}'> kbResultsPerPageSelected hide</c:if>"><a>30</a></li>
+                <li class="kbResultsPerPageLink<c:if test='${sessionScope.bulk == 50}'> kbResultsPerPageSelected hide</c:if>"><a>50</a></li>
+            </ul>
+        </div>
+
+        <div class="btn-group">
             <button type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown">
-                <span class="EXLResultsSortByLabel"><fmt:message key='results.sortby'/></span> <fmt:message
+                <span class="glyphicon glyphicon-sort-by-attributes"></span> <fmt:message
                     key="results.sortby.option.${fn:escapeXml(srtField)}"/>&nbsp;<span class="caret"></span>
             </button>
 
             <ul class="EXLResultsSortByMenuShow EXLResultsSortByMenuHide dropdown-menu" role="menu">
                 <!--remove EXLResultsSortByMenuHide to show menu items-->
+                <li class="EXLSortByLink">
+                    <p class="dropdown-header">Sorter efter:</p>
+                </li>
                 <c:set var="SendToArrowImageUrl"><img src="<fmt:message key=" ui.images.resultsheadernumbers.arrowsendto"/>"
                     alt="<fmt:message key='results.tooltip.sortby'/>"/></c:set>
                 <c:choose>
@@ -259,6 +281,8 @@
                     </c:otherwise>
                 </c:choose>
             </ul>
+        </div>
+
         </div>
     </div>
 </c:if>

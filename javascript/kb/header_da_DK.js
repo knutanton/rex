@@ -297,6 +297,9 @@ $(document).ready(function () {
     // set up the searchCollapseButton (initial chevron + event listener (Function defined in header_global.js))
     setUpSearchCollapseBar();
 
+    // set up resultsPerPage Button TODO: This should only be called if on a search.do page!!
+    setUpResultsPerPage();
+
     // Closing all closed result tab containers (they expand upon tab header clicks)
     //$('.EXLResultTabContainerClosed').addClass('collapse');
 
