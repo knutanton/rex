@@ -55,12 +55,20 @@ table.EXLMyAccountTable{
     .hide;
 }
 .basket{
+
         .folder_details, .folders_new{
+            @media (max-width: @screen-sm-min) {
+                width:100%;
+                float:none;
+            }
             .pull-left;
         }
         .folders_new{
+
+            margin:0px;
             .noteBubble{
-                .collapse;
+
+
             }
             vertical-align:top;
             :first-child{
@@ -71,18 +79,28 @@ table.EXLMyAccountTable{
                     .list-inline;
                 }
             }
-            .folderActions ul{
-                li{
-                    padding:0;
-                }
-                a{
-                    .btn;
-                    .btn-primary;
+            .folderActions{
+                background:#eeeeee;
+                border-radius: 4px;
+                ul{
+                    li{
+                        padding:2px;
+                        a{
+                            .btn;
+                            .btn-primary;
+                        }
+                    }
                 }
             }
         }
 
         .itemsListTH, .itemsListTable{
+
+            @media (max-width: @screen-sm-min) {
+                .author{
+                    .hide;
+                }
+            }
             .table;
             .table-striped;
             .table-hover;
@@ -91,6 +109,10 @@ table.EXLMyAccountTable{
                 }
                 .type{
                     width:10%;
+                    text-align: center;
+                    img{
+                        display:inline-block;
+                    }
                 }
                 .author{
                     width:30%;
@@ -107,6 +129,8 @@ table.EXLMyAccountTable{
 
         }
 
+
+
         iframe{
             width: 100%;
         }
@@ -117,6 +141,9 @@ table.EXLMyAccountTable{
             .list-unstyled;
             li:nth-child(even){
                background: #f5f5f5;
+            }
+            a{
+
             }
         }
 
@@ -133,10 +160,13 @@ table.EXLMyAccountTable{
                 .h3;
             }
         }
-        .newManage_buts{
+        .EXLEShelfFolderContentsSendButtonList{
+           margin-left:auto!important;
+        }
+        .newManage_buts, .EXLEShelfFolderContentsSendButtonList{
             .list-inline;
             li{
-                padding:0;
+                padding:2px;
             }
             a{
                 .btn;
@@ -145,13 +175,49 @@ table.EXLMyAccountTable{
         }
         .folderName{
             width:100%;
+            td{
+                display: block;
+                table{
+                    display:block;
+                    width:100%;
+                    td{
+                        display:inline;
+                        padding:0;
+                        margin:0;
+                    }
+                    .ulTd{
+                        width:70%;
+                        ul, li{
+                            .pull-left;
+                        }
+                    }
+                    .EXLEShelfFolderContentsPushTo{
+                        width:30%;
+                        text-align: right;
+                    }
+                }
+            }
         }
         .buttonsUl{
             text-align: left !important;
+            background:#eeeeee;
+            border-radius: 4px;
         }
         #foldersDiv{
           padding:0;
             margin: 0px;
+        }
+        #saveAs{
+            .form-control;
+            display: inline;
+            width:auto;
+        }
+        .offstage{
+            .hide;
+        }
+        .buttonGo a{
+            .btn;
+            .btn-primary;
         }
 
 }
