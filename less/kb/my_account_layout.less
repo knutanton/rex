@@ -55,8 +55,31 @@ table.EXLMyAccountTable{
     .hide;
 }
 .basket{
-        .folder_details{
-            background: red;
+        .folder_details, .folders_new{
+            .pull-left;
+        }
+        .folders_new{
+            .noteBubble{
+                .collapse;
+            }
+            vertical-align:top;
+            :first-child{
+                padding:0px;
+                margin:0px;
+                .list-inline;
+                ol{
+                    .list-inline;
+                }
+            }
+            .folderActions ul{
+                li{
+                    padding:0;
+                }
+                a{
+                    .btn;
+                    .btn-primary;
+                }
+            }
         }
 
         .itemsListTH, .itemsListTable{
@@ -83,26 +106,7 @@ table.EXLMyAccountTable{
                 }
 
         }
-        .folders_new{
-            vertical-align:top;
-            :first-child{
-                padding:0px;
-                margin:0px;
-               .list-inline;
-                ol{
-                    .list-inline;
-                }
-            }
-            .folderActions ul{
-                li{
-                    padding:0;
-                }
-                a{
-                    .btn;
-                    .btn-primary;
-                }
-            }
-        }
+
         iframe{
             width: 100%;
         }
@@ -151,12 +155,10 @@ table.EXLMyAccountTable{
         }
 
 }
+
+
 .EXLMyAccountContainer{
     table{
-
-        tr{
-
-        }
         td{
             vertical-align: top;
         }
@@ -167,25 +169,6 @@ table.EXLMyAccountTable{
 
 }
 
-/* Small devices (tablets, 768px and up) */
-@media (max-width: @screen-sm-max) {
-    .EXLMyAccountContainer{
-        table{
-
-            tr{
-
-            }
-            td{
-
-            }
-            #itemsDiv{
-
-            }
-
-        }
-
-    }
-}
 
 /*  myAccountMenu.do
 ***************************************************************/
