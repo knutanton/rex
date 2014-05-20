@@ -44,7 +44,7 @@
 
 
 <div class="EXLResultsSortBy row">
-<div class="col-xs-12 col-sm-6 col-md-5">
+<div class="col-xs-12 col-sm-6 col-md-3">
     <c:if test="${form.searchResult.numberOfResults>=0}">
         <h1 class="text-muted">
             <c:if test="${form.remote and form.searchResult.numberOfResults>0}">
@@ -138,7 +138,7 @@
 
     <input type="hidden" name="searchForm.frbrSrt" value=""/>
 
-    <div class="EXLResultsSortByMenu col-xs-12 col-sm-6 col-md-3">
+    <div class="EXLResultsSortByMenu col-xs-12 col-sm-6 col-md-4">
         <div class="btn-group pull-right">
             <button type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown">
                 <span class="EXLResultsSortByLabel"><fmt:message key='results.sortby'/></span> <fmt:message
@@ -263,7 +263,7 @@
     </div>
 </c:if>
 
-<div class="col-xs-12 col-sm-12 col-md-4">
+<div class="col-xs-12 col-sm-12 col-md-5">
     <c:if test="${!form.displayGeneralPageActionsOnTop}">
         <!--RSS, Save Search and Add page to e-Shelf Links-->
         <%@ include file="generalPageActions.jspf" %>
