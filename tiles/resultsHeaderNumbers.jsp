@@ -142,7 +142,7 @@
         <div class="pull-right">
         <div id="kbResultsPerPageButton" class="btn-group">
             <button class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown">
-                <script type="text/javascript">kb.postsPerPage = ${sessionScope.bulk};</script> <%-- FIXME: I'm not sure this will work if personalSettingsIframe has not been loaded yet? HAFE --%>
+                <script type="text/javascript">kb.postsPerPage = ${sessionScope.bulk};</script>
                 <span class="glyphicon glyphicon-th-list"></span> <span class="kbResultsPerPage"><script type="text/javascript">document.write(kb.postsPerPage);</script><span>
                 &nbsp;<span class="caret"></span>
             </button>
