@@ -274,6 +274,21 @@ function startsWith(s, a) { // FIXME: These helper methods shouldn't be dumped i
 
 $(document).ready(function () {
 
+    // Adding language specific hardcoded headlines to the three boxes under personalSettings
+    kb.getPersonalSettingsCategories = function () {
+        return [{
+            name: 'Personlige indstillinger', // TODO: These names are hardcoded - it would be great if they could be fetched from exlibris instead!
+            icon: 'user',
+            extraRows: ['Adgangskode', 'Pinkode']
+        }, {
+            name: 'System indstillinger',
+            icon: 'wrench'
+        }, {
+            name: 'Artikel søgning',
+            icon: 'search'
+        }];
+    };
+
     addLoginLink();
 
     // Remove unwanted content (Function defined in header_global.js)
