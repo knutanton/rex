@@ -282,7 +282,7 @@ $(document).ready(function () {
             extraRows: ['Adgangskode', 'Pinkode']
         }, {
             name: 'System indstillinger',
-            icon: 'cog'
+            icon: 'wrench'
         }, {
             name: 'Artikel søgning',
             icon: 'search'

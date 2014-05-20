@@ -146,7 +146,7 @@ $(document).ready(function () {
             extraRows: ['Password', 'Pincode']
         }, {
             name: 'System Settings',
-            icon: 'cog'
+            icon: 'wrench'
         }, {
             name: 'Article Search',
             icon: 'search'
