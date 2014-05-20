@@ -118,7 +118,8 @@
                     </c:otherwise>
                 </c:choose>
             </c:if>
-            <c:if test="${not empty searchForm.scp.selectedScopesId && noScope == 'false'}">
+            <%-- Which database the result comes from is outcommented here due to too little space HAFE/KCK --%>
+            <%--c:if test="${not empty searchForm.scp.selectedScopesId && noScope == 'false'}">
                 &nbsp;<fmt:message key="results.scopes.for"/>
                 <em>
                     <c:if test="${searchForm.scp.selectedScopesId == 'Selected_Databases'}">
@@ -128,7 +129,7 @@
                         <fmt:message key='scopes.option.${searchForm.scp.selectedScopesId}'/>
                     </c:if>
                 </em>
-            </c:if>
+            </c:if--%>
 
         </h1>
     </c:if>
