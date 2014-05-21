@@ -657,10 +657,10 @@ function kbFixMyAccountPages() {
         $(firstRowChildren[0]).remove();
         $(firstRowChildren[1]).remove();
     }
-    if (pageName === 'fees') {
+    else if (pageName === 'fees') {
         $($('.EXLMyAccountFinesBalanceRow')[0]).attr('colspan', '3');
     }
-    if (pageName === 'basket') {
+    else if (pageName === 'basket') {
         $('td.folders_new').addClass('col-md-4');
         $('td.folder_details').addClass('col-md-8'); /* FIXME: It appears that there are two cells with this class (one of wich should never be used!) */
         // remove excessive ol/ul structure
