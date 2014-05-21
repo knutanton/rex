@@ -633,6 +633,10 @@ function kbFixMyAccountPages() {
     if (pageName === 'basket') {
         $('td.folders_new').addClass('col-md-4');
         $('td.folder_details').addClass('col-md-8'); /* FIXME: It appears that there are two cells with this class (one of wich should never be used!) */
+        // remove excessive ol/ul structure
+        $('#foldersDiv').prepend($('#foldersOverflow'));
+        $('#foldersDiv').prepend($('#folderActions'));
+        $('#foldersDiv>ul').remove();
     }
     else if (pageName === 'personalSettings') {
         var headers = kb.getPersonalSettingsCategories(); // Note: language specific functions defined in header.js and header_da_DK.js
