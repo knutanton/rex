@@ -142,8 +142,7 @@
         <div class="pull-right">
         <div id="kbResultsPerPageButton" class="btn-group">
             <button class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown">
-                <script type="text/javascript">kb.postsPerPage = ${sessionScope.bulk};</script>
-                <span class="glyphicon glyphicon-th-list"></span> <span class="kbResultsPerPage"><script type="text/javascript">document.write(kb.postsPerPage);</script><span>
+                <span class="glyphicon glyphicon-th-list"></span> <span class="kbResultsPerPage">${sessionScope.bulk}<span>
                 &nbsp;<span class="caret"></span>
             </button>
             

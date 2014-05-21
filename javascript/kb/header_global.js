@@ -40,9 +40,8 @@ window.Unique = (function ($, window) {
 }(jQuery));
 
 var kb = (function ($, document) {
-    var Kb = function (lang, postsPerPage) {
+    var Kb = function (lang) {
         this.lang = lang || 'da_DK';
-        this.postsPerPage = postsPerPage || 10;
         this.getParamCache = {};
         var that = this;
         // once per page put all get parameters into this.getParamCache
