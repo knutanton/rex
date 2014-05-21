@@ -650,6 +650,13 @@ function kbFixMyAccountPages() {
     $('#contentWrapper').prepend('<div class="page-header"><h1><span class="glyphicon glyphicon-' + kb.getMyAccountPageIcon(pageName) + '"></span> ' + title + '</h1></div>');
 
     // DOM manipulate specific pages under myAccount
+    if (pageName === 'loans') {
+        // remove the first two cells in the first header, and colspan the third (to left align forny buttons)
+        var firstRowChildren = $('#LoansTable thead tr:first-child').children();
+        firstRowChildren.last().attr('colspan','5');
+        $(firstRowChildren[0]).remove();
+        $(firstRowChildren[1]).remove();
+    }
     if (pageName === 'fees') {
         $($('.EXLMyAccountFinesBalanceRow')[0]).attr('colspan', '3');
     }
