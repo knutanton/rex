@@ -660,6 +660,9 @@ function kbFixMyAccountPages() {
         $('#foldersDiv').prepend($('#foldersOverflow'));
         $('#foldersDiv').prepend($('#folderActions'));
         $('#foldersDiv>ul').remove();
+        // add icons and headings
+        $('.EXLEShelfFolderContents h5').prepend('<span class="glyphicon glyphicon-folder-open"></span> ');
+        $('#foldersDiv').prepend('<h3><span class="glyphicon glyphicon-folder-close"></span> ' + kb.tr('minkonto.favoritter.Mapper') + '</h3>');
     }
     else if (pageName === 'personalSettings') {
         var headers = kb.getPersonalSettingsCategories(); // Note: language specific functions defined in header.js and header_da_DK.js
