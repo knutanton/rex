@@ -289,6 +289,11 @@ $(document).ready(function () {
         }];
     };
 
+    //Adding words
+    kb.words = {
+        'minkonto.favoritter.Mapper' : 'Mapper'
+    };
+
     addLoginLink();
 
     // Remove unwanted content (Function defined in header_global.js)

@@ -153,6 +153,11 @@ $(document).ready(function () {
         }];
     };
 
+    //Adding words
+    kb.words = {
+        'minkonto.favoritter.Mapper' : 'Folders'
+    };
+
     addLoginLink();
 
     // Remove unwanted content (Function defined in header_global.js)

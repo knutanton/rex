@@ -132,6 +132,29 @@ var kb = (function ($, document) {
         return '';
     }
 
+    /**
+     * Translate a word
+     * All words are defined in kb.words like this:
+     * kb.words : {
+        'category[.subcategory].key1' : 'word1',
+        'category[.subcategory].key2' : 'word2',
+        ...
+        'category[.subcategory].keyN' : 'wordN',
+     * }
+     * Call this method, and it will either return the looked up word, or fall back on the last part of the key
+     * Please note that the different parts of the keys are parted by '.'
+     */
+    Kb.prototype.tr = function (key) {
+        if (typeof key === 'undefined' || !key.substr) {
+            return 'TRANSLATION KEY MISSING';
+        }
+        lastWord = ((key.indexOf('.') >= 0) ? key.substr(key.lastIndexOf('.') + 1) : key);
+        if (this.words) {
+            return this.words[key] || lastWord;
+        }
+        return lastWord;
+    };
+
     return new Kb();
 }(jQuery, document));
 
