@@ -319,7 +319,8 @@ $(document).ready(function () {
 
 //		fixImageTitleUri();
     var signoutText = $("#exlidSignOut").find("button").text().trim();
-    if (startsWith(signoutText, Array('Log ud', 'Sign out'))) {
+
+    if (kb.loggedIn) {
         // things to do when the user is logged ind
         // change edit link
         $("div.EXLMyAccountEditLink").html('<span><a href="https://user-stage.kb.dk/user/edit" target="_blank">Rediger</a></span>');
