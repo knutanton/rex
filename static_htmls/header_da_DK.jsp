@@ -19,7 +19,8 @@
 <script type="text/javascript" src="../sites/kb/<%= view %>/javascript/bootstrap/modal.js"></script>
 <script type="text/javascript" src="../sites/kb/<%= view %>/javascript/bootstrap/carousel.js"></script>
 <script type="text/javascript" src="../sites/kb/<%= view %>/javascript/bootstrap/transition.js"></script>
-
+<script type="text/javascript" src="../sites/kb/<%= view %>/javascript/bootstrap/tooltip.js"></script>
+<script type="text/javascript" src="../sites/kb/<%= view %>/javascript/bootstrap/popover.js"></script>
 
 <!-- CUSTOM JS -->
 <script type="text/javascript" src="../sites/kb/<%= view %>/javascript/kb/cookieInformerBooklet_da_DK.js"></script>
