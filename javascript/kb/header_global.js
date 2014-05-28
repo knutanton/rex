@@ -143,6 +143,7 @@ var kb = (function ($, document) {
                 }
             }
         });
+        this.overlay(true, null, true);
     }
 
     Kb.prototype.MYACCOUNTPAGEICONS = new Array();
