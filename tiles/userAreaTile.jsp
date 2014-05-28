@@ -141,6 +141,7 @@
 
     <%-- New User --%>
     <c:if test="${not loggedIn}">
+        <script type="text/javascript">if (typeof kb !== 'undefined') kb.loggedIn = false;</script><%-- FIXME: hack to set a loggedIn flag in js - check for racecondition problems - kb might not be ready here! --%>
         <div class="btn-group">
             <c:set var="newBorrowerUrl" value="https://user-stage.kb.dk/user/create" /><%-- FIXME: What's the point in setting a variable and injecting below? /HAFE --%>
             <button onclick="window.location.href='<c:out value="${newBorrowerUrl}"/>?locale=${sessionScope.chosenInterfaceLanguage}'" class="btn btn-primary navbar-btn" target="_blank">
@@ -153,6 +154,7 @@
 
     <%-- User --%>
     <c:if test="${loggedIn}">
+        <script type="text/javascript">if (typeof kb !== 'undefined') kb.loggedIn = true;</script><%-- FIXME: hack to set a loggedIn flag in js - check for racecondition problems - kb might not be ready here! --%>
         <div class="btn-group">
             <button class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
                 <span class="glyphicon glyphicon-user"></span>
