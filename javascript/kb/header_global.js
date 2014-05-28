@@ -50,6 +50,42 @@ var kb = (function ($, document) {
         });
     };
 
+    // inject an overlay for modal dialogs (and loading)
+    Kb.prototype.overlayElem = $('<div class="kbModalOverlay"></div>').appendTo(document.body);
+    Kb.prototype.spinnerElem = $('<div class="kbOverlaySpinner"></div>').appendTo(document.body);
+
+    /**
+     * Set or hide overlay with or without onclick handler and spinner.
+     * @param hide {Boolean} Hide the overlay or show it.
+     * @param onclick {Function} onclick event handler that will be called once and once only, when the overlay is clicked.
+     * @param spinner {Boolean} Show the spinner on top of the overlay (makes sense when loading, when there is a modal dialog ... not so much
+     */
+    Kb.prototype.overlay = function (display, onclick, spinner) {
+        var overlay = $('.kbModalOverlay');
+        this.overlayElem.css('display', !!display ? 'block' : 'none');
+        if (display) {
+            if (spinner) {
+                this.spinnerElem.css('display', 'block');
+            }
+            if (onclick && $.isFunction(onclick)) {
+                this.overlayClickHandler = onclick;
+                $('.kbModalOverlay').one('click', kb.overlayClickHandler);
+            }
+        }
+        if (!display) {
+            // Turn off click eventhandler - the element is turned off, so should its eventhandlers
+            if (this.overlayClickHandler) {
+                // turn off the click event handler
+                this.overlayElem.off('click', this.overlayClickHandler);
+                this.overlayClickHandler = null;
+            }
+            // turn off spinner, if it is set
+            if (this.spinnerElem.css('display') === 'block') {
+                this.spinnerElem.css('display', 'none');
+            }
+        }
+    };
+
     /**
      * Get URL Parameter. Fetches the value of a getParameter from an url.
      * There is a cached object this.getParamCache with all get parameters from location.href, so we do not need to parse it every time it is probed.
